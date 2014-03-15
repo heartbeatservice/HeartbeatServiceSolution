@@ -22,6 +22,7 @@
           <EntitySet Name="aspnet_Membership" EntityType="TTModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Roles" EntityType="TTModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Users" EntityType="TTModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="TTModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ExtendedUserProfile" EntityType="TTModel.Store.ExtendedUserProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserTimeTrackHistory" EntityType="TTModel.Store.UserTimeTrackHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WebMenu" EntityType="TTModel.Store.WebMenu" store:Type="Tables" Schema="dbo" />
@@ -41,6 +42,14 @@
           <AssociationSet Name="FK__aspnet_Us__Appli__0E6E26BF" Association="TTModel.Store.FK__aspnet_Us__Appli__0E6E26BF">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__RoleI__06CD04F7" Association="TTModel.Store.FK__aspnet_Us__RoleI__06CD04F7">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__aspnet_Us__UserI__05D8E0BE" Association="TTModel.Store.FK__aspnet_Us__UserI__05D8E0BE">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_ExtendedUserProfile_aspnet_Users" Association="TTModel.Store.FK_ExtendedUserProfile_aspnet_Users">
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
@@ -131,6 +140,14 @@
           <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
           <Property Name="IsAnonymous" Type="bit" Nullable="false" />
           <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="aspnet_UsersInRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="ExtendedUserProfile">
           <Key>
@@ -236,6 +253,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__aspnet_Us__RoleI__06CD04F7">
+          <End Role="aspnet_Roles" Type="TTModel.Store.aspnet_Roles" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="TTModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__aspnet_Us__UserI__05D8E0BE">
+          <End Role="aspnet_Users" Type="TTModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="aspnet_UsersInRoles" Type="TTModel.Store.aspnet_UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ExtendedUserProfile_aspnet_Users">
           <End Role="aspnet_Users" Type="TTModel.Store.aspnet_Users" Multiplicity="1" />
           <End Role="ExtendedUserProfile" Type="TTModel.Store.ExtendedUserProfile" Multiplicity="0..1" />
@@ -322,6 +363,10 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="UserTimeTrackHistory" EntitySet="UserTimeTrackHistories" />
           </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="TTModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
           <AssociationSet Name="WebMenuRole" Association="TTModel.WebMenuRole">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="WebMenu" EntitySet="WebMenus" />
@@ -390,6 +435,7 @@
           <Property Name="LoweredRoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="aspnet_Applications" Relationship="TTModel.FK__aspnet_Ro__Appli__07C12930" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+          <NavigationProperty Name="aspnet_Users" Relationship="TTModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
           <NavigationProperty Name="WebMenus" Relationship="TTModel.WebMenuRole" FromRole="aspnet_Roles" ToRole="WebMenu" />
         </EntityType>
         <EntityType Name="aspnet_Users">
@@ -407,6 +453,7 @@
           <NavigationProperty Name="aspnet_Membership" Relationship="TTModel.FK__aspnet_Me__UserI__03F0984C" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
           <NavigationProperty Name="ExtendedUserProfile" Relationship="TTModel.FK_ExtendedUserProfile_aspnet_Users" FromRole="aspnet_Users" ToRole="ExtendedUserProfile" />
           <NavigationProperty Name="UserTimeTrackHistories" Relationship="TTModel.FK_UserTimeStampHistory_aspnet_Users" FromRole="aspnet_Users" ToRole="UserTimeTrackHistory" />
+          <NavigationProperty Name="aspnet_Roles" Relationship="TTModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
         </EntityType>
         <EntityType Name="ExtendedUserProfile">
           <Key>
@@ -530,6 +577,10 @@
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Role="aspnet_Roles" Type="TTModel.aspnet_Roles" Multiplicity="*" />
+          <End Role="aspnet_Users" Type="TTModel.aspnet_Users" Multiplicity="*" />
         </Association>
         <Association Name="WebMenuRole">
           <End Role="aspnet_Roles" Type="TTModel.aspnet_Roles" Multiplicity="*" />
@@ -667,6 +718,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="aspnet_UsersInRoles" TypeName="TTModel.aspnet_UsersInRoles" StoreEntitySet="aspnet_UsersInRoles">
+            <EndProperty Name="aspnet_Roles">
+              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="aspnet_Users">
+              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            </EndProperty>
+          </AssociationSetMapping>
           <AssociationSetMapping Name="WebMenuRole" TypeName="TTModel.WebMenuRole" StoreEntitySet="WebMenuRole">
             <EndProperty Name="aspnet_Roles">
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />

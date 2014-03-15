@@ -16,6 +16,7 @@ namespace HBS.Data.Entities.TimeTracking.EF
     {
         public aspnet_Roles()
         {
+            this.aspnet_Users = new HashSet<aspnet_Users>();
             this.WebMenus = new HashSet<WebMenu>();
         }
     
@@ -26,6 +27,7 @@ namespace HBS.Data.Entities.TimeTracking.EF
         public string Description { get; set; }
     
         public virtual aspnet_Applications aspnet_Applications { get; set; }
+        public virtual ICollection<aspnet_Users> aspnet_Users { get; set; }
         public virtual ICollection<WebMenu> WebMenus { get; set; }
     }
 }

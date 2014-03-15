@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Entities", "HBS.Entitie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.TimeTracking", "HBS.TimeTracking\HBS.TimeTracking.csproj", "{DF15EE99-40AD-4769-B255-0BF592565C12}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HBS.DatabaseSchema", "HeartbeatService.Database\HBS.DatabaseSchema.sqlproj", "{19DBBF05-2390-4FD9-86C3-52873F58043F}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HBS.DatabaseSchema", "HBS.Database\HBS.DatabaseSchema.sqlproj", "{19DBBF05-2390-4FD9-86C3-52873F58043F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Service", "HBS.Service\HBS.Service.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
 EndProject

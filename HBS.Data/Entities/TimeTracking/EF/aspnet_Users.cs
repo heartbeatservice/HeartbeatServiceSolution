@@ -17,6 +17,7 @@ namespace HBS.Data.Entities.TimeTracking.EF
         public aspnet_Users()
         {
             this.UserTimeTrackHistories = new HashSet<UserTimeTrackHistory>();
+            this.aspnet_Roles = new HashSet<aspnet_Roles>();
         }
     
         public System.Guid ApplicationId { get; set; }
@@ -31,5 +32,6 @@ namespace HBS.Data.Entities.TimeTracking.EF
         public virtual aspnet_Membership aspnet_Membership { get; set; }
         public virtual ExtendedUserProfile ExtendedUserProfile { get; set; }
         public virtual ICollection<UserTimeTrackHistory> UserTimeTrackHistories { get; set; }
+        public virtual ICollection<aspnet_Roles> aspnet_Roles { get; set; }
     }
 }
