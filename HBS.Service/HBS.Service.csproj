@@ -33,6 +33,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'QA|AnyCPU'">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />

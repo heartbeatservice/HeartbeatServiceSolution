@@ -101,6 +101,12 @@
     <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
     <VisualStudioVersion Condition="'$(SSDTExists)' == ''">10.0</VisualStudioVersion>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Dev|AnyCPU' ">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'QA|AnyCPU' ">
+    <OutputPath>bin\QA\</OutputPath>
+  </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
@@ -127,7 +133,7 @@
     <Build Include="dbo\Tables\aspnet_Membership.sql">
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\Professional_Type.sql">
+    <Build Include="dbo\Tables\ProfessionalType.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
@@ -144,7 +150,7 @@
     <Build Include="dbo\Tables\aspnet_PersonalizationPerUser.sql">
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\Status_Type.sql">
+    <Build Include="dbo\Tables\StatusType.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
@@ -161,14 +167,14 @@
     <Build Include="dbo\Tables\aspnet_SchemaVersions.sql">
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\Insurance_Type.sql">
+    <Build Include="dbo\Tables\InsuranceType.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
     <Build Include="dbo\Tables\aspnet_Users.sql">
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\Customer_Insurance.sql">
+    <Build Include="dbo\Tables\CustomerInsurance.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
@@ -178,7 +184,7 @@
     <Build Include="dbo\Tables\aspnet_WebEvent_Events.sql">
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="dbo\Tables\Professional_Schedule.sql">
+    <Build Include="dbo\Tables\ProfessionalSchedule.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
@@ -286,11 +292,19 @@
     <Build Include="Security\aspnet_WebEvent_FullAccess_1.sql" />
     <Build Include="Security\hbuser_2.sql" />
     <Build Include="Security\Permissions.sql" />
+    <Build Include="dbo\Tables\webpages_Membership.sql" />
+    <Build Include="dbo\Tables\webpages_OAuthMembership.sql" />
+    <Build Include="dbo\Tables\webpages_Roles.sql" />
+    <Build Include="dbo\Tables\webpages_UsersInRoles.sql" />
+    <Build Include="dbo\Tables\UserProfile.sql" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="HBS.DatabaseSchema.refactorlog" />
   </ItemGroup>
 </Project>

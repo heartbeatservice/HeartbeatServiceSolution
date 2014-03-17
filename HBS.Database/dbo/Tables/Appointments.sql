@@ -1,14 +1,14 @@
 ﻿CREATE TABLE [dbo].[Appointments] (
-    [AppointmentID]        INT             IDENTITY (1, 1) NOT NULL,
-    [Professional_ID]      INT             NOT NULL,
-    [Customer_ID]          INT             NULL,
+    [AppointmentId]        INT             IDENTITY (1, 1) NOT NULL,
+    [ProfessionalId]      INT             NOT NULL,
+    [CustomerId]          INT             NULL,
     [AppointmentDate]      DATE            NOT NULL,
     [AppointmentStartTime] NVARCHAR (50)   NOT NULL,
-    [StatusID]             INT             NULL,
+    [StatusId]             INT             NULL,
     [Comments]             NVARCHAR (1000) NULL,
-    CONSTRAINT [PK_Appointments] PRIMARY KEY CLUSTERED ([AppointmentID] ASC),
-    CONSTRAINT [FK_Appointments_Customers] FOREIGN KEY ([Customer_ID]) REFERENCES [dbo].[Customers] ([Customer_ID]),
-    CONSTRAINT [FK_Appointments_Professional] FOREIGN KEY ([Professional_ID]) REFERENCES [dbo].[Professional] ([Professional_ID]),
-    CONSTRAINT [FK_Appointments_Status_Type] FOREIGN KEY ([StatusID]) REFERENCES [dbo].[Status_Type] ([StatusID])
+    CONSTRAINT [PK_Appointments] PRIMARY KEY CLUSTERED ([AppointmentId] ASC),
+    CONSTRAINT [FK_Appointments_Customers] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([CustomerId]),
+    CONSTRAINT [FK_Appointments_Professional] FOREIGN KEY ([ProfessionalId]) REFERENCES [dbo].[Professional] ([ProfessionalId]),
+    CONSTRAINT [FK_Appointments_StatusType] FOREIGN KEY ([StatusId]) REFERENCES [dbo].[StatusType] ([StatusId])
 );
 

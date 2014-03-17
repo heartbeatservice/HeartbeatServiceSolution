@@ -61,7 +61,7 @@ $(document).ready(function () {
             var timeTrackId = parentRow.find("#dailytimeTrack_TimeTrackId").val();
             
             //var url = "/TimeTrack/DeleteTimeTrackRecord";
-            var url = "/TimeTracking/TimeTrack/DeleteTimeTrackRecord";
+            var url = location.protocol + "//" + location.host + "/TimeTrack/DeleteTimeTrackRecord";
             
             $.post(url, { timeTrackId: timeTrackId }, function (data) {
                 if (data) {
@@ -85,7 +85,7 @@ $(document).ready(function () {
         var clockOutTime = parentRow.find("#txtClockOutTime").val();
 
         //var url = "/TimeTrack/UpdateClockInOutTime";
-        var url = "/TimeTracking/TimeTrack/UpdateClockInOutTime";
+        var url = location.protocol + "//" + location.host + "/TimeTrack/UpdateClockInOutTime";
 
         $.post(url, { timeTrackId: timeTrackId, stampDate: timeTrackStampDate, selectedUser: timeTrackSelectedUser, clockInTime: clockInTime, clockOutTime: clockOutTime }
             , function (data) {
