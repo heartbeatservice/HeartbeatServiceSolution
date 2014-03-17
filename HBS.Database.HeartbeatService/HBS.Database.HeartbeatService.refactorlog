@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="f0615885-9dd5-4fd2-9f69-491b5e32b444" ChangeDateTime="03/17/2014 04:03:54">
+    <Property Name="ElementName" Value="[dbo].[Company].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Company]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CompanyId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="075f0e27-1698-4ec4-9d9b-0ed2528a32b8" ChangeDateTime="03/17/2014 04:11:31">
+    <Property Name="ElementName" Value="[dbo].[Roles].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Roles]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2cf69747-0862-43aa-a1c4-54de547e0349" ChangeDateTime="03/17/2014 04:12:55">
+    <Property Name="ElementName" Value="[dbo].[MenuRole].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MenuRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MenuId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dead6870-30f7-4410-a87c-01e1746f1bae" ChangeDateTime="03/17/2014 04:14:18">
+    <Property Name="ElementName" Value="[dbo].[FK_MenuRole_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[MenuRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_MenuRole_ToT]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="fc1a9ec2-2400-4f8c-a6f2-f26971012133" ChangeDateTime="03/17/2014 04:14:37">
+    <Property Name="ElementName" Value="[dbo].[FK_MenuRole_ToT]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[MenuRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_MenuRole_ToMenu]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4fc638c2-ff83-47c8-916f-3d831dd0a200" ChangeDateTime="03/17/2014 04:17:02">
+    <Property Name="ElementName" Value="[dbo].[FK_UserProfile_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[UserProfile]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_UserProfile_To_Company]" />
+  </Operation>
+</Operations>

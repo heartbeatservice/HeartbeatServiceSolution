@@ -1,3 +1,0 @@
-﻿CREATE LOGIN [hbuser]
-    WITH PASSWORD = N'Tybxtdojo4lzcKt0|rmufiacmsFT7_&#$!~<xve4xxlUn|id', SID = 0x28B1A472505479438F39B71BFADCD3FA, DEFAULT_DATABASE = [Heartbeat], DEFAULT_LANGUAGE = [us_english], CHECK_POLICY = OFF;
-
