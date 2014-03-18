@@ -42,4 +42,95 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[FK_UserProfile_To_Company]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3fd0fcd2-3f52-49e1-b572-895c322ac872" ChangeDateTime="03/18/2014 02:59:18">
+    <Property Name="ElementName" Value="[dbo].[UserRole].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoleId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="786614dd-2789-4e3e-83ff-8ec6c316c984" ChangeDateTime="03/18/2014 02:59:30">
+    <Property Name="ElementName" Value="[dbo].[UserRole].[RoleId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserRole]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="UserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cb2980ed-328a-48c2-9230-ff0f82046b10" ChangeDateTime="03/18/2014 03:08:37">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ConfigId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c60e2760-f39d-4528-a09f-89b1aea5ca66" ChangeDateTime="03/18/2014 03:30:14">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ConfigId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ConfigItemId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1529a04f-86eb-464d-aca9-92a9772d5ef6" ChangeDateTime="03/18/2014 03:35:06">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ConfigItemId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlConfigId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c744ebdf-2121-4e40-b698-c77a0a73fa9c" ChangeDateTime="03/18/2014 03:35:44">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ControlConfigId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ConfigId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8366f065-9003-4e8a-a627-21c00dcb125c" ChangeDateTime="03/18/2014 03:35:50">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemKey]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlKey" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="503a0016-0c2e-4ce0-ad17-4df73978b55b" ChangeDateTime="03/18/2014 03:35:54">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemValue]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlValue" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c4f8b8da-553a-467e-84dc-e4d9d4f5c17a" ChangeDateTime="03/18/2014 03:35:59">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemOrder]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlOrder" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7e1c209b-34f2-4ee2-9bef-02ea9fa0a624" ChangeDateTime="03/18/2014 03:36:08">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemListKey]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlItemKey" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="4105680c-20f4-4f34-b64d-2b9ac01de8db" ChangeDateTime="03/18/2014 03:36:15">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemListValue]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlItemValue" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="62cfad60-206b-4a58-b10e-96cd203bac70" ChangeDateTime="03/18/2014 03:36:20">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemListText]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlItemText" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c9654250-25b0-407f-a9f9-8c36b37a79a9" ChangeDateTime="03/18/2014 03:36:26">
+    <Property Name="ElementName" Value="[dbo].[ConfigValues].[ItemListOrder]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ConfigValues]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ControlItemOrder" />
+  </Operation>
 </Operations>
