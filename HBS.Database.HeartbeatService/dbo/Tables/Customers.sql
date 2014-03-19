@@ -11,6 +11,10 @@
     [Zip]         CHAR (10)      NULL,
     [HomePhone]   NVARCHAR (10)  NULL,
     [CellPhone]   NVARCHAR (10)  NULL,
+    [CreatedBy] INT NULL, 
+    [DateCreated] DATETIME NULL, 
+    [UpdatedBy] INT NULL, 
+    [DateUpdated] DATETIME NULL, 
     CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED ([CustomerId] ASC)
 );
 
