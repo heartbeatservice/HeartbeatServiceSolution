@@ -5,7 +5,11 @@
     [AppointmentDate]      DATE            NOT NULL,
     [AppointmentStartTime] NVARCHAR (50)   NOT NULL,
     [StatusId]             INT             NULL,
-    [Comments]             NVARCHAR (1000) NULL,
+    [Comments]             NVARCHAR (1000) NULL,	
+    [CreatedBy] INT NULL, 
+    [DateCreated] DATETIME NULL, 
+    [UpdatedBy] INT NULL, 
+    [DateUpdated] DATETIME NULL, 
     CONSTRAINT [PK_Appointments] PRIMARY KEY CLUSTERED ([AppointmentId] ASC)
 );
 

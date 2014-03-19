@@ -133,4 +133,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="ControlItemOrder" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="8f881a20-a307-4f3c-99b9-ee0ce2c780be" ChangeDateTime="03/19/2014 02:27:11">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[Created]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreatedBy" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dc24e265-8049-44ae-9041-64528c42ab76" ChangeDateTime="03/19/2014 02:27:28">
+    <Property Name="ElementName" Value="[dbo].[Appointments].[CreatedDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Appointments]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateCreated" />
+  </Operation>
 </Operations>
