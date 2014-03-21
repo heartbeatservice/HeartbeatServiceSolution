@@ -60,6 +60,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAppointmentRepository.cs" />
+    <Compile Include="Abstract\ICommonRepository.cs" />
+    <Compile Include="Abstract\IProfessionalRepository.cs" />
+    <Compile Include="Abstract\ISecurityRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="Concrete\AppointmentRepository.cs" />
+    <Compile Include="Concrete\CommonRepository.cs" />
+    <Compile Include="Concrete\ProfessionalRepository.cs" />
+    <Compile Include="Concrete\SecurityRepository.cs" />
     <Compile Include="Entities\TimeTracking\EF\AllowedUserIPAddress.cs">
       <DependentUpon>TimeTrackingModel.tt</DependentUpon>
     </Compile>
@@ -155,6 +164,13 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\HBS.Entities\HBS.Entities.csproj">
+      <Project>{2a305813-b643-4a04-a045-e6c87ebffaaf}</Project>
+      <Name>HBS.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
