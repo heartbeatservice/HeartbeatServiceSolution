@@ -33,8 +33,13 @@ namespace HBS.Entities
         {
             if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
                 CustomerId = (int)dbReader["CustomerId"];
-            if (dbReader.HasColumn("UserId") && dbReader["UserId"] != DBNull.Value)
+           
+             //TODO: Why need a userID here when Createdby is already here. 
+             
+             if (dbReader.HasColumn("UserId") && dbReader["UserId"] != DBNull.Value)
                 CustomerId = (int)dbReader["UserId"];
+
+
             if (dbReader.HasColumn("FirstName") && dbReader["FirstName"] != DBNull.Value)
                 FirstName = (string)dbReader["FirstName"];
 
@@ -56,6 +61,15 @@ namespace HBS.Entities
                 HomePhone = (string)dbReader["HomePhone"];
             if (dbReader.HasColumn("CellPhone") && dbReader["CellPhone"] != DBNull.Value)
                 CellPhone = (string)dbReader["CellPhone"];
+            if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
+                base.CreatedBy = (int)dbReader["CreatedBy"];
+            if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
+                base.UpdatedBy = (int)dbReader["UpdatedBy"];
+            if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
+                base.DateCreated = (DateTime)dbReader["DateCreated"];
+            if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
+                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+
             
             
         }

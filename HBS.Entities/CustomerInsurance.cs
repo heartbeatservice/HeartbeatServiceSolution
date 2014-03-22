@@ -43,6 +43,15 @@ namespace HBS.Entities
 
             if (dbReader.HasColumn("InsuranceType") && dbReader["InsuranceType"] != DBNull.Value)
                 InsuranceType = (string)dbReader["InsuranceType"];
+            if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
+                base.CreatedBy = (int)dbReader["CreatedBy"];
+            if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
+                base.UpdatedBy = (int)dbReader["UpdatedBy"];
+            if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
+                base.DateCreated = (DateTime)dbReader["DateCreated"];
+            if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
+                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+
             
         }
 

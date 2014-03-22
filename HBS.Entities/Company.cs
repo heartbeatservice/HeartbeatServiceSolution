@@ -29,6 +29,15 @@ namespace HBS.Entities
                 CompanyName = (string)dbReader["CompanyName"];
             if (dbReader.HasColumn("Description") && dbReader["Description"] != DBNull.Value)
                 Description = (string)dbReader["Description"];
+            if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
+                base.CreatedBy = (int)dbReader["CreatedBy"];
+            if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
+                base.UpdatedBy = (int)dbReader["UpdatedBy"];
+            if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
+                base.DateCreated = (DateTime)dbReader["DateCreated"];
+            if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
+                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+
             
         }
 
