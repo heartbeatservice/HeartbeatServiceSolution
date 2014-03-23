@@ -191,6 +191,44 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Angular\angular-cookies.js" />
+    <Content Include="Content\Angular\angular-cookies.min.js" />
+    <Content Include="Content\Angular\angular-loader.js" />
+    <Content Include="Content\Angular\angular-loader.min.js" />
+    <Content Include="Content\Angular\angular-resource.js" />
+    <Content Include="Content\Angular\angular-resource.min.js" />
+    <Content Include="Content\Angular\angular-sanitize.js" />
+    <Content Include="Content\Angular\angular-sanitize.min.js" />
+    <Content Include="Content\Angular\angular.js" />
+    <Content Include="Content\Angular\angular.min.js" />
+    <Content Include="Content\Angular\app.js" />
+    <Content Include="Content\Angular\HeartbeatController.js" />
+    <Content Include="Content\Angular\HeartbeatService.js" />
+    <Content Include="Content\Angular\ng-grid-2.0.6.min.js" />
+    <Content Include="Content\Angular\ng-grid.min.css" />
+    <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\styles.css" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\images\amir.jpg" />
+    <Content Include="Content\images\amir_shot.jpg" />
+    <Content Include="Content\images\naveed.jpg" />
+    <Content Include="Content\images\naveedshot.jpg" />
+    <Content Include="Content\images\raheel.jpg" />
+    <Content Include="Content\images\raheelshot.jpg" />
+    <Content Include="Content\images\saqib.jpg" />
+    <Content Include="Content\images\saqibshot.jpg" />
+    <Content Include="Content\images\tayyib.jpg" />
+    <Content Include="Content\images\tayyibshot.jpg" />
+    <Content Include="Content\images\umais.jpg" />
+    <Content Include="Content\images\umaisshot.jpg" />
+    <Content Include="Content\scripts\bootstrap.min.js" />
+    <Content Include="Content\scripts\jquery-1.8.2.min.js" />
+    <Content Include="Content\scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Content\scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\scripts\script.js" />
+    <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -247,6 +285,10 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\HeartbeatWebsite.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -269,7 +311,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
@@ -294,13 +335,13 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Team.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
