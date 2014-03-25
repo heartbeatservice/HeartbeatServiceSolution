@@ -24,11 +24,6 @@ namespace HBS.Entities
 
         }
 
-
-
-
-
-
         public Appointments(IDataReader dbReader)
             : this()
         {
@@ -43,9 +38,9 @@ namespace HBS.Entities
             if (dbReader.HasColumn("AppointmentStartTime") && dbReader["AppointmentStartTime"] != DBNull.Value)
                 AppointmentStartTime = (string)dbReader["AppointmentStartTime"];
             if (dbReader.HasColumn("StatusId") && dbReader["StatusId"] != DBNull.Value)
-                CustomerId = (int)dbReader["StatusId"];
-            if (dbReader.HasColumn("StatusId") && dbReader["StatusId"] != DBNull.Value)
-                CustomerId = (int)dbReader["StatusId"];
+                StatusId = (int)dbReader["StatusId"];
+            if (dbReader.HasColumn("Comments") && dbReader["Comments"] != DBNull.Value)
+                Comments = (string)dbReader["Comments"];
             if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
                 base.CreatedBy = (int)dbReader["CreatedBy"];
             if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
