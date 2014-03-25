@@ -92,7 +92,6 @@ namespace HBS.Data.Concrete
                     cmd.Parameters["@UpdatedDate"].Value = DateTime.UtcNow;
 
                     return cmd.ExecuteNonQuery() > 0;
-
                 }
             }
         }
