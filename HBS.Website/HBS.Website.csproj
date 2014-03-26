@@ -213,8 +213,14 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\amir.jpg" />
     <Content Include="Content\images\amir_shot.jpg" />
+    <Content Include="Content\images\Heartbeat Service-logo.png" />
+    <Content Include="Content\images\heartLogo.png" />
+    <Content Include="Content\images\heartLogo1.png" />
+    <Content Include="Content\images\heartLogo2.png" />
+    <Content Include="Content\images\logo.gif" />
     <Content Include="Content\images\naveed.jpg" />
     <Content Include="Content\images\naveedshot.jpg" />
+    <Content Include="Content\images\pro.jpg" />
     <Content Include="Content\images\raheel.jpg" />
     <Content Include="Content\images\raheelshot.jpg" />
     <Content Include="Content\images\saqib.jpg" />

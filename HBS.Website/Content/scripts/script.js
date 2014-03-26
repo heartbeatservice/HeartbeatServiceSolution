@@ -7,6 +7,33 @@ $(document).ready(function () {
 
 });
 
+function canvasSupport() {
+    return Modernizr.canvas;
+}
+
+function createLogo(text) {
+
+    var theCanvas = document.getElementById("theCanvas");
+    var context = theCanvas.getContext("2d");
+    function drawLogo() {
+
+        context.fillStyle = "#ffffaa";
+        context.fillRect(0, 0, 240, 80);
+        
+        //Text
+        context.fillStyle = "#FFAA00";
+        context.font = "20px Sans-Serif";
+        context.textBaseline = "top";
+        context.fillText("Heartbeat Service", 10, 10);
+
+        //box
+        context.strokStyle = "#000000";
+        context.strokeRect(5, 5, 60, 30);
+
+    }
+
+    drawLogo();
+}
 
 function NullifyObject(obj) {
     if (obj.ISBN13 === "")

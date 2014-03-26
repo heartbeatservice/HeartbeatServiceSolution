@@ -1,6 +1,6 @@
 ﻿body
 {
-    margin-top:120px;
+    margin-top:140px;
 }
 
 .pass {
@@ -14,4 +14,30 @@
 .carimages {
 
     
+}
+
+.panel-background {
+background-color:rgb(64, 83, 103);
+}
+
+.panel-custom {
+    height:650px;
+}
+
+.indicator-background {
+background-color:rgb(9, 8, 109)
+}
+
+.logoText {
+padding-left:10px;
+padding-right:10px;
+}
+
+.navBg {
+background-color:rgb(9, 8, 109)
+}
+
+
+.logoColor {
+color:#f23a38;
 }
