@@ -61,10 +61,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IControlConfigItemRepository.cs" />
     <Compile Include="Abstract\IAppointmentRepository.cs" />
     <Compile Include="Abstract\ICommonRepository.cs" />
+    <Compile Include="Abstract\ICompanyRepository.cs" />
+    <Compile Include="Abstract\IConfigItemRepository.cs" />
+    <Compile Include="Abstract\IConfigValuesRepository.cs" />
+    <Compile Include="Abstract\ICustomerRepository.cs" />
+    <Compile Include="Abstract\ICustomerInsuranceRepository.cs" />
+    <Compile Include="Abstract\IInsuranceTypeRepository.cs" />
+    <Compile Include="Abstract\IMenuRepository.cs" />
+    <Compile Include="Abstract\IMenuRoleRepository.cs" />
     <Compile Include="Abstract\IProfessionalRepository.cs" />
+    <Compile Include="Abstract\IProfessionalScheduleRepository.cs" />
+    <Compile Include="Abstract\IProfessionalTypeRepository.cs" />
+    <Compile Include="Abstract\IRoleRepository.cs" />
     <Compile Include="Abstract\ISecurityRepository.cs" />
+    <Compile Include="Abstract\IStatusTypeRepository.cs" />
+    <Compile Include="Abstract\IUserProfileRepository.cs" />
+    <Compile Include="Abstract\IUserRoleRepository.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Concrete\AppointmentRepository.cs" />
     <Compile Include="Concrete\CommonRepository.cs" />
