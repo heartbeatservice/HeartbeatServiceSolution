@@ -13,6 +13,8 @@ namespace HBS.Data.Concrete
     {
         private const string AddUserSp = "AddUser";
         private const string UpdateUserSp = "UpdateUser";
+        private const string GetUesrByIdSp = "GetUserById";
+        private const string GetUesrByUserNameSp = "GetUserByUserName";
 
         public int AddUser(UserProfile user)
         {
@@ -20,7 +22,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand("AddUserSp", conn))
+                using (var cmd = new SqlCommand(AddUserSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -98,12 +100,72 @@ namespace HBS.Data.Concrete
 
         public UserProfile GetUser(int userId)
         {
-            throw new NotImplementedException();
+            UserProfile user = null;
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(GetUesrByIdSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@UserId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@UserId"].Value = userId;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                myReader.Read();
+                                user = new UserProfile(myReader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return user;
         }
 
         public UserProfile GetUser(string userName)
         {
-            throw new NotImplementedException();
+            UserProfile user = null;
+
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(GetUesrByUserNameSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@UserName", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@UserName"].Value = userName;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                myReader.Read();
+                                user = new UserProfile(myReader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return user;
+
         }
 
         public List<UserProfile> GetUsers(int companyId)
