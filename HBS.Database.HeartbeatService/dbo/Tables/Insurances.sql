@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[InsuranceType] (
+﻿CREATE TABLE [dbo].[Insurances] (
     [InsuranceId]      INT            IDENTITY (1, 1) NOT NULL,
     [CompanyId]        INT            NOT NULL,
     [InsuranceName]    NVARCHAR (50)  NULL,
