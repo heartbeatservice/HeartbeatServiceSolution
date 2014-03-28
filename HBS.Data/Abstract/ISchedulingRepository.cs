@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HBS.Entities;
 
 namespace HBS.Data.Abstract
 {
-    interface IConfigItemRepository
+    public interface ISchedulingRepository
     {
+        int AddCompany(Company company);
+        bool UpdateCompany(Company company);
     }
 }

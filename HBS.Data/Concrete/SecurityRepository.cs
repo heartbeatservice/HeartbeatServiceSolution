@@ -170,7 +170,9 @@ namespace HBS.Data.Concrete
 
         public List<UserProfile> GetUsers(int companyId)
         {
+            //Aamir
             throw new NotImplementedException();
+
         }
 
         public List<UserProfile> GetUsers(string searchText)
