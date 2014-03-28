@@ -62,8 +62,7 @@ namespace HBS.Scheduling.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IProfessionalRepository>().To<ProfessionalRepository>();
-            kernel.Bind<IAppointmentRepository>().To<AppointmentRepository>();
+            kernel.Bind<ISchedulingRepository>().To<SchedulingRepository>();
             kernel.Bind<ISecurityRepository>().To<SecurityRepository>();
             kernel.Bind<ICommonRepository>().To<CommonRepository>();
         }        

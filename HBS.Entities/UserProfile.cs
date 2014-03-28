@@ -23,7 +23,14 @@ namespace HBS.Entities
             
         }
 
-        public UserProfile(IDataReader dbReader):this()
+        public UserProfile(int companyId,string userName,string password,string firstName,string lastName,string email,int userId)
+            : this()
+        {
+
+        }
+
+        public UserProfile(IDataReader dbReader)
+            :this()
         {
             if (dbReader["CompanyId"] != DBNull.Value) CompanyId = (int)dbReader["CompanyId"];
             if (dbReader["UserName"] != DBNull.Value) UserName = (string)dbReader["UserName"];
