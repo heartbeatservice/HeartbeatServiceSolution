@@ -14,7 +14,7 @@ namespace HBS.Entities
         public int UserId { get; set; }   //TODO: we already have Created by in base class so why we need user ID here? 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        //TODO:  public string MiddleInitial {get; set;}   //missing from table. 
+        public string MiddleInitial {get; set;}   //missing from table. 
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string DateOfBirth { get; set; }
@@ -45,6 +45,8 @@ namespace HBS.Entities
 
             if (dbReader.HasColumn("LastName") && dbReader["LastName"] != DBNull.Value)
                 LastName = (string)dbReader["LastName"];
+            if (dbReader.HasColumn("MiddleInitial") && dbReader["MiddleInitial"] != DBNull.Value)
+                MiddleInitial = (string)dbReader["MiddleInitial"];
             if (dbReader.HasColumn("Address1") && dbReader["Address1"] != DBNull.Value)
                 Address1 = (string)dbReader["Address1"];
             if (dbReader.HasColumn("Address2") && dbReader["Address2"] != DBNull.Value)
