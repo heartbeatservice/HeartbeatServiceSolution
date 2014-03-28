@@ -53,7 +53,7 @@
     <Compile Include="ControlConfigItem.cs" />
     <Compile Include="CustomerInsurance.cs" />
     <Compile Include="Customers.cs" />
-    <Compile Include="InsuranceType.cs" />
+    <Compile Include="Insurances.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuRole.cs" />
     <Compile Include="Professional.cs" />

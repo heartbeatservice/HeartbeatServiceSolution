@@ -67,7 +67,7 @@
     <Build Include="dbo\Tables\Appointments.sql" />
     <Build Include="dbo\Tables\CustomerInsurance.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
-    <Build Include="dbo\Tables\InsuranceType.sql" />
+    <Build Include="dbo\Tables\Insurances.sql" />
     <Build Include="dbo\Tables\Professional.sql" />
     <Build Include="dbo\Tables\ProfessionalSchedule.sql" />
     <Build Include="dbo\Tables\ProfessionalType.sql" />
