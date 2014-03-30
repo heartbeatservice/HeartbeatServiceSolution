@@ -18,7 +18,8 @@ namespace HBS.Data.Concrete
     {
         
 
-        private string spNameIsMissing = "spNameIsMissing";
+        private string AddCompanySp = "AddCompany";
+        private string UpdateCompanySp="UpdateCompany";
   
         public int AddCompany(Company company)
         {
@@ -27,7 +28,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(spNameIsMissing, conn))
+                using (var cmd = new SqlCommand(AddCompanySp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -55,7 +56,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(spNameIsMissing, conn))
+                using (var cmd = new SqlCommand(UpdateCompanySp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 

@@ -16,7 +16,8 @@ namespace HBS.Data.Concrete
         private const string GetUesrByIdSp = "GetUserById";
         private const string GetUesrByUserNameSp = "GetUserByUserName";
         private const string GetUsersByCompanyIdSp = "GetUsersByCompanyId";
-            private const string NeedSpName = "NeedSPName";
+        private const string SearchUsersSp = "GetUserBySearchText";
+        private const string IsUserNameExistsSp = "IsUserNameExists";
 
         public int AddUser(UserProfile user)
         {
@@ -190,6 +191,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@companyId", System.Data.SqlDbType.Int);
                     cmd.Parameters["@companyId"].Value = companyId;
 
+
                     using (var myReader = cmd.ExecuteReader())
                     {
                         
@@ -220,7 +222,7 @@ namespace HBS.Data.Concrete
             return ListUserProfile;
         }
 
-        public List<UserProfile> GetUsers(string searchText)
+        public List<UserProfile> GetUsers(int companyId,string searchText)
         {
             UserProfile user = null;
             List<UserProfile> ListUserProfile = null;
@@ -229,12 +231,14 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(NeedSpName, conn)) //TODO: Need a correct stored procedue name right now it has not been created. 
+                using (var cmd = new SqlCommand(SearchUsersSp, conn)) //TODO: Need a correct stored procedue name right now it has not been created. 
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@searchText", System.Data.SqlDbType.Int);
                     cmd.Parameters["@searchText"].Value = searchText;
+                    cmd.Parameters.Add("@companyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@companyId"].Value = searchText;
 
                     using (var myReader = cmd.ExecuteReader())
                     {
@@ -261,19 +265,21 @@ namespace HBS.Data.Concrete
             return ListUserProfile;
         }
 
-        public bool IsUserNameExists(string searchText)
+        public bool IsUserNameExists(int companyId,string searchText)
         {
             bool exists = false;// TODO: Stored procedure is not ready
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(NeedSpName, conn)) //TODO: Need a correct stored procedue name right now it has not been created. 
+                using (var cmd = new SqlCommand(IsUserNameExistsSp, conn))  
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@searchText", System.Data.SqlDbType.Int);
                     cmd.Parameters["@searchText"].Value = searchText;
+                    cmd.Parameters.Add("@companyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@companyId"].Value = searchText;
 
                     using (var myReader = cmd.ExecuteReader())
                     {

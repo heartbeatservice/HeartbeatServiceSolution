@@ -14,7 +14,7 @@ namespace HBS.Data.Abstract
         UserProfile GetUser(int userId);
         UserProfile GetUser(string userName);
         List<UserProfile> GetUsers(int companyId);
-        List<UserProfile> GetUsers(string searchText);
-        bool IsUserNameExists(string searchText);
+        List<UserProfile> GetUsers(int companyId, string searchText);
+        bool IsUserNameExists(int companyId, string searchText);
     }
 }
