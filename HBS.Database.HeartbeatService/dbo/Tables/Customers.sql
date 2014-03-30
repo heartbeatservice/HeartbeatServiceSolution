@@ -15,7 +15,7 @@
     [DateCreated] DATETIME NULL, 
     [UpdatedBy] INT NULL, 
     [DateUpdated] DATETIME NULL, 
-    [Middle Initial] VARCHAR NULL, 
+    [MiddleInitial] VARCHAR NULL, 
     CONSTRAINT [PK_Customers] PRIMARY KEY CLUSTERED ([CustomerId] ASC)
 );
 

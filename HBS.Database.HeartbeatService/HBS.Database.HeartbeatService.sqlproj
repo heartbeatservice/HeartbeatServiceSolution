@@ -100,6 +100,14 @@
     <Build Include="dbo\Stored Procedures\SearchUsers.sql" />
     <Build Include="dbo\Stored Procedures\UpdateCompany.sql" />
     <Build Include="dbo\Stored Procedures\UpdateUser.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProfessional.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveProfessional.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalsByName.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalsByCompanyId.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalById.sql" />
+    <Build Include="dbo\Stored Procedures\AddProfessional.sql" />
+    <Build Include="dbo\Stored Procedures\AddInsurance.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />
