@@ -14,7 +14,7 @@ namespace HBS.Entities
         public int ProfessionalId { get; set; }
         public int CustomerId { get; set; }
         public DateTime AppointmentDate { get; set; }
-        public string AppointmentStartTime { get; set; }  //TODO: why this is string ? 
+        public string AppointmentStartTime { get; set; }  
         public int StatusId { get; set; }
         public string Comments { get; set; }
 
