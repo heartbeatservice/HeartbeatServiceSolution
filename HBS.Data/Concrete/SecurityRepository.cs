@@ -15,6 +15,8 @@ namespace HBS.Data.Concrete
         private const string UpdateUserSp = "UpdateUser";
         private const string GetUesrByIdSp = "GetUserById";
         private const string GetUesrByUserNameSp = "GetUserByUserName";
+        private const string GetUsersByCompanyIdSp = "GetUsersByCompanyId";
+            private const string NeedSpName = "NeedSPName";
 
         public int AddUser(UserProfile user)
         {
@@ -103,7 +105,9 @@ namespace HBS.Data.Concrete
             UserProfile user = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
-                conn.Open();
+                
+               
+                    conn.Open();
 
                 using (var cmd = new SqlCommand(GetUesrByIdSp, conn))
                 {
@@ -128,7 +132,9 @@ namespace HBS.Data.Concrete
                         }
                     }
                 }
-            }
+            
+                }
+
             return user;
         }
 
@@ -170,19 +176,127 @@ namespace HBS.Data.Concrete
 
         public List<UserProfile> GetUsers(int companyId)
         {
-            //Aamir
-            throw new NotImplementedException();
+            UserProfile user = null;
+            List<UserProfile> ListUserProfile = null;
 
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(GetUsersByCompanyIdSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@companyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@companyId"].Value = companyId;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        
+                        
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                
+                                ListUserProfile= new List<UserProfile>();
+                               
+                                while (myReader.Read())
+                                {
+
+                                   
+                                    user = new UserProfile(myReader);
+                                    ListUserProfile.Add(user);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return ListUserProfile;
         }
 
         public List<UserProfile> GetUsers(string searchText)
         {
-            throw new NotImplementedException();
+            UserProfile user = null;
+            List<UserProfile> ListUserProfile = null;
+
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(NeedSpName, conn)) //TODO: Need a correct stored procedue name right now it has not been created. 
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@searchText", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@searchText"].Value = searchText;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                ListUserProfile = new List<UserProfile>();
+
+                                while (myReader.Read())
+                                {
+                                    user = new UserProfile(myReader);
+                                    ListUserProfile.Add(user);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return ListUserProfile;
         }
 
         public bool IsUserNameExists(string searchText)
         {
-            throw new NotImplementedException();
+            bool exists = false;// TODO: Stored procedure is not ready
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(NeedSpName, conn)) //TODO: Need a correct stored procedue name right now it has not been created. 
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@searchText", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@searchText"].Value = searchText;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        { 
+                            if (myReader.HasRows)
+                            {
+
+                                exists = Convert.ToBoolean(myReader["Exists"].ToString()); //TODO: dont know the name of the return column name
+                              
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return exists;
+
+
+
         }
     }
 }

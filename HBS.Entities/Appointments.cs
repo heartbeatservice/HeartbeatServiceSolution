@@ -18,7 +18,7 @@ namespace HBS.Entities
         public int StatusId { get; set; }
         public string Comments { get; set; }
 
-
+        
         public Appointments()
         {
 
@@ -49,6 +49,7 @@ namespace HBS.Entities
                 base.DateCreated = (DateTime)dbReader["DateCreated"];
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
                 base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+            
 
 
         }
