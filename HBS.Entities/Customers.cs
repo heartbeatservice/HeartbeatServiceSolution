@@ -14,7 +14,7 @@ namespace HBS.Entities
         public int UserId { get; set; }   //TODO: we already have Created by in base class so why we need user ID here? 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string MiddleInitial {get; set;}   //missing from table. 
+        public string MiddleInitial {get; set;}   
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string DateOfBirth { get; set; }
