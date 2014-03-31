@@ -8,9 +8,12 @@
     [Phone]                            NVARCHAR (50)  NULL,
     [ProfessionalIdentificationNumber] NVARCHAR (150) NULL,
     [Email]                            NVARCHAR (150) NULL,
+    [IsActive]                         BIT            NULL,
     CONSTRAINT [PK_Professional] PRIMARY KEY CLUSTERED ([ProfessionalId] ASC),
     CONSTRAINT [FK_Professional_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
 );
+
+
 
 
 
