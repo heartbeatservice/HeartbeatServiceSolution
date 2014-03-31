@@ -8,7 +8,7 @@ using System.Data;
 
 namespace HBS.Entities
 {
-    class ProfessionalSchedule:BaseEntity
+    public class ProfessionalSchedule:BaseEntity
     {
 
         public int ProfessionalScheduleId { get; set; }

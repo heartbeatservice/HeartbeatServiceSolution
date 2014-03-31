@@ -8,7 +8,7 @@ using HBS.Entities.Utilities;
 
 namespace HBS.Entities
 {
-    class Professional: BaseEntity
+    public class Professional: BaseEntity
     {
 
         public int ProfessionalId { get; set; }

@@ -8,10 +8,10 @@ using System.Data;
 
 namespace HBS.Entities
 {
-    class Customers:BaseEntity
+    public class Customer:BaseEntity
     {
         public int CustomerId { get; set; }
-        public int UserId { get; set; }   //TODO: we already have Created by in base class so why we need user ID here? 
+        public int CompanyId { get; set; }   //TODO: we already have Created by in base class so why we need user ID here? 
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleInitial {get; set;}   
@@ -24,11 +24,11 @@ namespace HBS.Entities
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
 
-        public Customers()
+        public Customer()
         {
         }
 
-         public Customers(IDataReader dbReader)
+         public Customer(IDataReader dbReader)
             : this()
         {
             if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)

@@ -8,9 +8,9 @@ using HBS.Entities.Utilities;
 
 namespace HBS.Entities
 {
-    class Insurances : BaseEntity
+    public class Insurance : BaseEntity
     {
-      
+
         public int InsuranceId { get; set; }
         public int CompanyId { get; set; }
         public string InsuranceName { get; set; }
@@ -20,11 +20,11 @@ namespace HBS.Entities
 
 
 
-        public Insurances()
+        public Insurance()
         { }
 
 
-        public Insurances(IDataReader dbReader)
+        public Insurance(IDataReader dbReader)
             : this()
         {
             if (dbReader.HasColumn("InsuranceId") && dbReader["InsuranceId"] != DBNull.Value)

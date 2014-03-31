@@ -61,12 +61,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAppointmentRepository.cs" />
     <Compile Include="Abstract\ICommonRepository.cs" />
-    <Compile Include="Abstract\ISchedulingRepository.cs" />
+    <Compile Include="Abstract\ICustomerRepository.cs" />
+    <Compile Include="Abstract\IProfessionalRepository.cs" />
     <Compile Include="Abstract\ISecurityRepository.cs" />
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Concrete\AppointmentRepository.cs" />
     <Compile Include="Concrete\CommonRepository.cs" />
-    <Compile Include="Concrete\SchedulingRepository.cs" />
+    <Compile Include="Concrete\CustomerRepository.cs" />
+    <Compile Include="Concrete\ProfessionalRepository.cs" />
     <Compile Include="Concrete\SecurityRepository.cs" />
     <Compile Include="Entities\TimeTracking\EF\AllowedUserIPAddress.cs">
       <DependentUpon>TimeTrackingModel.tt</DependentUpon>

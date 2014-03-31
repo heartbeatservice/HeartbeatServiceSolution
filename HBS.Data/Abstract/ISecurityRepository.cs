@@ -16,5 +16,22 @@ namespace HBS.Data.Abstract
         List<UserProfile> GetUsers(int companyId);
         List<UserProfile> GetUsers(int companyId, string searchText);
         bool IsUserNameExists(int companyId, string searchText);
+        bool AddUserInRole(int userId, int roleId);
+        bool RemoveUserFromRole(int roleId, int userId);
+        List<Role> GetUserRoles(int userId);
+        bool IsUserInRole(int userId, int roleId);
+
+        #region ROLES
+
+        int AddRole(Role role);
+        bool UpdateRole(Role role);
+        Role GetRole(int roleId);
+        List<Role> GetRoles(int companyId, string roleName);
+        bool RemoveRole(int roleId);
+
+        #endregion
+
     }
+
+
 }

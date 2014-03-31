@@ -9,7 +9,7 @@ using System.Data;
 
 namespace HBS.Entities
 {
-    class Role:BaseEntity
+    public class Role:BaseEntity
     {
         public int RoleId { get; set; }
         public int CompanyId { get; set; }

@@ -304,5 +304,50 @@ namespace HBS.Data.Concrete
 
 
         }
+
+        public bool AddUserInRole(int userId, int roleId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveUserFromRole(int roleId, int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Role> GetUserRoles(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsUserInRole(int userId, int roleId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int AddRole(Role role)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateRole(Role role)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Role GetRole(int roleId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Role> GetRoles(int companyId, string roleName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveRole(int roleId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
