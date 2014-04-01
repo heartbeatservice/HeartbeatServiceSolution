@@ -4,11 +4,19 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HBS.Data.Abstract;
+using HBS.Entities;
 
-namespace HBS.Api.Controllers
+namespace HBS.WebApi.Controllers
 {
     public class ValuesController : ApiController
     {
+        private ICommonRepository _commonRepository;
+
+        public ValuesController(ICommonRepository commonRepository)
+        {
+            _commonRepository = commonRepository;
+        }
         // GET api/values
         public IEnumerable<string> Get()
         {
@@ -18,7 +26,11 @@ namespace HBS.Api.Controllers
         // GET api/values/5
         public string Get(int id)
         {
-            return "value";
+            var company = _commonRepository.GetCompnay(id);
+            if (company != null)
+                return company.CompanyName;
+
+            return "Company Not Found";
         }
 
         // POST api/values

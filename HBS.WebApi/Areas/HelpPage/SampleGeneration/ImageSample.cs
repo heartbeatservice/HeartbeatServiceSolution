@@ -1,6 +1,6 @@
 using System;
 
-namespace HBS.Api.Areas.HelpPage
+namespace HBS.WebApi.Areas.HelpPage
 {
     /// <summary>
     /// This represents an image sample on the help page. There's a display template named ImageSample associated with this class.

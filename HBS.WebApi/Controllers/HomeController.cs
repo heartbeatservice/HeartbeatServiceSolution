@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HBS.Api.Controllers
+namespace HBS.WebApi.Controllers
 {
     public class HomeController : Controller
     {

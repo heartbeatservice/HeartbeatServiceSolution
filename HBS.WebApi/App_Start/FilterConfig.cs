@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace HBS.Api
+namespace HBS.WebApi
 {
     public class FilterConfig
     {

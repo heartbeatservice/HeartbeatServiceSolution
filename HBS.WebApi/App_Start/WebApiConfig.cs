@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 
-namespace HBS.Api
+namespace HBS.WebApi
 {
     public static class WebApiConfig
     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using HBS.Entities;
 
 namespace HBS.Data.Abstract
@@ -13,8 +9,8 @@ namespace HBS.Data.Abstract
         bool UpdateCompany(Company company);
 
         List<Company> GetAllCompanies();
-        List<Company> GetCompany(string companyName);
-        Company GetCompnay(int compnayId);
+        List<Company> GetCompanies(string companyName);
+        Company GetCompnay(int companyId);
         bool RemoveCompany(int compnayId);
 
 

@@ -8,13 +8,13 @@ using System.Data;
 
 namespace HBS.Entities
 {
-    public class Customer:BaseEntity
+    public class Customer : BaseEntity
     {
         public int CustomerId { get; set; }
         public int CompanyId { get; set; }   //TODO: we already have Created by in base class so why we need user ID here? 
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string MiddleInitial {get; set;}   
+        public string MiddleInitial { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string DateOfBirth { get; set; }
@@ -28,15 +28,15 @@ namespace HBS.Entities
         {
         }
 
-         public Customer(IDataReader dbReader)
+        public Customer(IDataReader dbReader)
             : this()
         {
             if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
                 CustomerId = (int)dbReader["CustomerId"];
-           
-             //TODO: Why need a userID here when Createdby is already here. 
-             
-             if (dbReader.HasColumn("UserId") && dbReader["UserId"] != DBNull.Value)
+
+            //TODO: Why need a userID here when Createdby is already here. 
+
+            if (dbReader.HasColumn("UserId") && dbReader["UserId"] != DBNull.Value)
                 CustomerId = (int)dbReader["UserId"];
 
 
@@ -55,7 +55,7 @@ namespace HBS.Entities
             if (dbReader.HasColumn("City") && dbReader["City"] != DBNull.Value)
                 City = (string)dbReader["Address2"];
             if (dbReader.HasColumn("State") && dbReader["State"] != DBNull.Value)
-                State =(string)dbReader["State"];
+                State = (string)dbReader["State"];
             if (dbReader.HasColumn("Zip") && dbReader["Zip"] != DBNull.Value)
                 Zip = (string)dbReader["Zip"];
 
@@ -72,8 +72,8 @@ namespace HBS.Entities
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
                 base.DateUpdated = (DateTime)dbReader["DateUpdated"];
 
-            
-            
+
+
         }
 
 

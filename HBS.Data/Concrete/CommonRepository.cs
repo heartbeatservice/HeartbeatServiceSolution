@@ -13,6 +13,8 @@ namespace HBS.Data.Concrete
     {
         private const string AddCompanySp = "AddCompany";
         private const string UpdateCompanySp = "UpdateCompany";
+        private const string GetCompanyByIdSp = "GetCompanyById";
+
 
         public int AddCompany(Company company)
         {
@@ -75,14 +77,45 @@ namespace HBS.Data.Concrete
             throw new NotImplementedException();
         }
 
-        public List<Company> GetCompany(string companyName)
+        public List<Company> GetCompanies(string companyName)
         {
             throw new NotImplementedException();
         }
 
-        public Company GetCompnay(int compnayId)
+        public Company GetCompnay(int companyId)
         {
-            throw new NotImplementedException();
+            Company company = null;
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(GetCompanyByIdSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyId;
+
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                myReader.Read();
+                                company = new Company(myReader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+
+            }
+            return company;
         }
 
         public bool RemoveCompany(int compnayId)
