@@ -108,6 +108,7 @@
     <Build Include="dbo\Stored Procedures\GetProfessionalById.sql" />
     <Build Include="dbo\Stored Procedures\AddProfessional.sql" />
     <Build Include="dbo\Stored Procedures\AddInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\Procedure1.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />
