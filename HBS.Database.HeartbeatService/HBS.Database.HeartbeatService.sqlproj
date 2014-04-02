@@ -62,13 +62,17 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="Security\" />
+<<<<<<< HEAD
     <Folder Include="dbo\Stored Procedures" />
+=======
+    <Folder Include="dbo\Stored Procedures\" />
+>>>>>>> update
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Appointments.sql" />
     <Build Include="dbo\Tables\CustomerInsurance.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
-    <Build Include="dbo\Tables\Insurances.sql" />
+    <Build Include="dbo\Tables\InsuranceType.sql" />
     <Build Include="dbo\Tables\Professional.sql" />
     <Build Include="dbo\Tables\ProfessionalSchedule.sql" />
     <Build Include="dbo\Tables\ProfessionalType.sql" />
@@ -87,6 +91,7 @@
     <Build Include="dbo\Tables\MenuRole.sql" />
     <Build Include="dbo\Tables\UserRole.sql" />
     <Build Include="dbo\Tables\ConfigValues.sql" />
+<<<<<<< HEAD
     <Build Include="dbo\Stored Procedures\AddCompany.sql" />
     <Build Include="dbo\Stored Procedures\AddUser.sql" />
     <Build Include="dbo\Stored Procedures\GetAllCompanies.sql" />
@@ -108,6 +113,21 @@
     <Build Include="dbo\Stored Procedures\GetProfessionalById.sql" />
     <Build Include="dbo\Stored Procedures\AddProfessional.sql" />
     <Build Include="dbo\Stored Procedures\AddInsurance.sql" />
+=======
+    <Build Include="dbo\Stored Procedures\UpdateUser.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCompany.sql" />
+    <Build Include="dbo\Stored Procedures\SearchUsers.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveUser.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveCompanyById.sql" />
+    <Build Include="dbo\Stored Procedures\GetUsersByCompanyId.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserByUserNamePassword.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserByUserName.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserById.sql" />
+    <Build Include="dbo\Stored Procedures\GetCompanyById.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllCompanies.sql" />
+    <Build Include="dbo\Stored Procedures\AddUser.sql" />
+    <Build Include="dbo\Stored Procedures\AddCompany.sql" />
+>>>>>>> update
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />
