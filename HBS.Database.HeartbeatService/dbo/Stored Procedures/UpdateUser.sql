@@ -12,8 +12,8 @@ CREATE PROCEDURE [dbo].[UpdateUser]
 @ConfirmationToken nvarchar(128)=NULL,
 @IsConfirmed bit=NULL,
 @CreatedBy int=NULL,
-@UpdatedBy int=NULL
-
+@UpdatedBy int=NULL,
+@IsActive bit=NULL
 
 
 AS
@@ -63,6 +63,10 @@ Insert Into @tblParams Values('UpdatedDate',CONVERT(varchar,@UpdatedDate))
 
 If(@UpdatedBy is not Null)
 Insert Into @tblParams Values('UpdatedBy',CONVERT(varchar,@UpdatedBy))
+
+If(@IsActive is not Null)
+Insert Into @tblParams Values('IsActive',CONVERT(varchar,@IsActive))
+
 
 Declare @start int,@end int
 Declare @UpdateColumn varchar(50)

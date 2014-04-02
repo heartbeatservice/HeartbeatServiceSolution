@@ -1,16 +1,17 @@
 ﻿
-Create PROCEDURE [dbo].[GetProfessionalsByCompanyId]
---[GetProfessionalsByCompanyId]  1
+CREATE PROCEDURE [dbo].[GetProfessionals]
+-- GetProfessionalsByName  1, 'z'
 
-@CompanyId int
 
+@CompanyId int,
+@Name nvarchar(50)=Null
 
 
 
 AS
 
 SELECT 
-    p.ProfessionalId,
+	p.ProfessionalId,
 	t.ProfessionalTypeId,
 	t.ProfessionalTypeDesc,
 	c.CompanyId,
@@ -24,4 +25,5 @@ INNER JOIN Company c
 ON p.CompanyId=c.CompanyId
 inner join ProfessionalType t
 on p.ProfessionalTypeId=t.ProfessionalTypeId
-WHERE c.companyid=@companyid
+WHERE ((ISNULL(p.FirstName,'') like '%'+@Name+'%' OR ISNULL(p.LastName,'')  like '%'+@Name+'%' ) or @Name is null)
+and c.companyid=@CompanyId
