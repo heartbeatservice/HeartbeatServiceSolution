@@ -6,7 +6,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Web.Security;
 
-namespace HBS.Website.Models
+namespace HBS.WebPortal.Models
 {
     public class UsersContext : DbContext
     {

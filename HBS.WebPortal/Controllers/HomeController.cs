@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace HeartbeatWebsite.Controllers
+namespace HBS.WebPortal.Controllers
 {
     public class HomeController : Controller
     {

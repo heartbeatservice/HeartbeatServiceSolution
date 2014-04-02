@@ -8,10 +8,10 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
-using HBS.Website.Filters;
-using HBS.Website.Models;
+using HBS.WebPortal.Filters;
+using HBS.WebPortal.Models;
 
-namespace HBS.Website.Controllers
+namespace HBS.WebPortal.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]

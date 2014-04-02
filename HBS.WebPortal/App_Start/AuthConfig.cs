@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Web.WebPages.OAuth;
-using HBS.Website.Models;
+using HBS.WebPortal.Models;
 
-namespace HBS.Website
+namespace HBS.WebPortal
 {
     public static class AuthConfig
     {
