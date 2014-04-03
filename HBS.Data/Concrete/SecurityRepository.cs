@@ -50,7 +50,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CreatedBy"].Value = user.CreatedBy;
 
-                    cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.DateTime);
                     cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
 
                     return (int)cmd.ExecuteScalar();
@@ -93,7 +93,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@UpdatedBy"].Value = user.UpdatedBy;
 
-                    cmd.Parameters.Add("@UpdatedDate", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@UpdatedDate", System.Data.SqlDbType.DateTime);
                     cmd.Parameters["@UpdatedDate"].Value = DateTime.UtcNow;
 
                     return cmd.ExecuteNonQuery() > 0;
@@ -106,9 +106,9 @@ namespace HBS.Data.Concrete
             UserProfile user = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
-                
-               
-                    conn.Open();
+
+
+                conn.Open();
 
                 using (var cmd = new SqlCommand(GetUesrByIdSp, conn))
                 {
@@ -133,8 +133,8 @@ namespace HBS.Data.Concrete
                         }
                     }
                 }
-            
-                }
+
+            }
 
             return user;
         }
@@ -194,19 +194,13 @@ namespace HBS.Data.Concrete
 
                     using (var myReader = cmd.ExecuteReader())
                     {
-                        
-                        
                         try
                         {
                             if (myReader.HasRows)
                             {
-                                
-                                ListUserProfile= new List<UserProfile>();
-                               
+                                ListUserProfile = new List<UserProfile>();
                                 while (myReader.Read())
                                 {
-
-                                   
                                     user = new UserProfile(myReader);
                                     ListUserProfile.Add(user);
                                 }
@@ -222,7 +216,7 @@ namespace HBS.Data.Concrete
             return ListUserProfile;
         }
 
-        public List<UserProfile> GetUsers(int companyId,string searchText)
+        public List<UserProfile> GetUsers(int companyId, string searchText)
         {
             UserProfile user = null;
             List<UserProfile> ListUserProfile = null;
@@ -265,14 +259,14 @@ namespace HBS.Data.Concrete
             return ListUserProfile;
         }
 
-        public bool IsUserNameExists(int companyId,string searchText)
+        public bool IsUserNameExists(int companyId, string searchText)
         {
             bool exists = false;// TODO: Stored procedure is not ready
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(IsUserNameExistsSp, conn))  
+                using (var cmd = new SqlCommand(IsUserNameExistsSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -284,12 +278,12 @@ namespace HBS.Data.Concrete
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try
-                        { 
+                        {
                             if (myReader.HasRows)
                             {
 
                                 exists = Convert.ToBoolean(myReader["Exists"].ToString()); //TODO: dont know the name of the return column name
-                              
+
                             }
                         }
                         catch (Exception ex)

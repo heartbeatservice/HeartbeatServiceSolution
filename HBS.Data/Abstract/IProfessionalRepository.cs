@@ -9,11 +9,11 @@ namespace HBS.Data.Abstract
 {
     public interface IProfessionalRepository
     {
-        bool AddProfessional(Professional professional);
+        int AddProfessional(Professional professional);
         bool UpdateProfessional(Professional professional);
         Professional GetProfessional(int professionalId);
         List<Professional> GetProfessional(int companyId, string professionalName);
-        bool RemoveProfessional(int professionalId);
+        bool RemoveProfessional(int professionalId,int removedBy);
 
 
         bool AddProfessionalSchedule(ProfessionalSchedule professionalSchedule);

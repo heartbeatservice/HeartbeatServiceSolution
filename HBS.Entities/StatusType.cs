@@ -23,8 +23,10 @@ namespace HBS.Entities
 
             if (dbReader.HasColumn("StatusId") && dbReader["StatusId"] != DBNull.Value)
                 StatusId = (int)dbReader["StatusId"];
+            
             if (dbReader.HasColumn("StatusDesc") && dbReader["StatusDesc"] != DBNull.Value)
                 StatusDesc = (string)dbReader["StatusDesc"];
+            
             if (dbReader.HasColumn("CompanyId") && dbReader["CompanyId"] != DBNull.Value)
                 CompanyId = (int)dbReader["CompanyId"];
         }

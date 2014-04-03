@@ -26,14 +26,19 @@ namespace HBS.Entities
         {
             if (dbReader.HasColumn("MenuId") && dbReader["MenuId"] != DBNull.Value)
                 MenuId = (int)dbReader["MenuId"];
+            
             if (dbReader.HasColumn("CompanyId") && dbReader["CompanyId"] != DBNull.Value)
                 CompanyId = (int)dbReader["CompanyId"];
+            
             if (dbReader.HasColumn("Title") && dbReader["Title"] != DBNull.Value)
                 Title = (string)dbReader["Title"];
+            
             if (dbReader.HasColumn("Controller") && dbReader["Controller"] != DBNull.Value)
                 Controller = (string)dbReader["Controller"];
+            
             if (dbReader.HasColumn("Action") && dbReader["Action"] != DBNull.Value)
                 Action = (string)dbReader["Action"];
+            
             if (dbReader.HasColumn("OrderNumber") && dbReader["OrderNumber"] != DBNull.Value)
                 Controller = (string)dbReader["OrderNumber"];
           
