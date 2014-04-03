@@ -1,13 +1,13 @@
 ﻿
 
 CREATE PROCEDURE [dbo].[UpdateCompany] 
---UpdateUser 1,1,'ABCTesting','','Umais','Siddiqui','umais@heartbeatservice.com'
+-- UpdateCompany 2,'Meachem',Null,1,1
 
 @CompanyId int,
 @CompanyName nvarchar(150)=NULL,
 @Description nvarchar(1000)=NULL,
-@UpdatedBy int=NULL
-
+@UpdatedBy int=NULL,
+@IsActive bit=NULL
 
 
 AS
@@ -24,23 +24,21 @@ Set'
 
 
 
-
-
 If(@CompanyName is not Null)
 Insert Into @tblParams Values('CompanyName',@CompanyName)
 
 If(@Description is not Null)
 Insert Into @tblParams Values('Description',@Description)
 
+If(@UpdatedBy is not Null)
+Insert Into @tblParams Values('UpdatedBy',CONVERT(varchar,@UpdatedBy))
 
-
-
+If(@IsActive is not Null)
+Insert Into @tblParams Values('IsActive',@IsActive)
 
 If(@UpdatedDate is not Null)
 Insert Into @tblParams Values('UpdatedDate',CONVERT(varchar,@UpdatedDate))
 
-If(@UpdatedBy is not Null)
-Insert Into @tblParams Values('UpdatedBy',CONVERT(varchar,@UpdatedBy))
 
 Declare @start int,@end int
 Declare @UpdateColumn varchar(50)

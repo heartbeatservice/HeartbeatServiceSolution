@@ -1,6 +1,6 @@
 ﻿
-Create PROCEDURE [dbo].[UpdateInsurance] 
--- UpdateInsurance 1,null,'Aetnas',null,'8668018245','www.aetnas.com'
+CREATE PROCEDURE [dbo].[UpdateInsurance] 
+-- UpdateInsurance 1,null,'Aetnas',null,'866-801-8245','www.aet-na.com',1
 
 
 @InsuranceId int,
@@ -8,7 +8,8 @@ Create PROCEDURE [dbo].[UpdateInsurance]
 @InsuranceName nvarchar(50)=NULL,
 @InsuranceAddress nvarchar(150)=NULL,
 @InsurancePhone nvarchar(15)=NULL,
-@InsuranceWebsite nvarchar(250)=NULL
+@InsuranceWebsite nvarchar(250)=NULL,
+@IsActive bit=NULL
 
 
 AS
@@ -31,11 +32,13 @@ If(@InsuranceAddress is not Null)
 Insert Into @tblParams Values('InsuranceAddress',@InsuranceAddress)
 
 If(@InsurancePhone is not Null)
-Insert Into @tblParams Values('InsurancePhone',CONVERT(varchar,@InsurancePhone))
+Insert Into @tblParams Values('InsurancePhone',@InsurancePhone)
 
 If(@InsuranceWebsite is not Null)
-Insert Into @tblParams Values('InsuranceWebsite',CONVERT(varchar,@InsuranceWebsite))
+Insert Into @tblParams Values('InsuranceWebsite',@InsuranceWebsite)
 
+If(@IsActive is not Null)
+Insert Into @tblParams Values('IsActive',@IsActive)
 
 
 Declare @start int,@end int

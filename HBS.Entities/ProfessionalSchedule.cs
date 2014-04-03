@@ -23,25 +23,32 @@ namespace HBS.Entities
         public ProfessionalSchedule(IDataReader dbReader)
             : this()
         {
-
             if (dbReader.HasColumn("ProfessionalScheduleId") && dbReader["ProfessionalScheduleId"] != DBNull.Value)
                 ProfessionalScheduleId = (int)dbReader["ProfessionalScheduleId"];
+            
             if (dbReader.HasColumn("ProfessionalId") && dbReader["ProfessionalId"] != DBNull.Value)
                 ProfessionalId = (int)dbReader["ProfessionalId"];
+            
             if (dbReader.HasColumn("StartTime") && dbReader["StartTime"] != DBNull.Value)
                 StartTime = (DateTime)dbReader["StartTime"];
+            
             if (dbReader.HasColumn("EndTime") && dbReader["EndTime"] != DBNull.Value)
                 EndTime = (DateTime)dbReader["EndTime"];
+            
             if (dbReader.HasColumn("TimeIntervalMinutes") && dbReader["TimeIntervalMinutes"] != DBNull.Value)
                 TimeIntervalMinutes = (int)dbReader["TimeIntervalMinutes"];        
+            
             if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
-                base.CreatedBy = (int)dbReader["CreatedBy"];
+                CreatedBy = (int)dbReader["CreatedBy"];
+            
             if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
-                base.UpdatedBy = (int)dbReader["UpdatedBy"];
+                UpdatedBy = (int)dbReader["UpdatedBy"];
+            
             if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
-                base.DateCreated = (DateTime)dbReader["DateCreated"];
+                DateCreated = (DateTime)dbReader["DateCreated"];
+            
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
-                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+                DateUpdated = (DateTime)dbReader["DateUpdated"];
         }
 
 

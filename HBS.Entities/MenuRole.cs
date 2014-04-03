@@ -21,14 +21,19 @@ namespace HBS.Entities
         {
             if (dbReader.HasColumn("MenuId") && dbReader["MenuId"] != DBNull.Value)
                 MenuId = (int)dbReader["MenuId"];
+            
             if (dbReader.HasColumn("RoleId") && dbReader["RoleId"] != DBNull.Value)
                 RoleId = (int)dbReader["RoleId"];
+            
             if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
                 base.CreatedBy = (int)dbReader["CreatedBy"];
+            
             if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
                 base.UpdatedBy = (int)dbReader["UpdatedBy"];
+            
             if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
                 base.DateCreated = (DateTime)dbReader["DateCreated"];
+            
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
                 base.DateUpdated = (DateTime)dbReader["DateUpdated"];
         }

@@ -23,9 +23,12 @@ namespace HBS.Entities
         public string Zip { get; set; }
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
+        public List<Appointments> CustomerAppointments { get; set; }
+
 
         public Customer()
         {
+            CustomerAppointments = new List<Appointments>();
         }
 
         public Customer(IDataReader dbReader)
@@ -34,45 +37,50 @@ namespace HBS.Entities
             if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
                 CustomerId = (int)dbReader["CustomerId"];
 
-            //TODO: Why need a userID here when Createdby is already here. 
-
-            if (dbReader.HasColumn("UserId") && dbReader["UserId"] != DBNull.Value)
-                CustomerId = (int)dbReader["UserId"];
-
+            if (dbReader.HasColumn("CompanyId") && dbReader["CompanyId"] != DBNull.Value)
+                CustomerId = (int)dbReader["CompanyId"];
 
             if (dbReader.HasColumn("FirstName") && dbReader["FirstName"] != DBNull.Value)
                 FirstName = (string)dbReader["FirstName"];
 
             if (dbReader.HasColumn("LastName") && dbReader["LastName"] != DBNull.Value)
                 LastName = (string)dbReader["LastName"];
+            
             if (dbReader.HasColumn("MiddleInitial") && dbReader["MiddleInitial"] != DBNull.Value)
                 MiddleInitial = (string)dbReader["MiddleInitial"];
+            
             if (dbReader.HasColumn("Address1") && dbReader["Address1"] != DBNull.Value)
                 Address1 = (string)dbReader["Address1"];
+            
             if (dbReader.HasColumn("Address2") && dbReader["Address2"] != DBNull.Value)
                 Address2 = (string)dbReader["Address2"];
 
             if (dbReader.HasColumn("City") && dbReader["City"] != DBNull.Value)
                 City = (string)dbReader["Address2"];
+            
             if (dbReader.HasColumn("State") && dbReader["State"] != DBNull.Value)
                 State = (string)dbReader["State"];
+            
             if (dbReader.HasColumn("Zip") && dbReader["Zip"] != DBNull.Value)
                 Zip = (string)dbReader["Zip"];
 
             if (dbReader.HasColumn("HomePhone") && dbReader["HomePhone"] != DBNull.Value)
                 HomePhone = (string)dbReader["HomePhone"];
+            
             if (dbReader.HasColumn("CellPhone") && dbReader["CellPhone"] != DBNull.Value)
                 CellPhone = (string)dbReader["CellPhone"];
+            
             if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
                 base.CreatedBy = (int)dbReader["CreatedBy"];
+            
             if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
                 base.UpdatedBy = (int)dbReader["UpdatedBy"];
+            
             if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
                 base.DateCreated = (DateTime)dbReader["DateCreated"];
+            
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
                 base.DateUpdated = (DateTime)dbReader["DateUpdated"];
-
-
 
         }
 

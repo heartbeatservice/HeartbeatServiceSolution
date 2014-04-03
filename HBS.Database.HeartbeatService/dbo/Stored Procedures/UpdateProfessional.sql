@@ -1,6 +1,6 @@
 ﻿
-Create PROCEDURE [dbo].[UpdateProfessional] 
---UpdateProfessional 1,1,'ABCTesting','','Umais','Siddiqui','umais@heartbeatservice.com'
+CREATE PROCEDURE [dbo].[UpdateProfessional] 
+--UpdateProfessional 1,Null,Null,Null,Null,Null,Null,1
 
 @ProfessionalId int,
 @ProfessionalTypeId int=NULL,
@@ -8,8 +8,8 @@ Create PROCEDURE [dbo].[UpdateProfessional]
 @FirstName nvarchar(100)=NULL,
 @LastName nvarchar(100)=NULL,
 @Phone nvarchar(50)=NULL,
-@ProfessionalIdentificationNumber nvarchar(150)=NULL
-
+@ProfessionalIdentificationNumber nvarchar(150)=NULL,
+@IsActive bit=NULL
 
 AS
 
@@ -40,6 +40,8 @@ Insert Into @tblParams Values('Phone',CONVERT(varchar,@Phone))
 If(@ProfessionalIdentificationNumber is not Null)
 Insert Into @tblParams Values('ProfessionalIdentificationNumber',CONVERT(varchar,@ProfessionalIdentificationNumber))
 
+If(@IsActive is not Null)
+Insert Into @tblParams Values('IsActive',@IsActive)
 
 
 Declare @start int,@end int
