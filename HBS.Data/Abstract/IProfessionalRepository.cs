@@ -13,8 +13,13 @@ namespace HBS.Data.Abstract
         bool UpdateProfessional(Professional professional);
         Professional GetProfessional(int professionalId);
 <<<<<<< HEAD
+<<<<<<< HEAD
         List<Professional> GetProfessionals(int companyId, string professionalName);
         bool RemoveProfessional(int professionalId);
+=======
+        List<Professional> GetProfessional(int companyId, string professionalName);
+        bool RemoveProfessional(int professionalId,int removedBy);
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
 =======
         List<Professional> GetProfessional(int companyId, string professionalName);
         bool RemoveProfessional(int professionalId,int removedBy);
