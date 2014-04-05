@@ -13,16 +13,10 @@ namespace HBS.Data.Concrete
     public class ProfessionalRepository : BaseRepository, IProfessionalRepository
     {
 
-        private const string AddProfessionalSp = "AddProfessional";
-        private const string UpdateProfessionalSp = "UpdateProfessional";
-        private const string GetProfessionalByIdSp = "GetProfessionalById";
-        
-   
-
         private const string GetProfessionalByIdSp = "GetProfessionalById";
         private const string GetProfessionalsSp = "GetProfessionals";
-      
-     
+        private const string AddProfessionalSp = "AddProfessional";
+        private const string UpdateProfessionalSp = "UpdateProfessional";
 
         public int AddProfessional(Professional professional)
 
@@ -31,9 +25,6 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-
-
-         
                 using (var cmd = new SqlCommand(AddProfessionalSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -46,13 +37,6 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@ProfessionalIdentificationNumber", SqlDbType.VarChar).Value = professional.ProfessionalIdentificationNumber;
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = professional.CreatedBy;
                     cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
-                    return (int)cmd.ExecuteScalar();                  cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@CreatedBy"].Value = professional.CreatedBy;
-
-                    cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
-
-                   
 
                     return (int)cmd.ExecuteScalar();
 
@@ -74,7 +58,6 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(UpdateProfessionalSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
 
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professional.ProfessionalId;
                     cmd.Parameters.Add("@ProfessionalTypeId", SqlDbType.Int).Value = professional.ProfessionalTypeId;
@@ -105,9 +88,8 @@ namespace HBS.Data.Concrete
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
 
-                    cmd.Parameters.Add("@professionalId", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@professionalId"].Value = professionalId;
-
+                    cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalId"].Value = professionalId;
 
                     using (var myReader = cmd.ExecuteReader())
                     {
@@ -126,9 +108,9 @@ namespace HBS.Data.Concrete
                     }
                 }
 
-
-                return professional;
             }
+            return professional;
+
         }
 
         public List<Professional> GetProfessionals(int companyId, string professionalName)
@@ -168,7 +150,8 @@ namespace HBS.Data.Concrete
                 }
             }
             return professionals;
-       }
+        }
+
 
 
         public bool RemoveProfessional(int professionalId,int removedBy)
@@ -216,7 +199,7 @@ namespace HBS.Data.Concrete
             throw new NotImplementedException();
         }
 
-        public bool RemoveProfessionalSchedule(int professionalSchduleId)
+        public bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy)
         {
             throw new NotImplementedException();
         }
