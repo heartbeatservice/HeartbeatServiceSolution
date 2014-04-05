@@ -25,6 +25,20 @@ namespace HBS.WebPortal.Controllers
         {
             return View();
         }
+        public ActionResult Products()
+        {
+            return View();
+        }
+
+        public ActionResult Services()
+        {
+            return View();
+        }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
 
     }
 }

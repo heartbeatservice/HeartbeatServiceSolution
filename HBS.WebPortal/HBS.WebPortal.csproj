@@ -218,6 +218,7 @@
     <Content Include="Content\images\heartLogo1.png" />
     <Content Include="Content\images\heartLogo2.png" />
     <Content Include="Content\images\logo.gif" />
+    <Content Include="Content\images\menuicon.png" />
     <Content Include="Content\images\naveed.jpg" />
     <Content Include="Content\images\naveedshot.jpg" />
     <Content Include="Content\images\pro.jpg" />
@@ -349,6 +350,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Team.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\ContactUs.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
