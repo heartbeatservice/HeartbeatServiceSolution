@@ -17,6 +17,10 @@ namespace HBS.Data.Concrete
         private const string GetProfessionalsSp = "GetProfessionals";
         private const string AddProfessionalSp = "AddProfessional";
         private const string UpdateProfessionalSp = "UpdateProfessional";
+         private const string Change = "Amir";
+         //private const string Change = "Amir";
+         //private const string Change = "Amir";
+         //private const string Change = "Amir";
 
         public int AddProfessional(Professional professional)
         {
@@ -84,9 +88,7 @@ namespace HBS.Data.Concrete
 
                 using (var cmd = new SqlCommand(GetProfessionalByIdSp, conn))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;                    
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
                     cmd.Parameters["@ProfessionalId"].Value = professionalId;
 
@@ -94,8 +96,7 @@ namespace HBS.Data.Concrete
                     {
                         try
                         {
-                            if (myReader.HasRows)
-                            {
+                            if (myReader.HasRows)                            {
                                 myReader.Read();
                                 professional = new Professional(myReader);
                             }
@@ -175,32 +176,169 @@ namespace HBS.Data.Concrete
 
         public bool AddProfessionalSchedule(ProfessionalSchedule professionalSchedule)
         {
-            throw new NotImplementedException();
+            
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(Change, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                 
+                    cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professionalSchedule.ProfessionalId;
+                    cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
+                    cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
+                    cmd.Parameters.Add("@TimeIntervalMinutes", SqlDbType.Int).Value = professionalSchedule.TimeIntervalMinutes;
+                    cmd.Parameters.Add("@CreatedBy", SqlDbType.VarChar).Value = professionalSchedule.CreatedBy;
+                    cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+
+                    return (bool)cmd.ExecuteScalar();
+
+                }
+            }
         }
 
         public bool UpdateProfessionalSchedule(ProfessionalSchedule professionalSchedule)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(Change, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ProfessionalScheduleId", SqlDbType.Int).Value = professionalSchedule.ProfessionalScheduleId;
+                    cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professionalSchedule.ProfessionalId;
+                    cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
+                    cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
+                    cmd.Parameters.Add("@TimeIntervalMinutes", SqlDbType.Int).Value = professionalSchedule.TimeIntervalMinutes;
+                    cmd.Parameters.Add("@UpdatedBy", SqlDbType.VarChar).Value = professionalSchedule.UpdatedBy;
+                    cmd.Parameters.Add("@DateUpdated", SqlDbType.DateTime).Value = DateTime.UtcNow;
+
+                    return cmd.ExecuteNonQuery() > 0;
+
+                }
+            }
         }
 
         public ProfessionalSchedule GetProfessionalSchedule(int professionalSchedulreId)
         {
-            throw new NotImplementedException();
+            ProfessionalSchedule professionalSchedule = null;
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+
+                conn.Open();
+
+                using (var cmd = new SqlCommand(Change, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.Add("@ProfessionalSchedulreId", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalSchedulreId"].Value = professionalSchedulreId;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                myReader.Read();
+                                professionalSchedule = new ProfessionalSchedule(myReader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+
+            }
+            return professionalSchedule;
+
         }
 
         public List<ProfessionalSchedule> GetProfessionalScheduleList(int professionalId)
         {
-            throw new NotImplementedException();
+            var professionalSchedule = new List<ProfessionalSchedule>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(Change, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalId"].Value = professionalId;                   
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                professionalSchedule.Add(new ProfessionalSchedule(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return professionalSchedule;
         }
 
         public List<ProfessionalSchedule> GetProfessionalSchedule(DateTime scheduleDate)
         {
-            throw new NotImplementedException();
+            var professionalSchedule = new List<ProfessionalSchedule>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(Change, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ScheduleDate", SqlDbType.DateTime);
+                    cmd.Parameters["@ScheduleDate"].Value = scheduleDate;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                professionalSchedule.Add(new ProfessionalSchedule(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return professionalSchedule;
         }
 
-        public bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy)
+        public bool RemoveProfessionalSchedule(int professionalSchduleId, int removedByUserId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(Change, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@ProfessionalSchduleId", SqlDbType.Int).Value = professionalSchduleId;
+                    cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = removedByUserId;
+                    cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
         }
     }
 }

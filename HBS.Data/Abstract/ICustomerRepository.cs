@@ -14,7 +14,7 @@ namespace HBS.Data.Abstract
         List<Customer> GetCustomers(int companyId, string customerName);
         List<Customer> GetCustomers(int companyId, string customerName, DateTime Dob);
         Customer GetCustomer(int customerId);
-        bool RemoveCustomer(int customerId);
+        bool RemoveCustomer(int customerId, int removedBy);
 
 
         bool AddCustomerInsurance(CustomerInsurance customerInsurance);

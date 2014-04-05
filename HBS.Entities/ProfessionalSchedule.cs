@@ -16,6 +16,7 @@ namespace HBS.Entities
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public int TimeIntervalMinutes { get; set; }
+        
 
         public ProfessionalSchedule()
         { }
@@ -39,16 +40,16 @@ namespace HBS.Entities
                 TimeIntervalMinutes = (int)dbReader["TimeIntervalMinutes"];        
             
             if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
-                CreatedBy = (int)dbReader["CreatedBy"];
+                base.CreatedBy = (int)dbReader["CreatedBy"];
             
             if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
-                UpdatedBy = (int)dbReader["UpdatedBy"];
+                base.UpdatedBy = (int)dbReader["UpdatedBy"];
             
             if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
-                DateCreated = (DateTime)dbReader["DateCreated"];
+                base.DateCreated = (DateTime)dbReader["DateCreated"];
             
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
-                DateUpdated = (DateTime)dbReader["DateUpdated"];
+                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
         }
 
 
