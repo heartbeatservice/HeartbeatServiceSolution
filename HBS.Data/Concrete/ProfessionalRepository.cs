@@ -12,19 +12,40 @@ namespace HBS.Data.Concrete
 {
     public class ProfessionalRepository : BaseRepository, IProfessionalRepository
     {
+<<<<<<< HEAD
 
+        private const string AddProfessionalSp = "AddProfessional";
+        private const string UpdateProfessionalSp = "UpdateProfessional";
+        private const string GetProfessionalByIdSp = "GetProfessionalById";
+        
+   
+
+        private const string GetProfessionalByIdSp = "GetProfessionalById";
+        private const string GetProfessionalsSp = "GetProfessionals";
+      
+     
+
+        public int AddProfessional(Professional professional)
+
+=======
         private const string GetProfessionalByIdSp = "GetProfessionalById";
         private const string GetProfessionalsSp = "GetProfessionals";
         private const string AddProfessionalSp = "AddProfessional";
         private const string UpdateProfessionalSp = "UpdateProfessional";
 
         public int AddProfessional(Professional professional)
-
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
 
+<<<<<<< HEAD
+
+
+         
+=======
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
                 using (var cmd = new SqlCommand(AddProfessionalSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -37,9 +58,20 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@ProfessionalIdentificationNumber", SqlDbType.VarChar).Value = professional.ProfessionalIdentificationNumber;
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = professional.CreatedBy;
                     cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+<<<<<<< HEAD
+                    return (int)cmd.ExecuteScalar();                  cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CreatedBy"].Value = professional.CreatedBy;
+
+                    cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
+
+                   
 
                     return (int)cmd.ExecuteScalar();
 
+=======
+                    return (int)cmd.ExecuteScalar();
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
                 }
             }
         }
@@ -59,6 +91,10 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professional.ProfessionalId;
                     cmd.Parameters.Add("@ProfessionalTypeId", SqlDbType.Int).Value = professional.ProfessionalTypeId;
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = professional.CompanyId;
@@ -80,16 +116,26 @@ namespace HBS.Data.Concrete
             Professional professional = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
+<<<<<<< HEAD
 
                 conn.Open();
 
+=======
+                conn.Open();
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
                 using (var cmd = new SqlCommand(GetProfessionalByIdSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+<<<<<<< HEAD
 
+                    cmd.Parameters.Add("@professionalId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@professionalId"].Value = professionalId;
+
+=======
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
                     cmd.Parameters["@ProfessionalId"].Value = professionalId;
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
 
                     using (var myReader = cmd.ExecuteReader())
                     {
@@ -107,15 +153,58 @@ namespace HBS.Data.Concrete
                         }
                     }
                 }
+<<<<<<< HEAD
 
+
+                return professional;
+            }
+=======
             }
             return professional;
-
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
         }
 
         public List<Professional> GetProfessionals(int companyId, string professionalName)
         {
+<<<<<<< HEAD
 
+            var professionals = new List<Professional>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(GetProfessionalsSp, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CompanyId", SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyId;
+
+                    if (!string.IsNullOrWhiteSpace(professionalName))
+                    {
+                        cmd.Parameters.Add("@Name", SqlDbType.VarChar);
+                        cmd.Parameters["@Name"].Value = professionalName;
+                    }
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                professionals.Add(new Professional(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return professionals;
+       }
+
+=======
             var professionals = new List<Professional>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -152,7 +241,7 @@ namespace HBS.Data.Concrete
             return professionals;
         }
 
-
+>>>>>>> a0b577e90d686fa330813b20a2c36b2457fcfb5d
 
         public bool RemoveProfessional(int professionalId,int removedBy)
         {
@@ -199,7 +288,7 @@ namespace HBS.Data.Concrete
             throw new NotImplementedException();
         }
 
-        public bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy)
+        public bool RemoveProfessionalSchedule(int professionalSchduleId)
         {
             throw new NotImplementedException();
         }
