@@ -14,7 +14,7 @@ AS
 
 
 
-DECLARE @UpdatedDate DATETime=getDate();
+DECLARE @UpdatedDate DATETime=GetUtcDate();
 
 declare @sql varchar(256)
 Declare @tblParams  table(id int identity(1,1),name varchar(50),paramName varchar(50))

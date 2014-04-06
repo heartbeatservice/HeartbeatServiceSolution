@@ -19,4 +19,4 @@ AS
 
 
 INSERT INTO UserProfile(CompanyId,UserName,Password,PasswordSalt,FirstName,LastName,Email,ConfirmationToken,IsConfirmed,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy) 
-VALUES(@companyId,@UserName,@Password,@PasswordSalt,@FirstName,@LastName,@Email,@ConfirmationToken,@IsConfirmed,getDate(),@CreatedBy,getDate(),@UpdatedBy)
+VALUES(@companyId,@UserName,@Password,@PasswordSalt,@FirstName,@LastName,@Email,@ConfirmationToken,@IsConfirmed,GetUtcDate(),@CreatedBy,GetUtcDate(),@UpdatedBy)

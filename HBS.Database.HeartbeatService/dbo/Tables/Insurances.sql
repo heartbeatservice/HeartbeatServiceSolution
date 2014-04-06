@@ -5,10 +5,11 @@
     [InsuranceAddress] NVARCHAR (150) NULL,
     [InsurancePhone]   NVARCHAR (15)  NULL,
     [InsuranceWebsite] NVARCHAR (250) NULL,
-    [IsActive]         BIT            NULL,
-    CONSTRAINT [PK_InsuranceType] PRIMARY KEY CLUSTERED ([InsuranceId] ASC),
-    CONSTRAINT [FK_InsuranceType_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
+    [IsActive]         BIT            DEFAULT ((1)) NULL,
+    CONSTRAINT [PK_InsuranceType] PRIMARY KEY CLUSTERED ([InsuranceId] ASC)
 );
+
+
 
 
 

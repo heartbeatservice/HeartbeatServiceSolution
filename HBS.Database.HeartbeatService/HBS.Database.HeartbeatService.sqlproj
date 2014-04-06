@@ -89,7 +89,6 @@
     <Build Include="dbo\Tables\ConfigValues.sql" />
     <Build Include="dbo\Stored Procedures\AddCompany.sql" />
     <Build Include="dbo\Stored Procedures\AddUser.sql" />
-    <Build Include="dbo\Stored Procedures\GetAllCompanies.sql" />
     <Build Include="dbo\Stored Procedures\GetCompanyById.sql" />
     <Build Include="dbo\Stored Procedures\GetUserById.sql" />
     <Build Include="dbo\Stored Procedures\GetUserByUserName.sql" />
@@ -105,6 +104,15 @@
     <Build Include="dbo\Stored Procedures\AddInsurance.sql" />
     <Build Include="dbo\Stored Procedures\IsUsernameexists.sql" />
     <Build Include="dbo\Stored Procedures\GetProfessionals.sql" />
+    <Build Include="Security\umais.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateProfessionalSchedule.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalScheduleByProfessionalId.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalScheduleById.sql" />
+    <Build Include="dbo\Stored Procedures\GetInsurances.sql" />
+    <Build Include="dbo\Stored Procedures\GetInsuranceById.sql" />
+    <Build Include="dbo\Stored Procedures\GetCompanies.sql" />
+    <Build Include="dbo\Stored Procedures\AddProfessionalSchedule.sql" />
+    <Build Include="Security\umais_1.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />

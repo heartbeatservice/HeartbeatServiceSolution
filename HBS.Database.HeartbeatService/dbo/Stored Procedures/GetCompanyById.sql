@@ -1,7 +1,7 @@
 ﻿
 
 CREATE PROCEDURE [dbo].[GetCompanyById] 
---UpdateUser 1,1,'ABCTesting','','Umais','Siddiqui','umais@heartbeatservice.com'
+-- [GetCompanyById] 3
 
 @CompanyId int
 
@@ -9,5 +9,5 @@ CREATE PROCEDURE [dbo].[GetCompanyById]
 AS
 
 
-Select CompanyId,CompanyName,Description,CreatedDate,CreatedBy,UpdatedDate,Updatedby FROM
+Select CompanyId,CompanyName,Description,CreatedDate,CreatedBy,UpdatedDate,Updatedby,IsActive FROM
 Company WHERE CompanyId=@CompanyId

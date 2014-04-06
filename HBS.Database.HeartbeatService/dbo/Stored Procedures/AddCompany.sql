@@ -14,4 +14,4 @@ AS
 
 
 INSERT INTO Company(CompanyName,Description,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy) 
-VALUES(@CompanyName,@Description,getDate(),@CreatedBy,getDate(),@UpdatedBy)
+VALUES(@CompanyName,@Description,GetUtcDate(),@CreatedBy,GetUtcDate(),@UpdatedBy)

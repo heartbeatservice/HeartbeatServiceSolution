@@ -1,6 +1,6 @@
 ﻿
-create PROCEDURE [dbo].[SearchUsers]
---GetUsersByCompanyId  1
+CREATE PROCEDURE [dbo].[SearchUsers]
+--[SearchUsers]  1, 'naveed'
 @CompanyId int,
 @SearchText nvarchar(100)
 
@@ -24,7 +24,8 @@ SELECT
 	u.CreatedDate,
 	u.CreatedBy,
 	u.UpdatedDate,
-	u.UpdatedBy
+	u.UpdatedBy,
+	u.IsActive
 FROM UserProfile u
 INNER JOIN Company c
 ON u.CompanyId=c.CompanyId

@@ -1,6 +1,6 @@
 ﻿
 CREATE PROCEDURE [dbo].[GetProfessionals]
--- GetProfessionalsByName  1, 'z'
+-- [GetProfessionals]  1, 'z'
 
 
 @CompanyId int,
@@ -16,10 +16,14 @@ SELECT
 	t.ProfessionalTypeDesc,
 	c.CompanyId,
 	c.CompanyName,
+	p.Title,
 	p.FirstName,
+	p.MiddleInitial,
 	p.LastName,
 	p.phone,
-	p.ProfessionalIdentificationNumber
+	p.ProfessionalIdentificationNumber,
+	p.Email,
+	p.IsActive
 FROM Professional p
 INNER JOIN Company c
 ON p.CompanyId=c.CompanyId

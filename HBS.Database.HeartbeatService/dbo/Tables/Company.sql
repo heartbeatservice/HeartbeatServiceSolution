@@ -6,8 +6,10 @@
     [CreatedDate] DATETIME       NULL,
     [UpdatedBy]   INT            NULL,
     [UpdatedDate] DATETIME       NULL,
-    [IsActive]    BIT            NULL,
+    [IsActive]    BIT            CONSTRAINT [DF_Company_IsActive] DEFAULT ((1)) NULL,
     PRIMARY KEY CLUSTERED ([CompanyId] ASC)
 );
+
+
 
 
