@@ -113,6 +113,16 @@
     <Build Include="dbo\Stored Procedures\GetCompanies.sql" />
     <Build Include="dbo\Stored Procedures\AddProfessionalSchedule.sql" />
     <Build Include="Security\umais_1.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCustomerInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateCustomer.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveCustomerInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomersByNameDOB.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomers.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerInsuranceByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerInsuranceByCustomerID.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerByID.sql" />
+    <Build Include="dbo\Stored Procedures\AddCustomerInsurance.sql" />
+    <Build Include="dbo\Stored Procedures\AddCustomer.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />
