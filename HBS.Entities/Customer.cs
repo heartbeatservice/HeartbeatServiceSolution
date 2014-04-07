@@ -23,12 +23,12 @@ namespace HBS.Entities
         public string Zip { get; set; }
         public string HomePhone { get; set; }
         public string CellPhone { get; set; }
-        public List<Appointments> CustomerAppointments { get; set; }
+        public List<Appointment> CustomerAppointments { get; set; }
 
 
         public Customer()
         {
-            CustomerAppointments = new List<Appointments>();
+            CustomerAppointments = new List<Appointment>();
         }
 
         public Customer(IDataReader dbReader)

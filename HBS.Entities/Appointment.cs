@@ -8,7 +8,7 @@ using System.Data;
 
 namespace HBS.Entities
 {
-    public class Appointments : BaseEntity
+    public class Appointment : BaseEntity
     {
         public int AppointmentId { get; set; }
         public int ProfessionalId { get; set; }
@@ -19,12 +19,12 @@ namespace HBS.Entities
         public string Comments { get; set; }
         
         
-        public Appointments()
+        public Appointment()
         {
 
         }
 
-        public Appointments(IDataReader dbReader)
+        public Appointment(IDataReader dbReader)
             : this()
         {
             if (dbReader.HasColumn("AppointmentId") && dbReader["AppointmentId"] != DBNull.Value)

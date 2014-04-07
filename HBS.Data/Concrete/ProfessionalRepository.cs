@@ -183,6 +183,8 @@ namespace HBS.Data.Concrete
 
                 using (var cmd = new SqlCommand(Change, conn))
                 {
+                    //ToDo  : Fix this method
+                    
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                  
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professionalSchedule.ProfessionalId;
@@ -203,6 +205,8 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
+
+            //TODO: Fix this method
 
                 using (var cmd = new SqlCommand(Change, conn))
                 {

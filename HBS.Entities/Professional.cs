@@ -20,12 +20,12 @@ namespace HBS.Entities
         public string Phone { get; set; }
         public string ProfessionalIdentificationNumber { get; set; }
         List<ProfessionalSchedule> ProfessionalSchedules { get; set; }
-        List<Appointments> ProfessionalAppointmentses { get; set; }
+        List<Appointment> ProfessionalAppointmentses { get; set; }
 
         public Professional()
         {
             ProfessionalSchedules = new List<ProfessionalSchedule>();
-            ProfessionalAppointmentses = new List<Appointments>();
+            ProfessionalAppointmentses = new List<Appointment>();
         }
 
         public Professional(IDataReader dbReader)

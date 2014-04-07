@@ -11,14 +11,14 @@ namespace HBS.Data.Abstract
         List<Company> GetAllCompanies();
         List<Company> GetCompanies(string companyName);
         Company GetCompnay(int companyId);
-        bool RemoveCompany(int compnayId);
+        bool RemoveCompany(int compnayId, int updatedBy);
 
 
         bool AddInsurance(Insurance insurance);
         bool UpdateInsurance(Insurance insurance);
-        List<Insurance> GetInsurance(int companyId, string insuranceName);
+        List<Insurance> GetInsurances(int companyId, string insuranceName);
         Insurance GetInsurance(int insuranceId);
-        bool RemoveInsurance(int insuranceId);
+        bool RemoveInsurance(int insuranceId, int updatedBy);
 
 
 
