@@ -15,14 +15,14 @@ namespace HBS.Data.Concrete
     
     public class CustomerRepository : BaseRepository, ICustomerRepository
     {
-        private const string Change = "Change";
-        //private const string sp = "";
-        //private const string sp = "";
-        //private const string sp = "";
-        //private const string sp = "";
-        //private const string sp = "";
-        //private const string sp = "";
-        //private const string sp = "";
+        private const string UpdateCustomerSp = "UpdateCustomer";
+        private const string UpdateCustomerInsuranceSp = "UpdateCustomerInsurance";
+        private const string GetCustomerInsuranceByIDSp = "GetCustomerInsuranceByID";
+        private const string AddCustomerInsuranceSp = "AddCustomerInsurance";
+        private const string AddCustomerSp = "AddCustomer";
+        private const string GetCustomersSp = "GetCustomers";
+        private const string GetCustomersByNameDOBSp = "GetCustomersByNameDOB";
+        private const string GetCustomerByIDSp = "GetCustomerByID";
         //private const string sp = "";
 
 
@@ -37,7 +37,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(AddCustomerSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -69,7 +69,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(UpdateCustomerSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -100,7 +100,7 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(GetCustomersSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -137,7 +137,7 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(GetCustomersByNameDOBSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
@@ -179,7 +179,7 @@ namespace HBS.Data.Concrete
 
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(GetCustomerByIDSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int);
@@ -213,11 +213,11 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(UpdateCustomerSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@professionalSchduleId", SqlDbType.Int).Value = customerId;
+                    cmd.Parameters.Add("@ProfessionalSchduleId", SqlDbType.Int).Value = customerId;
                     cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = false;
                     cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = removedByUserId;
                     cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
@@ -234,7 +234,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(AddCustomerInsuranceSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -259,7 +259,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(UpdateCustomerInsuranceSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerInsurance.CustomerId;
@@ -285,7 +285,7 @@ namespace HBS.Data.Concrete
 
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(GetCustomerInsuranceByIDSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -325,7 +325,22 @@ namespace HBS.Data.Concrete
 
         public bool RemoveCustomerInsurance(int customerInsuranceId)
         {
-            throw new NotImplementedException();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(UpdateCustomerInsuranceSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@CustomerInsuranceId", SqlDbType.Int).Value = customerInsuranceId;
+                    cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = false;
+                    //cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = removedByUserId;
+                    //cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+            }
         }
     }
 }

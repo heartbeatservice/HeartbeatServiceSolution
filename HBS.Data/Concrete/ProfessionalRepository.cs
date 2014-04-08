@@ -17,10 +17,10 @@ namespace HBS.Data.Concrete
         private const string GetProfessionalsSp = "GetProfessionals";
         private const string AddProfessionalSp = "AddProfessional";
         private const string UpdateProfessionalSp = "UpdateProfessional";
-         private const string Change = "Amir";
-         //private const string Change = "Amir";
-         //private const string Change = "Amir";
-         //private const string Change = "Amir";
+        private const string AddProfessionalScheduleSp = "AddProfessionalSchedule";
+        private const string UpdateProfessionalScheduleSp = "UpdateProfessionalSchedule";
+        private const string GetProfessionalScheduleByIdSp = "GetProfessionalScheduleById";
+        private const string GetProfessionalScheduleByDateSp = "GetProfessionalScheduleByDate";
 
         public int AddProfessional(Professional professional)
         {
@@ -181,7 +181,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(AddProfessionalScheduleSp, conn))
                 {
                     //ToDo  : Fix this method
                     
@@ -208,7 +208,7 @@ namespace HBS.Data.Concrete
 
             //TODO: Fix this method
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(UpdateProfessionalScheduleSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ProfessionalScheduleId", SqlDbType.Int).Value = professionalSchedule.ProfessionalScheduleId;
@@ -233,7 +233,7 @@ namespace HBS.Data.Concrete
 
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(UpdateProfessionalScheduleSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -263,13 +263,20 @@ namespace HBS.Data.Concrete
 
         }
 
+        /// <summary>
+        /// depends on the parameter is passed, this method will return either
+        /// 1 professional schedule or list of professionals
+        /// </summary>
+        /// <param name="professionalId"></param>
+        /// <returns></returns>
+
         public List<ProfessionalSchedule> GetProfessionalScheduleList(int professionalId)
         {
             var professionalSchedule = new List<ProfessionalSchedule>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(GetProfessionalScheduleByIdSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
@@ -300,7 +307,7 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-                using (var cmd = new SqlCommand(Change, conn))
+                using (var cmd = new SqlCommand(GetProfessionalScheduleByDateSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ScheduleDate", SqlDbType.DateTime);
@@ -331,7 +338,10 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(Change, conn))
+                //TODO: This stored procedure is not final till the time I am writing this method. 
+                // naveed need to discuss this with Saqib. Make sure the sp is correct. 
+
+                using (var cmd = new SqlCommand(UpdateProfessionalScheduleSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
