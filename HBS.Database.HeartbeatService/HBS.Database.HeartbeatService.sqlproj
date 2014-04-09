@@ -127,6 +127,15 @@
     <Build Include="dbo\Stored Procedures\GetUserRolesByID.sql" />
     <Build Include="dbo\Stored Procedures\GetRoles.sql" />
     <Build Include="dbo\Stored Procedures\GetRoleByID.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateAppointment.sql" />
+    <Build Include="dbo\Stored Procedures\IsUserInRole.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserRolesByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetRoles.sql" />
+    <Build Include="dbo\Stored Procedures\GetRoleByID.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalScheduleByDate.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalAppointments.sql" />
+    <Build Include="dbo\Stored Procedures\GetCustomerAppointments.sql" />
+    <Build Include="dbo\Stored Procedures\AddAppointment.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />
