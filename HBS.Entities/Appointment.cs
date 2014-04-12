@@ -13,6 +13,7 @@ namespace HBS.Entities
         public int AppointmentId { get; set; }
         public int ProfessionalId { get; set; }
         public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
         public DateTime AppointmentDate { get; set; }
         public string AppointmentStartTime { get; set; }  
         public int StatusId { get; set; }
@@ -35,6 +36,9 @@ namespace HBS.Entities
             
             if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
                 CustomerId = (int)dbReader["CustomerId"];
+
+            if (dbReader.HasColumn("CustomerName") && dbReader["CustomerName"] != DBNull.Value)
+                CustomerId = (int)dbReader["CustomerName"];
             
             if (dbReader.HasColumn("AppointmentDate") && dbReader["AppointmentDate"] != DBNull.Value)
                 AppointmentDate = (DateTime)dbReader["AppointmentDate"];

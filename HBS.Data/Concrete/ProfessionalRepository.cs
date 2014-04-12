@@ -47,11 +47,6 @@ namespace HBS.Data.Concrete
             }
         }
 
-
-
-
-
-
         public bool UpdateProfessional(Professional professional)
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -83,12 +78,11 @@ namespace HBS.Data.Concrete
             Professional professional = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
-
                 conn.Open();
 
                 using (var cmd = new SqlCommand(GetProfessionalByIdSp, conn))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;                    
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
                     cmd.Parameters["@ProfessionalId"].Value = professionalId;
 
@@ -96,10 +90,31 @@ namespace HBS.Data.Concrete
                     {
                         try
                         {
-                            if (myReader.HasRows)                            {
+                            if (myReader.HasRows)
+                            {
                                 myReader.Read();
                                 professional = new Professional(myReader);
+
+                                if (myReader.NextResult())
+                                {
+                                    professional.ProfessionalSchedules = new List<ProfessionalSchedule>();
+                                    while (myReader.Read())
+                                    {
+                                        professional.ProfessionalSchedules.Add(new ProfessionalSchedule(myReader));
+                                    }
+                                }
+
+                                if (myReader.NextResult())
+                                {
+                                    professional.ProfessionalAppointmentses = new List<Appointment>();
+                                    while (myReader.Read())
+                                    {
+                                        professional.ProfessionalAppointmentses.Add(new Appointment(myReader));
+                                    }
+                                }
+
                             }
+
                         }
                         catch (Exception ex)
                         {
@@ -176,7 +191,7 @@ namespace HBS.Data.Concrete
 
         public bool AddProfessionalSchedule(ProfessionalSchedule professionalSchedule)
         {
-            
+
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
@@ -184,9 +199,9 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(AddProfessionalScheduleSp, conn))
                 {
                     //ToDo  : Fix this method
-                    
+
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                 
+
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professionalSchedule.ProfessionalId;
                     cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
                     cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
@@ -206,7 +221,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-            //TODO: Fix this method
+                //TODO: Fix this method
 
                 using (var cmd = new SqlCommand(UpdateProfessionalScheduleSp, conn))
                 {
@@ -280,7 +295,7 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
-                    cmd.Parameters["@ProfessionalId"].Value = professionalId;                   
+                    cmd.Parameters["@ProfessionalId"].Value = professionalId;
 
                     using (var myReader = cmd.ExecuteReader())
                     {

@@ -21,9 +21,17 @@ SELECT
 	p.ProfessionalIdentificationNumber,
 	p.Email,
 	p.IsActive
-FROM Professional p
-INNER JOIN Company c
-ON p.CompanyId=c.CompanyId
-inner join ProfessionalType t
-on p.ProfessionalTypeId=t.ProfessionalTypeId
-WHERE p.ProfessionalId=@ProfessionalId
+FROM Professional P 
+INNER JOIN Company C ON P.CompanyId = C.CompanyId
+INNER JOIN ProfessionalType T ON P.ProfessionalTypeId = T.ProfessionalTypeId
+WHERE P.ProfessionalId = @ProfessionalId
+
+--GET PROFESSIONAL SCHEDULE BY Professional Id
+SELECT * FROM ProfessionalSchedule PS
+WHERE PS.ProfessionalId = @ProfessionalId
+
+
+--GET PROFESSIONAL's APPOINTMENTS AND CUSTOMERS BY Professional Id
+SELECT A.*,C.FirstName,c.LastName FROM Appointments A
+INNER JOIN Customers C ON A.CustomerId = C.CustomerId
+WHERE A.ProfessionalId = @ProfessionalId

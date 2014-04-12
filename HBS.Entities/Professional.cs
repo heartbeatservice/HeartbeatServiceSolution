@@ -19,8 +19,8 @@ namespace HBS.Entities
         public string LastName { get; set; }
         public string Phone { get; set; }
         public string ProfessionalIdentificationNumber { get; set; }
-        List<ProfessionalSchedule> ProfessionalSchedules { get; set; }
-        List<Appointment> ProfessionalAppointmentses { get; set; }
+        public List<ProfessionalSchedule> ProfessionalSchedules { get; set; }
+        public List<Appointment> ProfessionalAppointmentses { get; set; }
 
         public Professional()
         {
