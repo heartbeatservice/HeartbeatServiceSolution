@@ -50,10 +50,8 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CreatedBy"].Value = user.CreatedBy;
 
-                    cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.DateTime);
-                    cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
 
-                    return (int)cmd.ExecuteScalar();
+                    return Convert.ToInt32(cmd.ExecuteScalar());
 
                 }
             }
@@ -151,7 +149,7 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@UserName", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@UserName", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@UserName"].Value = userName;
 
                     using (var myReader = cmd.ExecuteReader())

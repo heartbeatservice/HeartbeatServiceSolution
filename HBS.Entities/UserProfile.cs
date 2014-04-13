@@ -38,6 +38,7 @@ namespace HBS.Entities
             if (dbReader["LastName"] != DBNull.Value) LastName = (string)dbReader["LastName"];
             if (dbReader["Email"] != DBNull.Value) Email = (string)dbReader["Email"];
             if (dbReader["UserId"] != DBNull.Value) UserId = (int)dbReader["UserId"];
+            if (dbReader["Password"] != DBNull.Value) Password = (string)dbReader["Password"];
             
         }
     }
