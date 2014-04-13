@@ -27,9 +27,15 @@ namespace HBS.WebApi.Controllers
             return securityEntity.GetUser(id);
         }
 
-        public void PostUser([FromBody] UserProfile user)
+        public UserProfile PostUser([FromBody] UserProfile user)
         {
-            securityEntity.AddUser(user);
+            UserProfile userInRepo;
+            userInRepo = securityEntity.GetUser(user.UserName);
+            if (userInRepo == null)
+                userInRepo = new UserProfile() { UserId = -2 };
+            else if (!(user.Password == userInRepo.Password))
+                userInRepo.UserId = -1;
+            return userInRepo;
         }
 
         }
