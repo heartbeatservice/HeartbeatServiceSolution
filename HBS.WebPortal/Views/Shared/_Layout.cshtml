@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body ng-app="HeartbeatApp">
-    <div id="mainContent" class="container" ng-controller="HeartbeatController">
+    <div id="mainContent" class="container" ng-controller="HeartbeatController" data-ng-init="init();">
     <div id='controls' class='navbar navBg navbar-fixed-top '>
 
     <div id="logo" class="navbar-header">
@@ -74,6 +74,7 @@
     <script src="~/Content/Angular/ng-grid-2.0.6.min.js"></script>
     <script src="~/Content/Angular/app.js">
     </script>
+    <script src="~/Content/Angular/HeartbeatService.js"></script>
     <script src="~/Content/Angular/HeartbeatController.js"></script>
     <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
     <script src="~/Content/scripts/script.js"></script>

@@ -12,7 +12,7 @@
                 },
 
                 // url: "http://presciencerx.azurewebsites.net/api/" + resource,
-                url: "http://localhost:56799/api/" + resource,
+                url: "http://localhost:3687/api/" + resource,
 
                 type: "get",
 
@@ -27,7 +27,7 @@
                     xhrObj.setRequestHeader("Content-Type", "application/json");
                     xhrObj.setRequestHeader("Accept", "application/json");
                 },
-                url: "http://localhost:56799/api/" + resource,
+                url: "http://localhost:3687/api/" + resource,
                 type: "post",
                 data: JSON.stringify(params),
                 success: function (response) { callSuccess(response); },

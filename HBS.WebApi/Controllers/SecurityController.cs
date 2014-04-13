@@ -8,7 +8,7 @@ using HBS.Data.Entities;
 using HBS.Data.Abstract;
 using HBS.Data.Concrete;
 using HBS.Entities;
-
+using System.Web;
 namespace HBS.WebApi.Controllers
 {
     public class SecurityController : ApiController
@@ -27,8 +27,12 @@ namespace HBS.WebApi.Controllers
             return securityEntity.GetUser(id);
         }
 
+        [HttpPost]
         public UserProfile PostUser([FromBody] UserProfile user)
+        
         {
+            
+            
             UserProfile userInRepo;
             userInRepo = securityEntity.GetUser(user.UserName);
             if (userInRepo == null)
@@ -38,5 +42,12 @@ namespace HBS.WebApi.Controllers
             return userInRepo;
         }
 
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+        
+            return resp;
+        }
         }
 }
