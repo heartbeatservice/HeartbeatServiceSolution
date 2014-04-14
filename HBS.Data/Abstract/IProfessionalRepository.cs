@@ -13,14 +13,14 @@ namespace HBS.Data.Abstract
         bool UpdateProfessional(Professional professional);
         Professional GetProfessional(int professionalId);
 
-        List<Professional> GetProfessionals(int companyId, string professionalName);
-        bool RemoveProfessional(int professionalId, int removedBy);
+        List<Professional> GetProfessionals(int companyId, string professionalName);//
+        bool RemoveProfessional(int professionalId, int removedBy);//
         bool AddProfessionalSchedule(ProfessionalSchedule professionalSchedule);
         bool UpdateProfessionalSchedule(ProfessionalSchedule professionalSchedule);
         ProfessionalSchedule GetProfessionalSchedule(int professionalSchedulreId);
-        List<ProfessionalSchedule> GetProfessionalScheduleList(int professionalId);
-        List<ProfessionalSchedule> GetProfessionalSchedule(DateTime scheduleDate);
-        bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy);
+        List<ProfessionalSchedule> GetProfessionalScheduleList(int professionalId);//
+        List<ProfessionalSchedule> GetProfessionalSchedule(DateTime scheduleDate);//
+        bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy);//
 
     }
 }

@@ -39,9 +39,9 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@Phone", SqlDbType.VarChar).Value = professional.Phone;
                     cmd.Parameters.Add("@ProfessionalIdentificationNumber", SqlDbType.VarChar).Value = professional.ProfessionalIdentificationNumber;
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = professional.CreatedBy;
-                    cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+                    //cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
-                    return (int)cmd.ExecuteScalar();
+                    return Convert.ToInt16(cmd.ExecuteScalar());
 
                 }
             }
@@ -66,7 +66,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@ProfessionalIdentificationNumber", SqlDbType.VarChar).Value = professional.ProfessionalIdentificationNumber;
                     cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = professional.IsActive;
                     cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = professional.UpdatedBy;
-                    cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+                    //cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -206,10 +206,12 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
                     cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
                     cmd.Parameters.Add("@TimeIntervalMinutes", SqlDbType.Int).Value = professionalSchedule.TimeIntervalMinutes;
-                    cmd.Parameters.Add("@CreatedBy", SqlDbType.VarChar).Value = professionalSchedule.CreatedBy;
-                    cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
-                    return (bool)cmd.ExecuteScalar();
+                //TODO: Add this back, these parms missing from sp
+                    //cmd.Parameters.Add("@CreatedBy", SqlDbType.VarChar).Value = professionalSchedule.CreatedBy;
+                    //cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+
+                    return Convert.ToBoolean(cmd.ExecuteScalar());
 
                 }
             }
@@ -231,8 +233,10 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
                     cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
                     cmd.Parameters.Add("@TimeIntervalMinutes", SqlDbType.Int).Value = professionalSchedule.TimeIntervalMinutes;
-                    cmd.Parameters.Add("@UpdatedBy", SqlDbType.VarChar).Value = professionalSchedule.UpdatedBy;
-                    cmd.Parameters.Add("@DateUpdated", SqlDbType.DateTime).Value = DateTime.UtcNow;
+
+                    //TODO: Add this back, these parms missing from sp
+                    //cmd.Parameters.Add("@UpdatedBy", SqlDbType.VarChar).Value = professionalSchedule.UpdatedBy;
+                    //cmd.Parameters.Add("@DateUpdated", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
                     return cmd.ExecuteNonQuery() > 0;
 
