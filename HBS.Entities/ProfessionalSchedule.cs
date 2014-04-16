@@ -35,9 +35,9 @@ namespace HBS.Entities
             
             if (dbReader.HasColumn("EndTime") && dbReader["EndTime"] != DBNull.Value)
                 EndTime = (DateTime)dbReader["EndTime"];
-            
+
             if (dbReader.HasColumn("TimeIntervalMinutes") && dbReader["TimeIntervalMinutes"] != DBNull.Value)
-                TimeIntervalMinutes = (int)dbReader["TimeIntervalMinutes"];        
+                TimeIntervalMinutes = Convert.ToInt16(dbReader["TimeIntervalMinutes"]);        
             
             if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
                 base.CreatedBy = (int)dbReader["CreatedBy"];

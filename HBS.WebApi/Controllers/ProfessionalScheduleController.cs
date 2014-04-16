@@ -23,13 +23,14 @@ namespace HBS.WebApi.Controllers
         }
              
       
-         
+        
+        [HttpGet]
         public ProfessionalSchedule GetProfessionalScheduleById(int id)
         {
             return professionalRepository.GetProfessionalSchedule(id);
         }
 
-        public bool PostProfessional([FromBody] ProfessionalSchedule  proSchedule)
+        public bool PostProfessionalSchedule([FromBody] ProfessionalSchedule  proSchedule)
         {
             return professionalRepository.AddProfessionalSchedule(proSchedule);
 
@@ -37,7 +38,7 @@ namespace HBS.WebApi.Controllers
 
         //TODO:Get confirmation. 
         //User the same method to soft delete dont need have another method to softdelete, this method does have IsActive param. 
-        public bool PutProfessional([FromBody] ProfessionalSchedule proSchedule)
+        public bool PutProfessionalSchedule([FromBody] ProfessionalSchedule proSchedule)
         {
             return professionalRepository.UpdateProfessionalSchedule(proSchedule);
         }

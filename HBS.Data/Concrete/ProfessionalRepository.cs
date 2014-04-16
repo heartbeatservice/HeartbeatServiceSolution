@@ -257,8 +257,8 @@ namespace HBS.Data.Concrete
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
 
-                    cmd.Parameters.Add("@ProfessionalSchedulreId", SqlDbType.Int);
-                    cmd.Parameters["@ProfessionalSchedulreId"].Value = professionalSchedulreId;
+                    cmd.Parameters.Add("@ProfessionalScheduleId", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalScheduleId"].Value = professionalSchedulreId;
 
                     using (var myReader = cmd.ExecuteReader())
                     {
@@ -289,17 +289,21 @@ namespace HBS.Data.Concrete
         /// <param name="professionalId"></param>
         /// <returns></returns>
 
-        public List<ProfessionalSchedule> GetProfessionalScheduleList(int professionalId)
+        public List<ProfessionalSchedule> GetProfessionalScheduleListByScheduleId(int professionalScheduleId)
         {
-            var professionalSchedule = new List<ProfessionalSchedule>();
+
+            var professionalsSchedule = new List<ProfessionalSchedule>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
                 using (var cmd = new SqlCommand(GetProfessionalScheduleByIdSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
-                    cmd.Parameters["@ProfessionalId"].Value = professionalId;
+
+                    cmd.Parameters.Add("@ProfessionalScheduleId", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalScheduleId"].Value = professionalScheduleId;
+
+
 
                     using (var myReader = cmd.ExecuteReader())
                     {
@@ -307,20 +311,28 @@ namespace HBS.Data.Concrete
                         {
                             while (myReader.Read())
                             {
-                                professionalSchedule.Add(new ProfessionalSchedule(myReader));
+                                professionalsSchedule.Add(new ProfessionalSchedule(myReader));
                             }
                         }
                         catch (Exception ex)
                         {
                             // TODO Logg Error here
                         }
+
+                        return professionalsSchedule;
                     }
+
                 }
             }
-            return professionalSchedule;
         }
 
-        public List<ProfessionalSchedule> GetProfessionalSchedule(DateTime scheduleDate)
+
+
+
+
+
+
+        public List<ProfessionalSchedule> GetProfessionalScheduleByScheduleDate(DateTime scheduleDate)
         {
             var professionalSchedule = new List<ProfessionalSchedule>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -329,8 +341,8 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(GetProfessionalScheduleByDateSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ScheduleDate", SqlDbType.DateTime);
-                    cmd.Parameters["@ScheduleDate"].Value = scheduleDate;
+                    cmd.Parameters.Add("@StartDate", SqlDbType.DateTime);
+                    cmd.Parameters["@StartDate"].Value = scheduleDate;
 
                     using (var myReader = cmd.ExecuteReader())
                     {
