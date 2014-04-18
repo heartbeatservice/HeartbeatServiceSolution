@@ -40,9 +40,6 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(AddCustomerSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customer.CustomerId; 
-
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = customer.CompanyId;
                     cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = customer.FirstName;
                     cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = customer.LastName;
@@ -55,9 +52,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@HomePhone", SqlDbType.VarChar).Value = customer.HomePhone;
                     cmd.Parameters.Add("@CellPhone", SqlDbType.VarChar).Value = customer.CellPhone;
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = customer.CreatedBy;
-                    cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
-
-                    return (bool)cmd.ExecuteScalar();
+                    return Convert.ToBoolean(cmd.ExecuteScalar());
 
                 }
             }
@@ -72,9 +67,7 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(UpdateCustomerSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customer.CustomerId;
-
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = customer.CompanyId;
                     cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = customer.FirstName;
                     cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = customer.LastName;
@@ -87,9 +80,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@HomePhone", SqlDbType.VarChar).Value = customer.HomePhone;
                     cmd.Parameters.Add("@CellPhone", SqlDbType.VarChar).Value = customer.CellPhone;
                     cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = customer.UpdatedBy;
-                    cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
-
-                    return (bool)cmd.ExecuteScalar();
+                    return Convert.ToBoolean(cmd.ExecuteScalar());
                 }
             }
         }
@@ -217,12 +208,12 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@ProfessionalSchduleId", SqlDbType.Int).Value = customerId;
+                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerId;
                     cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = false;
                     cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = removedByUserId;
                     cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    return Convert.ToBoolean(cmd.ExecuteNonQuery() > 0);
                 }
             }
         }

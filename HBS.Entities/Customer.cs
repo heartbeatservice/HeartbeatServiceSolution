@@ -34,8 +34,7 @@ namespace HBS.Entities
         public Customer(IDataReader dbReader)
             : this()
         {
-            if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
-                CustomerId = (int)dbReader["CustomerId"];
+            
 
             if (dbReader.HasColumn("CompanyId") && dbReader["CompanyId"] != DBNull.Value)
                 CustomerId = (int)dbReader["CompanyId"];
@@ -56,7 +55,7 @@ namespace HBS.Entities
                 Address2 = (string)dbReader["Address2"];
 
             if (dbReader.HasColumn("City") && dbReader["City"] != DBNull.Value)
-                City = (string)dbReader["Address2"];
+                City = (string)dbReader["City"];
             
             if (dbReader.HasColumn("State") && dbReader["State"] != DBNull.Value)
                 State = (string)dbReader["State"];
