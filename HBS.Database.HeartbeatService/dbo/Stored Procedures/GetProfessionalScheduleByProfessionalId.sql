@@ -2,4 +2,4 @@
 @ProfessionalId int
 AS
 
-SELECT * FROM ProfessionalSchedule Where ProfessionalId=@ProfessionalId
+SELECT [ProfessionalScheduleId], [ProfessionalId], [StartTime], [EndTime], [TimeIntervalMinutes] FROM ProfessionalSchedule Where ProfessionalId=@ProfessionalId
