@@ -10,6 +10,7 @@
   
     <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
+    <link rel="stylesheet" href="~/Content/fullcalendar.css" />
     <meta name="viewport" content="width=device-width" />
 </head>
 <body ng-app="HeartbeatApp">
@@ -29,7 +30,7 @@
         </button>
 
      </div>
-    <div class="navbar-collapse collapse navbar-right">
+    <div class="navbar-collapse collapse navbar-left">
     
         <ul  id="menu" class="nav navbar-nav ">
 
@@ -38,7 +39,7 @@
 
        
     </div>
-   
+   <label class="text-warning loginpadding">You are logged in as:</label>
 </div>
     @RenderBody()
 
@@ -54,6 +55,7 @@
     <script src="~/Content/Angular/HeartbeatController.js"></script>
     <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
     <script src="~/Content/scripts/script.js"></script>
+    <script src="~/Content/scripts/fullcalendar.min.js"></script>
 </body>
 
 </html>

@@ -183,6 +183,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SchedulingController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -211,6 +212,7 @@
     <Content Include="Content\bootstrap\bootstrap.min.css" />
     <Content Include="Content\bootstrap\styles.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\images\amir.jpg" />
     <Content Include="Content\images\amir_shot.jpg" />
     <Content Include="Content\images\Heartbeat Service-logo.png" />
@@ -231,6 +233,8 @@
     <Content Include="Content\images\umais.jpg" />
     <Content Include="Content\images\umaisshot.jpg" />
     <Content Include="Content\scripts\bootstrap.min.js" />
+    <Content Include="Content\scripts\fullcalendar.js" />
+    <Content Include="Content\scripts\fullcalendar.min.js" />
     <Content Include="Content\scripts\jquery-1.8.2.min.js" />
     <Content Include="Content\scripts\jquery-ui-1.8.24.js" />
     <Content Include="Content\scripts\modernizr-2.6.2.js" />
@@ -353,6 +357,7 @@
     <Content Include="Views\Home\Products.cshtml" />
     <Content Include="Views\Home\Services.cshtml" />
     <Content Include="Views\Home\ContactUs.cshtml" />
+    <Content Include="Views\Scheduling\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

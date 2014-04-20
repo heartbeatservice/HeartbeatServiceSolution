@@ -1,6 +1,6 @@
 ﻿body
 {
-    margin-top:140px;
+    margin-top:180px;
 }
 
 .pass {
@@ -40,4 +40,9 @@ background-color:rgb(9, 8, 109)
 
 .logoColor {
 color:#f23a38;
+}
+
+.loginpadding {
+margin-left:200px;
+margin-top:20px;
 }

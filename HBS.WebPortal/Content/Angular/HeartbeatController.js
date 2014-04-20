@@ -9,6 +9,29 @@
     $scope.init = function () {
 
         $scope.constructMenu();
+        $('#fullcalendar').mouseover(function () { $(this).css('cursor', 'pointer'); });
+        if ($('#fullcalendar') != undefined) {
+            $('#fullcalendar').fullCalendar({
+                selectable:true,
+                dayClick: function (date, allDay, jsEvent, view) {
+                    
+                    if (allDay) {
+                       // alert('Clicked on the entire day: ' + date);
+                    } else {
+                        alert('Clicked on the slot: ' + date);
+                    }
+
+
+                    // change the day's background color just for fun
+                   // $(this).css('background-color', 'red');
+
+                },
+                select: function (startDate, endDate, allDay, jsEvent, view) {
+                    alert("Selected");
+                }
+
+            });
+        }
     };
     $scope.loginSucess = function (response) {
         $scope.User = response;
@@ -17,7 +40,7 @@
 
             $scope.constructMenu();
             $scope.$apply();
-           // window.location.href = "/home/about";
+           window.location.href = "/Scheduling?session="+$scope.User.UserId;
         }
     };
 
