@@ -223,6 +223,8 @@
     <Content Include="Content\images\menuicon.png" />
     <Content Include="Content\images\naveed.jpg" />
     <Content Include="Content\images\naveedshot.jpg" />
+    <Content Include="Content\images\newLogo.png" />
+    <Content Include="Content\images\newLogo1.png" />
     <Content Include="Content\images\pro.jpg" />
     <Content Include="Content\images\raheel.jpg" />
     <Content Include="Content\images\raheelshot.jpg" />
