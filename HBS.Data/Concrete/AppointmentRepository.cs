@@ -23,25 +23,26 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-                //TODO: complete below
+             
                 using (var cmd = new SqlCommand(AddAppointmentSp, conn))
                 {
-                    //cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    //cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
-                    //cmd.Parameters["@CompanyId"].Value = appointment.;
+                   
+                    cmd.Parameters.Add("@ProfessionalId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalId"].Value = appointment.ProfessionalId;
 
-                    //cmd.Parameters.Add("@UserName", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@UserName"].Value = appointment.UserName;
+                    cmd.Parameters.Add("@CustomerId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CustomerId"].Value = appointment.CustomerId;
 
-                    //cmd.Parameters.Add("@Password", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@Password"].Value = appointment.Password;
+                    cmd.Parameters.Add("@AppointmentDate", System.Data.SqlDbType.DateTime);
+                    cmd.Parameters["@AppointmentDate"].Value = appointment.AppointmentDate;
 
-                    //cmd.Parameters.Add("@FirstName", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@FirstName"].Value = appointment.FirstName;
+                    cmd.Parameters.Add("@AppointmentStartTime", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@AppointmentStartTime"].Value = appointment.AppointmentStartTime;
 
-                    //cmd.Parameters.Add("@LastName", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@LastName"].Value = appointment.LastName;
+                    cmd.Parameters.Add("@StatusId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@StatusId"].Value = appointment.StatusId;
 
                  
                     cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
@@ -50,7 +51,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.DateTime);
                     cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
 
-                    return (int)cmd.ExecuteScalar();
+                    return Convert.ToInt16(cmd.ExecuteScalar());
 
                 }
             }
@@ -61,31 +62,32 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-                //TODO: complete below
+               
                 using (var cmd = new SqlCommand(UpdateAppointmentSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    //cmd.Parameters.Add("@UserId", System.Data.SqlDbType.Int);
-                    //cmd.Parameters["@UserId"].Value = appointment.UserId;
+                    cmd.Parameters.Add("@AppointmentId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@AppointmentId"].Value = appointment.AppointmentId;
 
-                    //cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
-                    //cmd.Parameters["@CompanyId"].Value = appointment.CompanyId;
+                    cmd.Parameters.Add("@ProfessionalId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalId"].Value = appointment.ProfessionalId;
 
-                    //cmd.Parameters.Add("@UserName", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@UserName"].Value = appointment.UserName;
+                    cmd.Parameters.Add("@CustomerId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CustomerId"].Value = appointment.CustomerId;
 
-                    //cmd.Parameters.Add("@Password", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@Password"].Value = appointment.Password;
+                    cmd.Parameters.Add("@AppointmentDate", System.Data.SqlDbType.DateTime);
+                    cmd.Parameters["@AppointmentDate"].Value = appointment.AppointmentDate;
 
-                    //cmd.Parameters.Add("@FirstName", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@FirstName"].Value = appointment.FirstName;
+                    cmd.Parameters.Add("@AppointmentStartTime", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@AppointmentStartTime"].Value = appointment.AppointmentStartTime;
 
-                    //cmd.Parameters.Add("@LastName", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@LastName"].Value = user.LastName;
+                    cmd.Parameters.Add("@StatusId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@StatusId"].Value = appointment.StatusId;
 
-                    //cmd.Parameters.Add("@Email", System.Data.SqlDbType.VarChar);
-                    //cmd.Parameters["@Email"].Value = user.Email;
+                    cmd.Parameters.Add("@StatusId", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@StatusId"].Value = appointment.Comments;
+                   
 
                     cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@UpdatedBy"].Value = appointment.UpdatedBy;

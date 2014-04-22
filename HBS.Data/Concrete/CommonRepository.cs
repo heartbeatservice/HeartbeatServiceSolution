@@ -16,16 +16,13 @@ namespace HBS.Data.Concrete
         private const string UpdateCompanySp = "UpdateCompany";
         private const string GetCompanyByIdSp = "GetCompanyById";
         private const string UpdateInsuranceSp = "UpdateInsurance";
-
         private const string GetCompaniesSp = "GetCompanies";
         private const string AddInsuranceSp = "AddInsurance";
-
-
         private const string GetInsurancesSp = "GetInsurances";
         private const string GetInsuranceByIdSp = "GetInsuranceById";
 
 
-        public int AddCompany(Company company)
+        public int AddCompany(Company company)//
         {
 
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -48,13 +45,13 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
 
-                    return (int)cmd.ExecuteScalar();
+                    return Convert.ToInt16(cmd.ExecuteScalar());
                 }
 
             }
         }
 
-        public bool UpdateCompany(Company company)
+        public bool UpdateCompany(Company company)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -81,7 +78,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public List<Company> GetAllCompanies()
+        public List<Company> GetAllCompanies()//
         {
 
            var company = new List<Company>();
@@ -112,7 +109,7 @@ namespace HBS.Data.Concrete
             
         
 
-        public List<Company> GetCompanies(string companyName)
+        public List<Company> GetCompanies(string companyName)//
         {
              var company = new List<Company>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -142,7 +139,7 @@ namespace HBS.Data.Concrete
             return company;
         }
 
-        public Company GetCompnay(int companyId)
+        public Company GetCompnay(int companyId)//
         {
             Company company = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -178,7 +175,7 @@ namespace HBS.Data.Concrete
             return company;
         }
 
-        public bool RemoveCompany(int compnayId, int updatedBy)
+        public bool RemoveCompany(int compnayId, int updatedBy)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -198,7 +195,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public bool AddInsurance(Insurance insurance)
+        public bool AddInsurance(Insurance insurance)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -225,7 +222,7 @@ namespace HBS.Data.Concrete
                     //cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.Int);
                     //cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
 
-                    return (bool)cmd.ExecuteScalar();
+                    return Convert.ToBoolean(cmd.ExecuteScalar());
                 }
             }
         }
@@ -288,7 +285,7 @@ namespace HBS.Data.Concrete
             return insurance;
         }
 
-        public Insurance GetInsurance(int insuranceId)
+        public Insurance GetInsurance(int insuranceId)//
         {
             Insurance insurance = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -325,7 +322,7 @@ namespace HBS.Data.Concrete
             
         }
 
-        public bool RemoveInsurance(int insuranceId, int updatedBy)
+        public bool RemoveInsurance(int insuranceId, int updatedBy)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {

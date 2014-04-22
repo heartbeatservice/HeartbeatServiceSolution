@@ -28,7 +28,7 @@ namespace HBS.Data.Concrete
 
 
         
-        public bool AddCustomer(Customer customer)
+        public bool AddCustomer(Customer customer)//
         {
             
                 
@@ -58,7 +58,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public bool UpdateCustomer(Customer customer)
+        public bool UpdateCustomer(Customer customer)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -85,7 +85,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public List<Customer> GetCustomers(int companyId, string customerName)
+        public List<Customer> GetCustomers(int companyId, string customerName)//
         {
             var customer = new List<Customer>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -122,7 +122,7 @@ namespace HBS.Data.Concrete
             return customer; 
         }
 
-        public List<Customer> GetCustomers(int companyId, string customerName, DateTime Dob)
+        public List<Customer> GetCustomers(int companyId, string customerName, DateTime Dob)//
         {
             var customer = new List<Customer>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -162,7 +162,7 @@ namespace HBS.Data.Concrete
             return customer; 
         }
 
-        public Customer GetCustomer(int customerId)
+        public Customer GetCustomer(int customerId)//
         {
             Customer customer = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -198,7 +198,7 @@ namespace HBS.Data.Concrete
 
         }
 
-        public bool RemoveCustomer(int customerId, int removedByUserId)
+        public bool RemoveCustomer(int customerId, int removedByUserId)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -218,7 +218,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public bool AddCustomerInsurance(CustomerInsurance customerInsurance)
+        public bool AddCustomerInsurance(CustomerInsurance customerInsurance)//
         {
             
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -238,13 +238,13 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = customerInsurance.CreatedBy;
                     cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
-                    return (bool)cmd.ExecuteScalar();
+                    return Convert.ToBoolean(cmd.ExecuteScalar());
 
                 }
             }
         }
 
-        public bool UpdateCustomerInsurance(CustomerInsurance customerInsurance)
+        public bool UpdateCustomerInsurance(CustomerInsurance customerInsurance)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -262,13 +262,13 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = customerInsurance.CreatedBy;
                     cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
-                    return (bool)cmd.ExecuteScalar();
+                    return Convert.ToBoolean(cmd.ExecuteScalar());
 
                 }
             }
         }
 
-        public CustomerInsurance GetCustomerInsurance(int customerInsuranceId)
+        public CustomerInsurance GetCustomerInsurance(int customerInsuranceId)//
         {
             CustomerInsurance customerInsurance = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -314,7 +314,7 @@ namespace HBS.Data.Concrete
             
         }
 
-        public bool RemoveCustomerInsurance(int customerInsuranceId)
+        public bool RemoveCustomerInsurance(int customerInsuranceId)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
