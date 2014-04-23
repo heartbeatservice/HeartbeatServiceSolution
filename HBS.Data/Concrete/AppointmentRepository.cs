@@ -18,7 +18,7 @@ namespace HBS.Data.Concrete
         private const string GetCustomerAppointmentsSp = "GetCustomerAppointments";
 
 
-        int AddAppointment(Appointment appointment)
+        public int AddAppointment(Appointment appointment)
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -57,7 +57,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        bool UpdateAppointment(Appointment appointment)
+        public bool UpdateAppointment(Appointment appointment)
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -101,7 +101,7 @@ namespace HBS.Data.Concrete
         }
 
 
-        List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate)
+       public List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate)
         {
 
             var appointment = new List<Appointment>();
@@ -139,7 +139,7 @@ namespace HBS.Data.Concrete
         }
 
 
-        List<Appointment> GetCustomerAppointments(int cusomterAppointments)
+       public List<Appointment> GetCustomerAppointments(int customerId)
         {
             var appointment = new List<Appointment>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -148,8 +148,8 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(GetCustomerAppointmentsSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@CusomterAppointments", SqlDbType.Int);
-                    cmd.Parameters["@CusomterAppointments"].Value = cusomterAppointments;
+                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int);
+                    cmd.Parameters["@CustomerId"].Value = customerId;
                  
 
                     using (var myReader = cmd.ExecuteReader())

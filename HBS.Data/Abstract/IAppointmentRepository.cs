@@ -10,17 +10,17 @@ namespace HBS.Data.Abstract
     public interface IAppointmentRepository
     {
 
- 
-//int AddAppointment (Appointment appointment);
 
-//bool UpdateAppointment(Appointment appointment);
+      int AddAppointment(Appointment appointment);
 
-
-//List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate);
+       bool UpdateAppointment(Appointment appointment);
 
 
-//List<Appointment> GetCustomerAppointments(int cusomterAppointments);
+        List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate);
 
+
+      List<Appointment> GetCustomerAppointments(int customerId);
+        
 
 
     }
