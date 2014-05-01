@@ -10,8 +10,8 @@
        
     
     <div class="col-md-9">
-          <div class="panel panel-info panel-primary">
-               <div class="panel-heading"><h4>Done in a Heartbeat @ViewBag.Test</h4></div>
+          <div class="panel panel-info panel-default">
+              <div class="panel-heading panelBg"><h4 style="color:white;">Done in a Heartbeat.</h4></div>
                <div class="panel-body ">
                    <div class=" lead">      Here at Heartbeat we love to help anyone that has an I.T need for their business. 
             We develop software that target the basic business needs like websites, mobile apps, time tracking ,
@@ -44,13 +44,13 @@
 
         <div class="col-md-3"  >
         <div class="panel panel-info panel-primary">
-               <div class="panel-heading"><h4>Customer Login</h4></div>
+            <div class="panel-heading panelBg"><h4 style="color:white;">Customer Login</h4></div>
                <div class="panel-body ">
                    <div class="form-group">
-    <form>
-        <label for="user">User Name:</label><input class="form-control" type="text" id="user" />
-        <label for="pass">Password</label><input class="form-control" type="password"  id="pass"/><br />
-        <input type="button" class="btn btn-large btn-success" ng-click="ValidateUser();" value="Login" />
+    <form action="Home/Login" method="post">
+        <label for="user">User Name:</label><input class="form-control" type="text" id="user" name="user" />
+        <label for="pass">Password</label><input class="form-control" type="password"  id="pass" name="pass"/><br />
+        <input type="submit" class="btn btn-large btn-default"  value="Login" />
     </form>
                        </div>
             </div>

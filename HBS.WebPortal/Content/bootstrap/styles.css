@@ -34,9 +34,13 @@ padding-right:10px;
 }
 
 .navBg {
-background-color:rgb(0,0,0);
+background-color:rgb(0,0,0) !important;
 }
 
+.panelBg {
+background-color:green !important;
+
+}
 
 .logoColor {
 color:#f23a38;
@@ -45,4 +49,22 @@ color:#f23a38;
 .loginpadding {
 margin-left:200px;
 margin-top:20px;
+}
+
+.dropdown:hover *{
+    background-color:orange !important;
+    color:green !important;
+}
+
+.navbar-item:hover *{
+    background-color:orange !important;
+    color:green !important;
+}
+
+.subitem {
+background-color:white;
+}
+.subitem:hover *{
+    background-color:green!important;
+    color:white !important;
 }

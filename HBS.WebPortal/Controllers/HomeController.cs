@@ -32,7 +32,7 @@ namespace HBS.WebPortal.Controllers
             c.HomePhone = "917-754-6930";
             c.DateOfBirth = "06/15/1980";
 
-            ViewBag.Test ="test";
+            //ViewBag.Test ="test";
              Byte[] blob=Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(c));
 
             //string key = "1:2";
@@ -67,6 +67,15 @@ namespace HBS.WebPortal.Controllers
         public ActionResult ContactUs()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login()
+        {
+            string username = Request.Form["user"].ToString();
+            string pwd = Request.Form["pass"].ToString();
+            Session["user"] = username.ToString();
+            return View("Team");
         }
 
     }
