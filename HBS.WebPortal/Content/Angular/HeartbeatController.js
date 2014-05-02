@@ -6,6 +6,7 @@
     $scope.url = $location.host();
     $scope.path = $location.path();
     $scope.port = $location.port();
+    $scope.homePath=$scope.url+':'+$scope.port+'/'+$scope.menuItems[0].url
     $scope.init = function () {
 
         $scope.constructMenu();

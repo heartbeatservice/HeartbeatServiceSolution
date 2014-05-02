@@ -75,7 +75,7 @@ namespace HBS.WebPortal.Controllers
             string username = Request.Form["user"].ToString();
             string pwd = Request.Form["pass"].ToString();
             Session["user"] = username.ToString();
-            return View("Team");
+            return View();
         }
 
     }

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+@{if (Session["user"] != null) { 
+      
+  <div class="row" >
+
+      <div class="col-md-8">
+          <input type="text" value=@Session["user"].ToString()></div>
+  </div>    
+      
+}
+
+}
