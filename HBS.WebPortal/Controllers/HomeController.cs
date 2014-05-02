@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ServiceStack.Redis;
-using System.Text;
-using Newtonsoft.Json;
+
+
+
 using HBS.Entities;
 using HBS.WebPortal.Models;
 namespace HBS.WebPortal.Controllers
@@ -17,33 +17,25 @@ namespace HBS.WebPortal.Controllers
 
         public ActionResult Index(string id)
         {
-            //using (IRedisNativeClient client = new RedisClient("162.243.79.25",6379,"Karachi@8681",0))
-            //{
-            //    var test=Encoding.UTF8.GetString(client.Get("test"));
-            //    ViewBag.Test = test;
-
-            //}
+            //RapidRedis<Customer> r = new RapidRedis<Customer>();
+            //Customer c = new Customer();
+            //c.CustomerId = 1;
+            //c.FirstName = "Umais";
+            //c.LastName = "Siddiqui";
+            //c.MiddleInitial = "N";
+            //c.IsActive = true;
+            //c.HomePhone = "xxxxxx";
+            //c.DateOfBirth = "06/15/1980";
+            //r.InsertObject(c,"customer:1:App:Website");
+            
             if(id!=null)
                 ViewBag.error = id;
-            Customer c = new Customer();
-            c.CustomerId = 1;
-            c.FirstName="Umais";
-            c.LastName = "Siddiqui";
-            c.MiddleInitial = "A";
-            c.IsActive = true;
-            c.HomePhone = "917-754-6930";
-            c.DateOfBirth = "06/15/1980";
+            
 
             //ViewBag.Test ="test";
-             Byte[] blob=Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(c));
+             
 
-            //string key = "1:2";
-            //using (IRedisNativeClient client = new RedisClient("162.243.79.25", 6379, "Karachi@8681", 0))
-            //{
-            //    client.Set(key,blob);
-                
-
-            //}
+            
             return View();
         }
 
@@ -86,13 +78,13 @@ namespace HBS.WebPortal.Controllers
             }
             else
                 ViewBag.error = "Invalid User Name or password";
-            return View(view);
+            return RedirectToAction(view);
         }
 
         public ActionResult Login()
         {
 
-          
+            ViewBag.app = "Scheduling";
             if (Session["user"] == null)
             {
 
@@ -104,7 +96,7 @@ namespace HBS.WebPortal.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-          
+            ViewBag.app = "Website";
             return RedirectToAction("Index", new { id ="Successfully Logged Out" });
         }
 

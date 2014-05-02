@@ -14,34 +14,36 @@
     <meta name="viewport" content="width=device-width" />
 </head>
 <body ng-app="HeartbeatApp">
-    <div id="mainContent" class="container" ng-controller="HeartbeatController" data-ng-init="init();">
-    <div id='controls' class='navbar navBg navbar-fixed-top'>
+    <div id="mainContent" class="container" >
+        <div id='controls' class='navbar navBg navbar-fixed-top' ng-controller="HeartbeatController" data-ng-init="init();">
 
-    <div id="logo" class="navbar-header">
-        <div class="logoText">
-       
-            <img src="~/Content/images/newLogo1.png" class="img-responsive" />
+            <div id="logo" class="navbar-header">
+                <div class="logoText">
+
+                    <img src="~/Content/images/newLogo1.png" class="img-responsive" />
+                </div>
+
+                <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                    <span class="glyphicon glyphicon-chevron-down "></span>
+
+                </button>
+
+            </div>
+            <div class="navbar-collapse collapse navbar-left">
+
+                <ul id="menu" class="nav navbar-nav  "></ul>
+
+                @{if (ViewBag.app !=null){
+                <input type="hidden" id="app" value=@ViewBag.app>
+                }
+                  else { 
+                <input type="hidden" id="app" value='Website'>
+                }
+                }
+            </div>
+
         </div>
-
-        <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-     
-            <span class="glyphicon glyphicon-chevron-down " ></span>
-
-        </button>
-
-     </div>
-    <div class="navbar-collapse collapse navbar-left">
-    
-        <ul  id="menu" class="nav navbar-nav  ">
-
-           
-        </ul>
-  
-
-       
-    </div>
-  
-</div>
     @RenderBody()
 
 </div>

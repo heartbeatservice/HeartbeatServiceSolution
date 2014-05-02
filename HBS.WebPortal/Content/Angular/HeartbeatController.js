@@ -1,7 +1,7 @@
 ﻿HeartbeatApp.controller("HeartbeatController", function AppController($scope, $location, HeartbeatService) {
    
     $scope.menuItems = [{ name: 'Home', cls: 'nav active', url: 'home/index' }, { name: 'About Us', cls: 'nav', url: 'home/about', submenu: [{ name: 'Vision', url: 'home/about' }, { name: 'Meet The Team', url: 'home/team' }] }, { name: 'Contact Us', cls: 'nav', url: 'Home/Contact' }];
-
+    $scope.app = '';
 
     $scope.url = $location.host();
     $scope.path = $location.path();
