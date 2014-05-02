@@ -7,6 +7,7 @@ using ServiceStack.Redis;
 using System.Text;
 using Newtonsoft.Json;
 using HBS.Entities;
+using HBS.WebPortal.Models;
 namespace HBS.WebPortal.Controllers
 {
     public class HomeController : Controller
@@ -14,7 +15,7 @@ namespace HBS.WebPortal.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(string id)
         {
             //using (IRedisNativeClient client = new RedisClient("162.243.79.25",6379,"Karachi@8681",0))
             //{
@@ -22,7 +23,8 @@ namespace HBS.WebPortal.Controllers
             //    ViewBag.Test = test;
 
             //}
-
+            if(id!=null)
+                ViewBag.error = id;
             Customer c = new Customer();
             c.CustomerId = 1;
             c.FirstName="Umais";
@@ -70,13 +72,42 @@ namespace HBS.WebPortal.Controllers
         }
 
         [HttpPost]
+        public ActionResult Index(User u)
+        {
+            string username = u.UserName;
+            string pwd = u.Password;
+            string view = "Index";
+
+            u.ValidatePassword();
+            if (u.userid > 0)
+            {
+                Session["user"] = u;
+                view = "Login";
+            }
+            else
+                ViewBag.error = "Invalid User Name or password";
+            return View(view);
+        }
+
         public ActionResult Login()
         {
-            string username = Request.Form["user"].ToString();
-            string pwd = Request.Form["pass"].ToString();
-            Session["user"] = username.ToString();
+
+          
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", new { id = "You cannot access page without Logging In" });
+            }
             return View();
         }
 
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+          
+            return RedirectToAction("Index", new { id ="Successfully Logged Out" });
+        }
+
+ 
     }
 }

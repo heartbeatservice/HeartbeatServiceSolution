@@ -1,15 +1,18 @@
-﻿@{
+﻿
+
+@{
     ViewBag.Title = "Login";
 }
 
-@{if (Session["user"] != null) { 
-      
+@{
+   HBS.WebPortal.Models.User u=(HBS.WebPortal.Models.User)Session["user"];
   <div class="row" >
 
       <div class="col-md-8">
-          <input type="text" value=@Session["user"].ToString()></div>
+          <h3>Welcome @u.UserName . YOu belong to Company @u.companyid</h3></div>
+       @Html.ActionLink("Log Out", "LogOut")
   </div>    
       
-}
+
 
 }

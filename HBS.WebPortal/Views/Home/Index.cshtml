@@ -1,4 +1,6 @@
-﻿@{
+﻿@model HBS.WebPortal.Models.User
+
+@{
     ViewBag.Title = "Index";
 }
 <div class="row" >
@@ -44,14 +46,20 @@
 
         <div class="col-md-3"  >
         <div class="panel panel-info panel-primary">
-            <div class="panel-heading panelBg"><h4 style="color:white;">Customer Login</h4></div>
+            <div class="panel-heading panelBg">
+                @if (ViewBag.error != null)
+                {
+                   <h5 class="text-warning"> @ViewBag.error</h5>
+                }
+                <h4 style="color:white;">Customer Login</h4></div>
                <div class="panel-body ">
                    <div class="form-group">
-    <form action="_self" method="post">
-        <label for="user">User Name:</label><input class="form-control" type="text" id="user" name="user" />
-        <label for="pass">Password</label><input class="form-control" type="password"  id="pass" name="pass"/><br />
+    @using (Html.BeginForm())
+    {
+        <label for="user">User Name:</label><input class="form-control" type="text" id="user" name="UserName" />
+        <label for="pass">Password</label><input class="form-control" type="password"  id="pass" name="Password"/><br />
         <input type="submit" class="btn btn-large btn-default"  value="Login" />
-    </form>
+    }
                        </div>
             </div>
             
