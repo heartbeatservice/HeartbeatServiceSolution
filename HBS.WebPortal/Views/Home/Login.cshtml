@@ -6,10 +6,13 @@
 
 @{
    HBS.WebPortal.Models.User u=(HBS.WebPortal.Models.User)Session["user"];
-  <div class="row" >
+   <div ng-controller="SchedulingController">
+    <h2> {{page}}</h2>
+   </div>
+    <div class="row" >
 
       <div class="col-md-8">
-          <h3>Welcome @u.UserName . YOu belong to Company @u.companyid</h3></div>
+          <h3>Welcome @u.UserName . You belong to Company @u.companyid</h3></div>
        @Html.ActionLink("Log Out", "LogOut")
   </div>    
       

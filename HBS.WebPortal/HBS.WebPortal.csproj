@@ -224,6 +224,7 @@
     <Content Include="Content\Angular\HeartbeatService.js" />
     <Content Include="Content\Angular\ng-grid-2.0.6.min.js" />
     <Content Include="Content\Angular\ng-grid.min.css" />
+    <Content Include="Content\Angular\SchedulingController.js" />
     <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />

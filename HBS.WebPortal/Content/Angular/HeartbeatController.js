@@ -2,7 +2,7 @@
    
     $scope.menuItems = [{ name: 'Home', cls: 'nav active', url: 'home/index' }, { name: 'About Us', cls: 'nav', url: 'home/about', submenu: [{ name: 'Vision', url: 'home/about' }, { name: 'Meet The Team', url: 'home/team' }] }, { name: 'Contact Us', cls: 'nav', url: 'Home/Contact' }];
     $scope.app = '';
-
+   
     $scope.url = $location.host();
     $scope.path = $location.path();
     $scope.port = $location.port();
@@ -59,6 +59,9 @@
     };
    
     $scope.constructMenu = function () {
+        var app = document.getElementById('app').value;
+        if (app === 'Scheduling')
+            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Calendar', submenu: [{ name: 'Daily View', url: 'Scheduling/Daily' }, { name: 'Weekly', url: 'Scheduling/Weekly' }, { name: 'Monthly', url: 'Scheduling/Monthly' }] }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }, { name: 'Contact Us', cls: 'nav active', url: 'Scheduling/Contact' }]
         var mainMenu = document.getElementById('menu');
         var menuItem;
         var submenu;
