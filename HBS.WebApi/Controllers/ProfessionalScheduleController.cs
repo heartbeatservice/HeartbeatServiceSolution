@@ -42,5 +42,15 @@ namespace HBS.WebApi.Controllers
         {
             return professionalRepository.UpdateProfessionalSchedule(proSchedule);
         }
+
+        public List<ProfessionalSchedule> GetProfessionalsScheduleList(int id)
+        {
+            return professionalRepository.GetProfessionalScheduleListByScheduleId(id);
+        }
+
+        public List<ProfessionalSchedule> GetProfessionalScheduleListByDate(DateTime date)
+        {
+            return professionalRepository.GetProfessionalScheduleByScheduleDate(date);
+        }
     }
 }

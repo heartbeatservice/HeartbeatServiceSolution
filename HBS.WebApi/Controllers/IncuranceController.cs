@@ -42,5 +42,11 @@ namespace HBS.WebApi.Controllers
         {
             return repository.RemoveInsurance(insuranceId, updatedBy);
         }
+        public IList<Insurance> GetInsurances(int companyId, string insuranceName)
+        {
+            return repository.GetInsurances(companyId, insuranceName);
+        }
+
+
     }
 }

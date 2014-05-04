@@ -140,8 +140,8 @@ namespace HBS.Data.Concrete
                         cmd.Parameters["@Name"].Value = customerName;
                     }
 
-                    cmd.Parameters.Add("@Dob", SqlDbType.DateTime);
-                    cmd.Parameters["@Dob"].Value = Dob;
+                    cmd.Parameters.Add("@DateOfBirth", SqlDbType.DateTime);
+                    cmd.Parameters["@DateOfBirth"].Value = Dob;
 
                     using (var myReader = cmd.ExecuteReader())
                     {

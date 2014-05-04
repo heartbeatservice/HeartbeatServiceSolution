@@ -29,6 +29,25 @@ namespace HBS.WebApi.Controllers
             return repository.GetCustomer(customerId);
         }
 
+        public IList<Customer> GetCustomers(int companyId, string customerName) //
+        {
+            return repository.GetCustomers(companyId, customerName);
+        }
+
+        public IList<Customer> GetCustomers(int companyId) //
+        {
+            return repository.GetCustomers(companyId,null);
+        }
+
+        public IList<Customer> GetCustomers(int companyId, string customerName, DateTime dob)
+        {
+            return repository.GetCustomers(companyId, customerName, dob);
+        }
+
+        public IList<Customer> GetCustomers(int companyId, DateTime dob)
+        {
+            return repository.GetCustomers(companyId, null, dob);
+        }
         
 
         public bool PutCustomerUpdate([FromBody] Customer customer)

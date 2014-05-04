@@ -42,6 +42,15 @@ namespace HBS.WebApi.Controllers
             return repository.RemoveCompany(companyId, updatedBy);
         }
 
+        public IList<Company> GetAllCompanies()
+        {
+            return repository.GetAllCompanies();
+        }
+
+        public IList<Company> GetAllCompanies(string companyName)
+        {
+            return repository.GetCompanies(companyName);
+        }
 
 
 
