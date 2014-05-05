@@ -61,7 +61,7 @@
     $scope.constructMenu = function () {
         var app = document.getElementById('app').value;
         if (app === 'Scheduling')
-            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Calendar', submenu: [{ name: 'Daily View', url: 'Scheduling/Daily' }, { name: 'Weekly', url: 'Scheduling/Weekly' }, { name: 'Monthly', url: 'Scheduling/Monthly' }] }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }, { name: 'Contact Us', cls: 'nav active', url: 'Scheduling/Contact' }]
+            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Calendar', submenu: [{ name: 'Daily View', url: 'Scheduling/Daily' }, { name: 'Weekly', url: 'Scheduling/Weekly' }, { name: 'Monthly', url: 'Scheduling/Monthly' }] }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }, { name: 'Contact Us', cls: 'nav active', url: 'Scheduling/Contact' }, { name: 'Log out', cls: 'nav active', url: 'Home/Logout' }]
         var mainMenu = document.getElementById('menu');
         var menuItem;
         var submenu;

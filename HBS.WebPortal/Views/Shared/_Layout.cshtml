@@ -34,8 +34,8 @@
 
                 <ul id="menu" class="nav navbar-nav  "></ul>
 
-                @{if (ViewBag.app !=null){
-                <input type="hidden" id="app" value=@ViewBag.app>
+                @{if (Session["app"]!=null){
+                <input type="hidden" id="app" value=@Session["app"].ToString()>
                 }
                   else { 
                 <input type="hidden" id="app" value='Website'>

@@ -11,7 +11,7 @@
                     xhrObj.setRequestHeader("Accept", "application/json");
                 },
 
-                // url: "http://presciencerx.azurewebsites.net/api/" + resource,
+               
                 url: "http://localhost:3687/api/" + resource,
 
                 type: "get",

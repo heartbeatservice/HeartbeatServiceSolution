@@ -10,7 +10,7 @@ namespace HBS.WebPortal.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.app = "Scheduling";
+            
             
             return View();
         }

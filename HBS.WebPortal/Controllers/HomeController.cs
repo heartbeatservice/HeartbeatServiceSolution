@@ -75,6 +75,7 @@ namespace HBS.WebPortal.Controllers
             {
                 Session["user"] = u;
                 view = "Login";
+                Session["app"] = "Scheduling";
             }
             else
                 ViewBag.error = "Invalid User Name or password";
@@ -84,7 +85,7 @@ namespace HBS.WebPortal.Controllers
         public ActionResult Login()
         {
 
-            ViewBag.app = "Scheduling";
+         
             if (Session["user"] == null)
             {
 
@@ -96,7 +97,7 @@ namespace HBS.WebPortal.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            ViewBag.app = "Website";
+            
             return RedirectToAction("Index", new { id ="Successfully Logged Out" });
         }
 

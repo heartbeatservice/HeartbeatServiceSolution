@@ -2,8 +2,8 @@
     ViewBag.Title = "Team";
 }
 
-@{ if (Session["user"] != null) { 
-<h2>Team @Session["user"].ToString()</h2>
+
+<h2>Team </h2>
 <div class="row">
     
         <div class="col-md-12 ">
@@ -63,6 +63,3 @@
     </div>
 
     </div>
-}
-    else{ <div class="row"><div class="col-md-12"><h2>Invalid Login</h2> <a href="{{homePath}}">Go Back</a></div></div> }
-}
