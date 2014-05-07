@@ -45,7 +45,7 @@
         
 
 
-       <div class="modal fade " tabindex="-1" id="frmAdd">
+       <div class="modal fade " tabindex="-1" id="frmAdd" ng-controller="CustomerController">
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header ">
@@ -58,28 +58,29 @@
                              <div class="row">
                              <div class="form-group col-md-5 has-warning"> 
                                   <div class="input-group">
-                                  <span class="input-group-addon">$</span>
-                                 <input id="FirstName" type="text" value="" ng-model="FirstName" class="form-control" placeholder="First Name"/> 
+                                <input type="hidden" id="user" ng-model="Customer.UserId" value="@ViewBag.userid" />
+                                      <input type="hidden" id="company" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
+                                 <input id="FirstName" type="text" value="" ng-model="Customer.FirstName" class="form-control" placeholder="First Name"/> 
                                   </div>
                                   </div>
-                                 <div class="form-group col-md-2 has-warning"> <input id="MiddleInitial" type="text" value="" ng-model="MI" class="form-control" placeholder="MI"/> </div>
+                                 <div class="form-group col-md-2 has-warning"> <input id="MiddleInitial" type="text" value="" ng-model="Customer.MI" class="form-control" placeholder="MI"/> </div>
 
                               
-                <div class="form-group col-md-5 has-warning"> <input id="LastName" type="text" value="" ng-model="LastName" class="form-control" placeholder="Last Name"/> </div>
+                <div class="form-group col-md-5 has-warning"> <input id="LastName" type="text" value="" ng-model="Customer.LastName" class="form-control" placeholder="Last Name"/> </div>
                                  </div>
           
-           <div class="row"><div class="form-group col-md-6 has-warning"> <input id="address1" type="text" value="" ng-model="address1" class="form-control" placeholder="Address 1"/> </div>
-           <div class="form-group col-md-6 has-warning "> <input id="Address2" type="text" value="" ng-model="address2" class="form-control" placeholder="Address 2"/> </div></div>
+           <div class="row"><div class="form-group col-md-6 has-warning"> <input id="address1" type="text" value="" ng-model="Customer.address1" class="form-control" placeholder="Address 1"/> </div>
+           <div class="form-group col-md-6 has-warning "> <input id="Address2" type="text" value="" ng-model="Customer.address2" class="form-control" placeholder="Address 2"/> </div></div>
            <div class="row">
-                              <div class="form-group col-md-5 has-warning"> <input id="city" type="text" value="" ng-model="city" class="form-control" placeholder="City"/> </div>
-<div class="form-group col-md-2 has-warning"> <input id="State" type="text" value="" ng-model="state" class="form-control" placeholder="State"/> </div>
-            <div class="form-group col-md-5 has-warning"> <input id="Zip" type="text" value="" ng-model="Zip" class="form-control" placeholder="Zip"/> </div>
+                              <div class="form-group col-md-5 has-warning"> <input id="city" type="text" value="" ng-model="Customer.city" class="form-control" placeholder="City"/> </div>
+<div class="form-group col-md-2 has-warning"> <input id="State" type="text" value="" ng-model="Customer.state" class="form-control" placeholder="State"/> </div>
+            <div class="form-group col-md-5 has-warning"> <input id="Zip" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip"/> </div>
                </div>
 
-                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DOB" type="text" value="" ng-model="DOB" class="form-control" placeholder="Date Of Birth"/> </div></div>
+                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DOB" type="text" value="" ng-model="Customer.DOB" class="form-control" placeholder="Date Of Birth"/> </div></div>
 
-                             <div class="row"> <div class="form-group col-md-6 has-warning"> <input id="HomePhone" type="text" value="" ng-model="HomePhone" class="form-control" placeholder="Home Phone"/> </div>
-                                 <div class="form-group col-md-6 has-warning"> <input id="CellPhone" type="text" value="" ng-model="CellPhone" class="form-control" placeholder="Cell Phone"/> </div>
+                             <div class="row"> <div class="form-group col-md-6 has-warning"> <input id="HomePhone" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone"/> </div>
+                                 <div class="form-group col-md-6 has-warning"> <input id="CellPhone" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone"/> </div>
 
                              </div>
 
@@ -89,7 +90,8 @@
             <div class="form-group  col-md-8"> 
                 <button class="btn btn-warning"  class="form-control" ng-click="AddCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
                 <a href="#" class="btn btn-warning"   data-dismiss="modal">Cancel</a>
-
+                <input class="btn btn-warning" type="button"   value="clear" ng-click="clearCustomer();" />
+                <label>{{Customer|json}}</label>
             </div>
                          </div>
                      </div>
