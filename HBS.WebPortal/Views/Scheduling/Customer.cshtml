@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Customer";
+}
+
+<div ng-controller="CustomerController">
+
+
+    <div id="dashboard" >
+
+        <div class="panel panel-info panel-primary">
+            <div class="panel-heading panelBg">Customer Panel</div>
+            <div class="panel-body">
+                <div class="row" >
+                    <div class="col-md-12">
+                 <div class="form-group"> 
+                <a href="#frmAdd"  class="btn btn-default" data-toggle="modal" ><span class="glyphicon glyphicon-user "></span> New Customer</a>
+                </div>
+                        </div>
+            </div>
+
+                 <div class="row">
+                     <div class="col-md-5">
+
+          <div class="form-group"> 
+                <input class="form-control" placeholder="Search By First Name, Last Name or Date Of Birth"  />
+
+            </div>
+                     </div>
+
+                     <div class="col-md-5">
+
+          <div class="form-group"> 
+                <a href="#"  class="btn btn-default"  ><span class="glyphicon glyphicon-search "></span></a>
+
+            </div>
+                     </div>
+                 </div>
+                 
+            </div>
+        </div>
+    </div>
+    </div>
+  
+   
+        
+
+
+       <div class="modal fade " tabindex="-1" id="frmAdd">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header panelBg">
+                             <a href="#" class="close" data-dismiss="modal">&times;</a>
+                             <h4 style="color:white;">Add Customers</h4>
+                             
+                         </div>
+                         <div class="modal-body">
+                              
+                             <div class="row">
+                             <div class="form-group col-md-5"> 
+                                  
+                                 <input id="FirstName" type="text" value="" ng-model="FirstName" class="form-control" placeholder="First Name"/> 
+                                  </div>
+                                 <div class="form-group col-md-2"> <input id="MiddleInitial" type="text" value="" ng-model="MI" class="form-control" placeholder="MI"/> </div>
+
+                              
+                <div class="form-group col-md-5"> <input id="LastName" type="text" value="" ng-model="LastName" class="form-control" placeholder="Last Name"/> </div>
+                                 </div>
+          
+           <div class="row"><div class="form-group col-md-6"> <input id="address1" type="text" value="" ng-model="address1" class="form-control" placeholder="Address 1"/> </div>
+           <div class="form-group col-md-6"> <input id="Address2" type="text" value="" ng-model="address2" class="form-control" placeholder="Address 2"/> </div></div>
+           <div class="row">
+                              <div class="form-group col-md-5"> <input id="city" type="text" value="" ng-model="city" class="form-control" placeholder="city"/> </div>
+<div class="form-group col-md-2"> <input id="State" type="text" value="" ng-model="state" class="form-control" placeholder="state"/> </div>
+            <div class="form-group col-md-5"> <input id="Zip" type="text" value="" ng-model="Zip" class="form-control" placeholder="zip"/> </div>
+               </div>
+
+                            <div class="row"> <div class="form-group col-md-4"> <input id="DOB" type="text" value="" ng-model="DOB" class="form-control" placeholder="Date Of Birth"/> </div></div>
+
+                             <div class="row"> <div class="form-group col-md-6"> <input id="HomePhone" type="text" value="" ng-model="HomePhone" class="form-control" placeholder="Home Phone"/> </div>
+                                 <div class="form-group col-md-6"> <input id="CellPhone" type="text" value="" ng-model="CellPhone" class="form-control" placeholder="Cell Phone"/> </div>
+
+                             </div>
+
+                             </div>
+
+                          <div class="modal-footer">       
+            <div class="form-group  col-md-8"> 
+                <input type="button"  class="btn btn-primary" value="Add Customer" class="form-control" ng-click="AddCustomer();"/>
+                <a href="#" class="btn btn-primary"   data-dismiss="modal">Cancel</a>
+
+            </div>
+                         </div>
+                     </div>
+                    </div>
+
+
+    </div>

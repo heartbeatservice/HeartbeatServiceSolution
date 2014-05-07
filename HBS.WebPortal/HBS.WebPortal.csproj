@@ -220,6 +220,7 @@
     <Content Include="Content\Angular\angular.js" />
     <Content Include="Content\Angular\angular.min.js" />
     <Content Include="Content\Angular\app.js" />
+    <Content Include="Content\Angular\CustomerController.js" />
     <Content Include="Content\Angular\HeartbeatController.js" />
     <Content Include="Content\Angular\HeartbeatService.js" />
     <Content Include="Content\Angular\ng-grid-2.0.6.min.js" />
@@ -379,6 +380,9 @@
     <Content Include="Views\Home\ContactUs.cshtml" />
     <Content Include="Views\Scheduling\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Scheduling\Customer.cshtml" />
+    <Content Include="Views\Scheduling\Daily.cshtml" />
+    <Content Include="Views\Scheduling\Weekly.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

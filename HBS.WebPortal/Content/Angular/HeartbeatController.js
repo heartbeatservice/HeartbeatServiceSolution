@@ -34,29 +34,29 @@
             });
         }
     };
-    $scope.loginSucess = function (response) {
-        $scope.User = response;
-        if ($scope.User.UserId > 0) {
-            $scope.menuItems = [{ name: 'Schedule', cls: 'nav active', url: 'home/index' }, { name: 'Appointment', cls: 'nav', url: 'home/about', submenu: [{ name: 'Vision', url: 'home/about' }, { name: 'Meet The Team', url: 'home/team' }] }, { name: 'Admin', cls: 'nav', url: 'Home/Contact' }];
+    //$scope.loginSucess = function (response) {
+    //    $scope.User = response;
+    //    if ($scope.User.UserId > 0) {
+    //        $scope.menuItems = [{ name: 'Schedule', cls: 'nav active', url: 'home/index' }, { name: 'Appointment', cls: 'nav', url: 'home/about', submenu: [{ name: 'Vision', url: 'home/about' }, { name: 'Meet The Team', url: 'home/team' }] }, { name: 'Admin', cls: 'nav', url: 'Home/Contact' }];
 
-            $scope.constructMenu();
-            $scope.$apply();
-           window.location.href = "/Scheduling?session="+$scope.User.UserId;
-        }
-    };
+    //        $scope.constructMenu();
+    //        $scope.$apply();
+    //       window.location.href = "/Scheduling?session="+$scope.User.UserId;
+    //    }
+    //};
 
-    $scope.ErrorLogin = function (error) {
-        alert('something went wrong');
-    };
+    //$scope.ErrorLogin = function (error) {
+    //    alert('something went wrong');
+    //};
 
-    $scope.ValidateUser = function () {
+    //$scope.ValidateUser = function () {
  
-        var obj = { "UserName": "Waleed", "Password": "welcome" };
-       obj.UserName=$('#user').val();
-       obj.Password = $('#pass').val();
-       HeartbeatService.PostData($scope.loginSucess, $scope.ErrorLogin, 'Security',obj );
+    //    var obj = { "UserName": "Waleed", "Password": "welcome" };
+    //   obj.UserName=$('#user').val();
+    //   obj.Password = $('#pass').val();
+    //   HeartbeatService.PostData($scope.loginSucess, $scope.ErrorLogin, 'Security',obj );
        
-    };
+    //};
    
     $scope.constructMenu = function () {
         var app = document.getElementById('app').value;
@@ -71,10 +71,11 @@
 
             menuItem = document.createElement('li');
             if ($scope.menuItems[i].submenu === undefined) {
-
-
+                
+              
                 menuItem.setAttribute("class", "nav navbar-item");
-                menuItem.innerHTML = '<a class=text-warning href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '</a>';
+              
+                    menuItem.innerHTML = '<a class="text-warning" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '</a>';
             }
             else {
                 menuItem.setAttribute("class", "dropdown");

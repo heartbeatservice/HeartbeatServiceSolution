@@ -14,5 +14,23 @@ namespace HBS.WebPortal.Controllers
             
             return View();
         }
+
+        public ActionResult Customer()
+        {
+
+
+            return View();
+        }
+
+        public ActionResult Daily()
+        {
+            return View();
+        }
+
+
+        public ActionResult Weekly()
+        {
+            return View();
+        }
     }
 }
