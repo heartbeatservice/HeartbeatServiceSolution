@@ -34,7 +34,7 @@
         $scope.Customer.Active = true;
         var resource = 'Customer';
         HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
-        $('#frmAdd').removeClass("in");
+        $('#dismiss').click();
     };
 
     $scope.AddSuccess = function (response) {
