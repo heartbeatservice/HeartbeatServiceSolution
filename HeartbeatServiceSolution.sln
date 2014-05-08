@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Data", "HBS.Data\HBS.Data.csproj", "{E94C3E8A-615F-4DEB-9EBA-6269E48BFA69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Entities", "HBS.Entities\HBS.Entities.csproj", "{2A305813-B643-4A04-A045-E6C87EBFFAAF}"

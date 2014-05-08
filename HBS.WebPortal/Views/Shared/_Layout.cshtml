@@ -48,7 +48,7 @@
                   
             <div class=" col-md-offset-2 col-md-2" style="margin-top:20px;" ><label class="text-warning" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
                
-               <a href=" @(Url.Action("Logout"))" class="btn-small btn-warning"><span class='glyphicon glyphicon-off '></a>
+               <a href=" @(Url.Action("Logout","Home"))" class="btn-small btn-warning"><span class='glyphicon glyphicon-off '></a>
             </div>
             }
             }
