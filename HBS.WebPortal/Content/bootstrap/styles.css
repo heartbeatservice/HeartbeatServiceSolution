@@ -15,7 +15,14 @@
 
     
 }
-
+.gridStyle {
+    border: 1px solid rgb(212,212,212);
+    min-width: 90%;
+    min-height: 650px;
+    color:black;
+    
+   
+}
 .panel-background {
 background-color:rgb(64, 83, 103);
 }

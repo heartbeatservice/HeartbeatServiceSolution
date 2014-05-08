@@ -28,7 +28,7 @@ namespace HBS.Data.Concrete
 
 
         
-        public bool AddCustomer(Customer customer)//
+        public int AddCustomer(Customer customer)//
         {
             
                 
@@ -52,7 +52,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@HomePhone", SqlDbType.VarChar).Value = customer.HomePhone;
                     cmd.Parameters.Add("@CellPhone", SqlDbType.VarChar).Value = customer.CellPhone;
                     cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = customer.CreatedBy;
-                    return Convert.ToBoolean(cmd.ExecuteScalar());
+                    return Convert.ToInt32(cmd.ExecuteScalar());
 
                 }
             }

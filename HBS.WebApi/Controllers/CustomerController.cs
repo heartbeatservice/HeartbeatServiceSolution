@@ -19,7 +19,7 @@ namespace HBS.WebApi.Controllers
             repository = repo;
         }
 
-        public bool PostCustomer([FromBody] Customer customer)
+        public int PostCustomer([FromBody] Customer customer)
         {
             return repository.AddCustomer(customer);
         }
@@ -55,6 +55,14 @@ namespace HBS.WebApi.Controllers
             return repository.UpdateCustomer(customer);
         }
 
+
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
+        }
             // Todo: THE SP WAS MESSED UP AND THIS METHOD IS NOT WORKING AT THE MOMENT 4/18/2014
         public bool DeleteCustomer(int customerId, int userId)
         {

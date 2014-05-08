@@ -9,7 +9,7 @@ namespace HBS.Data.Abstract
 {
     public interface ICustomerRepository
     {
-        bool AddCustomer(Customer customer);
+        int AddCustomer(Customer customer);
         bool UpdateCustomer(Customer customer);
         List<Customer> GetCustomers(int companyId, string customerName);
         List<Customer> GetCustomers(int companyId, string customerName, DateTime Dob);
