@@ -5,7 +5,7 @@
     $scope.clearCustomer = function () {
        
         $scope.Customer = {};
-       
+        alert(HeartbeatService.IsDate('1/1/2013'))
     };
     $scope.GridOptions = {
         data: 'Customers',
@@ -47,4 +47,6 @@
 
         alert("FAILED : " + result.status + ' ' + result.statusText);
     };
+
+    $scope.CustomerSearch = function () { };
 });
