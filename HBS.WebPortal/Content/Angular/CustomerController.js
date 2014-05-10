@@ -53,19 +53,20 @@
     $scope.CustomerSearch = function () {
         $scope.CompanyId = $('#company').val();
         $scope.Params = $scope.SearchParam.split(",");
-        alert($scope.Params)
-        if (HeartbeatService.IsDate($scope.SearchParam)) {
-            $scope.dob = $scope.SearchParam.replace('/','-');
-            $scope.name = '-1';
+        for (i = 0; i < $scope.Params.length; i++) {
+            if (HeartbeatService.IsDate($scope.Params[i].trim())) {
+                $scope.dob = $scope.Params[i].replace('/', '-').trim();
+                $scope.name = '-1';
 
-        }
-        else if ($scope.SearchParam.trim() != '') {
-            $scope.dob = '1-1-1900';
-            $scope.name = $scope.SearchParam
-        }
-        else {
-            $scope.dob = '1-1-1900';
-            $scope.name = '-1';
+            }
+            else if ($scope.Params[i].trim() != '') {
+                $scope.dob = '1-1-1900';
+                $scope.name = $scope.Params[i].trim();
+            }
+            else {
+                $scope.dob = '1-1-1900';
+                $scope.name = '-1';
+            }
         }
 
         var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + $scope.name + '&dob=' + $scope.dob;
