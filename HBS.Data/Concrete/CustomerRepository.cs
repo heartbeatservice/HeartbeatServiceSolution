@@ -17,7 +17,7 @@ namespace HBS.Data.Concrete
     {
         private const string UpdateCustomerSp = "UpdateCustomer";
         private const string UpdateCustomerInsuranceSp = "UpdateCustomerInsurance";
-        private const string GetCustomerInsuranceByIDSp = "GetCustomerInsuranceByID";
+        private const string GetCustomerInsuranceByIDSp = "GetCustomerInsuranceByCustomerID";
         private const string AddCustomerInsuranceSp = "AddCustomerInsurance";
         private const string AddCustomerSp = "AddCustomer";
         private const string GetCustomersSp = "GetCustomers";
@@ -272,8 +272,9 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public CustomerInsurance GetCustomerInsurance(int customerInsuranceId)//
+        public List<CustomerInsurance> GetCustomerInsurance(int CustomerId)//
         {
+            var lst = new List<CustomerInsurance>();
             CustomerInsurance customerInsurance = null;
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -285,17 +286,18 @@ namespace HBS.Data.Concrete
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
 
-                    cmd.Parameters.Add("@CustomerInsuranceId", SqlDbType.Int);
-                    cmd.Parameters["@CustomerInsuranceId"].Value = customerInsuranceId;
+                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int);
+                    cmd.Parameters["@CustomerId"].Value = CustomerId;
 
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try
                         {
-                            if (myReader.HasRows)
+                            while (myReader.HasRows)
                             {
                                 myReader.Read();
                                 customerInsurance = new CustomerInsurance(myReader);
+                                lst.Add(customerInsurance);
                             }
                         }
                         catch (Exception ex)
@@ -306,7 +308,7 @@ namespace HBS.Data.Concrete
                 }
 
             }
-            return customerInsurance;
+            return lst;
 
         }
 

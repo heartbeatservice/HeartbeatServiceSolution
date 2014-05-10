@@ -28,7 +28,7 @@ namespace HBS.WebApi.Controllers
 
      }
 
-     public CustomerInsurance  GetCustomerInsurance(int customerInsuranceId)
+     public List<CustomerInsurance>  GetCustomerInsurance(int customerInsuranceId)
      {
          return repository.GetCustomerInsurance(customerInsuranceId);
      }
@@ -45,7 +45,13 @@ namespace HBS.WebApi.Controllers
      }
 
 
-        
+     [AcceptVerbs("OPTIONS")]
+     public HttpResponseMessage Options()
+     {
+         var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+         return resp;
+     }  
 
     }
 }

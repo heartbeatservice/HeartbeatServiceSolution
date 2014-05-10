@@ -19,7 +19,7 @@ namespace HBS.Data.Abstract
 
         bool AddCustomerInsurance(CustomerInsurance customerInsurance);
         bool UpdateCustomerInsurance(CustomerInsurance customerInsurance);
-        CustomerInsurance GetCustomerInsurance(int customerInsuranceId);
+        List<CustomerInsurance> GetCustomerInsurance(int customerInsuranceId);
         List<CustomerInsurance> GetCustomerInsurances(int companyId, string customerId);
         bool RemoveCustomerInsurance(int customerInsuranceId);
 

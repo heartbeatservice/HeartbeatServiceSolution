@@ -17,12 +17,12 @@ namespace HBS.Entities
         public string PcpName { get; set; }
         public string CustomerInsuranceNumber { get; set; }
         public string InsuranceType { get; set; }
-        public List<CustomerInsurance> CustomerInsurances { get; set; }
-
+        public string InsuranceName { get; set; }
+        public Customer customer;
 
         public CustomerInsurance()
         {
-            CustomerInsurances = new List<CustomerInsurance>();
+            customer = new Customer();
         }
 
         public CustomerInsurance(IDataReader dbReader)
@@ -40,26 +40,26 @@ namespace HBS.Entities
             if (dbReader.HasColumn("EndDate") && dbReader["EndDate"] != DBNull.Value)
                 EndDate = (DateTime)dbReader["EndDate"];
 
-            if (dbReader.HasColumn("PcpName") && dbReader["PcpName"] != DBNull.Value)
-                PcpName = (string)dbReader["PcpName"];
+            if (dbReader.HasColumn("PCPName") && dbReader["PCPName"] != DBNull.Value)
+                PcpName = (string)dbReader["PCPName"];
 
             if (dbReader.HasColumn("CustomerInsuranceNumber") && dbReader["CustomerInsuranceNumber"] != DBNull.Value)
                 CustomerInsuranceNumber = (string)dbReader["CustomerInsuranceNumber"];
 
-            if (dbReader.HasColumn("Insurances") && dbReader["Insurances"] != DBNull.Value)
-                InsuranceType = (string)dbReader["Insurances"];
+            if (dbReader.HasColumn("InsuranceType") && dbReader["InsuranceType"] != DBNull.Value)
+                InsuranceType = (string)dbReader["InsuranceType"];
 
-            if (dbReader.HasColumn("CreatedBy") && dbReader["CreatedBy"] != DBNull.Value)
-                base.CreatedBy = (int)dbReader["CreatedBy"];
 
-            if (dbReader.HasColumn("UpdatedBy") && dbReader["UpdatedBy"] != DBNull.Value)
-                base.UpdatedBy = (int)dbReader["UpdatedBy"];
+            if (dbReader.HasColumn("InsuranceName") && dbReader["InsuranceName"] != DBNull.Value)
+                InsuranceName = (string)dbReader["InsuranceName"];
 
-            if (dbReader.HasColumn("DateCreated") && dbReader["DateCreated"] != DBNull.Value)
-                base.DateCreated = (DateTime)dbReader["DateCreated"];
-
-            if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
-                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+       //customer Info
+            if (dbReader.HasColumn("FirstName") && dbReader["FirstName"] != DBNull.Value)
+                customer.FirstName = (string)dbReader["FirstName"];
+            if (dbReader.HasColumn("LastName") && dbReader["LastName"] != DBNull.Value)
+                customer.LastName = (string)dbReader["LastName"];
+            if (dbReader.HasColumn("DateOfBirth") && dbReader["DateOfBirth"] != DBNull.Value)
+                customer.DateOfBirth = Convert.ToDateTime(dbReader["DateOfBirth"]).ToShortDateString();
 
         }
 

@@ -99,7 +99,15 @@
     };
 
 
-    $scope.OpenInsurance = function () {
+    $scope.OpenInsurance = function (customerId) {
+        var resource = "CustomerInsurance?customerInsuranceId=" + customerId;
+        HeartbeatService.GetData($scope.InsuranceSuccess, $scope.Error, resource);
+      
+    }
+
+    $scope.InsuranceSuccess = function (data) {
+        $scope.Insurance = data;
+        $scope.$apply();
         $('#Insurancebtn').click();
     }
 });
