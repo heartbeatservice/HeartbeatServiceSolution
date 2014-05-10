@@ -15,15 +15,16 @@
         enableColumnResize: true,
         enableColumnReordering: true,
         columnDefs: [
-                     { field: 'FirstName', displayName: 'First Name', enableCellEdit: true, width: 150 },
-                     { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 150 },
+                     { field: 'FirstName', displayName: 'First Name', enableCellEdit: true, width: 100 },
+                     { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 100 },
                      { field: 'DateOfBirth', displayName: 'DOB', enableCellEdit: true, width: 100 },
                { field: 'HomePhone', displayName: 'Home Phone', enableCellEdit: true, width: 100 },
                { field: 'CellPhone', displayName: 'Cell Phone', enableCellEdit: true, width: 100 },
-        { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 85, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
-         { field: 'CustomerId', displayName: 'Edit', enableCellEdit: true, width: 50, cellTemplate: "<button class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
-          { field: 'CustomerId', displayName: 'Detail', enableCellEdit: true, width: 75, cellTemplate: "<button class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" },
-           { field: 'CustomerId', displayName: 'Delete', enableCellEdit: true, width: 75, cellTemplate: "<button class='btn-small btn-danger' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-trash'></span></button>" }
+               { field: 'Address1', displayName: 'Address', enableCellEdit: true, width: 250 },
+               { field: 'City', displayName: 'City', enableCellEdit: true, width: 125 },
+        { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 80, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-warning' ng-click='EditUser(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
+         { field: 'CustomerId', displayName: 'Edit', enableCellEdit: true, width: 75, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
+          { field: 'CustomerId', displayName: 'Detail', enableCellEdit: true, width: 75, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" }
         ]
 
 
@@ -51,6 +52,8 @@
 
     $scope.CustomerSearch = function () {
         $scope.CompanyId = $('#company').val();
+        $scope.Params = $scope.SearchParam.split(",");
+        alert($scope.Params)
         if (HeartbeatService.IsDate($scope.SearchParam)) {
             $scope.dob = $scope.SearchParam.replace('/','-');
             $scope.name = '-1';
