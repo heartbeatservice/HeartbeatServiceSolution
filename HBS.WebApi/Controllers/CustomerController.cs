@@ -52,7 +52,7 @@ namespace HBS.WebApi.Controllers
         
 
         [HttpPut]
-        public bool PutCustomerUpdate([FromBody] Customer customer)
+        public bool PutCustomerUpdate(string id,[FromBody] Customer customer)
         {
             return repository.UpdateCustomer(customer);
         }

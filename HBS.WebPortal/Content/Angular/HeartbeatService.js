@@ -41,7 +41,8 @@
                 request = $.ajax({
                     beforeSend: function (xhrObj) {
                         xhrObj.setRequestHeader("Content-Type", "application/json");
-                      
+                       
+                       
                     },
                     url: "http://localhost:3687/api/" + resource,
                     type: "PUT",

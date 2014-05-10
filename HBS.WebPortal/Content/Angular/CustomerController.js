@@ -91,7 +91,7 @@
         $('#editbtn').click();
     };
     $scope.UpdateCustomer = function () {
-        var resource = 'Customer';
+        var resource = 'Customer/' + $scope.Customer.CustomerId;
         HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.Customer);
     };
     $scope.EditSuccess = function (response) {
