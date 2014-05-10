@@ -34,6 +34,22 @@
                 error: function (result) { wrong(result); }
             });
         },
+
+        
+
+            PutData: function (callSuccess, wrong, resource, params) {
+                request = $.ajax({
+                    beforeSend: function (xhrObj) {
+                        xhrObj.setRequestHeader("Content-Type", "application/json");
+                      
+                    },
+                    url: "http://localhost:3687/api/" + resource,
+                    type: "PUT",
+                    data: JSON.stringify(params),
+                    success: function (response) { callSuccess(response); },
+                    error: function (result) { wrong(result); }
+                });
+            },
         GetDataByParams: function (callSuccess, wrong, resource, params) {
 
             request = $.ajax(

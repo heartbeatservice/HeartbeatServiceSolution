@@ -1,5 +1,5 @@
 ﻿HeartbeatApp.controller("CustomerController", function AppController($scope, $location, HeartbeatService) {
-
+    $scope.Insurance = [{ InsuranceId: '1', InsuranceName: 'ABC Testing' }];
     $scope.Customers = [];
     $scope.SearchParam = '';
     $scope.clearCustomer = function () {
@@ -19,12 +19,12 @@
                      { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 100 },
                      { field: 'DateOfBirth', displayName: 'DOB', enableCellEdit: true, width: 100 },
                { field: 'HomePhone', displayName: 'Home Phone', enableCellEdit: true, width: 100 },
-               { field: 'CellPhone', displayName: 'Cell Phone', enableCellEdit: true, width: 100 },
+             
                { field: 'Address1', displayName: 'Address', enableCellEdit: true, width: 250 },
                { field: 'City', displayName: 'City', enableCellEdit: true, width: 125 },
-        { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 80, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-warning' ng-click='EditUser(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
-         { field: 'CustomerId', displayName: 'Edit', enableCellEdit: true, width: 75, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
-          { field: 'CustomerId', displayName: 'Detail', enableCellEdit: true, width: 75, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" }
+        { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 80, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-warning' ng-click='OpenInsurance(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
+         { field: 'CustomerId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditCustomer(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
+          { field: 'CustomerId', displayName: 'Appointment', enableCellEdit: true, width: 120, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-primary' ng-click='EditCustomer(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" }
         ]
 
 
@@ -79,7 +79,27 @@
         $scope.$apply();
     };
 
-    $scope.EditUser = function (data) {
-        alert(data);
+   
+
+    $scope.EditCustomer = function (CustomerId) {
+        var resource = 'Customer?customerId=' +CustomerId;
+        HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
+    $scope.GetSuccess = function (response) {
+        $scope.Customer = response;
+        $scope.$apply();
+        $('#editbtn').click();
+    };
+    $scope.UpdateCustomer = function () {
+        var resource = 'Customer';
+        HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.Customer);
+    };
+    $scope.EditSuccess = function (response) {
+        alert("Updated successfully");
+    };
+
+
+    $scope.OpenInsurance = function () {
+        $('#Insurancebtn').click();
+    }
 });

@@ -82,7 +82,10 @@
             <div class="form-group col-md-5 has-warning"> <input id="Zip" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip"/> </div>
                </div>
 
-                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DateOfBirth" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth"/> </div></div>
+                            <div class="row">
+                                 <div class="form-group col-md-4 has-warning"> <input id="DateOfBirth" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth"/> </div>
+                                <div class="form-group col-md-8 has-warning"> <input id="Email" type="text" value="" ng-model="Customer.Email" class="form-control" placeholder="Email"/> </div>
+                            </div>
 
                              <div class="row"> <div class="form-group col-md-6 has-warning"> <input id="HomePhone" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone"/> </div>
                                  <div class="form-group col-md-6 has-warning"> <input id="CellPhone" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone"/> </div>
@@ -107,14 +110,14 @@
 
     <!--Edit-->
 
-      <a href="#frmEdit" style="visibility:hidden" class= "btn btn-default" data-toggle="modal" ><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+      <a href="#frmEdit" id="editbtn" style="visibility:hidden" class= "btn btn-default" data-toggle="modal" ><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
     
     <div class="modal fade " tabindex="-1" id="frmEdit" >
                  <div class="modal-dialog">
                      <div class="modal-content">
                          <div class="modal-header ">
                              <a href="#" class="close" data-dismiss="modal">&times;</a>
-                             <h4 class="text-warning">Edit</h4>
+                             <h4 class="text-warning">View/Edit</h4>
                              
                          </div>
                          <div class="modal-body">
@@ -141,7 +144,10 @@
             <div class="form-group col-md-5 has-warning"> <input id="ZipEdit" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip"/> </div>
                </div>
 
-                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DateOfBirthEdit" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth"/> </div></div>
+                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DateOfBirthEdit" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth"/> </div>
+                                <div class="form-group col-md-8 has-warning"> <input id="EmailEdit" type="text" value="" ng-model="Customer.Email" class="form-control" placeholder="Email"/> </div>
+
+                            </div>
 
                              <div class="row"> <div class="form-group col-md-6 has-warning"> <input id="HomePhoneEdit" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone"/> </div>
                                  <div class="form-group col-md-6 has-warning"> <input id="CellPhoneEdit" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone"/> </div>
@@ -152,7 +158,7 @@
 
                           <div class="modal-footer">       
             <div class="form-group  col-md-8"> 
-                <button class="btn btn-warning"  class="form-control" ng-click="EditCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                <button class="btn btn-warning"  class="form-control" ng-click="UpdateCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
                 <a href="#" id="dismissEdit" class="btn btn-warning"   data-dismiss="modal">Cancel</a>
                 <input class="btn btn-warning" type="button"   value="Clear" ng-click="clearCustomer();" />
               
@@ -161,6 +167,59 @@
                      </div>
                     </div>
 
+</div>
 
+
+   
+      <a href="#frmInsurance" id="Insurancebtn" style="visibility:hidden" class= "btn btn-default" data-toggle="modal" ><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+     
+    <div class="modal fade " tabindex="-1" id="frmInsurance" >
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header ">
+                             <a href="#" class="close" data-dismiss="modal">&times;</a>
+                             <h4 class="text-warning">Insurance</h4>
+                             
+                         </div>
+                         <div class="modal-body">
+                              
+                           <div class="row">
+    
+        <div class="col-md-12 ">
+            <div  id="accordian" class="panel-group">
+                   <div ng-repeat="i in Insurance" class="panel panel-info">
+                       <div class="panel-heading">
+                           <div class="panel-title" ><a href="#{{i.InsuranceId}}" data-toggle="collapse" data-parent="#accordian">{{i.InsuranceName}}</a></div>
+                       </div>
+                       <div class="panel-collapse collapse" id="{{i.InsuranceId}}">
+                           <div class="panel-body">
+                               <div class="well">
+                                   <span>Name:{{i.InsuranceName}}</span><br />
+                              
+                               </div>
+                            </div>
+
+                       </div>
+                   </div>
+                </div>
+
+    </div>
+    </div>
+                          <div class="modal-footer">       
+            <div class="form-group  col-md-8"> 
+                <button class="btn btn-warning"  class="form-control" ng-click="UpdateCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                <a href="#" id="dismissEdit" class="btn btn-warning"   data-dismiss="modal">Cancel</a>
+                <input class="btn btn-warning" type="button"   value="Clear" ng-click="clearCustomer();" />
+              
+            </div>
+                         </div>
+                     </div>
+                    </div>
+
+</div>
+
+
+
+        
     </div>
     </div>

@@ -18,6 +18,7 @@ namespace HBS.Entities
         public string Address1 { get; set; }
         public string Address2 { get; set; }
         public string DateOfBirth { get; set; }
+        public string Email { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public string Zip { get; set; }
@@ -71,6 +72,8 @@ namespace HBS.Entities
 
             if (dbReader.HasColumn("HomePhone") && dbReader["HomePhone"] != DBNull.Value)
                 HomePhone = (string)dbReader["HomePhone"];
+            if (dbReader.HasColumn("Email") && dbReader["Email"] != DBNull.Value)
+                Email = (string)dbReader["Email"];
             
             if (dbReader.HasColumn("CellPhone") && dbReader["CellPhone"] != DBNull.Value)
                 CellPhone = (string)dbReader["CellPhone"];
