@@ -43,6 +43,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = customer.CompanyId;
                     cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = customer.FirstName;
                     cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = customer.LastName;
+                    cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = (customer.DateOfBirth==null?"1/1/1900":customer.DateOfBirth);
                     cmd.Parameters.Add("@MiddleInitial", SqlDbType.VarChar).Value = customer.MiddleInitial;
                     cmd.Parameters.Add("@Address1", SqlDbType.VarChar).Value = customer.Address1;
                     cmd.Parameters.Add("@Address2", SqlDbType.VarChar).Value = customer.Address2;

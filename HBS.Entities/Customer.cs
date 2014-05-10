@@ -37,7 +37,10 @@ namespace HBS.Entities
             
 
             if (dbReader.HasColumn("CompanyId") && dbReader["CompanyId"] != DBNull.Value)
-                CustomerId = (int)dbReader["CompanyId"];
+                CompanyId = (int)dbReader["CompanyId"];
+
+            if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
+                CustomerId = (int)dbReader["CustomerId"];
 
             if (dbReader.HasColumn("FirstName") && dbReader["FirstName"] != DBNull.Value)
                 FirstName = (string)dbReader["FirstName"];
@@ -53,6 +56,9 @@ namespace HBS.Entities
             
             if (dbReader.HasColumn("Address2") && dbReader["Address2"] != DBNull.Value)
                 Address2 = (string)dbReader["Address2"];
+
+            if (dbReader.HasColumn("DateOfBirth") && dbReader["DateOfBirth"] != DBNull.Value)
+                DateOfBirth = Convert.ToDateTime(dbReader["DateOfBirth"]).ToShortDateString();
 
             if (dbReader.HasColumn("City") && dbReader["City"] != DBNull.Value)
                 City = (string)dbReader["City"];

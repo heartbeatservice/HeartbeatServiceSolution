@@ -22,7 +22,7 @@
                      <div class="col-md-5">
 
           <div class="form-group"> 
-                <input class="form-control" placeholder="Search By First Name, Last Name or Date Of Birth"  />
+                <input class="form-control" ng-model="SearchParam" placeholder="Search By First Name, Last Name or Date Of Birth"  />
 
             </div>
                      </div>
@@ -30,7 +30,7 @@
                      <div class="col-md-5">
 
           <div class="form-group"> 
-                <a href="#"  class="btn btn-default"  ><span class="glyphicon glyphicon-search "></span></a>
+                <a href="#"  class="btn btn-default" ng-click="CustomerSearch();" ><span class="glyphicon glyphicon-search "></span></a>
 
             </div>
                           
@@ -82,7 +82,7 @@
             <div class="form-group col-md-5 has-warning"> <input id="Zip" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip"/> </div>
                </div>
 
-                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DateOfBirth" type="text" value="" ng-model="Customer.DOB" class="form-control" placeholder="Date Of Birth"/> </div></div>
+                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DateOfBirth" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth"/> </div></div>
 
                              <div class="row"> <div class="form-group col-md-6 has-warning"> <input id="HomePhone" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone"/> </div>
                                  <div class="form-group col-md-6 has-warning"> <input id="CellPhone" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone"/> </div>

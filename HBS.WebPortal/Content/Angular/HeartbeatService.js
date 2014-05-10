@@ -56,7 +56,7 @@
             var matchArray = dateStr.match(datePat); // is the format ok?
 
             if (matchArray == null) {
-                alert("Please enter date as either mm/dd/yyyy or mm-dd-yyyy.");
+                
                 return false;
             }
 

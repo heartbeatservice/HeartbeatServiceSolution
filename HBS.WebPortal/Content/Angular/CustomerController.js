@@ -1,11 +1,11 @@
 ﻿HeartbeatApp.controller("CustomerController", function AppController($scope, $location, HeartbeatService) {
 
     $scope.Customers = [];
-
+    $scope.SearchParam = '';
     $scope.clearCustomer = function () {
        
         $scope.Customer = {};
-        alert(HeartbeatService.IsDate('1/1/2013'))
+       
     };
     $scope.GridOptions = {
         data: 'Customers',
@@ -17,12 +17,13 @@
         columnDefs: [
                      { field: 'FirstName', displayName: 'First Name', enableCellEdit: true, width: 150 },
                      { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 150 },
-                     { field: 'DateOfBirth', displayName: 'Date Of Birth', enableCellEdit: true, width: 150 },
-                     { field: 'Address1', displayName: 'Address 1', enableCellEdit: true, width: 300 },
-                     { field: 'City', displayName: 'City', enableCellEdit: true, width: 150 },
-                     { field: 'State', displayName: 'State', enableCellEdit: true, width: 50 },
-                     { field: 'Zip', displayName: 'Zip', enableCellEdit: true, width: 100}
-                     //, cellTemplate: "<div class='AddButton' ng-click='CallUpdateService(row.rowIndex);' ><span class='glyphicon glyphicon-th' data-toggle='tooltip'  data-html='true' title='{{row.entity[col.field]}}'></span></div>" 
+                     { field: 'DateOfBirth', displayName: 'DOB', enableCellEdit: true, width: 100 },
+               { field: 'HomePhone', displayName: 'Home Phone', enableCellEdit: true, width: 100 },
+               { field: 'CellPhone', displayName: 'Cell Phone', enableCellEdit: true, width: 100 },
+        { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 85, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
+         { field: 'CustomerId', displayName: 'Edit', enableCellEdit: true, width: 50, cellTemplate: "<button class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
+          { field: 'CustomerId', displayName: 'Detail', enableCellEdit: true, width: 75, cellTemplate: "<button class='btn-small btn-primary' ng-click='EditUser(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" },
+           { field: 'CustomerId', displayName: 'Delete', enableCellEdit: true, width: 75, cellTemplate: "<button class='btn-small btn-danger' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-trash'></span></button>" }
         ]
 
 
@@ -48,5 +49,33 @@
         alert("FAILED : " + result.status + ' ' + result.statusText);
     };
 
-    $scope.CustomerSearch = function () { };
+    $scope.CustomerSearch = function () {
+        $scope.CompanyId = $('#company').val();
+        if (HeartbeatService.IsDate($scope.SearchParam)) {
+            $scope.dob = $scope.SearchParam.replace('/','-');
+            $scope.name = '-1';
+
+        }
+        else if ($scope.SearchParam.trim() != '') {
+            $scope.dob = '1-1-1900';
+            $scope.name = $scope.SearchParam
+        }
+        else {
+            $scope.dob = '1-1-1900';
+            $scope.name = '-1';
+        }
+
+        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + $scope.name + '&dob=' + $scope.dob;
+        HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+
+    };
+
+    $scope.SearchSuccess=function(data){
+        $scope.Customers = data;
+        $scope.$apply();
+    };
+
+    $scope.EditUser = function (data) {
+        alert(data);
+    };
 });
