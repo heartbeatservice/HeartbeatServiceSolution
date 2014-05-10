@@ -56,7 +56,7 @@
         for (i = 0; i < $scope.Params.length; i++) {
             if (HeartbeatService.IsDate($scope.Params[i].trim())) {
                 $scope.dob = $scope.Params[i].replace('/', '-').trim();
-                $scope.name = '-1';
+                $scope.name = '-1' ;
 
             }
             else if ($scope.Params[i].trim() != '') {
