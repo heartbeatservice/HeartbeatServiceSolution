@@ -104,4 +104,63 @@
 
 
     </div>
+
+    <!--Edit-->
+
+      <a href="#frmEdit" style="visibility:hidden" class= "btn btn-default" data-toggle="modal" ><span class="glyphicon glyphicon-plus-sign"></span> Edit Customer</a>
+    
+    <div class="modal fade " tabindex="-1" id="frmEdit" >
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header ">
+                             <a href="#" class="close" data-dismiss="modal">&times;</a>
+                             <h4 class="text-warning">Edit</h4>
+                             
+                         </div>
+                         <div class="modal-body">
+                              
+                             <div class="row">
+                             <div class="form-group col-md-5 has-warning"> 
+                                  <div class="input-group">
+                                <input type="hidden" id="UserIdEdit" ng-model="Customer.UserId" value="@ViewBag.userid" />
+                                      <input type="hidden" id="companyEdit" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
+                                 <input id="FirstNameEdit" type="text" value="" ng-model="Customer.FirstName" class="form-control" placeholder="First Name"/> 
+                                  </div>
+                                  </div>
+                                 <div class="form-group col-md-2 has-warning"> <input id="MiddleInitialEdit" type="text" value="" ng-model="Customer.MiddleInitial" class="form-control" placeholder="MI"/> </div>
+
+                              
+                <div class="form-group col-md-5 has-warning"> <input id="LastNameEdit" type="text" value="" ng-model="Customer.LastName" class="form-control" placeholder="Last Name"/> </div>
+                                 </div>
+          
+           <div class="row"><div class="form-group col-md-6 has-warning"> <input id="address1Edit" type="text" value="" ng-model="Customer.Address1" class="form-control" placeholder="Address 1"/> </div>
+           <div class="form-group col-md-6 has-warning "> <input id="Address2Edit" type="text" value="" ng-model="Customer.Address2" class="form-control" placeholder="Address 2"/> </div></div>
+           <div class="row">
+                              <div class="form-group col-md-5 has-warning"> <input id="cityEdit" type="text" value="" ng-model="Customer.City" class="form-control" placeholder="City"/> </div>
+<div class="form-group col-md-2 has-warning"> <input id="StateEdit" type="text" value="" ng-model="Customer.State" class="form-control" placeholder="State"/> </div>
+            <div class="form-group col-md-5 has-warning"> <input id="ZipEdit" type="text" value="" ng-model="Customer.Zip" class="form-control" placeholder="Zip"/> </div>
+               </div>
+
+                            <div class="row"> <div class="form-group col-md-4 has-warning"> <input id="DateOfBirthEdit" type="text" value="" ng-model="Customer.DateOfBirth" class="form-control" placeholder="Date Of Birth"/> </div></div>
+
+                             <div class="row"> <div class="form-group col-md-6 has-warning"> <input id="HomePhoneEdit" type="text" value="" ng-model="Customer.HomePhone" class="form-control" placeholder="Home Phone"/> </div>
+                                 <div class="form-group col-md-6 has-warning"> <input id="CellPhoneEdit" type="text" value="" ng-model="Customer.CellPhone" class="form-control" placeholder="Cell Phone"/> </div>
+
+                             </div>
+
+                             </div>
+
+                          <div class="modal-footer">       
+            <div class="form-group  col-md-8"> 
+                <button class="btn btn-warning"  class="form-control" ng-click="EditCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                <a href="#" id="dismissEdit" class="btn btn-warning"   data-dismiss="modal">Cancel</a>
+                <input class="btn btn-warning" type="button"   value="Clear" ng-click="clearCustomer();" />
+              
+            </div>
+                         </div>
+                     </div>
+                    </div>
+
+
+    </div>
     </div>
