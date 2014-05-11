@@ -12,12 +12,12 @@ using System.Web;
 
 namespace HBS.WebApi.Controllers
 {
-    public class IncuranceController : ApiController
+    public class InsuranceController : ApiController
     {
 
         ICommonRepository repository;
 
-        public IncuranceController(ICommonRepository repo)
+        public InsuranceController(ICommonRepository repo)
         {
             repository= repo;
         }
@@ -47,6 +47,12 @@ namespace HBS.WebApi.Controllers
             return repository.GetInsurances(companyId, insuranceName);
         }
 
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
 
+            return resp;
+        }
     }
 }

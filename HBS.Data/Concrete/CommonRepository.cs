@@ -214,7 +214,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@InsurancePhone", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@InsurancePhone"].Value = insurance.InsurancePhone;
                     cmd.Parameters.Add("@InsurnaceWebSite", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsurnaceWebSite;
+                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsuranceWebSite;
 
                     //cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     //cmd.Parameters["@CreatedBy"].Value = insurance.CreatedBy;
@@ -246,7 +246,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@InsurancePhone", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@InsurancePhone"].Value = insurance.InsurancePhone;
                     cmd.Parameters.Add("@InsurnaceWebSite", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsurnaceWebSite;
+                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsuranceWebSite;
 
                     return cmd.ExecuteNonQuery() > 0;
                 }

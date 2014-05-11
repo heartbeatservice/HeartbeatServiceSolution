@@ -36,13 +36,15 @@
         $scope.Customer.Active = true;
         var resource = 'Customer';
         HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
-        $('#dismiss').click();
+       
     };
 
     $scope.AddSuccess = function (response) {
         $scope.Customer.CustomerId = response;
         $scope.Customers.push($scope.Customer);
         $scope.$apply();
+        $('#dismiss').click();
+        $scope.ShowInsuranceForm();
     };
 
     $scope.Error = function (result) {
@@ -86,8 +88,7 @@
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
     $scope.GetSuccess = function (response) {
-        $scope.Customer = response;
-        $scope.$apply();
+        $scope.applyCustomerToModel(response);
         $('#editbtn').click();
     };
     $scope.UpdateCustomer = function () {
@@ -101,13 +102,39 @@
 
     $scope.OpenInsurance = function (customerId) {
         var resource = "CustomerInsurance?customerInsuranceId=" + customerId;
+        $scope.CustomerId = customerId;
+        
         HeartbeatService.GetData($scope.InsuranceSuccess, $scope.Error, resource);
+        
+       
       
     }
 
     $scope.InsuranceSuccess = function (data) {
         $scope.Insurance = data;
-        $scope.$apply();
+       
+        var resource = 'Customer?customerId=' + $scope.CustomerId;
         $('#Insurancebtn').click();
+        HeartbeatService.GetData($scope.applyCustomerToModel, $scope.Error, resource);
+       
+    }
+
+    $scope.ShowInsuranceForm = function () {
+        var companyId=$('#companyInsurance').val();
+        var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
+        HeartbeatService.GetData($scope.InsuranceLookupSuccess, $scope.Error, resource);
+    }
+
+    $scope.InsuranceLookupSuccess = function (data) {
+        $scope.AllInsurances = data;
+        $scope.$apply();
+        
+        $('#insuranceClose').click();
+        $('#AddInsurancebtn').click();
+    }
+
+    $scope.applyCustomerToModel = function (data) {
+        $scope.Customer = data;
+        $scope.$apply();
     }
 });
