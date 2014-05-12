@@ -2,8 +2,9 @@
     $scope.Insurance = [{ InsuranceId: '1', InsuranceName: 'ABC Testing' }];
     $scope.Customers = [];
     $scope.SearchParam = '';
+    $scope.InsuranceEntry = {};
     $scope.clearCustomer = function () {
-       
+     
         $scope.Customer = {};
        
     };
@@ -111,6 +112,7 @@
     }
 
     $scope.InsuranceSuccess = function (data) {
+        
         $scope.Insurance = data;
        
         var resource = 'Customer?customerId=' + $scope.CustomerId;
@@ -136,5 +138,16 @@
     $scope.applyCustomerToModel = function (data) {
         $scope.Customer = data;
         $scope.$apply();
+    }
+
+    $scope.AddCustomerInsurance = function () {
+        $scope.InsuranceEntry.InsuranceId=$('#InsuranceId').val();
+        $scope.InsuranceEntry.CustomerId = $('#CustomerIdForInsurance').val();
+        var resource = 'CustomerInsurance';
+        HeartbeatService.PostData($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
+    }
+
+    $scope.AddCustomerInsuranceSuccess=function(response){
+        alert('succcess');
     }
 });

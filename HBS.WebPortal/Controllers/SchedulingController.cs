@@ -10,14 +10,22 @@ namespace HBS.WebPortal.Controllers
     {
         public ActionResult Index()
         {
-            
-            
+
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", "Home",new { id = "You cannot access page without Logging In" });
+            }
             return View();
         }
 
         public ActionResult Customer()
         {
+            if (Session["user"] == null)
+            {
 
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
             return View();
@@ -25,12 +33,22 @@ namespace HBS.WebPortal.Controllers
 
         public ActionResult Daily()
         {
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
             return View();
         }
 
 
         public ActionResult Weekly()
         {
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
             return View();
         }
 

@@ -91,7 +91,7 @@ namespace HBS.WebPortal.Controllers
 
                 return RedirectToAction("Index", new { id = "You cannot access page without Logging In" });
             }
-            return View();
+            return RedirectToAction("Index","Scheduling");
         }
 
         public ActionResult LogOut()

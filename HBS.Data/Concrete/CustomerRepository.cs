@@ -234,13 +234,13 @@ namespace HBS.Data.Concrete
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerInsurance.CustomerId;
+                    cmd.Parameters.Add("@InsuranceId", SqlDbType.Int).Value = customerInsurance.InsuranceId;
                     cmd.Parameters.Add("@EffectiveDate", SqlDbType.DateTime).Value = customerInsurance.EffectiveDate;
-                    cmd.Parameters.Add("@FirstName", SqlDbType.DateTime).Value = customerInsurance.EndDate;
+                    cmd.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = (customerInsurance.EndDate==null?"1/1/1900":customerInsurance.EndDate);
                     cmd.Parameters.Add("@PcpName", SqlDbType.VarChar).Value = customerInsurance.PcpName;
                     cmd.Parameters.Add("@CustomerInsuranceNumber", SqlDbType.VarChar).Value = customerInsurance.CustomerInsuranceNumber;
                     cmd.Parameters.Add("@InsuranceType", SqlDbType.VarChar).Value = customerInsurance.InsuranceType;
-                    cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = customerInsurance.CreatedBy;
-                    cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
+                  
 
                     return Convert.ToBoolean(cmd.ExecuteScalar());
 
@@ -293,11 +293,14 @@ namespace HBS.Data.Concrete
                     {
                         try
                         {
-                            while (myReader.HasRows)
+                            if (myReader.HasRows)
                             {
-                                myReader.Read();
-                                customerInsurance = new CustomerInsurance(myReader);
-                                lst.Add(customerInsurance);
+                                while (myReader.Read())
+                                {
+
+                                    customerInsurance = new CustomerInsurance(myReader);
+                                    lst.Add(customerInsurance);
+                                }
                             }
                         }
                         catch (Exception ex)

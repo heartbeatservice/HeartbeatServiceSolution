@@ -8,12 +8,12 @@
     <div id="dashboard" >
 
         <div class="panel panel-primary">
-            <div class="panel-heading panel-primary ">Customer Panel</div>
+            <div class="panel-heading panelBg ">Customer Panel</div>
             <div class="panel-body">
                 <div class="row" >
                     <div class="col-md-12">
                  <div class="form-group"> 
-                <a href="#frmAdd"  class="btn btn-default" data-toggle="modal" ><span class="glyphicon glyphicon-plus-sign"></span> Add New Customer</a>
+                <a href="#frmAdd"  class="btn btn-warning" data-toggle="modal" ><span class="glyphicon glyphicon-plus-sign"></span> Add New Customer</a>
                 </div>
                         </div>
             </div>
@@ -21,8 +21,8 @@
                  <div class="row">
                      <div class="col-md-5">
 
-          <div class="form-group"> 
-                <input class="form-control" ng-model="SearchParam" placeholder="Search By First Name, Last Name or Date Of Birth"  />
+          <div class="form-group has-warning"> 
+                <input class="form-control " ng-model="SearchParam" placeholder="Search By First Name, Last Name or Date Of Birth"  />
 
             </div>
                      </div>
@@ -30,7 +30,7 @@
                      <div class="col-md-5">
 
           <div class="form-group"> 
-                <a href="#"  class="btn btn-default" ng-click="CustomerSearch();" ><span class="glyphicon glyphicon-search "></span></a>
+                <a href="#"  class="btn btn-warning" ng-click="CustomerSearch();" ><span class="glyphicon glyphicon-search "></span></a>
 
             </div>
                           
@@ -187,7 +187,7 @@
     
         <div class="col-md-12 ">
             <div  id="accordian" class="panel-group">
-                   <div ng-repeat="i in Insurance" class="panel panel-info">
+                   <div ng-repeat="i in Insurance" class="panel panel-primary">
                        <div class="panel-heading">
                            <div class="panel-title" ><a href="#{{$index}}" data-toggle="collapse" data-parent="#accordian">{{i.InsuranceName}}</a></div>
                        </div>
@@ -248,6 +248,8 @@
                                 <input type="hidden" id="UserIdInsurance" ng-model="Customer.UserId" value="@ViewBag.userid" />
                                       <input type="hidden" id="companyInsurance" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
                                  <label    class="" >First Name:{{Customer.FirstName}}</label>
+                                      <input type="hidden" id="CustomerIdForInsurance"  value="{{Customer.CustomerId}}" />
+
                                   </div>
                                   </div>
 
@@ -275,7 +277,7 @@
         <div class="form-group col-md-6 has-warning"> 
                                   <div class="input-group">
 
-                                        <select class="form-control" >
+                                        <select id="InsuranceId" class="form-control"  >
                        <option ng-repeat="i in AllInsurances" value="{{i.InsuranceId}}" >{{i.InsuranceName}}</option>
                      
                      </select>
@@ -283,7 +285,7 @@
                                   </div>
  <div class="form-group col-md-6 has-warning"> 
                                   <div class="input-group">
-                                       <input id="InsuranceType" type="text" value="" ng-model="Insurance.InsuranceType" class="form-control" placeholder="Insurance Type"/> 
+                                       <input id="InsuranceType" type="text" value="" ng-model="InsuranceEntry.InsuranceType" class="form-control" placeholder="Insurance Type"/> 
                              
                                   </div>
                                   </div>
@@ -294,13 +296,13 @@
         <div class="form-group col-md-6 has-warning"> 
                                   <div class="input-group">
 
-                                 <input id="EffectiveDate" type="text" value="" ng-model="Insurance.EffectiveDate" class="form-control" placeholder="EffectiveDate"/> 
+                                 <input id="EffectiveDate" type="text" value="" ng-model="InsuranceEntry.EffectiveDate" class="form-control" placeholder="EffectiveDate"/> 
                                   </div>
                                   </div>
  <div class="form-group col-md-6 has-warning"> 
                                   <div class="input-group">
 
-                               <input id="EndDate" type="text" value="" ng-model="Insurance.EndDate" class="form-control" placeholder="EffectiveDate"/> 
+                               <input id="EndDate" type="text" value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EffectiveDate"/> 
                                   </div>
                                   </div>
                           
@@ -311,13 +313,14 @@
         <div class="form-group col-md-6 has-warning"> 
                                   <div class="input-group">
 
-                                 <input id="PCPName" type="text" value="" ng-model="Insurance.PCPName" class="form-control" placeholder="PCP Name"/> 
+                                 <input id="PCPName" type="text" value="" ng-model="InsuranceEntry.PCPName" class="form-control" placeholder="PCP Name"/> 
                                   </div>
                                   </div>
  <div class="form-group col-md-6 has-warning"> 
                                   <div class="input-group">
 
-                               <input id="InsuranceNumber" type="text" value="" ng-model="Insurance.CustomerInsuranceNumber" class="form-control" placeholder="Member ID"/> 
+                               <input id="InsuranceNumber" type="text" value="" ng-model="InsuranceEntry.CustomerInsuranceNumber" class="form-control" placeholder="Member ID"/>
+                                   
                                   </div>
                                   </div>
                           
