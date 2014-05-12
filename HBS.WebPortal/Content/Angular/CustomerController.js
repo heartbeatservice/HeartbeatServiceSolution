@@ -1,5 +1,6 @@
 ﻿HeartbeatApp.controller("CustomerController", function AppController($scope, $location, HeartbeatService) {
     $scope.Insurance = [{ InsuranceId: '1', InsuranceName: 'ABC Testing' }];
+    $scope.CompanyId = $('#company').val();
     $scope.Customers = [];
     $scope.SearchParam = '';
     $scope.InsuranceEntry = {};
@@ -54,25 +55,27 @@
     };
 
     $scope.CustomerSearch = function () {
-        $scope.CompanyId = $('#company').val();
-        $scope.Params = $scope.SearchParam.split(",");
-        for (i = 0; i < $scope.Params.length; i++) {
-            if (HeartbeatService.IsDate($scope.Params[i].trim())) {
-                $scope.dob = $scope.Params[i].replace('/', '-').trim();
-                $scope.name = '-1' ;
+       
+        var myParams = $scope.SearchParam.split(",");
+        var dob = '';
+        var name = '';
+        for (i = 0; i < myParams.length; i++) {
+            if (HeartbeatService.IsDate(myParams[i].trim())) {
+                dob = myParams.replace('/', '-').trim();
+                name = '-1' ;
 
             }
-            else if ($scope.Params[i].trim() != '') {
-                $scope.dob = '1-1-1900';
-                $scope.name = $scope.Params[i].trim();
+            else if (myParams[i].trim() != '') {
+                dob = '1-1-1900';
+                name = myParams[i].trim();
             }
             else {
-                $scope.dob = '1-1-1900';
-                $scope.name = '-1';
+                dob = '1-1-1900';
+                name = '-1';
             }
         }
 
-        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + $scope.name + '&dob=' + $scope.dob;
+        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob;
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
 
     };
@@ -147,7 +150,9 @@
         HeartbeatService.PostData($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
     }
 
-    $scope.AddCustomerInsuranceSuccess=function(response){
-        alert('succcess');
+    $scope.AddCustomerInsuranceSuccess = function (response) {
+        $('#dismissAddInsurance').click();
+        
+        $scope.OpenInsurance($scope.InsuranceEntry.CustomerId)
     }
 });
