@@ -4,8 +4,9 @@
     $scope.Customers = [];
     $scope.SearchParam = '';
     $scope.InsuranceEntry = {};
+    $scope.AllProviders = [{ ProfessionalId: 1, FirstName: 'Farzana', LastName: 'Aziz' }, { ProfessionalId: 1, FirstName: 'Abbas', LastName: 'Rizwi' }, { ProfessionalId: 1, FirstName: 'Fawzia', LastName: 'Kazmi' }];
     $scope.clearCustomer = function () {
-     
+        
         $scope.Customer = {};
        
     };
@@ -26,7 +27,7 @@
                { field: 'City', displayName: 'City', enableCellEdit: true, width: 125 },
         { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 80, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-warning' ng-click='OpenInsurance(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
          { field: 'CustomerId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditCustomer(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
-          { field: 'CustomerId', displayName: 'Appointment', enableCellEdit: true, width: 120, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-primary' ng-click='EditCustomer(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" }
+          { field: 'CustomerId', displayName: 'Appointment', enableCellEdit: true, width: 120, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-primary' ng-click='AppointmentForm(row.entity[col.field]);' > <span class='glyphicon glyphicon-th-list'></span></button>" }
         ]
 
 
@@ -59,20 +60,23 @@
         var myParams = $scope.SearchParam.split(",");
         var dob = '';
         var name = '';
-        for (i = 0; i < myParams.length; i++) {
-            if (HeartbeatService.IsDate(myParams[i].trim())) {
-                dob = myParams.replace('/', '-').trim();
-                name = '-1' ;
+        if (myParams.length > 0) {
+            for (i = 0; i < myParams.length; i++) {
+                if (HeartbeatService.IsDate(myParams[i].trim())) {
+                    dob = myParams.replace('/', '-').trim();
+                    name = '-1';
 
+                }
+                else {
+                    dob = '1-1-1900';
+                    name = myParams[i].trim();
+                }
+              
             }
-            else if (myParams[i].trim() != '') {
-                dob = '1-1-1900';
-                name = myParams[i].trim();
-            }
-            else {
-                dob = '1-1-1900';
-                name = '-1';
-            }
+        }
+        else {
+            dob = '1-1-1900';
+            name = '-1';
         }
 
         var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob;
@@ -154,5 +158,12 @@
         $('#dismissAddInsurance').click();
         
         $scope.OpenInsurance($scope.InsuranceEntry.CustomerId)
+    }
+
+    $scope.AppointmentForm = function () {
+        $('#AddAppointmentbtn').click();
+        //var companyId = $('#companyInsurance').val();
+        //var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
+        //HeartbeatService.GetData($scope.InsuranceLookupSuccess, $scope.Error, resource);
     }
 });
