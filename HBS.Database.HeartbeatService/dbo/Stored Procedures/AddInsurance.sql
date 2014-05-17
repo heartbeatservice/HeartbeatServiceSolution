@@ -1,6 +1,5 @@
 ﻿
-Create PROCEDURE [dbo].[AddInsurance]
-
+Create PROCEDURE [dbo].[AddInsurance] 
 @CompanyId int,
 @InsuranceName nvarchar(50)=NULL,
 @InsuranceAddress nvarchar(150)=NULL,

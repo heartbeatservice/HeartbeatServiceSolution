@@ -20,6 +20,7 @@ namespace HBS.Data.Concrete
         private const string AddInsuranceSp = "AddInsurance";
         private const string GetInsurancesSp = "GetInsurances";
         private const string GetInsuranceByIdSp = "GetInsuranceById";
+       
 
 
         public int AddCompany(Company company)//
@@ -213,8 +214,8 @@ namespace HBS.Data.Concrete
                     cmd.Parameters["@InsuranceAddress"].Value = insurance.InsuranceAddress;
                     cmd.Parameters.Add("@InsurancePhone", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@InsurancePhone"].Value = insurance.InsurancePhone;
-                    cmd.Parameters.Add("@InsurnaceWebSite", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsuranceWebSite;
+                    cmd.Parameters.Add("@InsuranceWebsite)", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@InsuranceWebsite)"].Value = insurance.InsuranceWebsite;
 
                     //cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     //cmd.Parameters["@CreatedBy"].Value = insurance.CreatedBy;
@@ -246,7 +247,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@InsurancePhone", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@InsurancePhone"].Value = insurance.InsurancePhone;
                     cmd.Parameters.Add("@InsurnaceWebSite", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsuranceWebSite;
+                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsuranceWebsite;
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -292,7 +293,7 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(GetCompanyByIdSp, conn))
+                using (var cmd = new SqlCommand(GetInsuranceByIdSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 

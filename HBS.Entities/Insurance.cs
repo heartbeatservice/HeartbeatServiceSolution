@@ -16,7 +16,7 @@ namespace HBS.Entities
         public string InsuranceName { get; set; }
         public string InsuranceAddress { get; set; }
         public string InsurancePhone { get; set; }
-        public string InsuranceWebSite { get; set; }
+        public string InsuranceWebsite { get; set; }
        
 
 
@@ -37,7 +37,7 @@ namespace HBS.Entities
                 InsuranceAddress = (string)dbReader["InsuranceAddress"];
 
             if (dbReader.HasColumn("InsurnaceWebSite") && dbReader["InsurnaceWebSite"] != DBNull.Value)
-                InsuranceWebSite = (string)dbReader["InsurnaceWebSite"];
+                InsuranceWebsite = (string)dbReader["InsurnaceWebSite"];
             
             if (dbReader.HasColumn("InsurancePhone") && dbReader["InsurancePhone"] != DBNull.Value)
                 InsurancePhone = (string)dbReader["InsurancePhone"];
