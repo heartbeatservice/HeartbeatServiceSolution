@@ -28,7 +28,7 @@ namespace HBS.WebApi.Controllers
                    
       
          
-        public Professional GetProfessionalById(int id)
+        public Professional GetProfessional(int id)
         {
             return professionalRepository.GetProfessional(id);
         }
