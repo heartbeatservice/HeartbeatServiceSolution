@@ -6,9 +6,9 @@
     $scope.InsuranceEntry = {};
     $scope.AllProviders = [{ ProfessionalId: 1, FirstName: 'Farzana', LastName: 'Aziz' }, { ProfessionalId: 1, FirstName: 'Abbas', LastName: 'Rizwi' }, { ProfessionalId: 1, FirstName: 'Fawzia', LastName: 'Kazmi' }];
     $scope.clearCustomer = function () {
-        
+
         $scope.Customer = {};
-       
+
     };
     $scope.GridOptions = {
         data: 'Customers',
@@ -22,7 +22,7 @@
                      { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 100 },
                      { field: 'DateOfBirth', displayName: 'DOB', enableCellEdit: true, width: 100 },
                { field: 'HomePhone', displayName: 'Home Phone', enableCellEdit: true, width: 100 },
-             
+
                { field: 'Address1', displayName: 'Address', enableCellEdit: true, width: 250 },
                { field: 'City', displayName: 'City', enableCellEdit: true, width: 125 },
         { field: 'CustomerId', displayName: 'Insurance', enableCellEdit: true, width: 80, cellTemplate: "<button style='margin-left:20px;'class='btn-small btn-warning' ng-click='OpenInsurance(row.entity[col.field]);' ><span  class='glyphicon glyphicon-folder-open'></span></button>" },
@@ -39,7 +39,7 @@
         $scope.Customer.Active = true;
         var resource = 'Customer';
         HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
-       
+
     };
 
     $scope.AddSuccess = function (response) {
@@ -56,7 +56,7 @@
     };
 
     $scope.CustomerSearch = function () {
-       
+
         var myParams = $scope.SearchParam.split(",");
         var dob = '';
         var name = '';
@@ -71,7 +71,7 @@
                     dob = '1-1-1900';
                     name = myParams[i].trim();
                 }
-              
+
             }
         }
         else {
@@ -84,15 +84,15 @@
 
     };
 
-    $scope.SearchSuccess=function(data){
+    $scope.SearchSuccess = function (data) {
         $scope.Customers = data;
         $scope.$apply();
     };
 
-   
+
 
     $scope.EditCustomer = function (CustomerId) {
-        var resource = 'Customer?customerId=' +CustomerId;
+        var resource = 'Customer?customerId=' + CustomerId;
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
     $scope.GetSuccess = function (response) {
@@ -111,25 +111,25 @@
     $scope.OpenInsurance = function (customerId) {
         var resource = "CustomerInsurance?customerInsuranceId=" + customerId;
         $scope.CustomerId = customerId;
-        
+
         HeartbeatService.GetData($scope.InsuranceSuccess, $scope.Error, resource);
-        
-       
-      
+
+
+
     }
 
     $scope.InsuranceSuccess = function (data) {
-        
+
         $scope.Insurance = data;
-       
+
         var resource = 'Customer?customerId=' + $scope.CustomerId;
         $('#Insurancebtn').click();
         HeartbeatService.GetData($scope.applyCustomerToModel, $scope.Error, resource);
-       
+
     }
 
     $scope.ShowInsuranceForm = function () {
-        var companyId=$('#companyInsurance').val();
+        var companyId = $('#companyInsurance').val();
         var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
         HeartbeatService.GetData($scope.InsuranceLookupSuccess, $scope.Error, resource);
     }
@@ -137,7 +137,7 @@
     $scope.InsuranceLookupSuccess = function (data) {
         $scope.AllInsurances = data;
         $scope.$apply();
-        
+
         $('#insuranceClose').click();
         $('#AddInsurancebtn').click();
     }
@@ -148,7 +148,7 @@
     }
 
     $scope.AddCustomerInsurance = function () {
-        $scope.InsuranceEntry.InsuranceId=$('#InsuranceId').val();
+        $scope.InsuranceEntry.InsuranceId = $('#InsuranceId').val();
         $scope.InsuranceEntry.CustomerId = $('#CustomerIdForInsurance').val();
         var resource = 'CustomerInsurance';
         HeartbeatService.PostData($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
@@ -156,7 +156,7 @@
 
     $scope.AddCustomerInsuranceSuccess = function (response) {
         $('#dismissAddInsurance').click();
-        
+
         $scope.OpenInsurance($scope.InsuranceEntry.CustomerId)
     }
 
@@ -166,4 +166,29 @@
         //var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
         //HeartbeatService.GetData($scope.InsuranceLookupSuccess, $scope.Error, resource);
     }
+
+
+    $scope.ProfessionalSearch = function () {
+
+        var myParams = $scope.SearchParam.split(",");
+        var idNumber = '';
+        var name = '';
+        if (myParams.length > 0) {
+            for (i = 0; i < myParams.length; i++) {
+               
+                   
+                    name = myParams[i].trim();
+                }
+
+            }
+        
+        else {
+           
+            name = '-1';
+        }
+
+        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob;
+        HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+
+    };
 });

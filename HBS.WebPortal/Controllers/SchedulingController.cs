@@ -67,5 +67,16 @@ namespace HBS.WebPortal.Controllers
                 userid = ((HBS.WebPortal.Models.User)Session["user"]).userid;
             return userid;
         }
+
+        public ActionResult Professional()
+        {
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
+            
+            return View();
+        }
     }
 }
