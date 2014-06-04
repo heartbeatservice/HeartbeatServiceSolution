@@ -31,7 +31,7 @@
     $scope.AddProfessional = function () {
         //$scope.Customer.CompanyId = $('#company').val();
         //$scope.Customer.CreatedBy = $('#user').val();
-        $scope.Customer.Active = true;
+        $scope.Professional.Active = true;
         var resource = 'Professional'
         HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Profesional);
 
