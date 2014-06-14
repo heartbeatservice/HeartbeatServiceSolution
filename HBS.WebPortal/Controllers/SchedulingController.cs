@@ -78,5 +78,17 @@ namespace HBS.WebPortal.Controllers
             
             return View();
         }
+
+
+        public ActionResult Insurance()
+        {
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
+
+            return View();
+        }
     }
 }
