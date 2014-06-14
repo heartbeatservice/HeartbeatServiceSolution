@@ -1,8 +1,9 @@
 ﻿HeartbeatApp.controller("ProfessionalController", function AppController($scope, $location, HeartbeatService) {
-    $scope.Profesional = [];
-    $scope.page = "Heartbeat Service Portal";
-    $scope.ProviderDashboard = [{ doctor: 'Farzana Aziz', patients: 23 }, { doctor: 'Abbas Rizvi', patients: 12 }];
-    $scope.ReminderDashboard = ['23 Patients have to be reminded of an upcoming appointment', "Dr. Farzana's Schedule has to be updated"]
+    $scope.Professional = [];
+    $scope.Professional= {};
+    
+    
+  
 
 
     $scope.GridOptions = {
@@ -37,7 +38,7 @@
 
     };
     
-    $scope.UpdateCustomer = function () {
+    $scope.UpDatePIrofesspional = function () {
         var resource = 'Professional/' + $scope.Professional.ProfessionalId;
         HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.Professional);
     };
