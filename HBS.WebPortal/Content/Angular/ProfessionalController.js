@@ -1,6 +1,7 @@
 ﻿HeartbeatApp.controller("ProfessionalController", function AppController($scope, $location, HeartbeatService) {
-    $scope.Professional = [];
-    $scope.Professional= {};
+  
+    $scope.Professional = {};
+    $scope.CompanyId = $('#company').val();
     
     
   
@@ -30,11 +31,12 @@
     };
 
     $scope.AddProfessional = function () {
-        $scope.Customer.CompanyId = $('#company').val();
-        $scope.Customer.CreatedBy = $('#user').val();
+        $scope.Professional.CompanyId = $('#company').val();
+        $scope.Professional.CreatedBy = $('#user').val();
+        $scope.Professional.ProfessionalTypeId = 1;
         $scope.Professional.Active = true;
         var resource = 'Professional'
-        HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Profesional);
+        HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Professional);
 
     };
     
@@ -52,11 +54,10 @@
     };
 
     $scope.AddSuccess = function (response) {
-        $scope.Professional.ProfessionalId = response;
-        $scope.Professional.push($scope.Professional);
-        $scope.$apply();
+       
         $('#dismiss').click();
-        $scope.ShowInsuranceForm();  //TODO  need to fix this one here. 
+        alert("Added successfully");
+       
     };
 });
    

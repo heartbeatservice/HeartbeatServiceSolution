@@ -44,6 +44,16 @@ namespace HBS.WebApi.Controllers
             return professionalRepository.UpdateProfessional(pro);
         }
 
+
+
+        //TODO : need to move this in base class and inherit all controls from base class.
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
+        }
               
 
 

@@ -12,7 +12,8 @@
                 },
 
                
-                url: "http://services.heartbeat-biz.com/api/" + resource,
+                url: "http://localhost:3687/api/" + resource,
+                //// url: "http://heartbeat-biz.com
 
                 type: "get",
 
@@ -27,7 +28,7 @@
                     xhrObj.setRequestHeader("Content-Type", "application/json");
                     xhrObj.setRequestHeader("Accept", "application/json");
                 },
-                url: "http://services.heartbeat-biz.com/api/" + resource,
+                url: "http://localhost:3687/api/" + resource,
                 type: "post",
                 data: JSON.stringify(params),
                 success: function (response) { callSuccess(response); },
@@ -44,7 +45,7 @@
                        
                        
                     },
-                    url: "http://services.heartbeat-biz.com/api/" + resource,
+                    url: "http://localhost:3687/api/" + resource,
                     type: "PUT",
                     data: JSON.stringify(params),
                     success: function (response) { callSuccess(response); },

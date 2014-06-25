@@ -43,7 +43,6 @@
             </div>
         </div>
     </div>
-</div>
 
         
 
@@ -62,9 +61,10 @@
                     <div class="row">
                         <div class="form-group col-md-5 has-warning">
                             <div class="input-group">
-                                <input type="hidden" id="user" ng-model="Customer.UserId" value="@ViewBag.userid" />
-                                <input type="hidden" id="company" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
+                                <input type="hidden" id="user" ng-model="Professional.CreatedBy" value="@ViewBag.userid" />
+                                <input type="hidden" id="company" ng-model="Professional.CompanyId" value="@ViewBag.companyid" />
                                 <input id="FirstName" type="text" value="" ng-model="Professional.FirstName" class="form-control" placeholder="First Name" />
+                                <label>{{Professional|json}}</label>
                             </div>
                         </div>
                         </div>
@@ -113,6 +113,8 @@
         </div>
 
        </div>
+</div>
+
     
 
 

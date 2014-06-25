@@ -1,16 +1,15 @@
 ﻿HeartbeatApp.controller("InsuranceController", function AppController($scope, $location, HeartbeatService) {
 
 
-    $scope.Insurances = [];
-    $scope.SearchParam = '';
-    $scope.InsuranceEntry = {};
+
+    $scope.Insurance = {};
    $scope.clearInsurance = function () {
 
         $scope.Insurance = {};
 
     };
     $scope.GridOptions = {
-        data: 'Insurances',
+        data: 'Insurance',
         enableCellSelection: false,
         enableRowSelection: false,
         enableCellEdit: false,
@@ -19,12 +18,13 @@
         columnDefs: [
                      { field: 'InsuranceName', displayName: 'Insurance Name', enableCellEdit: true, width: 100 },
                      { field: 'InsuranceAddress', displayName: 'Insurance Address', enableCellEdit: true, width: 100 },
-                     { field: 'InsurancePhone', displayName: 'Insuranc ePhone', enableCellEdit: true, width: 100 },
+                     { field: 'InsurancePhone', displayName: 'Insurance Phone', enableCellEdit: true, width: 100 },
                { field: 'InsuranceWebsite', displayName: 'Insurance Website', enableCellEdit: true, width: 100 },
 
            
-         { field: 'InsuranceId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
-           ]
+         //{ field: 'InsuranceId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
+         // 
+        ]
 
 
 
@@ -39,11 +39,9 @@
     };
 
     $scope.AddSuccess = function (response) {
-        $scope.Insurance.InsuranceId = response;
-        $scope.Insurances.push($scope.Insurance);
-        $scope.$apply();
+        alert ("Added insurance successfully");
         $('#dismiss').click();
-        $scope.ShowInsuranceForm();
+     
     };
 
     $scope.Error = function (result) {

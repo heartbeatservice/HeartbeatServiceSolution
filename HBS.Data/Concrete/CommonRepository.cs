@@ -214,8 +214,8 @@ namespace HBS.Data.Concrete
                     cmd.Parameters["@InsuranceAddress"].Value = insurance.InsuranceAddress;
                     cmd.Parameters.Add("@InsurancePhone", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@InsurancePhone"].Value = insurance.InsurancePhone;
-                    cmd.Parameters.Add("@InsuranceWebsite)", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@InsuranceWebsite)"].Value = insurance.InsuranceWebsite;
+                    cmd.Parameters.Add("@InsuranceWebsite", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@InsuranceWebsite"].Value = insurance.InsuranceWebsite;
 
                     //cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     //cmd.Parameters["@CreatedBy"].Value = insurance.CreatedBy;

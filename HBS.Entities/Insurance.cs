@@ -36,8 +36,8 @@ namespace HBS.Entities
             if (dbReader.HasColumn("InsuranceAddress") && dbReader["InsuranceAddress"] != DBNull.Value)
                 InsuranceAddress = (string)dbReader["InsuranceAddress"];
 
-            if (dbReader.HasColumn("InsurnaceWebSite") && dbReader["InsurnaceWebSite"] != DBNull.Value)
-                InsuranceWebsite = (string)dbReader["InsurnaceWebSite"];
+            if (dbReader.HasColumn("InsuranceWebsite") && dbReader["InsuranceWebsite"] != DBNull.Value)
+                InsuranceWebsite = (string)dbReader["InsuranceWebsite"];
             
             if (dbReader.HasColumn("InsurancePhone") && dbReader["InsurancePhone"] != DBNull.Value)
                 InsurancePhone = (string)dbReader["InsurancePhone"];

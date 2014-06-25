@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Insurance";
 }
 
@@ -48,7 +47,7 @@
 
     @*add insurance*@
 
-    
+
     <div class="modal fade " tabindex="-1" id="frmAdd">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -62,36 +61,36 @@
                     <div class="row">
                         <div class="form-group col-md-5 has-warning">
                             <div class="input-group">
-                                <input type="hidden" id="user" ng-model="Customer.UserId" value="@ViewBag.userid" />
-                                <input type="hidden" id="company" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
-                                <input id="InsuranceName" type="text" value="" ng-model="Insurance.InsuranceName" class="form-control" placeholder="Insurance Name"  />
+                                <input type="hidden" id="user" ng-model="Insurance.UserId" value="@ViewBag.userid" />
+                                <input type="hidden" id="company" ng-model="Insurance.CompanyId" value="@ViewBag.companyid" />
+                                <input id="InsuranceName" type="text" value="" ng-model="Insurance.InsuranceName" class="form-control" placeholder="Insurance  Name" />
                             </div>
                         </div>
+                    </div>
+
+
+
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsurancePhone" type="text" value="" ng-model="Insurance.InsurancePhone" class="form-control" placeholder="Phone" />
                         </div>
-                       
 
-                     
-
-                    <div class="row">
-                        <div class="form-group col-md-6 has-warning">
-                             <input id="InsurancePhone" type="text" value="" ng-model="Insurance.InsurancePhone" class="form-control" placeholder="Phone" />
-                          </div>
-                       
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6 has-warning">
-                            <input id="Insurance Address" type="text" value="" ng-model="Insurance.InsuranceAddress" class="form-control" placeholder="Insurance Address" />
-                     </div>
-                       
-                    </div>
-
-                    <div class="row">
-                        <div class="form-group col-md-6 has-warning">
-                            <input id="InsuranceWebSite" type="text" value="" ng-model="Insurance.InsurnaceWebSite" class="form-control" placeholder="Insurance Website" />
+                            <input id="InsuranceAddress" type="text" value="" ng-model="Insurance.InsuranceAddress" class="form-control" placeholder="Insurance Address" />
                         </div>
-                       
+
                     </div>
-                   
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsuranceWebsite" type="text" value="" ng-model="Insurance.InsuranceWebsite"  class="form-control" placeholder="Insurance Website" />
+                        </div>
+
+                    </div>
+
                 </div>
 
                 <div class="modal-footer">
@@ -107,6 +106,4 @@
 
 
     </div>
-
-    
-
+      </div>
