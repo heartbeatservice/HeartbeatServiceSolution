@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Data", "HBS.Data\HBS.Data.csproj", "{E94C3E8A-615F-4DEB-9EBA-6269E48BFA69}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.Entities", "HBS.Entities\HBS.Entities.csproj", "{2A305813-B643-4A04-A045-E6C87EBFFAAF}"
@@ -18,6 +16,8 @@ EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HBS.Database.Timetracking", "HBS.Database.Timetracking\HBS.Database.Timetracking.sqlproj", "{7511F98A-704E-4467-9950-187EC5E98E47}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "HBS.Database.HeartbeatService", "HBS.Database.HeartbeatService\HBS.Database.HeartbeatService.sqlproj", "{23C36BD6-F554-4D1B-BC76-9671948ABADD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HBS.InsuranceWebApp", "HBS.InsuranceWebApp\HBS.InsuranceWebApp.csproj", "{E60A25EF-2524-4BA3-AADD-276FE350091E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,6 +83,14 @@ Global
 		{23C36BD6-F554-4D1B-BC76-9671948ABADD}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
 		{23C36BD6-F554-4D1B-BC76-9671948ABADD}.QA|Any CPU.ActiveCfg = Debug|Any CPU
 		{23C36BD6-F554-4D1B-BC76-9671948ABADD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.Dev|Any CPU.Build.0 = Debug|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.QA|Any CPU.ActiveCfg = Release|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.QA|Any CPU.Build.0 = Release|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E60A25EF-2524-4BA3-AADD-276FE350091E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
