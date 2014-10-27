@@ -1,6 +1,6 @@
 ﻿HeartbeatApp.controller("HeartbeatController", function AppController($scope, $location, HeartbeatService) {
    
-    $scope.menuItems = [{ name: 'Home', cls: 'nav active', url: 'home/index' }, { name: 'About Us', cls: 'nav', url: 'home/about', submenu: [{ name: 'Vision', url: 'home/about' }, { name: 'Meet The Team', url: 'home/team' }] }, { name: 'Contact Us', cls: 'nav', url: 'Home/Contact' }];
+    $scope.menuItems = [{ name: 'Home', cls: 'nav active', url: 'home/index' }, { name: 'About Us', cls: 'nav', url: 'home/about' }, { name: 'Contact Us', cls: 'nav', url: 'Home/ContactUs' }, { name: 'Products', cls: 'nav', url: 'home/Products' }, { name: 'Services', cls: 'nav', url: 'home/Services' }, { name: 'Goals and Vision', cls: 'nav', url: 'home/Goals' }, { name: 'Meet The Team', cls: 'nav', url: 'home/Team' }];
     $scope.app = '';
    
     $scope.url = $location.host();
@@ -90,7 +90,7 @@
                     submenuitem = document.createElement('li');
                     submenuitem.setAttribute("class", "subitem");
                     submenuitem.innerHTML = '<a  class="text-warning" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].submenu[j].url + '/>' + $scope.menuItems[i].submenu[j].name + '</a>';
-                   submenu.appendChild(submenuitem);
+                    submenu.appendChild(submenuitem);
                 }
                 menuItem.appendChild(submenu);
             }

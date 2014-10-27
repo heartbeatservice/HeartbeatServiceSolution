@@ -63,6 +63,14 @@ namespace HBS.WebPortal.Controllers
             return View();
         }
 
+        public ActionResult Goals()
+        {
+
+            return View();
+        }
+
+
+      
         [HttpPost]
         public ActionResult Index(User u)
         {
