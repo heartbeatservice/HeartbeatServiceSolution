@@ -2,53 +2,55 @@
     ViewBag.Title = "ContactUs";
 }
 <div id="angularize" ng-controller="emailController">
-    <div class="row">
-        <div class="col-md-12"><h2>ContactUs</h2></div>
+   
 
-    </div>
+    <div class="panel panel-info panel-default">
+        <div class="panel-heading panelBg"><h4 style="color:white;">Contact Us</h4></div>
+        <div class="panel-body ">
+        
+            <div class="well col-md-8">
+                <div class="row">
+                    <div class="form-group col-md-10 has-warning">
+                        <div class="input-group">
 
-
-    <div class="well col-md-8">
-        <div class="row">
-            <div class="form-group col-md-10 has-warning">
-                <div class="input-group">
-
-                    <input id="FullName" type="text" value="" ng-model="Customer.FullName" class="form-control" placeholder="Enter Your Name" required />
-                </div>
-            </div>
-
-        </div>
-
-        <div class="row">
-            <div class="form-group col-md-10 has-warning">
-                <div class="input-group">
-                    <textarea id="FullName" ng-model="Customer.Question" class="form-control" placeholder="Enter Your Question Here?" required></textarea>
+                            <input id="FullName" type="text" value="" ng-model="Customer.FullName" class="form-control" placeholder="Enter Your Name" required />
+                        </div>
+                    </div>
 
                 </div>
-            </div>
 
-        </div>
+                <div class="row">
 
-        <div class="row">
-            <div class="form-group col-md-10 has-warning">
-                <div class="input-group">
-                    <input id="Captcha"  type="text" ng-model="Customer.Captcha" class="form-control" placeholder="Enter Text You see below" required/>
-                    <br />
-                    <img src="~/Images/captcha1.jpg" />
+                    <div class="form-group col-md-10 has-warning">
+                        <div class="input-group">
+                            <textarea id="FullName" ng-model="Customer.Question" class="form-control" placeholder="Enter Your Question Here?" required></textarea>
+
+                        </div>
+                    </div>
+
                 </div>
+
+                <div class="row">
+                    <div class="form-group col-md-10 has-warning">
+                        <div class="input-group">
+                            <input id="Captcha" type="text" ng-model="Customer.Captcha" class="form-control" placeholder="Enter Text You see below" required />
+                            <br />
+                            <img src="~/Images/captcha1.jpg" />
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="form-group  col-md-8">
+                        <button class="btn btn-warning" class="form-control" ng-click="SendMessage();"><span class="glyphicon glyphicon-user"></span> Send Message</button>
+
+
+                    </div>
+
+                </div>
+
             </div>
-
         </div>
-        <div class="row">
-            <div class="form-group  col-md-8">
-                <button class="btn btn-warning" class="form-control" ng-click="SendMessage();"><span class="glyphicon glyphicon-user"></span> Send Message</button>
-
-
-            </div>
-
-        </div>
-
-
         <div class="row">
             <div class="col-md-8">
                 <script src="//platform.linkedin.com/in.js" type="text/javascript">
@@ -71,6 +73,6 @@
                 <div class="fb-share-button" data-href="http://www.heartbeat-biz.com" data-width="34"></div>
 
             </div>
-    </div>
+        </div>
 
-</div>
+    </div>

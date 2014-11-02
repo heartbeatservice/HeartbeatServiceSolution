@@ -1,5 +1,5 @@
 ﻿HeartbeatApp.controller("emailController", function AppController($scope, $location, HeartbeatService) {
-    $scope.resource = "Email?FullName=";
+    $scope.resource = "Email";
     $scope.Customer = { FullName: "", Question: "" };
     $scope.SendMessage = function () {
         //$scope.resource += $scope.Customer.FullName + "&Question=" + $scope.Customer.Question;

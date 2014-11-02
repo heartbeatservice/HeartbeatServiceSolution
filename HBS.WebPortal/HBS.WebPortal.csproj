@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SchedulingController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -237,6 +238,7 @@
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\images\amir.jpg" />
     <Content Include="Content\images\amir_shot.jpg" />
+    <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\Heartbeat Service-logo.png" />
     <Content Include="Content\images\heartLogo.png" />
     <Content Include="Content\images\heartLogo1.png" />
@@ -323,10 +325,12 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\HeartBeat.pubxml" />
     <None Include="Properties\PublishProfiles\HeartbeatWebPortal.pubxml" />
     <None Include="Properties\PublishProfiles\HeartbeatWebsite.pubxml" />
+    <None Include="Properties\PublishProfiles\services.heartbeat-biz.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Website.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\captcha1.jpg" />

@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Net.Mail;
 using HBS.Entities;
-namespace HBS.WebApi.Controllers
+namespace HBS.WebPortal.Controllers
 {
     public class EmailController : ApiController
     {
@@ -17,7 +17,7 @@ namespace HBS.WebApi.Controllers
            
             
                // FullName=queryString["FullName"];
-               // Message=queryString["Question"];D:\Users\UmaisSiddiqui\Documents\GitHub\HeartbeatServiceSolution\HBS.WebApi\Controllers\EmailController.cs
+               // Message=queryString["Question"];
 
             bool result = false;
             if (msg != null && msg.Captcha=="qGphJD")
