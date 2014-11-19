@@ -21,12 +21,15 @@ namespace HBS.WebApi.Controllers
             professionalRepository = repo;
         }
 
-       public List<Professional> GetProfessionals(int companyId, string professionalName)
+       public List<Professional> GetProfessionals(int CompanyId, string ProfessionalName)
        {
-           return professionalRepository.GetProfessionals(companyId, professionalName);
+           return professionalRepository.GetProfessionals(CompanyId, ProfessionalName);
        }
-                   
-      
+
+       public List<Professional> GetProfessionals(int CompanyId)
+       {
+           return professionalRepository.GetProfessionals(CompanyId,null);
+       }
          
         public Professional GetProfessional(int id)
         {

@@ -11,6 +11,21 @@
         $scope.Customer = {};
 
     };
+
+    $scope.init = function () {
+        $scope.GetProviders();
+    };
+
+    
+    $scope.GetProviders = function () {
+        var resource = 'Professional/' + $scope.CompanyId;
+        HeartbeatService.CustomGetData($scope.LoadProviders, $scope.Error, resource);
+    };
+
+    $scope.LoadProviders = function (response) {
+
+        $scope.AllProviders = response;
+    };
     $scope.GridOptions = {
         data: 'Customers',
         enableCellSelection: false,

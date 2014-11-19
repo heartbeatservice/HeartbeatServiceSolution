@@ -93,7 +93,7 @@
                                         $scope.ProfessionalSchedule = options.models[0];
                                         break;
                                     case "destroy":
-                                        alert("Destroyed")
+                                        alert("Destroyed");
                                         break;
                                     default:
                                         alert("No action Performed");
