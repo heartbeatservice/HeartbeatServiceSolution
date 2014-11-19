@@ -1,6 +1,6 @@
 ﻿HeartbeatApp.controller("HeartbeatController", function AppController($scope, $location, HeartbeatService) {
    
-    $scope.menuItems = [{ name: 'Home', cls: 'nav active', url: 'home/index' }, { name: 'About Us', cls: 'nav', url: 'home/about' }, { name: 'Products', cls: 'nav', url: 'home/Products' }, { name: 'Services', cls: 'nav', url: 'home/Services' }, { name: 'Goals and Vision', cls: 'nav', url: 'home/Goals' }, { name: 'Meet The Team', cls: 'nav', url: 'home/Team' }, { name: 'Contact Us', cls: 'nav', url: 'Home/ContactUs' }];
+    $scope.menuItems = [{ name: 'Home', cls: 'nav navbar-item active', url: 'home/index' }, { name: 'About Us', cls: 'nav navbar-item ', url: 'home/about' }, { name: 'Products', cls: 'nav navbar-item ', url: 'home/Products' }, { name: 'Services', cls: 'nav navbar-item', url: 'home/Services' }, { name: 'Goals and Vision', cls: 'nav navbar-item', url: 'home/Goals' }, { name: 'Meet The Team', cls: 'nav navbar-item', url: 'home/Team' }, { name: 'Contact Us', cls: 'nav navbar-item', url: 'Home/ContactUs' }];
     $scope.app = '';
    
     $scope.url = $location.host();
@@ -59,6 +59,12 @@
     //};
    
     $scope.constructMenu = function () {
+        var url = $location.absUrl();
+       
+        var start = url.toLowerCase().indexOf("home");
+        
+        var page = url.substring(start);
+        
         var app = document.getElementById('app').value;
         if (app === 'Scheduling')
             $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Calendar', submenu: [{ name: 'Daily View', url: 'Scheduling/Daily' }, { name: 'Weekly', url: 'Scheduling/Weekly' }, { name: 'Monthly', url: 'Scheduling/Monthly' }] }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }, { name: 'Contact Us', cls: 'nav active', url: 'Scheduling/Contact' }]
@@ -70,10 +76,20 @@
         for (var i = 0; i < $scope.menuItems.length; i++) {
 
             menuItem = document.createElement('li');
+
             if ($scope.menuItems[i].submenu === undefined) {
                 
-              
-                menuItem.setAttribute("class", "nav navbar-item");
+                if (start === -1)
+                    page = 'home/index';
+                if (page.toLowerCase().indexOf($scope.menuItems[i].url.toLowerCase()) === 0)
+                    $scope.menuItems[i].cls = 'nav navbar-item active';
+                
+                    else
+
+                    $scope.menuItems[i].cls = 'nav navbar-item';
+
+
+                menuItem.setAttribute("class", $scope.menuItems[i].cls);
               
                     menuItem.innerHTML = '<a class="text-warning" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '</a>';
             }

@@ -7,12 +7,36 @@
      <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css" />
 <link href="~/Content/bootstrap/bootstrap-flatly-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Angular/ng-grid.min.css" rel="stylesheet" />
-  
+
+    <link href="~/Content/Kendo/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.dataviz.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/Kendo/kendo.default.mobile.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
     <link rel="stylesheet" href="~/Content/fullcalendar.css" />
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" />
+
+    <script src="~/Content/scripts/jquery-1.8.2.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="~/Content/scripts/bootstrap.min.js"></script>
+    <script src="~/Content/Angular/angular.min.js"></script>
+    <script src="~/Content/Angular/ng-grid-2.0.6.min.js"></script>
+    <script src="~/Content/Angular/app.js">
+    </script>
+    <script src="~/Content/Angular/HeartbeatService.js"></script>
+    <script src="~/Content/Angular/HeartbeatController.js"></script>
+    <script src="~/Content/Angular/SchedulingController.js"></script>
+    <script src="~/Content/Angular/CustomerController.js"></script>
+   
+    <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Content/scripts/script.js"></script>
+    <script src="~/Content/scripts/fullcalendar.min.js"></script>
+    <script src="~/Content/Angular/ProfessionalController.js"></script>
+    <script src="~/Content/Angular/InsuranceController.js"></script>
+    <script src="~/content/Angular/emailController.js"></script>
+    <script src="~/Scripts/kendo.all.min.js"></script>
 </head>
 <body ng-app="HeartbeatApp">
     <div id="mainContent" class="container" >
@@ -58,24 +82,8 @@
     @RenderBody()
 
 </div>
-     <script src="~/Content/scripts/jquery-1.8.2.min.js"></script>
-      <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> 
-    <script src="~/Content/scripts/bootstrap.min.js"></script>
-    <script src="~/Content/Angular/angular.min.js"></script>
-    <script src="~/Content/Angular/ng-grid-2.0.6.min.js"></script>
-    <script src="~/Content/Angular/app.js">
-    </script>
-    <script src="~/Content/Angular/HeartbeatService.js"></script>
-    <script src="~/Content/Angular/HeartbeatController.js"></script>
-    <script src="~/Content/Angular/SchedulingController.js"></script>
-    <script src="~/Content/Angular/CustomerController.js"></script>
-    <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
-    <script src="~/Content/scripts/script.js"></script>
-    <script src="~/Content/scripts/fullcalendar.min.js"></script>
-     <script src="~/Content/Angular/ProfessionalController.js"></script>
-      <script src="~/Content/Angular/InsuranceController.js"></script>
-    <script src="~/content/Angular/emailController.js"></script>
+ 
 </body>
-
+@RenderSection("scripts", required: false)
 </html>
    

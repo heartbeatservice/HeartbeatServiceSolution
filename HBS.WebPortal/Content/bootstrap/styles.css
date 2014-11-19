@@ -68,6 +68,12 @@ margin-top:20px;
     color:green !important;
 }
 
+.active *{
+
+    background-color:orange !important;
+    color:green !important;
+}
+
 .subitem {
 background-color:white;
 }

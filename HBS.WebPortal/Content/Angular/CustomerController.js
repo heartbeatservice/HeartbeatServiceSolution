@@ -4,7 +4,8 @@
     $scope.Customers = [];
     $scope.SearchParam = '';
     $scope.InsuranceEntry = {};
-    $scope.AllProviders = [{ ProfessionalId: 1, FirstName: 'Farzana', LastName: 'Aziz' }, { ProfessionalId: 1, FirstName: 'Abbas', LastName: 'Rizwi' }, { ProfessionalId: 1, FirstName: 'Fawzia', LastName: 'Kazmi' }];
+    $scope.myProviders = { ProfessionalId: 0, FirstName: '', LastName: '' };
+    $scope.AllProviders = [{ ProfessionalId: 1, FirstName: 'Farzana', LastName: 'Aziz' }, { ProfessionalId: 2, FirstName: 'Abbas', LastName: 'Rizwi' }, { ProfessionalId: 3, FirstName: 'Fawzia', LastName: 'Kazmi' }];
     $scope.clearCustomer = function () {
 
         $scope.Customer = {};
@@ -38,7 +39,7 @@
         $scope.Customer.CreatedBy = $('#user').val();
         $scope.Customer.Active = true;
         var resource = 'Customer';
-        HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
+        HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
 
     };
 
@@ -99,6 +100,11 @@
         $scope.applyCustomerToModel(response);
         $('#editbtn').click();
     };
+
+    $scope.GetAppointmentSuccess = function (response) {
+        $scope.applyCustomerToModel(response);
+        $('#AddAppointmentbtn').click();
+    };
     $scope.UpdateCustomer = function () {
         var resource = 'Customer/' + $scope.Customer.CustomerId;
         HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.Customer);
@@ -109,6 +115,8 @@
 
 
     $scope.OpenInsurance = function (customerId) {
+
+        
         var resource = "CustomerInsurance?customerInsuranceId=" + customerId;
         $scope.CustomerId = customerId;
 
@@ -151,7 +159,7 @@
         $scope.InsuranceEntry.InsuranceId = $('#InsuranceId').val();
         $scope.InsuranceEntry.CustomerId = $('#CustomerIdForInsurance').val();
         var resource = 'CustomerInsurance';
-        HeartbeatService.PostData($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
+        HeartbeatService.PostDataToApi($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
     }
 
     $scope.AddCustomerInsuranceSuccess = function (response) {
@@ -160,7 +168,9 @@
         $scope.OpenInsurance($scope.InsuranceEntry.CustomerId)
     }
 
-    $scope.AppointmentForm = function () {
+    $scope.AppointmentForm = function (CustomerId) {
+        var resource = 'Customer?customerId=' + CustomerId;
+        HeartbeatService.GetData($scope.GetAppointmentSuccess, $scope.Error, resource);
         $('#AddAppointmentbtn').click();
         //var companyId = $('#companyInsurance').val();
         //var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
@@ -189,6 +199,25 @@
 
         var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob;
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+
+    };
+
+    $scope.AddAppointment = function () {
+
+      
+
+    };
+
+    $scope.ViewSchedule = function () {
+
+        if($scope.myProviders.ProfessionalId===0)
+        {
+            $('#aptmsg').html("Please Select Provider First");
+        }
+        else {
+
+            $('#frmschedule').submit();
+        }
 
     };
 });

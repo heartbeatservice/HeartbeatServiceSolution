@@ -12,8 +12,8 @@
                 },
 
                
-                url: "http://localhost:3687/api/" + resource,
-                //// url: "http://heartbeat-biz.com
+               // url: "http://localhost:3687/api/" + resource,
+                 url: "http://services.heartbeat-biz.com/api/"+ resource,
 
                 type: "get",
 
@@ -35,7 +35,20 @@
                 error: function (result) { wrong(result); }
             });
         },
-
+        PostDataToApi: function (callSuccess, wrong, resource, params) {
+            request = $.ajax({
+                beforeSend: function (xhrObj) {
+                    xhrObj.setRequestHeader("Content-Type", "application/json");
+                    xhrObj.setRequestHeader("Accept", "application/json");
+                },
+                //url: "http://localhost:3687/api/" + resource,
+                url: "http://services.heartbeat-biz.com/api/"+ resource,
+                type: "post",
+                data: JSON.stringify(params),
+                success: function (response) { callSuccess(response); },
+                error: function (result) { wrong(result); }
+            });
+        },
         
 
             PutData: function (callSuccess, wrong, resource, params) {
@@ -45,28 +58,15 @@
                        
                        
                     },
-                    url: "http://localhost:3687/api/" + resource,
+                    //url: "http://localhost:3687/api/" + resource,
+                    url: "http://services.heartbeat-biz.com/api/"+ resource,
                     type: "PUT",
                     data: JSON.stringify(params),
                     success: function (response) { callSuccess(response); },
                     error: function (result) { wrong(result); }
                 });
             },
-        GetDataByParams: function (callSuccess, wrong, resource, params) {
-
-            request = $.ajax(
-            {
-               // url: "http://presciencerx.azurewebsites.net/api/" + resource,
-                url: "http://localhost:56799/api/" + resource,
-                type: "GET",
-                contentType: "application/json",
-                data: 'json=' + JSON.stringify(params),
-                success: function (response) { callSuccess(response); },
-                error: function (result) { wrong(result); }
-            });
-
         
-        },
 
         IsDate: function (dateStr) {
 

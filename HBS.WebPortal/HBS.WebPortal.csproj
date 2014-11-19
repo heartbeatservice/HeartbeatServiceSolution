@@ -221,6 +221,7 @@
     <Content Include="Content\Angular\angular.js" />
     <Content Include="Content\Angular\angular.min.js" />
     <Content Include="Content\Angular\app.js" />
+    <Content Include="Content\Angular\CalendarController.js" />
     <Content Include="Content\Angular\CustomerController.js" />
     <Content Include="Content\Angular\emailController.js" />
     <Content Include="Content\Angular\HeartbeatController.js" />
@@ -258,6 +259,55 @@
     <Content Include="Content\images\tayyibshot.jpg" />
     <Content Include="Content\images\umais.jpg" />
     <Content Include="Content\images\umaisshot.jpg" />
+    <Content Include="Content\Kendo\default\editor.png" />
+    <Content Include="Content\Kendo\default\imagebrowser.png" />
+    <Content Include="Content\Kendo\default\indeterminate.gif" />
+    <Content Include="Content\Kendo\default\loading-image.gif" />
+    <Content Include="Content\Kendo\default\loading.gif" />
+    <Content Include="Content\Kendo\default\loading_2x.gif" />
+    <Content Include="Content\Kendo\default\markers.png" />
+    <Content Include="Content\Kendo\default\markers_2x.png" />
+    <Content Include="Content\Kendo\default\slider-h.gif" />
+    <Content Include="Content\Kendo\default\slider-v.gif" />
+    <Content Include="Content\Kendo\default\sprite.png" />
+    <Content Include="Content\Kendo\default\sprite_2x.png" />
+    <Content Include="Content\Kendo\images\back.png" />
+    <Content Include="Content\Kendo\images\wp8_icons.png" />
+    <Content Include="Content\Kendo\images\wp8_inverseicons.png" />
+    <Content Include="Content\Kendo\kendo.common.min.css" />
+    <Content Include="Content\Kendo\kendo.dataviz.min.css" />
+    <Content Include="Content\Kendo\kendo.default.min.css" />
+    <Content Include="Content\Kendo\kendo.default.mobile.min.css" />
+    <Content Include="Content\Kendo\textures\brushed-metal.png" />
+    <Content Include="Content\Kendo\textures\dots1.png" />
+    <Content Include="Content\Kendo\textures\dots10.png" />
+    <Content Include="Content\Kendo\textures\dots11.png" />
+    <Content Include="Content\Kendo\textures\dots12.png" />
+    <Content Include="Content\Kendo\textures\dots13.png" />
+    <Content Include="Content\Kendo\textures\dots2.png" />
+    <Content Include="Content\Kendo\textures\dots3.png" />
+    <Content Include="Content\Kendo\textures\dots4.png" />
+    <Content Include="Content\Kendo\textures\dots5.png" />
+    <Content Include="Content\Kendo\textures\dots6.png" />
+    <Content Include="Content\Kendo\textures\dots7.png" />
+    <Content Include="Content\Kendo\textures\dots8.png" />
+    <Content Include="Content\Kendo\textures\dots9.png" />
+    <Content Include="Content\Kendo\textures\glass-lighter.png" />
+    <Content Include="Content\Kendo\textures\glass.png" />
+    <Content Include="Content\Kendo\textures\highlight.png" />
+    <Content Include="Content\Kendo\textures\hsv-gradient.png" />
+    <Content Include="Content\Kendo\textures\hue.png" />
+    <Content Include="Content\Kendo\textures\leather1.png" />
+    <Content Include="Content\Kendo\textures\leather2.png" />
+    <Content Include="Content\Kendo\textures\noise.png" />
+    <Content Include="Content\Kendo\textures\stripe1.png" />
+    <Content Include="Content\Kendo\textures\stripe2.png" />
+    <Content Include="Content\Kendo\textures\stripe3.png" />
+    <Content Include="Content\Kendo\textures\stripe4.png" />
+    <Content Include="Content\Kendo\textures\stripe5.png" />
+    <Content Include="Content\Kendo\textures\stripe6.png" />
+    <Content Include="Content\Kendo\textures\transparency.png" />
+    <Content Include="Content\Kendo\textures\transtexture.png" />
     <Content Include="Content\scripts\bootstrap.min.js" />
     <Content Include="Content\scripts\fullcalendar.js" />
     <Content Include="Content\scripts\fullcalendar.min.js" />
@@ -325,6 +375,8 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Kendo\images\kendoui.ttf" />
+    <Content Include="Content\Kendo\images\kendoui.woff" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\HeartBeat.pubxml" />
@@ -345,6 +397,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\kendo.all.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -400,6 +453,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\web\scheduler\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

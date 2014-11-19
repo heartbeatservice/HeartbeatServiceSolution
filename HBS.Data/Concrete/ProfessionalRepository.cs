@@ -17,10 +17,11 @@ namespace HBS.Data.Concrete
         private const string GetProfessionalsSp = "GetProfessionals";
         private const string AddProfessionalSp = "AddProfessional";
         private const string UpdateProfessionalSp = "UpdateProfessional";
-        private const string AddProfessionalScheduleSp = "AddProfessionalSchedule";
-        private const string UpdateProfessionalScheduleSp = "UpdateProfessionalSchedule";
+        private const string AddProfessionalScheduleSp = "AddUpdateProfessionalAppointment";
+        private const string UpdateProfessionalScheduleSp = "AddUpdateProfessionalAppointment";
         private const string GetProfessionalScheduleByIdSp = "GetProfessionalScheduleById";
         private const string GetProfessionalScheduleByDateSp = "GetProfessionalScheduleByDate";
+        private const string GetProfessionalMonthlySchedule = "GetProfessionalsMonthlySchedule";
 
         public int AddProfessional(Professional professional)
         {
@@ -189,8 +190,14 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public bool AddProfessionalSchedule(ProfessionalSchedule professionalSchedule)
+        public bool AddProfessionalSchedule(KendoEntity professionalSchedule)
         {
+
+ 
+
+
+
+
 
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -201,12 +208,18 @@ namespace HBS.Data.Concrete
                     //ToDo  : Fix this method
 
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
+                    TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+                    professionalSchedule.Start = TimeZoneInfo.ConvertTimeFromUtc(Convert.ToDateTime(professionalSchedule.Start).ToUniversalTime(), easternZone).ToString();
+                    professionalSchedule.End=TimeZoneInfo.ConvertTimeFromUtc(Convert.ToDateTime(professionalSchedule.End).ToUniversalTime(),easternZone).ToString();
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professionalSchedule.ProfessionalId;
-                    cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
-                    cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
-                    cmd.Parameters.Add("@TimeIntervalMinutes", SqlDbType.Int).Value = professionalSchedule.TimeIntervalMinutes;
-
+                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = professionalSchedule.OwnerID;
+                    cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = professionalSchedule.Title;
+                    cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.Start;
+                    cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.End;
+                    cmd.Parameters.Add("@Comments", SqlDbType.NVarChar).Value = professionalSchedule.Description;
+                    cmd.Parameters.Add("@CreatedBy ", SqlDbType.NVarChar).Value = professionalSchedule.UserId;
+                    cmd.Parameters.Add("@DateCreated", SqlDbType.NVarChar).Value = DateTime.UtcNow;
+          
                 //TODO: Add this back, these parms missing from sp
                     //cmd.Parameters.Add("@CreatedBy", SqlDbType.VarChar).Value = professionalSchedule.CreatedBy;
                     //cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
@@ -217,7 +230,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public bool UpdateProfessionalSchedule(ProfessionalSchedule professionalSchedule)
+        public bool UpdateProfessionalSchedule(KendoEntity professionalSchedule)
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
@@ -228,11 +241,19 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(UpdateProfessionalScheduleSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ProfessionalScheduleId", SqlDbType.Int).Value = professionalSchedule.ProfessionalScheduleId;
+                    TimeZoneInfo easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+                    professionalSchedule.Start = TimeZoneInfo.ConvertTimeFromUtc(Convert.ToDateTime(professionalSchedule.Start).ToUniversalTime(), easternZone).ToString();
+                    professionalSchedule.End = TimeZoneInfo.ConvertTimeFromUtc(Convert.ToDateTime(professionalSchedule.End).ToUniversalTime(), easternZone).ToString();
+
+                    cmd.Parameters.Add("@AppointmentId", SqlDbType.Int).Value = professionalSchedule.TaskID;
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int).Value = professionalSchedule.ProfessionalId;
-                    cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.StartTime;
-                    cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.EndTime;
-                    cmd.Parameters.Add("@TimeIntervalMinutes", SqlDbType.Int).Value = professionalSchedule.TimeIntervalMinutes;
+                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = professionalSchedule.OwnerID;
+                    cmd.Parameters.Add("@Title", SqlDbType.NVarChar).Value = professionalSchedule.Title;
+                    cmd.Parameters.Add("@StartTime", SqlDbType.DateTime).Value = professionalSchedule.Start;
+                    cmd.Parameters.Add("@EndTime", SqlDbType.DateTime).Value = professionalSchedule.End;
+                    cmd.Parameters.Add("@Comments", SqlDbType.NVarChar).Value = professionalSchedule.Description;
+                    cmd.Parameters.Add("@UpdatedBy ", SqlDbType.NVarChar).Value = professionalSchedule.UserId;
+                    cmd.Parameters.Add("@DateUpdated", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
                     //TODO: Add this back, these parms missing from sp
                     //cmd.Parameters.Add("@UpdatedBy", SqlDbType.VarChar).Value = professionalSchedule.UpdatedBy;
@@ -282,6 +303,52 @@ namespace HBS.Data.Concrete
 
         }
 
+
+        public List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId,int Month,int Year)
+        {
+            ProfessionalSchedule professionalSchedule = null;
+            List<KendoEntity> lst = new List<KendoEntity>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+
+                conn.Open();
+              
+                using (var cmd = new SqlCommand(GetProfessionalMonthlySchedule, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalId"].Value = professionalId;
+                    cmd.Parameters.Add("@Month", SqlDbType.Int);
+                    cmd.Parameters["@Month"].Value = Month;
+                    cmd.Parameters.Add("@Year", SqlDbType.Int);
+                    cmd.Parameters["@Year"].Value = Year;
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                while (myReader.Read())
+                                {
+                                    professionalSchedule = new ProfessionalSchedule(myReader, "Kendo");
+                                    lst.Add(professionalSchedule.kendo);
+                                }
+
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+
+            }
+            return lst;
+
+        }
         /// <summary>
         /// depends on the parameter is passed, this method will return either
         /// 1 professional schedule or list of professionals

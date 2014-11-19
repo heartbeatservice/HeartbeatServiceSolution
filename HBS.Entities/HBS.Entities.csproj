@@ -55,6 +55,7 @@
     <Compile Include="Customer.cs" />
     <Compile Include="EmailMessage.cs" />
     <Compile Include="Insurance.cs" />
+    <Compile Include="KendoEntity.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuRole.cs" />
     <Compile Include="Professional.cs" />

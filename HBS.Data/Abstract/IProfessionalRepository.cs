@@ -15,12 +15,14 @@ namespace HBS.Data.Abstract
 
         List<Professional> GetProfessionals(int companyId, string professionalName);
         bool RemoveProfessional(int professionalId, int removedBy);//
-        bool AddProfessionalSchedule(ProfessionalSchedule professionalSchedule);
-        bool UpdateProfessionalSchedule(ProfessionalSchedule professionalSchedule);
+        bool AddProfessionalSchedule(KendoEntity professionalSchedule);
+        bool UpdateProfessionalSchedule(KendoEntity professionalSchedule);
         ProfessionalSchedule GetProfessionalSchedule(int professionalSchedulreId);
         List<ProfessionalSchedule> GetProfessionalScheduleListByScheduleId(int scheduleId);
         List<ProfessionalSchedule> GetProfessionalScheduleByScheduleDate(DateTime scheduleDate);
         bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy);//
+
+        List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Month, int Year);
 
     }
 }

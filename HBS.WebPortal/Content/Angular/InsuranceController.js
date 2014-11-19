@@ -34,7 +34,7 @@
         $scope.Insurance.CreatedBy = $('#user').val();
         $scope.Insurance.Active = true;
         var resource = 'Insurance';
-        HeartbeatService.PostData($scope.AddSuccess, $scope.Error, resource, $scope.Insurance);
+        HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Insurance);
 
     };
 

@@ -35,9 +35,23 @@ namespace HBS.WebPortal.Controllers
         {
             if (Session["user"] == null)
             {
+                
+               
+
 
                 return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
             }
+
+            if (Request.QueryString["CustomerId"] != null)
+                ViewBag.CustomerId = Request.QueryString["CustomerId"].ToString();
+            else
+                ViewBag.CustomerId = "0";
+            if (Request.QueryString["ProfessionalId"] != null)
+                ViewBag.ProfessionalId = Request.QueryString["ProfessionalId"].ToString();
+            else
+            ViewBag.ProfessionalId = "0";
+            ViewBag.CurrentDate = DateTime.Now.ToShortDateString();
+            ViewBag.companyid = getCompanyId();
             return View();
         }
 

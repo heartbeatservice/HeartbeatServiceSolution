@@ -354,86 +354,39 @@
                      <div class="modal-content">
                          <div class="modal-header ">
                              <a href="#" class="close" data-dismiss="modal">&times;</a>
-                             <h4 class="text-warning">Add an Appointment</h4>
+                             <h4 class="text-warning">Appointment for {{Customer.FirstName+' '+Customer.LastName}}</h4>
                              
                          </div>
                          <div class="modal-body">
                               
-                           <div class="row">
-    
-        <div class="form-group col-md-6 has-warning"> 
-                                  <div class="input-group">
-                             
-                                 <label    class="" >First Name:{{Customer.FirstName}}</label>
-                                      
+                      
+                             <form action="@Url.Action("Daily", "Scheduling")" id="frmschedule" method="get">
+                                 <span id="aptmsg"></span>
+                                 <div class="row">
 
-                                  </div>
-                                  </div>
+                                     <div class="form-group col-md-6 has-warning">
+                                         <div class="input-group">
+                                             <select  ng-model="myProviders" ng-options="doctor.FirstName+' '+doctor.LastName for doctor in AllProviders" ng-change="AddAppointment();"><option value="">---Select Doctor---</option></select>
+                                             <input name="CustomerId" type="hidden" value="{{Customer.CustomerId}}" />
+                                             <input name="ProfessionalId" type="hidden" value="{{myProviders.ProfessionalId}}" />
+                                         </div>
+                                     </div>
 
-                               <div class="form-group col-md-6 has-warning"> 
-                                  <div class="input-group">
-                              
-                                 <label   class="" >Last Name:{{Customer.LastName}}</label>
-                                  </div>
-                                  </div>
-    </div>
-                                             <div class="row">
-    
-        <div class="form-group col-md-6 has-warning"> 
-                                  <div class="input-group">
 
-                                 <label   class="" >Date Of Birth:{{Customer.DateOfBirth}}</label>
-                                  </div>
-                                  </div>
+                                 </div>
+                             </form>
 
-                          
-    </div>
 
-                                          <div class="row">
-    
-        <div class="form-group col-md-6 has-warning"> 
-                                  <div class="input-group">
 
-                                        <select id="ProviderId" class="form-control"  >
-                       <option ng-repeat="p in AllProviders" value="{{p.ProfessionalId}}" >{{p.FirstName + p.LastName}}</option>
-                     
-                     </select>
-                                  </div>
-                                  </div>
- <div class="form-group col-md-6 has-warning"> 
-                                  <div class="input-group">
-                                       <input  type="text" id='AppointmentDate' value="" class="form-control" placeholder="AppointmentDate"/> 
-                             
-                                  </div>
-                                  </div>
-                          
-    </div>
-      <div class="row">
-    
-        <div class="form-group col-md-12 has-warning"> 
-                                  <div class="input-group">
- <select id="AppointmentTime" class="form-control"  >
-                       <option ng-repeat="s in AvailableSlots" value="{{s.AvailableTime}}" >{s.AvaialbleTime}}</option>
-                     
-                     </select>
-                                 
-                                  </div>
-                                  </div>
+                                 <div class="modal-footer">
+                                     <div class="form-group  col-md-8">
+                                         <a class="btn btn-warning" class="form-control" ng-click="ViewSchedule();">View Schedule</a>
+                                         <a href="#" id="dismissAddAppointment" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                                    
 
-                          
-    </div>
-
-                   
-
-                          <div class="modal-footer">       
-            <div class="form-group  col-md-8"> 
-                <button class="btn btn-warning"  class="form-control" ng-click="AddAppointment();"><span class="glyphicon glyphicon-user"></span> Save</button>
-                <a href="#" id="dismissAddAppointment" class="btn btn-warning"   data-dismiss="modal">Cancel</a>
-                <input class="btn btn-warning" type="button"   value="Clear" ng-click="clearCustomer();" />
-              
-            </div>
-                         </div>
-                     </div>
+                                     </div>
+                                 </div>
+</div>
                     </div>
 
 </div>
@@ -441,3 +394,5 @@
     <!-- End Of Scheduling an appointment -->
 
     </div>
+    <!-- End Of Controller -->
+</div>

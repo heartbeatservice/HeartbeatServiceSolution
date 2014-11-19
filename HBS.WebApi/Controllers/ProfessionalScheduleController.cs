@@ -25,32 +25,47 @@ namespace HBS.WebApi.Controllers
       
         
         [HttpGet]
-        public ProfessionalSchedule GetProfessionalScheduleById(int id)
+        public List<KendoEntity> GetProfessionalScheduleById(int id)
         {
-            return professionalRepository.GetProfessionalSchedule(id);
+            return professionalRepository.GetProfessionalMonthlyAppointments(id, DateTime.Now.Month, DateTime.Now.Year);
+           // return new List<KendoEntity>{new KendoEntity{OwnerID="2", IsAllDay=false,Title="My Meeting",Description="Testing 123",Start=DateTime.Now.ToString(),End=DateTime.Now.AddMinutes(30).ToString(),TaskID="4"}};
         }
 
-        public bool PostProfessionalSchedule([FromBody] ProfessionalSchedule  proSchedule)
+        public bool PostProfessionalSchedule([FromBody] KendoEntity k)
         {
-            return professionalRepository.AddProfessionalSchedule(proSchedule);
+            KendoEntity ku = k;
+           return professionalRepository.AddProfessionalSchedule(k);
+            //return professionalRepository.AddProfessionalSchedule(proSchedule);
 
         }
 
         //TODO:Get confirmation. 
         //User the same method to soft delete dont need have another method to softdelete, this method does have IsActive param. 
-        public bool PutProfessionalSchedule([FromBody] ProfessionalSchedule proSchedule)
+        public bool PutProfessionalSchedule([FromBody] KendoEntity k)
         {
-            return professionalRepository.UpdateProfessionalSchedule(proSchedule);
+
+            KendoEntity ku = k;
+
+            
+            return professionalRepository.UpdateProfessionalSchedule(k);
         }
 
-        public List<ProfessionalSchedule> GetProfessionalsScheduleList(int id)
-        {
-            return professionalRepository.GetProfessionalScheduleListByScheduleId(id);
-        }
+        //public List<ProfessionalSchedule> GetProfessionalsScheduleList(int id)
+        //{
+        //    return professionalRepository.GetProfessionalScheduleListByScheduleId(id);
+        //}
 
         public List<ProfessionalSchedule> GetProfessionalScheduleListByDate(DateTime date)
         {
             return professionalRepository.GetProfessionalScheduleByScheduleDate(date);
+        }
+
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
         }
     }
 }
