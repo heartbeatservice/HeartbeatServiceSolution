@@ -1,70 +1,97 @@
 ﻿@{
     ViewBag.Title = "Daily";
 }
-
-<h2>Daily</h2>
-<div class="row" ng-controller="CalendarController" ng-init="init()">
+<div id="CalendarPageMain" ng-controller="CalendarController" ng-init="init()">
    
-    
-    <div class="col-md-12">
-        <input id="CustomerId" type="hidden" value="@ViewBag.CustomerId" /><!--This will be optional and can come from the View if it is passed from another page-->
-        <input id="DoctorId" type="hidden" value="@ViewBag.ProfessionalId"  /><!--This will always be required as the schedule dipsplayed will always be for a specific Doctor or Employee-->
-       
-        <input id="CurrentDate" type="hidden" value="@ViewBag.CurrentDate" />
-         
-        
-        <div id="example">
-           
-            <div id="scheduler"></div>
+    <div class="row">
+
+        <div class="form-group col-md-6 has-warning">
+            <div class="input-group">
+
+                <h2>{{ProfessionalInfo.FirstName + " " + ProfessionalInfo.LastName }}</h2>
+            </div>
         </div>
-        <script>
+
+        <div class="form-group col-md-3 has-warning">
+       
+        </div>
+    </div>
+     <div class="row">
+        
+       
+        <div class="form-group  col-md-5 ">
           
-        </script>
-        <style scoped>
-            .k-nav-current > .k-link span + span {
-                max-width: 200px;
-                display: inline-block;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                vertical-align: top;
-            }
-
-            #team-schedule {
-                height: 115px;
-                position: relative;
-            }
-
-            #people {
-                width: 345px;
-                height: 115px;
-                position: absolute;
-                right: 0;
-            }
-
-            #alex {
-                position: absolute;
-                left: 4px;
-                top: 81px;
-            }
-
-            #bob {
-                position: absolute;
-                left: 119px;
-                top: 81px;
-            }
-
-            #charlie {
-                position: absolute;
-                left: 234px;
-                top: 81px;
-            }
-        </style>
+                <select ng-model="professionalId" class="form-control" ng-options="doctor.ProfessionalId as doctor.FirstName+' '+doctor.LastName for doctor in ProfessionalList" ng-change="RefreshPage();"></select>
+         
+          
+        </div>
+    
+         
+    </div>
+    <div class="row" >
 
 
+        <div class="col-md-12">
+            <input id="CustomerId" type="hidden" value="@ViewBag.CustomerId" /><!--This will be optional and can come from the View if it is passed from another page-->
+            <input id="DoctorId" type="hidden" value="@ViewBag.ProfessionalId" /><!--This will always be required as the schedule dipsplayed will always be for a specific Doctor or Employee-->
+            <input id="CompanyId" type="hidden" value="@ViewBag.companyid" />
+            <input id="CurrentDate" type="hidden" value="@ViewBag.CurrentDate" />
+         
 
+            <div id="example">
+
+                <div id="scheduler"></div>
+            </div>
+            <script>
+
+            </script>
+            <style scoped>
+                .k-nav-current > .k-link span + span {
+                    max-width: 200px;
+                    display: inline-block;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    vertical-align: top;
+                }
+
+                #team-schedule {
+                    height: 115px;
+                    position: relative;
+                }
+
+                #people {
+                    width: 345px;
+                    height: 115px;
+                    position: absolute;
+                    right: 0;
+                }
+
+                #alex {
+                    position: absolute;
+                    left: 4px;
+                    top: 81px;
+                }
+
+                #bob {
+                    position: absolute;
+                    left: 119px;
+                    top: 81px;
+                }
+
+                #charlie {
+                    position: absolute;
+                    left: 234px;
+                    top: 81px;
+                }
+            </style>
+
+
+
+        </div>
     </div>
 </div>
 @section scripts{
+<script src="~/Scripts/kendo.all.min.js"></script>
 <script src="~/Content/Angular/CalendarController.js"></script>
 }

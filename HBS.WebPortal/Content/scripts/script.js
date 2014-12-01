@@ -3,8 +3,8 @@ $(document).ready(function () {
     jQuery.support.cors = true;
     // $('#startDate').change(function () { $('#UKPrice').focus(); });
    // $('#InsuranceId').change(function () { alert(this.selectedIndex); });
-    $('#theCarousel').carousel();
-
+   // $('#theCarousel').carousel();
+   
 });
 
 function canvasSupport() {

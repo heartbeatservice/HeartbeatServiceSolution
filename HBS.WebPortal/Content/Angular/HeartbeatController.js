@@ -10,29 +10,7 @@
     $scope.init = function () {
 
         $scope.constructMenu();
-        $('#fullcalendar').mouseover(function () { $(this).css('cursor', 'pointer'); });
-        if ($('#fullcalendar') != undefined) {
-            $('#fullcalendar').fullCalendar({
-                selectable:true,
-                dayClick: function (date, allDay, jsEvent, view) {
-                    
-                    if (allDay) {
-                       // alert('Clicked on the entire day: ' + date);
-                    } else {
-                        alert('Clicked on the slot: ' + date);
-                    }
 
-
-                    // change the day's background color just for fun
-                   // $(this).css('background-color', 'red');
-
-                },
-                select: function (startDate, endDate, allDay, jsEvent, view) {
-                    alert("Selected");
-                }
-
-            });
-        }
     };
     //$scope.loginSucess = function (response) {
     //    $scope.User = response;
@@ -67,7 +45,7 @@
         
         var app = document.getElementById('app').value;
         if (app === 'Scheduling')
-            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Calendar', submenu: [{ name: 'Daily View', url: 'Scheduling/Daily' }, { name: 'Weekly', url: 'Scheduling/Weekly' }, { name: 'Monthly', url: 'Scheduling/Monthly' }] }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }, { name: 'Contact Us', cls: 'nav active', url: 'Scheduling/Contact' }]
+            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily' }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }] }, { name: 'Contact Us', cls: 'nav active', url: 'Scheduling/Contact' }]
         var mainMenu = document.getElementById('menu');
         var menuItem;
         var submenu;

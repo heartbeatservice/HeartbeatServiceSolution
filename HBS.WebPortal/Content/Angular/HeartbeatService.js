@@ -12,8 +12,8 @@
                 },
 
                
-               url: "http://localhost:3687/api/" + resource,
-                // url: "http://services.heartbeat-biz.com/api/"+ resource,
+               //url: "http://localhost:3687/api/" + resource,
+                url: "http://services.heartbeat-biz.com/api/"+ resource,
 
                 type: "get",
 
@@ -41,8 +41,8 @@
                     xhrObj.setRequestHeader("Content-Type", "application/json");
                     xhrObj.setRequestHeader("Accept", "application/json");
                 },
-                url: "http://localhost:3687/api/" + resource,
-               // url: "http://services.heartbeat-biz.com/api/"+ resource,
+               // url: "http://localhost:3687/api/" + resource,
+                url: "http://services.heartbeat-biz.com/api/"+ resource,
                 type: "post",
                 data: JSON.stringify(params),
                 success: function (response) { callSuccess(response); },
@@ -58,8 +58,8 @@
                        
                        
                     },
-                    url: "http://localhost:3687/api/" + resource,
-                  //  url: "http://services.heartbeat-biz.com/api/"+ resource,
+                  //  url: "http://localhost:3687/api/" + resource,
+                   url: "http://services.heartbeat-biz.com/api/"+ resource,
                     type: "PUT",
                     data: JSON.stringify(params),
                     success: function (response) { callSuccess(response); },
@@ -75,8 +75,8 @@
                     },
 
 
-                    url: "http://localhost:3687/CustomApi/" + resource,
-                   // url: "http://services.heartbeat-biz.com/CustomApi/" + resource,
+                   // url: "http://localhost:3687/CustomApi/" + resource,
+                    url: "http://services.heartbeat-biz.com/CustomApi/" + resource,
 
                     type: "get",
 

@@ -25,9 +25,9 @@ namespace HBS.WebApi.Controllers
       
         
         [HttpGet]
-        public List<KendoEntity> GetProfessionalScheduleById(int id)
+        public List<KendoEntity> GetProfessionalScheduleById(int id,int month,int year)
         {
-            return professionalRepository.GetProfessionalMonthlyAppointments(id, DateTime.Now.Month, DateTime.Now.Year);
+            return professionalRepository.GetProfessionalMonthlyAppointments(id, month, year);
            // return new List<KendoEntity>{new KendoEntity{OwnerID="2", IsAllDay=false,Title="My Meeting",Description="Testing 123",Start=DateTime.Now.ToString(),End=DateTime.Now.AddMinutes(30).ToString(),TaskID="4"}};
         }
 
