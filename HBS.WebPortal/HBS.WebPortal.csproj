@@ -237,6 +237,7 @@
     <Content Include="Content\bootstrap\styles.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fullcalendar.css" />
+    <Content Include="Content\images\adnan.jpg" />
     <Content Include="Content\images\amir.jpg" />
     <Content Include="Content\images\amir_shot.jpg" />
     <Content Include="Content\images\favicon.ico" />
@@ -450,6 +451,7 @@
     <Content Include="Views\Scheduling\Professional.cshtml" />
     <Content Include="Views\Scheduling\Insurance.cshtml" />
     <Content Include="Views\Home\Goals.cshtml" />
+    <Content Include="Views\Scheduling\Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

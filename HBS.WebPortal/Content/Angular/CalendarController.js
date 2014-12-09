@@ -12,6 +12,7 @@
     $scope.year=2014;
     $scope.month = 11;
     $scope.itemCreated = false;
+    $scope.openform = true;
    // $scope.ServiceURL = "http://localhost:3687/api/";
     $scope.ServiceURL="http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
@@ -150,10 +151,13 @@
             $("#scheduler").kendoScheduler({
                 date: new Date($scope.currentDate),
                 startTime: new Date($scope.currentDate+" 7:00 AM"),
-                height: 600,
-              
+                height:600,
                 views: [
-                    "day",
+                   { type:"day",
+                       group: {
+                           orientation: "vertical"
+                       }
+                   },
                      //,
                     //{ type: "workWeek", selected: true },
                     "week",
@@ -161,11 +165,16 @@
                      "agenda"
                 ],
                 edit: function (e) {
+                    if (e.container.find("[name=isAllDay]").attr("checked")) {
+                        e.container.find("[name=isAllDay]").click();
 
-                    e.container.find("[name=isAllDay]").parent().prev().remove().end().remove();
-                    e.container.find("[data-container-for=recurrenceRule]").prev().remove().end().remove();
-                    e.container.find("[for=ownerId]").html("Customer");
-                    $(".k-window-title").html('Schedule Appointment with Dr. '+$scope.ProfessionalInfo.FirstName);
+                        e.container.find("[name=isAllDay]").attr("checked", false);
+                    }
+                        e.container.find("[name=isAllDay]").parent().prev().remove().end().remove();
+                        e.container.find("[data-container-for=recurrenceRule]").prev().remove().end().remove();
+                        e.container.find("[for=ownerId]").html("Customer");
+                        $(".k-window-title").html('Schedule Appointment with Dr. ' + $scope.ProfessionalInfo.FirstName);
+                    
                 },
                 change: function (e) {
         var start = e.start; //selection start date
@@ -339,7 +348,12 @@
       
         });
 
-        
+        $(".k-scheduler-monthview").dblclick(function () {
+
+            $scope.openform = false;
+
+
+        });
 
         $(".k-nav-prev").mouseup(function () {
 

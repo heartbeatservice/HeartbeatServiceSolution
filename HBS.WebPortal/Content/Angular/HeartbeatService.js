@@ -54,9 +54,7 @@
             PutData: function (callSuccess, wrong, resource, params) {
                 request = $.ajax({
                     beforeSend: function (xhrObj) {
-                        xhrObj.setRequestHeader("Content-Type", "application/json");
-                       
-                       
+                        xhrObj.setRequestHeader("Content-Type", "application/json");  
                     },
                   //  url: "http://localhost:3687/api/" + resource,
                    url: "http://services.heartbeat-biz.com/api/"+ resource,

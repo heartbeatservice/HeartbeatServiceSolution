@@ -38,13 +38,11 @@
             <input id="CurrentDate" type="hidden" value="@ViewBag.CurrentDate" />
          
 
-            <div id="example">
 
-                <div id="scheduler"></div>
             </div>
-            <script>
 
-            </script>
+
+
             <style scoped>
                 .k-nav-current > .k-link span + span {
                     max-width: 200px;
@@ -55,42 +53,29 @@
                     vertical-align: top;
                 }
 
-                #team-schedule {
-                    height: 115px;
-                    position: relative;
+
+
+
+
+                .k-scheduler-dayview table tbody tr td {
+                    max-width: 34px !important;
+                    /* background-color:yellow !important; */
                 }
 
-                #people {
-                    width: 345px;
-                    height: 115px;
-                    position: absolute;
-                    right: 0;
-                }
-
-                #alex {
-                    position: absolute;
-                    left: 4px;
-                    top: 81px;
-                }
-
-                #bob {
-                    position: absolute;
-                    left: 119px;
-                    top: 81px;
-                }
-
-                #charlie {
-                    position: absolute;
-                    left: 234px;
-                    top: 81px;
+                .k-scheduler-dayview table tbody tr:last-child {
+                    max-width: 1054px !important;
+                    /* background-color:yellow !important; */
                 }
             </style>
 
 
 
-        </div>
+        
+
     </div>
+    <div id="scheduler"></div>
 </div>
+
 @section scripts{
 <script src="~/Scripts/kendo.all.min.js"></script>
 <script src="~/Content/Angular/CalendarController.js"></script>
