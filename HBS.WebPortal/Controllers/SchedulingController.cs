@@ -123,5 +123,19 @@ namespace HBS.WebPortal.Controllers
 
             return View();
         }
+
+        public ActionResult Project()
+        {
+            if (Session["user"] == null)
+            {
+
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
+
+            ViewBag.companyid = getCompanyId();
+            ViewBag.userid = getUserId();
+
+            return View();
+        }
     }
 }
