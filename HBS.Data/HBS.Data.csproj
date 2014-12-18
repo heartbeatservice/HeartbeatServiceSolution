@@ -52,7 +52,6 @@
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -72,103 +71,20 @@
     <Compile Include="Concrete\CustomerRepository.cs" />
     <Compile Include="Concrete\ProfessionalRepository.cs" />
     <Compile Include="Concrete\SecurityRepository.cs" />
-    <Compile Include="Entities\TimeTracking\EF\AllowedUserIPAddress.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\aspnet_Applications.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\aspnet_Membership.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\aspnet_Roles.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\aspnet_Users.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\ExtendedUserProfile.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\TimeTrackingModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TimeTrackingModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\TimeTrackingModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\TimeTrackingModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TimeTrackingModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\UserTimeStampHistory.cs" />
-    <Compile Include="Entities\TimeTracking\EF\UserTimeTrackHistory.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\EF\WebMenu.cs">
-      <DependentUpon>TimeTrackingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TimeTracking\Infrastructure\CustomExtentions.cs" />
-    <Compile Include="Entities\TimeTracking\Infrastructure\CustomHelpers.cs" />
-    <Compile Include="Entities\TimeTracking\Infrastructure\ExcelReportHelper.cs" />
-    <Compile Include="Entities\TimeTracking\Infrastructure\WebHelpers.cs" />
-    <Compile Include="Entities\TimeTracking\Models\AccountModels.cs" />
-    <Compile Include="Entities\TimeTracking\Models\CustomTimeTrack.cs" />
-    <Compile Include="Entities\TimeTracking\Models\DailyTimeTrack.cs" />
-    <Compile Include="Entities\TimeTracking\Models\ExportPage.cs" />
-    <Compile Include="Entities\TimeTracking\Models\IExportPage.cs" />
-    <Compile Include="Entities\TimeTracking\Models\MembershipUserExtended.cs" />
-    <Compile Include="Entities\TimeTracking\Models\RoleManager.cs" />
-    <Compile Include="Entities\TimeTracking\Models\TimeTrack.cs" />
-    <Compile Include="Entities\TimeTracking\Models\TimeTrackManager.cs" />
-    <Compile Include="Entities\TimeTracking\Models\UserModel.cs" />
-    <Compile Include="Entities\TimeTracking\Models\UserReport.cs" />
-    <Compile Include="Entities\TimeTracking\Models\UserTimeStampHistoryManager.cs" />
-    <Compile Include="Entities\TimeTracking\Models\UserTimeTrackHistoryMapped.cs" />
-    <Compile Include="Entities\TimeTracking\Models\WebMenuRole.cs" />
-    <Compile Include="Entities\TimeTracking\Models\WeeklyTimeTrack.cs" />
-    <Compile Include="Entities\TimeTracking\Models\WeekManager.cs" />
-    <Compile Include="Entities\TimeTracking\Raven\MedicalUser.cs" />
-    <Compile Include="Entities\TimeTracking\Raven\UserTimeStamps.cs" />
-    <Compile Include="Entities\TimeTracking\Raven\UserTimeStampsHistory.cs" />
-    <Compile Include="Entities\TimeTracking\ViewModels\CreateUserRoleViewModel.cs" />
-    <Compile Include="Entities\TimeTracking\ViewModels\DailyTimeTrackViewModel.cs" />
-    <Compile Include="Entities\TimeTracking\ViewModels\TimeTrackErrorViewModel.cs" />
-    <Compile Include="Entities\TimeTracking\ViewModels\UserRoleViewModel.cs" />
-    <Compile Include="Entities\TimeTracking\ViewModels\WeeklyTimeTrackWeekListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="Entities\TimeTracking\EF\TimeTrackingModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TimeTrackingModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Entities\TimeTracking\EF\TimeTrackingModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TimeTrackingModel.edmx</DependentUpon>
-      <LastGenOutput>TimeTrackingModel.Context.cs</LastGenOutput>
-    </None>
-    <None Include="Entities\TimeTracking\EF\TimeTrackingModel.edmx.diagram">
-      <DependentUpon>TimeTrackingModel.edmx</DependentUpon>
-    </None>
-    <None Include="Entities\TimeTracking\EF\TimeTrackingModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TimeTrackingModel.edmx</DependentUpon>
-      <LastGenOutput>TimeTrackingModel.cs</LastGenOutput>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HBS.Entities\HBS.Entities.csproj">
       <Project>{2a305813-b643-4a04-a045-e6c87ebffaaf}</Project>
