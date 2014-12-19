@@ -69,21 +69,21 @@
 
                 menuItem.setAttribute("class", $scope.menuItems[i].cls);
               
-                    menuItem.innerHTML = '<a class="text-warning" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '</a>';
+                    menuItem.innerHTML = '<a style="color:white;" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '</a>';
             }
             else {
                 menuItem.setAttribute("class", "dropdown");
                 
-                menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open text-warning "); };
-                menuItem.onmouseout = function () { this.setAttribute("class", "dropdown text-warning"); };
-                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle text-warning" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '<b class=caret></b></a>';
+                menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open dropText "); };
+                menuItem.onmouseout = function () { this.setAttribute("class", "dropdown dropText"); };
+                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '<b class=caret></b></a>';
                 submenu = document.createElement('ul');
-                submenu.setAttribute("class", "dropdown-menu text-warning");
+                submenu.setAttribute("class", "dropdown-menu dropText");
                 for (j = 0; j < $scope.menuItems[i].submenu.length; j++)
                 {
                     submenuitem = document.createElement('li');
                     submenuitem.setAttribute("class", "subitem");
-                    submenuitem.innerHTML = '<a  class="text-warning" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].submenu[j].url + '/>' + $scope.menuItems[i].submenu[j].name + '</a>';
+                    submenuitem.innerHTML = '<a  class="dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].submenu[j].url + '/>' + $scope.menuItems[i].submenu[j].name + '</a>';
                     submenu.appendChild(submenuitem);
                 }
                 menuItem.appendChild(submenu);

@@ -41,13 +41,14 @@
 </head>
 <body ng-app="HeartbeatApp">
     <div id="mainContent" class="container" >
-        <div id='controls' class='navbar navBg navbar-fixed-top' ng-controller="HeartbeatController" data-ng-init="init();">
+        <div id='controls' class='navbar navbar-default navbar-fixed-top' ng-controller="HeartbeatController" data-ng-init="init();">
             <div class="col-md-9">
             <div id="logo" class="navbar-header">
                 <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
                 <div class="logoText hidden-xs">
 
-                    <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
+                   <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
+                    <!--<h3 class="dropText"> <a href="http://heartbeat-biz.com">Heartbeat</a></h3>-->
 </div>
 
                 <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -73,9 +74,9 @@
             @{if (Session["user"]!=null)
               {
                   
-            <div class=" col-md-offset-1 col-md-2" style="margin-top:20px;" ><label class="text-warning" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
+            <div class=" col-md-offset-1 col-md-2" style="margin-top:20px;" ><label class="dropText" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
                
-               <a href=" @(Url.Action("Logout","Home"))" class="btn-small btn-warning"><span class='glyphicon glyphicon-off '></a>
+               <a href=" @(Url.Action("Logout","Home"))" class="btn-small dropText"><span class='glyphicon glyphicon-off '></span></a>
             </div>
             }
             }

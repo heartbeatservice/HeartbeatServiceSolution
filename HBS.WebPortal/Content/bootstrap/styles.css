@@ -41,14 +41,17 @@ padding-right:10px;
 }
 
 .navBg {
-background-color:rgb(64, 83, 103) !important;
+background-color:rgb(26, 114, 189)!important;
 }
 
 .panelBg {
-background-color:green !important;
+background-color:rgb(9, 8, 109)  !important;
 
 }
 
+.dropText{
+    color:white;
+}
 .logoColor {
 color:#f23a38;
 }
@@ -59,25 +62,25 @@ margin-top:20px;
 }
 
 .dropdown:hover *{
-    background-color:green!important;
+    background-color:rgb(17, 59, 117)!important;
     color:white !important;
 }
 
 .navbar-item:hover *{
-    background-color:green !important;
+    background-color:rgb(17, 59, 117) !important;
     color:white !important;
 }
 
 .active *{
 
-    background-color:orange !important;
-    color:green !important;
+    background-color:rgb(9, 8, 109) !important;
+    color:white !important;
 }
 
 .subitem {
 background-color:white;
 }
 .subitem:hover *{
-    background-color:white!important;
-    color:red !important;
+    background-color:rgb(26, 114, 189)!important;
+    color:white !important;
 }
