@@ -13,8 +13,7 @@
     <link href="~/Content/Kendo/kendo.default.min.css" rel="stylesheet" />
     <link href="~/Content/Kendo/kendo.default.mobile.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
-       <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" /> 
-    <link rel="stylesheet" href="~/Content/fullcalendar.css" />
+      
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" />
     <link href="~/Content/Board.css" rel="stylesheet" />
@@ -43,7 +42,7 @@
 <body ng-app="HeartbeatApp">
     <div id="mainContent" class="container" >
         <div id='controls' class='navbar navBg navbar-fixed-top' ng-controller="HeartbeatController" data-ng-init="init();">
-            <div class="col-md-8">
+            <div class="col-md-9">
             <div id="logo" class="navbar-header">
                 <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
                 <div class="logoText hidden-xs">
@@ -74,7 +73,7 @@
             @{if (Session["user"]!=null)
               {
                   
-            <div class=" col-md-offset-2 col-md-2" style="margin-top:20px;" ><label class="text-warning" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
+            <div class=" col-md-offset-1 col-md-2" style="margin-top:20px;" ><label class="text-warning" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
                
                <a href=" @(Url.Action("Logout","Home"))" class="btn-small btn-warning"><span class='glyphicon glyphicon-off '></a>
             </div>
