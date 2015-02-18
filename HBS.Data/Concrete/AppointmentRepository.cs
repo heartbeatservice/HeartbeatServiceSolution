@@ -13,7 +13,7 @@ namespace HBS.Data.Concrete
     public class AppointmentRepository : BaseRepository, IAppointmentRepository
     {
        
-        
+        //This is a test
         private const string AddAppointmentSp = "AddAppointment";
         private const string UpdateAppointmentSp = "UpdateAppointment";
         private const string GetProfessionalAppointmentsSp = "GetProfessionalAppointments";
