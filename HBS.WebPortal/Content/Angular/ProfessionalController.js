@@ -2,7 +2,7 @@
   
     $scope.Professional = {};
     $scope.CompanyId = $('#company').val();
-    
+    $scope.SearchParam = '';
     
   
 
@@ -58,6 +58,29 @@
         $('#dismiss').click();
         alert("Added successfully");
        
+    };
+
+    $scope.ProfessionalSearch = function () {
+
+        var myParams = $scope.SearchParam.split(",");
+        var dob = '';
+        var name = '';
+        if (myParams.length > 0) {
+            for (i = 0; i < myParams.length; i++) {
+               name = myParams[i].trim();               
+            }
+        }
+        else {            
+            name = '-1';
+        }
+
+        var resource = 'Professional?companyId=' + $scope.CompanyId + '&ProfessionalName=' + name;
+        HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+
+    };
+    $scope.SearchSuccess = function (data) {
+        $scope.Professional = data;
+        $scope.$apply();
     };
 });
    

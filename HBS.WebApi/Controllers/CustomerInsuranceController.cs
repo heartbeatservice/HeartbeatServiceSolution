@@ -32,6 +32,10 @@ namespace HBS.WebApi.Controllers
          return repository.GetCustomerInsurance(customerInsuranceId);
      }
 
+     public List<CustomerInsurance> GetCustomerInsurance(int customerId, int customerInsuranceId)
+     {
+         return repository.GetCustomerInsurance(customerId, customerInsuranceId);
+     }
 
      public bool PutUpdateCustomerInsurance([FromBody]CustomerInsurance customerInsurance)
      {

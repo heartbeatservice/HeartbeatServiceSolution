@@ -1,7 +1,7 @@
 ﻿HeartbeatApp.controller("InsuranceController", function AppController($scope, $location, HeartbeatService) {
 
-
-
+    $scope.CompanyId = $('#company').val();
+    $scope.SearchParam = '';
     $scope.Insurance = {};
    $scope.clearInsurance = function () {
 
@@ -56,30 +56,20 @@
         var name = '';
         if (myParams.length > 0) {
             for (i = 0; i < myParams.length; i++) {
-                if (HeartbeatService.IsDate(myParams[i].trim())) {
-                    dob = myParams.replace('/', '-').trim();
-                    name = '-1';
-
-                }
-                else {
-                    dob = '1-1-1900';
                     name = myParams[i].trim();
-                }
-
             }
         }
         else {
-            dob = '1-1-1900';
             name = '-1';
         }
 
-        //var resource = 'Insurance?companyId=' + $scope.CompanyId + '&InsuranceName=' + name + '&dob=' + dob;
-        //HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        var resource = 'Insurance?companyId=' + $scope.CompanyId + '&InsuranceName=' + name;
+        HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
 
     };
 
     $scope.SearchSuccess = function (data) {
-        $scope.Insurances = data;
+        $scope.Insurance = data;
         $scope.$apply();
     };
 

@@ -17,12 +17,13 @@ namespace HBS.Data.Concrete
     {
         private const string UpdateCustomerSp = "UpdateCustomer";
         private const string UpdateCustomerInsuranceSp = "UpdateCustomerInsurance";
-        private const string GetCustomerInsuranceByIDSp = "GetCustomerInsuranceByCustomerID";
+        private const string GetCustomerInsuranceByCustomerIDSp = "GetCustomerInsuranceByCustomerID";
         private const string AddCustomerInsuranceSp = "AddCustomerInsurance";
         private const string AddCustomerSp = "AddCustomer";
         private const string GetCustomersSp = "GetCustomers";
         private const string GetCustomersByNameDOBSp = "GetCustomersByNameDOB";
         private const string GetCustomerByIDSp = "GetCustomerByID";
+        private const string GetCustomerInsuranceByIDSp = "GetCustomerInsuranceByID";
         //private const string sp = "";
 
 
@@ -281,7 +282,7 @@ namespace HBS.Data.Concrete
 
                 conn.Open();
 
-                using (var cmd = new SqlCommand(GetCustomerInsuranceByIDSp, conn))
+                using (var cmd = new SqlCommand(GetCustomerInsuranceByCustomerIDSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -323,6 +324,48 @@ namespace HBS.Data.Concrete
             
         }
 
+        public List<CustomerInsurance> GetCustomerInsurance(int companyId, int customerInsuranceId)
+        {
+
+            var lst = new List<CustomerInsurance>();
+            CustomerInsurance customerInsurance = null;
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+
+                conn.Open();
+
+                using (var cmd = new SqlCommand(GetCustomerInsuranceByIDSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                    cmd.Parameters.Add("@CustomerInsuranceID", SqlDbType.Int);
+                    cmd.Parameters["@CustomerInsuranceID"].Value = customerInsuranceId;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                while (myReader.Read())
+                                {
+
+                                    customerInsurance = new CustomerInsurance(myReader);
+                                    lst.Add(customerInsurance);
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+
+            }
+            return lst;
+        }
         public bool RemoveCustomerInsurance(int customerInsuranceId)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))

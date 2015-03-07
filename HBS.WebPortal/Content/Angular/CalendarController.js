@@ -13,7 +13,7 @@
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
-   // $scope.ServiceURL = "http://localhost:3687/api/";
+    //$scope.ServiceURL = "http://localhost:3687/api/";
     $scope.ServiceURL="http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
@@ -271,7 +271,7 @@
                             id: "taskId",
                             fields: {
                                 taskId: { from: "TaskID", type: "number" },
-                                title: { from: "Title", defaultValue: "No title", validation: { required: true } },
+                                title: { from: "Title", defaultValue: "", validation: { required: true } },
                                 start: { type: "date", from: "Start" },
                                 end: { type: "date", from: "End" },
                                 startTimezone: { from: "StartTimezone" },
@@ -280,9 +280,9 @@
                                 recurrenceId: { from: "RecurrenceID" },
                                 recurrenceRule: { from: "RecurrenceRule" },
                                 recurrenceException: { from: "RecurrenceException" },
-                                ownerId: { from: "OwnerID", defaultValue: 1 },
+                                ownerId: { from: "OwnerID", defaultValue: 0 },
                                 isAllDay: { type: "boolean", from: "IsAllDay" },
-                                ProfessionalId: { type: "number", from: "ProfessionalId" },
+                                ProfessionalId: { type: "number", from: "ProfessionalId"},
                                 UserId: { type: "number", from: "UserId" }
                             }
                         }
