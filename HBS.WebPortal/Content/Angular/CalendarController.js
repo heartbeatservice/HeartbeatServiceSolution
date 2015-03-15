@@ -13,8 +13,8 @@
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
-    //$scope.ServiceURL = "http://localhost:3687/api/";
-    $scope.ServiceURL="http://services.heartbeat-biz.com/api/";
+    $scope.ServiceURL = "http://localhost:3687/api/";
+    //$scope.ServiceURL="http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
         $("#scheduler").ajaxComplete(function () {
@@ -170,10 +170,13 @@
 
                         e.container.find("[name=isAllDay]").attr("checked", false);
                     }
-                        e.container.find("[name=isAllDay]").parent().prev().remove().end().remove();
-                        e.container.find("[data-container-for=recurrenceRule]").prev().remove().end().remove();
-                        e.container.find("[for=ownerId]").html("Customer");
-                        $(".k-window-title").html('Schedule Appointment with Dr. ' + $scope.ProfessionalInfo.FirstName);
+                    if($scope.CustomerId != '0')
+                        $('select[data-bind="value:ownerId"]').data("kendoMultiSelect").value($scope.CustomerId);
+                    $('select[data-bind="value:ownerId"]').data("kendoMultiSelect").options.maxSelectedItems = 1;
+                    e.container.find("[name=isAllDay]").parent().prev().remove().end().remove();
+                    e.container.find("[data-container-for=recurrenceRule]").prev().remove().end().remove();
+                    e.container.find("[for=ownerId]").html("Customer");
+                    $(".k-window-title").html('Schedule Appointment with Dr. ' + $scope.ProfessionalInfo.FirstName);
                     
                 },
                 change: function (e) {
@@ -272,7 +275,7 @@
                             fields: {
                                 taskId: { from: "TaskID", type: "number" },
                                 title: { from: "Title", defaultValue: "", validation: { required: true } },
-                                start: { type: "date", from: "Start" },
+                                start: { type: "date", from: "Start", validation: { required: true }},
                                 end: { type: "date", from: "End" },
                                 startTimezone: { from: "StartTimezone" },
                                 endTimezone: { from: "EndTimezone" },
@@ -280,7 +283,7 @@
                                 recurrenceId: { from: "RecurrenceID" },
                                 recurrenceRule: { from: "RecurrenceRule" },
                                 recurrenceException: { from: "RecurrenceException" },
-                                ownerId: { from: "OwnerID", defaultValue: 0 },
+                                ownerId: { from: "OwnerID", defaultValue: 0, validation: { required: true } },
                                 isAllDay: { type: "boolean", from: "IsAllDay" },
                                 ProfessionalId: { type: "number", from: "ProfessionalId"},
                                 UserId: { type: "number", from: "UserId" }
@@ -300,7 +303,8 @@
                     {
                         field: "ownerId",
                         title: "Owner",
-                        dataSource: $scope.CustomerDropDown
+                        dataSource: $scope.CustomerDropDown,
+                        multiple: true
 
                             /*[
                             { text: "Alex", value: 1, color: "#f8a398" },

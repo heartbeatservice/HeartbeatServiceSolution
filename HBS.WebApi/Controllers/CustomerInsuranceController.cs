@@ -42,7 +42,8 @@ namespace HBS.WebApi.Controllers
          return repository.UpdateCustomerInsurance(customerInsurance);
      }
 
-     public bool DeleteInActiveCustomerInsurance(int customerInsuranceId)
+     [HttpDelete]
+     public bool DeleteCustomerInsurance(int customerInsuranceId)
      {
          return repository.RemoveCustomerInsurance(customerInsuranceId);
      }

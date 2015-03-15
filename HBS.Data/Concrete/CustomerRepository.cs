@@ -24,6 +24,7 @@ namespace HBS.Data.Concrete
         private const string GetCustomersByNameDOBSp = "GetCustomersByNameDOB";
         private const string GetCustomerByIDSp = "GetCustomerByID";
         private const string GetCustomerInsuranceByIDSp = "GetCustomerInsuranceByID";
+        private const string RemoveCustomerInsuranceSp = "RemoveCustomerInsurance";
         //private const string sp = "";
 
 
@@ -258,14 +259,13 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(UpdateCustomerInsuranceSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerInsurance.CustomerId;
+                    cmd.Parameters.Add("@CustomerInsuranceID", SqlDbType.Int).Value = customerInsurance.CustomerInsuranceID;
+                    cmd.Parameters.Add("@InsuranceID", SqlDbType.Int).Value = customerInsurance.InsuranceId;
                     cmd.Parameters.Add("@EffectiveDate", SqlDbType.DateTime).Value = customerInsurance.EffectiveDate;
-                    cmd.Parameters.Add("@FirstName", SqlDbType.DateTime).Value = customerInsurance.EndDate;
+                    cmd.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = customerInsurance.EndDate;
                     cmd.Parameters.Add("@PcpName", SqlDbType.VarChar).Value = customerInsurance.PcpName;
                     cmd.Parameters.Add("@CustomerInsuranceNumber", SqlDbType.VarChar).Value = customerInsurance.CustomerInsuranceNumber;
                     cmd.Parameters.Add("@InsuranceType", SqlDbType.VarChar).Value = customerInsurance.InsuranceType;
-                    cmd.Parameters.Add("@CreatedBy", SqlDbType.Int).Value = customerInsurance.CreatedBy;
-                    cmd.Parameters.Add("@CreatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
                     return Convert.ToBoolean(cmd.ExecuteScalar());
 
@@ -372,12 +372,11 @@ namespace HBS.Data.Concrete
             {
                 conn.Open();
 
-                using (var cmd = new SqlCommand(UpdateCustomerInsuranceSp, conn))
+                using (var cmd = new SqlCommand(RemoveCustomerInsuranceSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@CustomerInsuranceId", SqlDbType.Int).Value = customerInsuranceId;
-                    cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = false;
+                    cmd.Parameters.Add("@CustomerInsuranceId", SqlDbType.Int).Value = customerInsuranceId;                    
                     //cmd.Parameters.Add("@UpdatedBy", SqlDbType.Int).Value = removedByUserId;
                     //cmd.Parameters.Add("@UpdatedDate", SqlDbType.DateTime).Value = DateTime.UtcNow;
 
