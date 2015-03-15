@@ -1,34 +1,42 @@
 ﻿HeartbeatApp.factory('HeartbeatService', function () {
-
+    var webapiurl = "http://localhost:3687/api/";
+    //var webapiurl = "http://services.heartbeat-biz.com/api/";
     return {
 
         serviceAuthor: { 'Name': 'Umais Siddiqui' },
-
+        
         GetData: function (callSuccess, wrong, resource) {
             request = $.ajax({
                 beforeSend: function (xhrObj) {
                     xhrObj.setRequestHeader("Content-Type", "application/json");
                     xhrObj.setRequestHeader("Accept", "application/json");
-                },
-
-               
-               //url: "http://localhost:3687/api/" + resource,
-                url: "http://services.heartbeat-biz.com/api/"+ resource,
-
+                },               
+                url: webapiurl + resource,
                 type: "get",
-
                 success: function (response) { callSuccess(response); },
                 error: function (result) { wrong(result); }
             });
         },
-
+        DeleteData: function (callSuccess, wrong, resource) {
+            request = $.ajax({
+                beforeSend: function (xhrObj) {
+                    xhrObj.setRequestHeader("Content-Type", "application/json");
+                    xhrObj.setRequestHeader("Accept", "application/json");
+                },
+                url: webapiurl + resource,
+                // url: "http://services.heartbeat-biz.com/api/"+ resource,
+                type: "DELETE",
+                success: function (response) { callSuccess(response); },
+                error: function (result) { wrong(result); }
+            });
+        },
         PostData: function (callSuccess, wrong, resource, params) {
             request = $.ajax({
                 beforeSend: function (xhrObj) {
                     xhrObj.setRequestHeader("Content-Type", "application/json");
                     xhrObj.setRequestHeader("Accept", "application/json");
                 },
-                url: "/api/" + resource,
+                url: webapiurl + resource,
                 type: "post",
                 data: JSON.stringify(params),
                 success: function (response) { callSuccess(response); },
@@ -41,31 +49,28 @@
                     xhrObj.setRequestHeader("Content-Type", "application/json");
                     xhrObj.setRequestHeader("Accept", "application/json");
                 },
-               // url: "http://localhost:3687/api/" + resource,
-                url: "http://services.heartbeat-biz.com/api/"+ resource,
+               url: webapiurl + resource,
+                //url: "http://services.heartbeat-biz.com/api/"+ resource,
                 type: "post",
                 data: JSON.stringify(params),
                 success: function (response) { callSuccess(response); },
                 error: function (result) { wrong(result); }
             });
         },
-        
-
-            PutData: function (callSuccess, wrong, resource, params) {
+        PutData: function (callSuccess, wrong, resource, params) {
                 request = $.ajax({
                     beforeSend: function (xhrObj) {
                         xhrObj.setRequestHeader("Content-Type", "application/json");  
                     },
-                  //  url: "http://localhost:3687/api/" + resource,
-                   url: "http://services.heartbeat-biz.com/api/"+ resource,
+                    url: webapiurl + resource,
+                 //  url: "http://services.heartbeat-biz.com/api/"+ resource,
                     type: "PUT",
                     data: JSON.stringify(params),
                     success: function (response) { callSuccess(response); },
                     error: function (result) { wrong(result); }
                 });
-            },
-        
-            CustomGetData: function (callSuccess, wrong, resource) {
+        },        
+        CustomGetData: function (callSuccess, wrong, resource) {
                 request = $.ajax({
                     beforeSend: function (xhrObj) {
                         xhrObj.setRequestHeader("Content-Type", "application/json");

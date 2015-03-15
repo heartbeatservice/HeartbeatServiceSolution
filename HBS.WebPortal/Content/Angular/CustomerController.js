@@ -1,11 +1,13 @@
 ﻿HeartbeatApp.controller("CustomerController", function AppController($scope, $location, HeartbeatService) {
-    $scope.Insurance = [{ InsuranceId: '1', InsuranceName: 'ABC Testing' }];
+    $scope.Insurance = [];//{ InsuranceId: '1', InsuranceName: 'ABC Testing' }];
     $scope.CompanyId = $('#company').val();
     $scope.Customers = [];
     $scope.SearchParam = '';
     $scope.InsuranceEntry = {};
     $scope.myProviders = { ProfessionalId: 0, FirstName: '', LastName: '' };
     $scope.AllProviders = [{ ProfessionalId: 1, FirstName: 'Farzana', LastName: 'Aziz' }, { ProfessionalId: 2, FirstName: 'Abbas', LastName: 'Rizwi' }, { ProfessionalId: 3, FirstName: 'Fawzia', LastName: 'Kazmi' }];
+    $scope.InsuranceId = 0;
+    $scope.CustomerId = 0;
     $scope.clearCustomer = function () {
 
         $scope.Customer = {};
@@ -26,12 +28,30 @@
 
         $scope.AllProviders = response;
     };
+    $scope.totalServerItems = 0;
+    // sort
+    $scope.sortOptions = {
+        fields: ["FirstName"],
+        directions: ["ASC"]
+    };
+    $scope.pagingOptions = {
+        pageSizes: [10, 20, 30],
+        pageSize: 10,
+        currentPage: 1
+    };
     $scope.GridOptions = {
         data: 'Customers',
+        enablePaging: true,
+        showFooter: true,
         enableCellSelection: false,
         enableRowSelection: false,
         enableCellEdit: false,
         enableColumnResize: true,
+        totalServerItems: 'totalServerItems',
+        sortInfo: $scope.sortOptions,
+        useExternalSorting: true,
+        pagingOptions: $scope.pagingOptions,
+
         enableColumnReordering: true,
         columnDefs: [
                      { field: 'FirstName', displayName: 'First Name', enableCellEdit: true, width: 100 },
@@ -71,7 +91,21 @@
         alert("FAILED : " + result.status + ' ' + result.statusText);
     };
 
+    $scope.$watch('pagingOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal) {
+            $scope.CustomerSearchAll();
+        }
+    }, true);
+    $scope.$watch('sortOptions', function (newVal, oldVal) {
+        if (newVal !== oldVal) {
+            $scope.CustomerSearchAll();
+        }
+    }, true);
     $scope.CustomerSearch = function () {
+        $scope.pagingOptions.currentPage = 1;
+        $scope.CustomerSearchAll();
+    };
+    $scope.CustomerSearchAll = function () {
 
         var myParams = $scope.SearchParam.split(",");
         var dob = '';
@@ -79,7 +113,9 @@
         if (myParams.length > 0) {
             for (i = 0; i < myParams.length; i++) {
                 if (HeartbeatService.IsDate(myParams[i].trim())) {
-                    dob = myParams.replace('/', '-').trim();
+                    var regex = new RegExp('/', 'g');
+                    dob = myParams[i].replace(regex, '-');
+                    //dob = myParams.replace('/', '-').trim();
                     name = '-1';
 
                 }
@@ -94,14 +130,14 @@
             dob = '1-1-1900';
             name = '-1';
         }
-
-        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob;
+        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob + '&pageNumber=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize;;
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
 
     };
 
     $scope.SearchSuccess = function (data) {
-        $scope.Customers = data;
+        $scope.Customers = data.Content;
+        $scope.totalServerItems = data.TotalRecords;
         $scope.$apply();
     };
 
@@ -234,5 +270,86 @@
             $('#frmschedule').submit();
         }
 
+    };
+
+    $scope.EditInsurance = function (CustomerId, CustomerInsuranceID) {        
+        var resource = 'CustomerInsurance?customerId=' + CustomerId + '&customerInsuranceId=' + CustomerInsuranceID;
+        HeartbeatService.GetData($scope.GetSuccessEditInsurance, $scope.Error, resource);
+    };
+    $scope.GetSuccessEditInsurance = function (response) {
+        $scope.Insurance = response[0];
+        $scope.InsuranceId = response[0].InsuranceId;
+       // $scope.$apply();
+        $scope.ShowInsuranceEditForm();
+        $('#insuranceClose').click();
+        $('#editbtnins').click();
+    };
+
+    $scope.ShowInsuranceEditForm = function () {
+        var companyId = $('#companyInsurance').val();
+        var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
+        HeartbeatService.GetData($scope.InsuranceEditLookupSuccess, $scope.Error, resource);
+    }
+
+    $scope.InsuranceEditLookupSuccess = function (data) {
+        $scope.AllInsurances = data;
+        angular.forEach(data, function (item, index) {
+            if (item.InsuranceId == $scope.InsuranceId) {
+                $scope.SelectedInsurance = item;
+            }
+        });
+        //$scope.SelectedInsurance = ($scope.AllInsurances.InsuranceId.indexOf($scope.InsuranceId) !== -1);
+        //$scope.SelectedInsurance.InsuranceId = 2;
+        $scope.$apply();
+    }
+
+    $scope.ResetInsurance = function (CustomerId, CustomerInsuranceID) {
+        $scope.SelectedInsurance = [];
+        $scope.Insurance = [];
+        $scope.AllInsurances = [];
+        var resource = 'CustomerInsurance?customerId=' + CustomerId + '&customerInsuranceId=' + CustomerInsuranceID;
+        HeartbeatService.GetData($scope.GetSuccessResetInsurance, $scope.Error, resource);
+    };
+
+    $scope.GetSuccessResetInsurance = function (response) {
+        $scope.Insurance = response[0];
+        $scope.InsuranceId = response[0].InsuranceId;
+        // $scope.$apply();
+        $scope.ShowInsuranceResetForm();
+    };
+
+    $scope.ShowInsuranceResetForm = function () {
+        var companyId = $('#companyInsurance').val();
+        var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
+        HeartbeatService.GetData($scope.InsuranceResetSuccess, $scope.Error, resource);
+    }
+
+    $scope.InsuranceResetSuccess = function (data) {
+        $scope.AllInsurances = data;
+        angular.forEach(data, function (item, index) {
+            if (item.InsuranceId == $scope.InsuranceId) {
+                $scope.SelectedInsurance = item;
+            }
+        });
+        $scope.$apply();
+    }
+
+    $scope.UpdateCustomerInsurance = function () {
+        var resource = 'CustomerInsurance';
+        $scope.Insurance.InsuranceId = $scope.SelectedInsurance.InsuranceId;
+        HeartbeatService.PutData($scope.UpdateCustomerInsSuccess, $scope.Error, resource, $scope.Insurance);
+    };
+    $scope.UpdateCustomerInsSuccess = function (response) {
+        alert("Updated successfully");
+    };
+
+    $scope.RemoveCustomerInsurance = function (CustomerInsuranceID, CustomerID) {
+        $scope.CustomerId = CustomerID;
+        var resource = 'CustomerInsurance?customerInsuranceId=' + CustomerInsuranceID;
+        HeartbeatService.DeleteData($scope.RemoveCustomerInsSuccess, $scope.Error, resource);
+    };
+    $scope.RemoveCustomerInsSuccess = function (response) {
+        alert("Deleted successfully");
+        $scope.OpenInsurance($scope.CustomerId);        
     };
 });

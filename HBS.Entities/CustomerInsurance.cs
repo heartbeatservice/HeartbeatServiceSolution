@@ -11,6 +11,7 @@ namespace HBS.Entities
     public class CustomerInsurance : BaseEntity
     {
         public int InsuranceId { get; set; }
+        public int CustomerInsuranceID { get; set; }
         public int CustomerId { get; set; }
         public string EffectiveDate { get; set; }
         public string EndDate { get; set; }
@@ -30,6 +31,9 @@ namespace HBS.Entities
         {
             if (dbReader.HasColumn("InsuranceId") && dbReader["InsuranceId"] != DBNull.Value)
                 InsuranceId = (int)dbReader["InsuranceId"];
+
+            if (dbReader.HasColumn("CustomerInsuranceID") && dbReader["CustomerInsuranceID"] != DBNull.Value)
+                CustomerInsuranceID = (int)dbReader["CustomerInsuranceID"];
 
             if (dbReader.HasColumn("CustomerId") && dbReader["CustomerId"] != DBNull.Value)
                 CustomerId = (int)dbReader["CustomerId"];

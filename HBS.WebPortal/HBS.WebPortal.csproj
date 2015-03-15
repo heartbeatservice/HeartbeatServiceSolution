@@ -383,6 +383,7 @@
     <Content Include="Content\Kendo\images\kendoui.ttf" />
     <Content Include="Content\Kendo\images\kendoui.woff" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\HeartBeat.pubxml" />
     <None Include="Properties\PublishProfiles\HeartbeatWebPortal.pubxml" />
