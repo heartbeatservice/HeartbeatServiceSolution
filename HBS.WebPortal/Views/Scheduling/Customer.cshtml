@@ -66,18 +66,18 @@
                             <div class="input-group">
                                 <input type="hidden" id="user" ng-model="Customer.UserId" value="@ViewBag.userid" />
                                 <input type="hidden" id="company" ng-model="Customer.CompanyId" value="@ViewBag.companyid" />
-                                <input id="FirstName" type="text" value="" ng-model="Customer.FirstName" class="form-control" placeholder="First Name"  />
+                                <input id="FirstName" type="text" value="" ng-model="Customer.FirstName" class="form-control" placeholder="First Name" />
                             </div>
                         </div>
                         <div class="form-group col-md-2 has-warning"> <input id="MiddleInitial" type="text" value="" ng-model="Customer.MiddleInitial" class="form-control" placeholder="MI" /> </div>
 
 
-                        <div class="form-group col-md-5 has-warning"> <input id="LastName" type="text" value="" ng-model="Customer.LastName" class="form-control" placeholder="Last Name"  /> </div>
+                        <div class="form-group col-md-5 has-warning"> <input id="LastName" type="text" value="" ng-model="Customer.LastName" class="form-control" placeholder="Last Name" /> </div>
                     </div>
 
                     <div class="row">
-                        <div class="form-group col-md-6 has-warning"> <input id="address1" type="text" value="" ng-model="Customer.Address1" class="form-control" placeholder="Address 1"  /> </div>
-                        <div class="form-group col-md-6 has-warning "> <input id="Address2" type="text" value="" ng-model="Customer.Address2" class="form-control" placeholder="Address 2"  /> </div>
+                        <div class="form-group col-md-6 has-warning"> <input id="address1" type="text" value="" ng-model="Customer.Address1" class="form-control" placeholder="Address 1" /> </div>
+                        <div class="form-group col-md-6 has-warning "> <input id="Address2" type="text" value="" ng-model="Customer.Address2" class="form-control" placeholder="Address 2" /> </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-5 has-warning"> <input id="city" type="text" value="" ng-model="Customer.City" class="form-control" placeholder="City" /> </div>
@@ -101,7 +101,7 @@
                 <div class="modal-footer">
                     <div class="form-group  col-md-8">
                         <button class="btn btn-warning" class="form-control" ng-click="AddCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
-                        <a href="#" id="dismiss" class="btn btn-warning" ng-click="clearCustomer();" data-dismiss="modal">Cancel</a>
+                        <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
                         <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
 
                     </div>
@@ -167,7 +167,7 @@
                 <div class="modal-footer">
                     <div class="form-group  col-md-8">
                         <button class="btn btn-warning" class="form-control" ng-click="UpdateCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
-                        <a href="#" id="dismissEdit" class="btn btn-warning" ng-click="clearCustomer();" data-dismiss="modal">Cancel</a>
+                        <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
                         <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
 
                     </div>
@@ -310,7 +310,7 @@
                         <div class="form-group col-md-6 has-warning">
                             <div class="input-group">
 
-                                <input id="EndDate" type="text" value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EndDate" />
+                                <input id="EndDate" type="text" value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EffectiveDate" />
                             </div>
                         </div>
 

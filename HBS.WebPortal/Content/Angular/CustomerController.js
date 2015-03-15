@@ -55,19 +55,15 @@
         $scope.Customer.Active = true;
         var resource = 'Customer';
         HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
-        
+
     };
 
     $scope.AddSuccess = function (response) {
         $scope.Customer.CustomerId = response;
         $scope.Customers.push($scope.Customer);
-        $scope.clearCustomer();
         $scope.$apply();
         $('#dismiss').click();
         $scope.ShowInsuranceForm();
-        
-        
-        
     };
 
     $scope.Error = function (result) {
