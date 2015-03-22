@@ -21,5 +21,8 @@ CREATE PROCEDURE [dbo].[AddCustomer]
 AS  
   
   
-INSERT INTO Customers(CompanyId,FirstName,MiddleInitial,LastName,DateofBirth,Address1,Address2,City,State,ZIP,HomePhone,CellPhone,Email,CreatedBy,DateCreated)   
-VALUES(@CompanyId,@FirstName,@MiddleInitial,@LastName,@DateofBirth,@Address1,@Address2,@City,@State,@ZIP,@HomePhone,@CellPhone,@Email,@CreatedBy,GetUtcDate())
+INSERT INTO Customers(CompanyId,FirstName,MiddleInitial,LastName,DateofBirth,Address1,Address2,City,State,ZIP,HomePhone,CellPhone,Email,CreatedBy,DateCreated,IsActive)   
+VALUES(@CompanyId,@FirstName,@MiddleInitial,@LastName,@DateofBirth,@Address1,@Address2,@City,@State,@ZIP,@HomePhone,@CellPhone,@Email,@CreatedBy,GetUtcDate(),1)  
+  
+ 
+ SELECT @@IDENTITY

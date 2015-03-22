@@ -13,7 +13,12 @@
         $scope.Customer = {};
 
     };
+    $scope.clearInsurance = function () {
 
+        $scope.Insurance = {};
+        $scope.InsuranceEntry = {};
+
+    };
     $scope.init = function () {
         $scope.GetProviders();
     };
@@ -191,6 +196,7 @@
         var companyId = $('#companyInsurance').val();
         var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
         HeartbeatService.GetData($scope.InsuranceLookupSuccess, $scope.Error, resource);
+        $scope.InsuranceEntry = {};
     }
 
     $scope.InsuranceLookupSuccess = function (data) {
@@ -341,6 +347,10 @@
     };
     $scope.UpdateCustomerInsSuccess = function (response) {
         alert("Updated successfully");
+        $("#dismissEditInsurance").click();
+        $scope.OpenInsurance($scope.CustomerId);
+        $scope.$apply();        
+
     };
 
     $scope.RemoveCustomerInsurance = function (CustomerInsuranceID, CustomerID) {

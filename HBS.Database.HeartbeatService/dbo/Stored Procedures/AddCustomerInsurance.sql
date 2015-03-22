@@ -12,5 +12,5 @@ Create PROCEDURE [dbo].[AddCustomerInsurance]
 AS
 
 
-INSERT INTO CustomerInsurance(InsuranceID,CustomerId,EffectiveDate,EndDate,PCPName,CustomerInsuranceNumber,InsuranceType) 
-VALUES(@InsuranceID,@CustomerId,@EffectiveDate,@EndDate,@PCPName,@CustomerInsuranceNumber,@InsuranceType)
+INSERT INTO CustomerInsurance(InsuranceID,CustomerId,EffectiveDate,EndDate,PCPName,CustomerInsuranceNumber,InsuranceType,IsActive) 
+VALUES(@InsuranceID,@CustomerId,@EffectiveDate,@EndDate,@PCPName,@CustomerInsuranceNumber,@InsuranceType,1)

@@ -13,8 +13,8 @@ namespace HBS.Entities
         public int InsuranceId { get; set; }
         public int CustomerInsuranceID { get; set; }
         public int CustomerId { get; set; }
-        public string EffectiveDate { get; set; }
-        public string EndDate { get; set; }
+        public DateTime EffectiveDate { get; set; }
+        public DateTime EndDate { get; set; }
         public string PcpName { get; set; }
         public string CustomerInsuranceNumber { get; set; }
         public string InsuranceType { get; set; }
@@ -39,10 +39,10 @@ namespace HBS.Entities
                 CustomerId = (int)dbReader["CustomerId"];
 
             if (dbReader.HasColumn("EffectiveDate") && dbReader["EffectiveDate"] != DBNull.Value)
-                EffectiveDate = ((DateTime)dbReader["EffectiveDate"]).ToShortDateString();
+                EffectiveDate = ((DateTime)dbReader["EffectiveDate"]);
 
             if (dbReader.HasColumn("EndDate") && dbReader["EndDate"] != DBNull.Value)
-                EndDate = ((DateTime)dbReader["EndDate"]).ToShortDateString();
+                EndDate = ((DateTime)dbReader["EndDate"]);
 
             if (dbReader.HasColumn("PCPName") && dbReader["PCPName"] != DBNull.Value)
                 PcpName = (string)dbReader["PCPName"];

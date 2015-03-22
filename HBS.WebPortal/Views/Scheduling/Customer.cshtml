@@ -167,7 +167,7 @@
                     <div class="form-group  col-md-8">
                         <button class="btn btn-warning" class="form-control" ng-click="UpdateCustomer();"><span class="glyphicon glyphicon-user"></span> Save</button>
                         <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
-                        <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
+                        <input class="btn btn-warning" type="button" value="Clear" ng-click="clearInsurance();" />
 
                     </div>
                 </div>
@@ -204,7 +204,8 @@
                                                 <span>Effective Date:{{i.EffectiveDate}}</span><br />
                                                 <span>End Date:{{i.EndDate}}</span><br />
                                                 <span>Insurance Type:{{i.InsuranceType}}</span><br />
-                                                <span>Active:{{i.IsActive}}</span><br />
+                                                <span>PCP Name:{{i.PcpName}}</span><br />
+                                                <span>Member Id:{{i.CustomerInsuranceNumber}}</span><br/>
                                                 <button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(i.CustomerId,i.CustomerInsuranceID);'><span class='glyphicon glyphicon-pencil'>Edit</span></button>
                                                 <button style='margin-left:20px;' class='btn-small btn-danger' ng-click='RemoveCustomerInsurance(i.CustomerInsuranceID,i.CustomerId);'><span class='glyphicon glyphicon-remove'>Remove</span></button>
                                             </div>
@@ -279,7 +280,7 @@
 
 
                     </div>
-                    <ng-form id="test1" name="test1">
+                    <form id="test1" name="test1" ng-submit="AddCustomerInsurance();">
                         <div class="row">
 
                             <div class="form-group col-md-6 has-warning">
@@ -296,7 +297,6 @@
                                 <div ng-class="{'has-error': test1.$invalid}" class="input-group">
                                     <input id="InsuranceType" name="InsuranceType" type="text" value="" ng-model="InsuranceEntry.InsuranceType"
                                            required class="form-control" placeholder="Insurance Type" />
-                                    <span class="help-block error" ng-show="test1.InsuranceType.$error.required">Required</span>
                                 </div>
 
                             </div>
@@ -305,14 +305,16 @@
 
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
-                                    <input id="EffectiveDate" type="text" value="" ng-model="InsuranceEntry.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
+                                    <div ng-class="{'has-error': test1.$invalid}" class="input-group">
+                                        <input id="EffectiveDate" type="datetime-local" value="" required ng-model="InsuranceEntry.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
-                                    <input id="EndDate" type="text" value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EndDate" />
+                                    <div ng-class="{'has-error': test1.$invalid}" class="input-group">
+                                        <input id="EndDate" type="datetime-local" required value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EndDate" />
+                                    </div>
                                 </div>
                             </div>
 
@@ -338,13 +340,13 @@
 
                         <div class="modal-footer">
                             <div class="form-group  col-md-8">
-                                <button class="btn btn-warning" class="form-control" ng-click="AddCustomerInsurance();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                                <button class="btn btn-warning" class="form-control" type="submit"><span class="glyphicon glyphicon-user"></span> Save</button>
                                 <a href="#" id="dismissAddInsurance" class="btn btn-warning" data-dismiss="modal">Cancel</a>
-                                <input class="btn btn-warning" type="button" value="Clear" ng-click="clearCustomer();" />
+                                <input class="btn btn-warning" type="button" value="Clear" ng-click="clearInsurance();" />
 
                             </div>
                         </div>
-                    </ng-form>
+                    </form>
                 </div>
             </div>
 
@@ -446,66 +448,67 @@
 
 
                     </div>
+                    <form id="formeditInsurance" name="formeditInsurance" ng-submit="UpdateCustomerInsurance();">
+                        <div class="row">
 
-                    <div class="row">
+                            <div class="form-group col-md-6 has-warning">
+                                <div class="input-group">
 
-                        <div class="form-group col-md-6 has-warning">
-                            <div class="input-group">
+                                    <select id="InsuranceId" class="form-control" ng-options="i.InsuranceName for i in AllInsurances" ng-model="SelectedInsurance"></select>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 has-warning">
+                                <div ng-class="{'has-error': formeditInsurance.$invalid}" class="input-group">
+                                    <input id="InsuranceType" type="text" required value="{{Insurance.InsuranceType}}" ng-model="Insurance.InsuranceType" class="form-control" placeholder="Insurance Type" />
 
-                                <select id="InsuranceId" class="form-control" ng-options="i.InsuranceName for i in AllInsurances" ng-model="SelectedInsurance"></select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <div ng-class="{'has-error': formeditInsurance.$invalid}" class="input-group">
+
+                                    <input id="EffectiveDate" required type="datetime-local" value="{{Insurance.EffectiveDate}}" ng-model="Insurance.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 has-warning">
+                                <div ng-class="{'has-error': formeditInsurance.$invalid}" class="input-group">
+
+                                    <input id="EndDate" type="datetime-local" required value="{{Insurance.EndDate}}" ng-model="Insurance.EndDate" class="form-control" placeholder="EndDate" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <div class="input-group">
+
+                                    <input id="PCPName" type="text" value="{{Insurance.PcpName}}" ng-model="Insurance.PcpName" class="form-control" placeholder="PCP Name" />
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6 has-warning">
+                                <div class="input-group">
+
+                                    <input id="InsuranceNumber" type="text" value="{{Insurance.CustomerInsuranceNumber}}" ng-model="Insurance.CustomerInsuranceNumber" class="form-control" placeholder="Member ID" />
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <div class="form-group  col-md-8">
+                                <button class="btn btn-warning" type="submit" class="form-control"><span class="glyphicon glyphicon-user"></span> Save</button>
+                                <a href="#" id="dismissEditInsurance" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                                <input class="btn btn-warning" type="button" value="Reset" ng-click="ResetInsurance(Insurance.CustomerId,Insurance.CustomerInsuranceID);" />
+
                             </div>
                         </div>
-                        <div class="form-group col-md-6 has-warning">
-                            <div class="input-group">
-                                <input id="InsuranceType" type="text" value="{{Insurance.InsuranceType}}" ng-model="Insurance.InsuranceType" class="form-control" placeholder="Insurance Type" />
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-
-                        <div class="form-group col-md-6 has-warning">
-                            <div class="input-group">
-
-                                <input id="EffectiveDate" type="text" value="{{Insurance.EffectiveDate}}" ng-model="Insurance.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 has-warning">
-                            <div class="input-group">
-
-                                <input id="EndDate" type="text" value="{{Insurance.EndDate}}" ng-model="Insurance.EndDate" class="form-control" placeholder="EndDate" />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="form-group col-md-6 has-warning">
-                            <div class="input-group">
-
-                                <input id="PCPName" type="text" value="{{Insurance.PcpName}}" ng-model="Insurance.PcpName" class="form-control" placeholder="PCP Name" />
-                            </div>
-                        </div>
-                        <div class="form-group col-md-6 has-warning">
-                            <div class="input-group">
-
-                                <input id="InsuranceNumber" type="text" value="{{Insurance.CustomerInsuranceNumber}}" ng-model="Insurance.CustomerInsuranceNumber" class="form-control" placeholder="Member ID" />
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <div class="form-group  col-md-8">
-                            <button class="btn btn-warning" class="form-control" ng-click="UpdateCustomerInsurance();"><span class="glyphicon glyphicon-user"></span> Save</button>
-                            <a href="#" id="dismissAddInsurance" class="btn btn-warning" data-dismiss="modal">Cancel</a>
-                            <input class="btn btn-warning" type="button" value="Reset" ng-click="ResetInsurance(Insurance.CustomerId,Insurance.CustomerInsuranceID);" />
-
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
 

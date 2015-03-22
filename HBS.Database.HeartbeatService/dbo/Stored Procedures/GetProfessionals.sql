@@ -6,7 +6,9 @@ CREATE PROCEDURE [dbo].[GetProfessionals]
 
 AS
 
+if @Name='-1'
 
+SET @Name=NULL
 -- GET PROFESSIONALS DETAILS BY COMPANY
 SELECT 
 	P.ProfessionalId,

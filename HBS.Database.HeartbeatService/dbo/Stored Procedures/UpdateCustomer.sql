@@ -1,6 +1,6 @@
 ﻿  
 CREATE PROCEDURE [dbo].[UpdateCustomer]   
---UpdateCustomer 1,'Navid',null,'Marzi',null,null,null,null,null,null,null,null,null,2
+--UpdateCustomer 1,'Naveed',null,'Marzi','10-26-1984',null,null,null,null,null,null,null,'naveed84n@gmail.com',2
 
 @CustomerID int,  
 @FirstName nvarchar(50)=NULL,  
@@ -21,7 +21,7 @@ AS
   
 DECLARE @DateUpdated DATETime=GetUtcDate();  
   
-declare @sql varchar(256)  
+declare @sql varchar(1000)  
 Declare @tblParams  table(id int identity(1,1),name varchar(50),paramName varchar(50))  
   
 SET @Sql='Update Customers  
@@ -73,7 +73,7 @@ If(@DateUpdated is not Null)
 Insert Into @tblParams Values('DateUpdated',CONVERT(varchar,@DateUpdated))  
   
 Declare @start int,@end int  
-Declare @UpdateColumn varchar(50)  
+Declare @UpdateColumn varchar(500)  
 Select @start =min(Id) from @tblParams  
 Select @end=max(Id) from @tblParams  
   

@@ -7,6 +7,7 @@
     [PCPName]                 NVARCHAR (100) NULL,
     [CustomerInsuranceNumber] NVARCHAR (50)  NULL,
     [InsuranceType]           NVARCHAR (50)  NULL,
+    [IsActive] BIT NULL DEFAULT 1, 
     CONSTRAINT [PK_CustomerInsurance] PRIMARY KEY CLUSTERED ([CustomerInsuranceID] ASC)
 );
 

@@ -1255,6 +1255,7 @@
     <Content Include="Views\Scheduling\Project.cshtml" />
     <Content Include="Views\Scheduling\Workflow.cshtml" />
     <Content Include="Views\Scheduling\WorkflowAdmin.cshtml" />
+    <Content Include="Views\Home\CourseOutline.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

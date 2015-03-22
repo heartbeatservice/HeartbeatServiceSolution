@@ -26,8 +26,8 @@ namespace HBS.WebPortal.Models
             string reqText=JsonConvert.SerializeObject(u);
             byte[] data = Encoding.UTF8.GetBytes(reqText);
             bool result = false;
-            string uri = "http://services.heartbeat-biz.com/api/Security";
-            //string uri = "http://localhost:3687/api/Security";
+            //string uri = "http://services.heartbeat-biz.com/api/Security";
+            string uri = "http://localhost:3687/api/Security";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
 
                    req.Method = "post";

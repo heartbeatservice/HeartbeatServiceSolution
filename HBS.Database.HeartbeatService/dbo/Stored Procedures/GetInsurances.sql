@@ -1,15 +1,17 @@
 ﻿
-Create PROCEDURE [dbo].[GetInsurances]
+CREATE PROCEDURE [dbo].[GetInsurances]
 -- [GetInsurances]  1, 'z'
 
 
 @CompanyId int,
-@Name nvarchar(50)=Null
+@InsuranceName nvarchar(50)=Null
 
 
 
 AS
 
+IF @InsuranceName='-1'
+SET @InsuranceName=NULL
 SELECT 
 	I.InsuranceID,
 	c.CompanyId,
@@ -22,5 +24,5 @@ SELECT
 FROM Insurances I
 INNER JOIN Company c
 ON I.CompanyId=c.CompanyId
-WHERE ((ISNULL(I.InsuranceName,'') like '%'+@Name+'%') or @Name is null)
+WHERE ((ISNULL(I.InsuranceName,'') like '%'+@InsuranceName+'%') or @InsuranceName is null)
 and c.companyid=@CompanyId

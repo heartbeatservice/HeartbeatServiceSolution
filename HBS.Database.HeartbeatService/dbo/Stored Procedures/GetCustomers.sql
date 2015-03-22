@@ -27,7 +27,8 @@ SELECT
  c.CreatedBy,  
  c.DateCreated,  
  c.UpdatedBy,  
- c.DateUpdated  
+ c.DateUpdated,
+ c.IsActive
 FROM Customers C    
 inner join Company P    
 on C.CompanyID=P.CompanyID  

@@ -1,6 +1,6 @@
 ﻿    
 CREATE PROCEDURE [dbo].[GetCustomersByNameDOB]    
---[GetCustomersByNameDOB]  1, 'Na','10-26-1984'
+--[GetCustomersByNameDOB]  1, 'Aziz'
     
 @CompanyId int,  
 @Name nvarchar(50)=Null,  
@@ -8,7 +8,10 @@ CREATE PROCEDURE [dbo].[GetCustomersByNameDOB]
     
     
 AS    
-    
+    if ISNULL(@Name,'-1')='-1'
+	set @Name=Null
+    if(YEAR(ISNULL(@DateOfBirth,'1/1/1900'))=1900)
+	SET @DateOfbirth=null
 SELECT     
  C.CustomerId,    
  P.CompanyID,    
@@ -28,9 +31,10 @@ SELECT
  c.CreatedBy,  
  c.DateCreated,  
  c.UpdatedBy,  
- c.DateUpdated  
+ c.DateUpdated,
+ c.IsActive
 FROM Customers C    
 inner join Company P    
 on C.CompanyID=P.CompanyID  
-WHERE ((ISNULL(C.FirstName,'') like '%'+@Name+'%' OR ISNULL(C.LastName,'')  like '%'+@Name+'%' ) or @Name is null)  
+WHERE ((ISNULL(C.FirstName,'') + ' ' + ISNULL(C.LastName,'') like '%'+@Name+'%') or @Name is null)  
 and c.companyid=@CompanyId  and (c.DateofBirth=@DateofBirth or @DateofBirth is Null)

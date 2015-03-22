@@ -210,6 +210,10 @@
                         },
                         update: {
                             beforeSend: function (xhrObj, s) {
+                                if ($('select[data-bind="value:ownerId"]').data("kendoMultiSelect").value().length == 0) {
+                                    alert("Please select customer")
+                                    xhrObj.abort();
+                                }
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
                                 s.data = JSON.stringify($scope.ProfessionalSchedule);
@@ -221,6 +225,10 @@
                         },
                         create: {
                             beforeSend: function (xhrObj, s) {
+                                if ($('select[data-bind="value:ownerId"]').data("kendoMultiSelect").value().length == 0) {
+                                    alert("Please select customer")
+                                    xhrObj.abort();
+                                }
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
                                 s.data = JSON.stringify($scope.ProfessionalSchedule);

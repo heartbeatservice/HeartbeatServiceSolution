@@ -69,6 +69,11 @@ namespace HBS.WebPortal.Controllers
             return View();
         }
 
+        public ActionResult CourseOutline()
+        {
+
+            return View();
+        }
 
       
         [HttpPost]

@@ -238,7 +238,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int).Value = customerInsurance.CustomerId;
                     cmd.Parameters.Add("@InsuranceId", SqlDbType.Int).Value = customerInsurance.InsuranceId;
                     cmd.Parameters.Add("@EffectiveDate", SqlDbType.DateTime).Value = customerInsurance.EffectiveDate;
-                    cmd.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = (customerInsurance.EndDate==null?"1/1/1900":customerInsurance.EndDate);
+                    cmd.Parameters.Add("@EndDate", SqlDbType.DateTime).Value = (customerInsurance.EndDate==null?DateTime.MinValue:customerInsurance.EndDate);
                     cmd.Parameters.Add("@PcpName", SqlDbType.VarChar).Value = customerInsurance.PcpName;
                     cmd.Parameters.Add("@CustomerInsuranceNumber", SqlDbType.VarChar).Value = customerInsurance.CustomerInsuranceNumber;
                     cmd.Parameters.Add("@InsuranceType", SqlDbType.VarChar).Value = customerInsurance.InsuranceType;
