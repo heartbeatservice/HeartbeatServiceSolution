@@ -5,6 +5,7 @@ namespace HBS.Data.Abstract
 {
     public interface ICommonRepository
     {
+        bool AddStudent(Student student);
         int AddCompany(Company company);
         bool UpdateCompany(Company company);
 

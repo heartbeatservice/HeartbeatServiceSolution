@@ -20,9 +20,43 @@ namespace HBS.Data.Concrete
         private const string AddInsuranceSp = "AddInsurance";
         private const string GetInsurancesSp = "GetInsurances";
         private const string GetInsuranceByIdSp = "GetInsuranceById";
-       
+        private const string AddStudentSp = "AddStudent";
 
 
+        public bool AddStudent(Student student)//
+        {
+
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (var cmd = new SqlCommand(AddStudentSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.Add("@FirstName", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@FirstName"].Value = student.FirstName;
+
+                    cmd.Parameters.Add("@LastName", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@LastName"].Value = student.LastName;
+
+                    cmd.Parameters.Add("@EmailAddress", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@EmailAddress"].Value = student.EmailAddress;
+
+                    cmd.Parameters.Add("@Gendar", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@Gendar"].Value = student.Gendar;
+
+                    cmd.Parameters.Add("@Profession", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@Profession"].Value = student.Profession;
+
+                    cmd.Parameters.Add("@Source", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@Source"].Value = student.Source;
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+
+            }
+        }
         public int AddCompany(Company company)//
         {
 
