@@ -48,6 +48,10 @@ namespace HBS.WebPortal.Controllers
         {
             return View();
         }
+        public ActionResult SignUp()
+        {
+            return View();
+        }
         public ActionResult Products()
         {
             return View();
