@@ -44,28 +44,35 @@
    
       
 
-        <div class="col-md-3"  >
+    <div class="col-md-3">
         <div class="panel panel-info panel-primary">
             <div class="panel-heading panelBg">
                 @if (ViewBag.error != null)
                 {
-                   <h5 class="text-warning"> @ViewBag.error</h5>
+                    <h5 class="text-warning"> @ViewBag.error</h5>
                 }
-                <h4 style="color:white;">Customer Login</h4></div>
-               <div class="panel-body ">
-                   <div class="form-group">
-    @using (Html.BeginForm())
-    {
-        <label for="user">User Name:</label><input class="form-control" type="text" id="user" name="UserName" />
-        <label for="pass">Password</label><input class="form-control" type="password"  id="pass" name="Password"/><br />
-        <input type="submit" class="btn btn-large btn-default"  value="Login" />
-    }
-                       </div>
+                <h4 style="color:white;">Customer Login</h4>
             </div>
-            
-           
-                   
-               </div>
-            
-              </div>
+            <div class="panel-body ">
+                <div class="form-group">
+                    @using (Html.BeginForm())
+                    {
+                        <label for="user">User Name:</label><input class="form-control" type="text" id="user" name="UserName" />
+                        <label for="pass">Password</label><input class="form-control" type="password" id="pass" name="Password" /><br />
+                        <input type="submit" class="btn btn-large btn-default" value="Login" />
+                    }
+                </div>
+            </div>
+
+
+        </div>
+        
+        <div class="panel panel-info panel-primary">
+            <a href="/Home/CourseOutline">
+             <img src="~/Content/images/Banner-300x140.png" width="261" height="139" alt="pic" style="border-image:auto" />
+                </a>
+ 
+                           </div>
+        </div>
+
     </div>

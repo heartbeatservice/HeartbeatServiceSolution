@@ -242,6 +242,7 @@
     <Content Include="Content\images\adnan.jpg" />
     <Content Include="Content\images\amir.jpg" />
     <Content Include="Content\images\amir_shot.jpg" />
+    <Content Include="Content\images\Banner-300x140.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\Heartbeat Service-logo.png" />
     <Content Include="Content\images\heartLogo.png" />
