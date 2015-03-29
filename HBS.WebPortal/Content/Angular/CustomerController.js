@@ -17,10 +17,15 @@
 
         $scope.Insurance = {};
         $scope.InsuranceEntry = {};
-
+        $('#EndDate').val(null);
+        $('#EffectiveDate').val(null);
     };
     $scope.init = function () {
         $scope.GetProviders();
+        $("#EffectiveDate").kendoDatePicker({ format: "yyyy-MM-dd" });
+        $("#EndDate").kendoDatePicker({ format: "yyyy-MM-dd" });
+        $("#EditEffectiveDate").kendoDatePicker({ format: "yyyy-MM-dd" });
+        $("#EditEndDate").kendoDatePicker({ format: "yyyy-MM-dd" });
     };
 
     
@@ -197,6 +202,9 @@
         var resource = "Insurance?companyId=" + companyId + '&InsuranceName=-1';
         HeartbeatService.GetData($scope.InsuranceLookupSuccess, $scope.Error, resource);
         $scope.InsuranceEntry = {};
+        $('#EndDate').val(null);
+        $('#EffectiveDate').val(null);
+
     }
 
     $scope.InsuranceLookupSuccess = function (data) {
@@ -215,6 +223,8 @@
     $scope.AddCustomerInsurance = function () {
         $scope.InsuranceEntry.InsuranceId = $('#InsuranceId').val();
         $scope.InsuranceEntry.CustomerId = $('#CustomerIdForInsurance').val();
+        $scope.InsuranceEntry.EndDate = $('#EndDate').val();
+        $scope.InsuranceEntry.EffectiveDate = $('#EffectiveDate').val();
         var resource = 'CustomerInsurance';
         HeartbeatService.PostDataToApi($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
     }
@@ -285,6 +295,10 @@
     $scope.GetSuccessEditInsurance = function (response) {
         $scope.Insurance = response[0];
         $scope.InsuranceId = response[0].InsuranceId;
+        //$scope.Insurance.EffectiveDate = response[0].EffectiveDate.split('T')[0].split('-')[0] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[1] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[2];
+        $('#EditEndDate').val(response[0].EndDate.split('T')[0].split('-')[0] + "-" + response[0].EndDate.split('T')[0].split('-')[1] + "-" + response[0].EndDate.split('T')[0].split('-')[2]);
+        $('#EditEffectiveDate').val(response[0].EffectiveDate.split('T')[0].split('-')[0] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[1] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[2]);
+        //$scope.Insurance.EndDate = response[0].EndDate.split('T')[0].split('-')[0] + "-" + response[0].EndDate.split('T')[0].split('-')[1]+ "-" + response[0].EndDate.split('T')[0].split('-')[2];
        // $scope.$apply();
         $scope.ShowInsuranceEditForm();
         $('#insuranceClose').click();
@@ -343,6 +357,9 @@
     $scope.UpdateCustomerInsurance = function () {
         var resource = 'CustomerInsurance';
         $scope.Insurance.InsuranceId = $scope.SelectedInsurance.InsuranceId;
+        $scope.Insurance.EndDate = $('#EditEndDate').val();
+        $scope.Insurance.EffectiveDate = $('#EditEffectiveDate').val();
+
         HeartbeatService.PutData($scope.UpdateCustomerInsSuccess, $scope.Error, resource, $scope.Insurance);
     };
     $scope.UpdateCustomerInsSuccess = function (response) {

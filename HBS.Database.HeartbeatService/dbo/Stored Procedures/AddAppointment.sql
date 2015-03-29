@@ -19,7 +19,7 @@ If @DateUpdated is null
 SET @DateUpdated=getUTCDate()
 
 
-INSERT INTO Appointments(ProfessionalId,CustomerId,AppointmentDate,AppointmentStartTime,StatusId,Comments,CreatedBy,DateCreated,UpdatedBy,DateUpdated)
-VALUES(@ProfessionalId,@CustomerId,@AppointmentDate,@AppointmentStartTime,@StatusId,@Comments,@CreatedBy,@DateCreated,@UpdatedBy,@Dateupdated)
+--INSERT INTO Appointments(ProfessionalId,CustomerId,AppointmentDate,AppointmentStartTime,StatusId,Comments,CreatedBy,DateCreated,UpdatedBy,DateUpdated)
+--VALUES(@ProfessionalId,@CustomerId,@AppointmentDate,@AppointmentStartTime,@StatusId,@Comments,@CreatedBy,@DateCreated,@UpdatedBy,@Dateupdated)
 
 SELECT @@Identity

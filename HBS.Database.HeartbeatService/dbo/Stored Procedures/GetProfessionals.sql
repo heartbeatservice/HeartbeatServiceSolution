@@ -27,7 +27,8 @@ SELECT
 FROM Professional P
 INNER JOIN Company C ON P.CompanyId = C.CompanyId
 INNER JOIN ProfessionalType T ON P.ProfessionalTypeId = T.ProfessionalTypeId
-WHERE ((ISNULL(P.FirstName,'') like '%'+@Name+'%' OR ISNULL(P.LastName,'')  like '%'+@Name+'%' ) or @Name is null)
+WHERE ((ISNULL(P.FirstName,'') like '%'+@Name+'%' OR ISNULL(P.LastName,'')  like '%'+@Name+'%'  OR 
+			ISNULL(P.ProfessionalIdentificationNumber) like '%'+@Name+'%' ) or @Name is null)
 AND c.companyid = @CompanyId
 
 

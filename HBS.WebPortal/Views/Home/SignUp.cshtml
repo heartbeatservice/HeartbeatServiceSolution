@@ -13,62 +13,66 @@
 
                     <div class="form-group col-md-5 has-warning">
                         <div class="input-group">
-
+                            <label>First Name</label>
                             <input id="FirstName" type="text" value="" ng-model="Student.FirstName" class="form-control" placeholder="Enter Your First Name" required />
                         </div>
                     </div>
-                    
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-5 has-warning">
-                    <div class="input-group">
-                        <input id="LastName" type="text" value="" ng-model="Student.LastName" class="form-control" placeholder="Enter Your Last Name" required />
-                    </div>
-                </div>
+
                 </div>
                 <div class="row">
                     <div class="form-group col-md-5 has-warning">
                         <div class="input-group">
-                            <input id="Email" type="text" value="" ng-model="Student.Email" class="form-control" placeholder="Enter Your Email" required />
+                            <label>Last Name</label>
+                            <input id="LastName" type="text" value="" ng-model="Student.LastName" class="form-control" placeholder="Enter Your Last Name" required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                <div class="form-group col-md-5 has-warning">
-                    <div class="input-group">
-                        <input type="radio" name="gender" value="Male" required />Male
-                        <input type="radio" name="gender" value="Female" required />Female
+                    <div class="form-group col-md-5 has-warning">
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input id="Email" type="text" value="" ng-model="Student.EmailAddress" class="form-control" placeholder="Enter Your Email" required />
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="form-group col-md-5 has-warning">
+                        <label>Gender</label>
+                        <div class="input-group">                            
+                            <input type="radio" name="gender" ng-model="Student.Gendar" value="Male" required />Male
+                            <input type="radio" name="gender" ng-model="Student.Gendar" value="Female" required />Female
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="form-group col-md-5 has-warning">
                         <div class="input-group">
-                            Profession: <input type="text" value="" ng-model="Student.Profession" class="form-control" placeholder=" Your Profession" required />
+                            <label>Profession</label>
+                            <input type="text" value="" ng-model="Student.Profession" class="form-control" placeholder=" Your Profession" required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-md-10 has-warning">
                         <div class="input-group">
-                            How you heard about this course: <input type="text" value="" ng-model="Student.Heard" class="form-control" placeholder=" " required />
+                            <label>How you heard about this course</label>
+                            <input type="text" value="" ng-model="Student.Source" class="form-control" placeholder=" " required />
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group  col-md-8">
-                        <button class="btn btn-warning" class="form-control" ng-click="SaveStudent();"><span class="glyphicon glyphicon-user"></span> Save And Reserve</button>
-                        <a href="http://www.google.com/"> 
-                        <button class="btn btn-warning" class="form-control"><span class="glyphicon glyphicon-user"></span>Pay Now</button>
-                         </a>
+                        <button class="btn btn-warning" class="form-control"><span class="glyphicon glyphicon-user"></span> Save And Reserve</button>
+                        <a href="http://www.google.com/">
+                            <button class="btn btn-warning" class="form-control"><span class="glyphicon glyphicon-user"></span>Pay Now</button>
+                        </a>
 
                     </div>
 
                 </div>
 
-                
+
             </div>
         </div>
-    </div>
-
+    </div>    
 </div>

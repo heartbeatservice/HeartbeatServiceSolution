@@ -84,9 +84,9 @@
                             <div class="form-group col-md-5 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="LastName" type="text" value="" ng-model="Customer.LastName" required class="form-control" placeholder="Last Name" />
-                               <span class="help-block error" ng-show="test2.LastName.$error.required">Required</span>
+                                    <span class="help-block error" ng-show="test2.LastName.$error.required">Required</span>
                                 </div>
-                                 </div>
+                            </div>
 
                         </div>
 
@@ -94,60 +94,60 @@
                             <div class="form-group col-md-6 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="address1" type="text" value="" ng-model="Customer.Address1" required class="form-control" placeholder="Address 1" />
-                               <span class="help-block error" ng-show="test2.address1.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.address1.$error.required">*</span>
                                 </div>
-                                 </div>
+                            </div>
                             <div class="form-group col-md-6 has-warning "> <input id="Address2" type="text" value="" ng-model="Customer.Address2" class="form-control" placeholder="Address 2" /> </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-md-5 has-warning"> 
+                            <div class="form-group col-md-5 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="city" type="text" value="" ng-model="Customer.City" required class="form-control" placeholder="City" />
-                               <span class="help-block error" ng-show="test2.city.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.city.$error.required">*</span>
                                 </div>
-                                 </div>
+                            </div>
                             <div class="form-group col-md-2 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="State" type="text" value="" ng-model="Customer.State" required class="form-control" placeholder="State" />
-                               <span class="help-block error" ng-show="test2.State.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.State.$error.required">*</span>
                                 </div>
-                                 </div>
-                            <div class="form-group col-md-5 has-warning"> 
+                            </div>
+                            <div class="form-group col-md-5 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="Zip" type="text" value="" ng-model="Customer.Zip" required class="form-control" placeholder="Zip" />
-                                <span class="help-block error" ng-show="test2.Zip.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.Zip.$error.required">*</span>
                                 </div>
-                                </div>
+                            </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-4 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="DateOfBirth" type="text" value="" ng-model="Customer.DateOfBirth" required class="form-control" placeholder="Date Of Birth" />
-                               <span class="help-block error" ng-show="test2.DateOfBirth.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.DateOfBirth.$error.required">*</span>
                                 </div>
-                                 </div>
+                            </div>
                             <div class="form-group col-md-8 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="Email" type="text" value="" ng-model="Customer.Email" class="form-control" placeholder="Email" />
-                               <span class="help-block error" ng-show="test2.Email.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.Email.$error.required">*</span>
                                 </div>
-                                 </div>
+                            </div>
                         </div>
 
                         <div class="row">
-                            <div class="form-group col-md-6 has-warning"> 
+                            <div class="form-group col-md-6 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="HomePhone" type="text" value="" ng-model="Customer.HomePhone" required class="form-control" placeholder="Home Phone" />
-                               <span class="help-block error" ng-show="test2.HomePhone.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.HomePhone.$error.required">*</span>
                                 </div>
-                                 </div>
+                            </div>
                             <div class="form-group col-md-6 has-warning">
                                 <div ng-class="{'has-error': test2.$invalid}" class="input-group">
                                     <input id="CellPhone" type="text" value="" ng-model="Customer.CellPhone" required class="form-control" placeholder="Cell Phone" />
-                               <span class="help-block error" ng-show="test2.CellPhone.$error.required">*</span>
+                                    <span class="help-block error" ng-show="test2.CellPhone.$error.required">*</span>
                                 </div>
-                                 </div>
+                            </div>
 
                         </div>
 
@@ -164,10 +164,10 @@
 
                     </div>
                 </form>
-                       </div>
-            
+            </div>
+
         </div>
-        
+
 
     </div>
 
@@ -265,7 +265,7 @@
                                                 <span>End Date:{{i.EndDate}}</span><br />
                                                 <span>Insurance Type:{{i.InsuranceType}}</span><br />
                                                 <span>PCP Name:{{i.PcpName}}</span><br />
-                                                <span>Member Id:{{i.CustomerInsuranceNumber}}</span><br/>
+                                                <span>Member Id:{{i.CustomerInsuranceNumber}}</span><br />
                                                 <button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(i.CustomerId,i.CustomerInsuranceID);'><span class='glyphicon glyphicon-pencil'>Edit</span></button>
                                                 <button style='margin-left:20px;' class='btn-small btn-danger' ng-click='RemoveCustomerInsurance(i.CustomerInsuranceID,i.CustomerId);'><span class='glyphicon glyphicon-remove'>Remove</span></button>
                                             </div>
@@ -341,11 +341,11 @@
 
                     </div>
                     <form id="test1" name="test1" ng-submit="AddCustomerInsurance();">
-                        <div class="row">
 
+                        <div class="row">
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
+                                    <label>Insurance</label>
                                     <select id="InsuranceId" class="form-control">
                                         <option ng-repeat="i in AllInsurances" value="{{i.InsuranceId}}">{{i.InsuranceName}}</option>
 
@@ -353,49 +353,45 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
-
+                                <label>Insurance Type</label>
                                 <div ng-class="{'has-error': test1.$invalid}" class="input-group">
                                     <input id="InsuranceType" name="InsuranceType" type="text" value="" ng-model="InsuranceEntry.InsuranceType"
                                            required class="form-control" placeholder="Insurance Type" />
                                 </div>
-
                             </div>
                         </div>
                         <div class="row">
-
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
+                                    <label>Effective Date</label>
                                     <div ng-class="{'has-error': test1.$invalid}" class="input-group">
-                                        <input id="EffectiveDate" type="datetime-local" value="" required ng-model="InsuranceEntry.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
+                                        <input id="EffectiveDate" type="date" value="" required ng-model="InsuranceEntry.EffectiveDate" placeholder="EffectiveDate" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
+                                    <label>End Date</label>
                                     <div ng-class="{'has-error': test1.$invalid}" class="input-group">
-                                        <input id="EndDate" type="datetime-local" required value="" ng-model="InsuranceEntry.EndDate" class="form-control" placeholder="EndDate" />
+                                        <input id="EndDate" type="date" required value="" ng-model="InsuranceEntry.EndDate" placeholder="EndDate" />
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="row">
-
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
+                                    <label>PCP Name</label>
                                     <input id="PCPName" type="text" value="" ng-model="InsuranceEntry.PCPName" class="form-control" placeholder="PCP Name" />
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
+                                    <label>Member ID</label>
                                     <input id="InsuranceNumber" type="text" value="" ng-model="InsuranceEntry.CustomerInsuranceNumber" class="form-control" placeholder="Member ID" />
 
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="modal-footer">
@@ -513,11 +509,12 @@
 
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
+                                    <label>Insurance</label>
                                     <select id="InsuranceId" class="form-control" ng-options="i.InsuranceName for i in AllInsurances" ng-model="SelectedInsurance"></select>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
+                                <label>Insurance Type</label>
                                 <div ng-class="{'has-error': formeditInsurance.$invalid}" class="input-group">
                                     <input id="InsuranceType" type="text" required value="{{Insurance.InsuranceType}}" ng-model="Insurance.InsuranceType" class="form-control" placeholder="Insurance Type" />
 
@@ -528,15 +525,17 @@
                         <div class="row">
 
                             <div class="form-group col-md-6 has-warning">
+                                <label>Effective Date</label>
                                 <div ng-class="{'has-error': formeditInsurance.$invalid}" class="input-group">
 
-                                    <input id="EffectiveDate" required type="datetime-local" value="{{Insurance.EffectiveDate}}" ng-model="Insurance.EffectiveDate" class="form-control" placeholder="EffectiveDate" />
+                                    <input id="EditEffectiveDate" required type="date" value="{{Insurance.EffectiveDate}}" ng-model="Insurance.EffectiveDate" placeholder="EffectiveDate" />
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
+                                <label>End Date</label>
                                 <div ng-class="{'has-error': formeditInsurance.$invalid}" class="input-group">
 
-                                    <input id="EndDate" type="datetime-local" required value="{{Insurance.EndDate}}" ng-model="Insurance.EndDate" class="form-control" placeholder="EndDate" />
+                                    <input id="EditEndDate" type="date" required value="{{Insurance.EndDate}}" ng-model="Insurance.EndDate" placeholder="EndDate" />
                                 </div>
                             </div>
 
@@ -546,13 +545,13 @@
 
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
+                                    <label>PCP Name</label>
                                     <input id="PCPName" type="text" value="{{Insurance.PcpName}}" ng-model="Insurance.PcpName" class="form-control" placeholder="PCP Name" />
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
                                 <div class="input-group">
-
+                                    <label>Member ID</label>
                                     <input id="InsuranceNumber" type="text" value="{{Insurance.CustomerInsuranceNumber}}" ng-model="Insurance.CustomerInsuranceNumber" class="form-control" placeholder="Member ID" />
 
                                 </div>

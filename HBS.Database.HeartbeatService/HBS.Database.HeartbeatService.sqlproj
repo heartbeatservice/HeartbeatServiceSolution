@@ -137,6 +137,14 @@
     <Build Include="Security\umais.sql" />
     <Build Include="Security\umais_1.sql" />
     <Build Include="dbo\Tables\Students.sql" />
+    <Build Include="dbo\Tables\Workflow.sql" />
+    <Build Include="dbo\Tables\WorkflowCategory.sql" />
+    <Build Include="dbo\Tables\WorkflowHistory.sql" />
+    <Build Include="dbo\Tables\WorkflowNotification.sql" />
+    <Build Include="dbo\Tables\WorkflowStatus.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalsMonthlySchedule_2.sql" />
+    <Build Include="dbo\Stored Procedures\AddUpdateProfessionalAppointment_2.sql" />
+    <Build Include="dbo\Stored Procedures\AddStudent.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />

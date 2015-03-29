@@ -214,6 +214,11 @@
                                     alert("Please select customer")
                                     xhrObj.abort();
                                 }
+                                else if ($scope.professionalId == 0) {
+                                    alert("Please select doctor")
+                                    xhrObj.abort();
+                                }
+                                $scope.openform = true;
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
                                 s.data = JSON.stringify($scope.ProfessionalSchedule);
@@ -229,6 +234,11 @@
                                     alert("Please select customer")
                                     xhrObj.abort();
                                 }
+                                else if ($scope.professionalId == 0) {
+                                    alert("Please select doctor")
+                                    xhrObj.abort();
+                                }
+                                $scope.openform = true;
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
                                 s.data = JSON.stringify($scope.ProfessionalSchedule);
@@ -382,24 +392,28 @@
 
         });
 
+    
 
         $(".k-nav-current").click(function () {
-          
             setTimeout(function () {
-                
-                $(".k-scheduler-calendar").mouseup(function () {
-                    setTimeout(function () {
-                        var ua = window.navigator.userAgent;
-                        var msie = ua.indexOf("MSIE ");
-
-                        //if (msie > 0)      // If Internet Explorer, return version number
-                        //    alert(new Date($scope.currentDate).getMonth() + 1);
-                        //else
-                        $scope.checkReloadLogic();
-                    }, 1000);
-
-                });
+                var scheduler = $("#scheduler").data("kendoScheduler");
+                scheduler.refresh();
             }, 1000);
+            //setTimeout(function () {
+                
+            //    $(".k-scheduler-calendar").mouseup(function () {
+            //        setTimeout(function () {
+            //            var ua = window.navigator.userAgent;
+            //            var msie = ua.indexOf("MSIE ");
+
+            //            //if (msie > 0)      // If Internet Explorer, return version number
+            //            //    alert(new Date($scope.currentDate).getMonth() + 1);
+            //            //else
+            //            $scope.checkReloadLogic();
+            //        }, 1000);
+
+            //    });
+            //}, 1000);
 
 
 

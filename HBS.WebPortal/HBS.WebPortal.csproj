@@ -232,6 +232,7 @@
     <Content Include="Content\Angular\ng-grid.min.css" />
     <Content Include="Content\Angular\ProfessionalController.js" />
     <Content Include="Content\Angular\SchedulingController.js" />
+    <Content Include="Content\Angular\StudentController.js" />
     <Content Include="Content\Board.css" />
     <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />

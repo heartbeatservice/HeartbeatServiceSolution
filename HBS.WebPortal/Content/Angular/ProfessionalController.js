@@ -15,10 +15,10 @@
         enableColumnResize: true,
         enableColumnReordering: true,
         columnDefs: [
-                     { field: 'FirstName', displayName: 'First Name', enableCellEdit: true, width: 100 },
-                     { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 100 },
-                     { field: 'ProfessionalIdentificationNumber', displayName: 'Professional ID #', enableCellEdit: true, width: 100 },
-               { field: 'Phone', displayName: 'Phone', enableCellEdit: true, width: 100 },
+                     { field: 'FirstName', displayName: 'First Name', enableCellEdit: true, width: 200 },
+                     { field: 'LastName', displayName: 'Last Name', enableCellEdit: true, width: 200 },
+                     { field: 'ProfessionalIdentificationNumber', displayName: 'Professional ID #', enableCellEdit: true, width: 200 },
+               { field: 'Phone', displayName: 'Phone', enableCellEdit: true, width: 200 },
 
            
        ]

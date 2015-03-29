@@ -18,7 +18,7 @@ namespace HBS.WebPortal.Controllers
         {
             repository = repo;
         }
-        public bool postSignUp([FromBody]Student student)
+        public bool PostSaveStudent([FromBody]Student student)
         {
             return repository.AddStudent(student);
         }
