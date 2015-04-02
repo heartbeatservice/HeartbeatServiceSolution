@@ -1,4 +1,5 @@
 ﻿
+
 CREATE PROCEDURE [dbo].[AddUser]
 
 @CompanyId int,
@@ -11,14 +12,14 @@ CREATE PROCEDURE [dbo].[AddUser]
 @ConfirmationToken nvarchar(128)=NULL,
 @IsConfirmed bit=NULL,
 @CreatedBy int=NULL,
-@UpdatedBy int=NULL
-
+@UpdatedBy int=NULL,
+@RoleId int=NULL
 
 
 AS
 
 
-INSERT INTO UserProfile(CompanyId,UserName,Password,PasswordSalt,FirstName,LastName,Email,ConfirmationToken,IsConfirmed,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy) 
-VALUES(@companyId,@UserName,@Password,@PasswordSalt,@FirstName,@LastName,@Email,@ConfirmationToken,@IsConfirmed,GetUtcDate(),@CreatedBy,GetUtcDate(),@UpdatedBy)
+INSERT INTO UserProfile(CompanyId,UserName,Password,PasswordSalt,FirstName,LastName,Email,ConfirmationToken,IsConfirmed,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy,RoleId) 
+VALUES(@companyId,@UserName,@Password,@PasswordSalt,@FirstName,@LastName,@Email,@ConfirmationToken,@IsConfirmed,GetUtcDate(),@CreatedBy,GetUtcDate(),@UpdatedBy,@RoleId)
 
 SELECT @@IDENTITY As UserId
