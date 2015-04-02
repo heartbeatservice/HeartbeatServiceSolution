@@ -14,6 +14,7 @@
     [UpdatedDate]       DATETIME       NULL,
     [UpdatedBy]         INT            NULL,
     [IsActive]          BIT            DEFAULT ('1') NULL,
+    [RoleId] INT NULL, 
     PRIMARY KEY CLUSTERED ([UserId] ASC),
     CONSTRAINT [FK_UserProfile_Company] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[Company] ([CompanyId])
 );

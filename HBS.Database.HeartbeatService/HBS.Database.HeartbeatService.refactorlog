@@ -161,4 +161,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="MiddleInitial" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a1cb1db5-162a-45dc-bf6a-6ad801bcca0b" ChangeDateTime="04/02/2015 16:54:02">
+    <Property Name="ElementName" Value="[dbo].[UserProfile].[Role]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[UserProfile]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoleId" />
+  </Operation>
 </Operations>
