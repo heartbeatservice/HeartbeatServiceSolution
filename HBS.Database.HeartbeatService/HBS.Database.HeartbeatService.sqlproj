@@ -142,9 +142,21 @@
     <Build Include="dbo\Tables\WorkflowHistory.sql" />
     <Build Include="dbo\Tables\WorkflowNotification.sql" />
     <Build Include="dbo\Tables\WorkflowStatus.sql" />
-    <Build Include="dbo\Stored Procedures\GetProfessionalsMonthlySchedule_2.sql" />
-    <Build Include="dbo\Stored Procedures\AddUpdateProfessionalAppointment_2.sql" />
     <Build Include="dbo\Stored Procedures\AddStudent.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalsSchedule.sql" />
+    <Build Include="dbo\Tables\CompanyModules.sql" />
+    <Build Include="dbo\Tables\Modules.sql" />
+    <Build Include="dbo\Tables\UserModules.sql" />
+    <Build Include="dbo\Stored Procedures\AddUpdateProfessionalAppointment.sql" />
+    <Build Include="dbo\Stored Procedures\AssignCompanyModule.sql" />
+    <Build Include="dbo\Stored Procedures\AssignUserModule.sql" />
+    <Build Include="dbo\Stored Procedures\GetModuleById.sql" />
+    <Build Include="dbo\Stored Procedures\GetModules.sql" />
+    <Build Include="dbo\Stored Procedures\GetModulesByCompanyId.sql" />
+    <Build Include="dbo\Stored Procedures\GetModulesByUserId.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfessionalsMonthlySchedule.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveCompanyModule.sql" />
+    <Build Include="dbo\Stored Procedures\RemoveUserModule.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />

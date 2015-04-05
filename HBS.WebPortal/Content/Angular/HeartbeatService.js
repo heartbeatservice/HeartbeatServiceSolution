@@ -1,6 +1,8 @@
 ﻿HeartbeatApp.factory('HeartbeatService', function () {
-    var webapiurl = "http://localhost:3687/api/";
-    //var webapiurl = "http://services.heartbeat-biz.com/api/";
+    //var webapiurl = "http://localhost:3687/api/";
+    var webapiurl = "http://services.heartbeat-biz.com/api/";
+    //var customwebapiurl = "http://localhost:3687/CustomApi/";
+    var customwebapiurl = "http://services.heartbeat-biz.com/CustomApi/";
     return {
 
         serviceAuthor: { 'Name': 'Umais Siddiqui' },
@@ -79,7 +81,7 @@
 
 
                    // url: "http://localhost:3687/CustomApi/" + resource,
-                    url: "http://services.heartbeat-biz.com/CustomApi/" + resource,
+                    url: customwebapiurl + resource,
 
                     type: "get",
 

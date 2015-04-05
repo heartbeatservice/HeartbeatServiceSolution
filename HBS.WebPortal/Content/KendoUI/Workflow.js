@@ -1,5 +1,6 @@
 ﻿$(document).ready(function () {
-    var crudServiceBaseUrl = "http://localhost:3687/api";
+    //var crudServiceBaseUrl = "http://localhost:3687/api";
+    var crudServiceBaseUrl = "http://services.heartbeat-biz.com/api/";
     var users = getUsers(crudServiceBaseUrl + "/User");
     var status = getStatus(crudServiceBaseUrl + "/WorkflowStatus");
     

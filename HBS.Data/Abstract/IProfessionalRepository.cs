@@ -22,7 +22,9 @@ namespace HBS.Data.Abstract
         List<ProfessionalSchedule> GetProfessionalScheduleByScheduleDate(DateTime scheduleDate);
         bool RemoveProfessionalSchedule(int professionalSchduleId, int removedBy);//
 
-        List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Month, int Year);
+        //List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Month, int Year);
+
+        List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Year, int customerId);
 
     }
 }

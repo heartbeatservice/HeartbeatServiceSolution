@@ -1,13 +1,19 @@
 ﻿@{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_NavLayout.cshtml";
 }
-<div ng-controller="SchedulingController">
+<div id="page-wrapper" ng-controller="SchedulingController">
 <div class="row" >
 
+    <div class="col-md-12">
+    <div class="page-header">
+        <h1>Dashboard</h1>
+    </div>
+        </div>
     <div id="dashboard" class="col-md-12">
 
-        <div class="panel panel-info panel-primary">
-            <div class="panel-heading panelBg">Dashboard</div>
+        <div class="panel panel-default">
+            <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard</div>
             <div class="panel-body">
                 <ul ng-repeat="appointment in ProviderDashboard">
                     <li>Dr. {{appointment.doctor}} has {{appointment.patients}} patients to be seen today.</li>
@@ -21,15 +27,15 @@
 
       <div id="reminders" class="col-md-12">
 
-        <div class="panel panel-info panel-primary">
-            <div class="panel-heading panelBg">Reminders</div>
-            <div class="panel-body">
+          <div class="panel panel-default">
+              <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Reminders</div>
+              <div class="panel-body">
                   <ul ng-repeat="reminder in ReminderDashboard">
-                    <li>{{reminder}}</li>
+                      <li>{{reminder}}</li>
 
-                </ul>
-            </div>
-        </div>
+                  </ul>
+              </div>
+          </div>
     </div>
 
 </div>

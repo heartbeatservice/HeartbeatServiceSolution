@@ -13,8 +13,8 @@
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
-    $scope.ServiceURL = "http://localhost:3687/api/";
-    //$scope.ServiceURL="http://services.heartbeat-biz.com/api/";
+    //$scope.ServiceURL = "http://localhost:3687/api/";
+    $scope.ServiceURL="http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
         $("#scheduler").ajaxComplete(function () {
@@ -205,7 +205,7 @@
 
                             },
                             success:function(data){alert("Got It");},
-                            url: $scope.ServiceURL + 'ProfessionalSchedule//'+ $scope.professionalId+"?month="+$scope.month+"&year="+$scope.year,
+                            url: $scope.ServiceURL + 'ProfessionalSchedule//' + $scope.professionalId + "?year=" + $scope.year + "&customerId=" + $scope.CustomerId,
                             dataType: "json"
                         },
                         update: {
@@ -218,6 +218,8 @@
                                     alert("Please select doctor")
                                     xhrObj.abort();
                                 }
+                                $scope.ProfessionalSchedule.OwnerID = $('select[data-bind="value:ownerId"]').data("kendoMultiSelect").value()[0];
+                                $scope.ProfessionalSchedule.ProfessionalId = $scope.professionalId;
                                 $scope.openform = true;
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
@@ -238,6 +240,8 @@
                                     alert("Please select doctor")
                                     xhrObj.abort();
                                 }
+                                $scope.ProfessionalSchedule.OwnerID = $('select[data-bind="value:ownerId"]').data("kendoMultiSelect").value()[0];
+                                $scope.ProfessionalSchedule.ProfessionalId = $scope.professionalId;
                                 $scope.openform = true;
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
@@ -394,29 +398,29 @@
 
     
 
-        $(".k-nav-current").click(function () {
-            setTimeout(function () {
-                var scheduler = $("#scheduler").data("kendoScheduler");
-                scheduler.refresh();
-            }, 1000);
-            //setTimeout(function () {
+        //$(".k-nav-current").click(function () {
+        //    setTimeout(function () {
+        //        var scheduler = $("#scheduler").data("kendoScheduler");
+        //        scheduler.refresh();
+        //    }, 1000);
+        //    //setTimeout(function () {
                 
-            //    $(".k-scheduler-calendar").mouseup(function () {
-            //        setTimeout(function () {
-            //            var ua = window.navigator.userAgent;
-            //            var msie = ua.indexOf("MSIE ");
+        //    //    $(".k-scheduler-calendar").mouseup(function () {
+        //    //        setTimeout(function () {
+        //    //            var ua = window.navigator.userAgent;
+        //    //            var msie = ua.indexOf("MSIE ");
 
-            //            //if (msie > 0)      // If Internet Explorer, return version number
-            //            //    alert(new Date($scope.currentDate).getMonth() + 1);
-            //            //else
-            //            $scope.checkReloadLogic();
-            //        }, 1000);
+        //    //            //if (msie > 0)      // If Internet Explorer, return version number
+        //    //            //    alert(new Date($scope.currentDate).getMonth() + 1);
+        //    //            //else
+        //    //            $scope.checkReloadLogic();
+        //    //        }, 1000);
 
-            //    });
-            //}, 1000);
+        //    //    });
+        //    //}, 1000);
 
 
 
-        });
+        //});
     }
 });

@@ -235,15 +235,22 @@
     <Content Include="Content\Angular\StudentController.js" />
     <Content Include="Content\Board.css" />
     <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
+    <Content Include="Content\bootstrap\bootstrap-nav.min.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\font-awesome.min.css" />
+    <Content Include="Content\bootstrap\metisMenu.min.css" />
+    <Content Include="Content\bootstrap\sb-admin-2.css" />
     <Content Include="Content\bootstrap\styles.css" />
+    <Content Include="Content\bootstrap\timeline.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\images\adnan.jpg" />
     <Content Include="Content\images\amir.jpg" />
     <Content Include="Content\images\amir_shot.jpg" />
     <Content Include="Content\images\Banner-300x140.png" />
+    <Content Include="Content\images\BANNER.png" />
     <Content Include="Content\images\favicon.ico" />
     <Content Include="Content\images\Heartbeat Service-logo.png" />
     <Content Include="Content\images\heartLogo.png" />
@@ -1002,7 +1009,12 @@
     <Content Include="Content\scripts\fullcalendar.min.js" />
     <Content Include="Content\scripts\jquery-1.8.2.min.js" />
     <Content Include="Content\scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Content\scripts\metisMenu.min.js" />
     <Content Include="Content\scripts\modernizr-2.6.2.js" />
+    <Content Include="Content\scripts\morris-data.js" />
+    <Content Include="Content\scripts\morris.min.js" />
+    <Content Include="Content\scripts\raphael-min.js" />
+    <Content Include="Content\scripts\sb-admin-2.js" />
     <Content Include="Content\scripts\script.js" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -1178,6 +1190,11 @@
     <Content Include="Content\KendoUI\js\kendo.window.min.js.map" />
     <Content Include="Content\KendoUI\styles\images\kendoui.ttf" />
     <Content Include="Content\KendoUI\styles\images\kendoui.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy.pubxml" />
@@ -1259,6 +1276,7 @@
     <Content Include="Views\Scheduling\WorkflowAdmin.cshtml" />
     <Content Include="Views\Home\CourseOutline.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Shared\_NavLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

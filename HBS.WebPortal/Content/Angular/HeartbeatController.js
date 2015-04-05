@@ -6,7 +6,7 @@
     $scope.url = $location.host();
     $scope.path = $location.path();
     $scope.port = $location.port();
-    $scope.homePath=$scope.url+':'+$scope.port+'/'+$scope.menuItems[0].url
+    $scope.homePath = $scope.url + ':' + $scope.port + '/' + $scope.menuItems[0].url;
     $scope.init = function () {
 
         $scope.constructMenu();
@@ -45,8 +45,11 @@
         
         var app = document.getElementById('app').value;
         if (app === 'Scheduling')
-            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer' }, { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project' }, { name: 'BPM', cls: 'nav active', url: 'Scheduling/Workflow' }, { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }, { name: 'Workflow Admin', url: 'Scheduling/WorkflowAdmin' }] }]
-        var mainMenu = document.getElementById('menu');
+            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index', licls: 'fa fa-dashboard fa-fw' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer', licls: 'fa fa-user-md fa-fw' },
+                { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily', licls: 'fa fa-calendar fa-fw' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project', licls: 'fa fa-edit fa-fw' },
+                { name: 'BPM', cls: 'nav active', url: 'Scheduling/Workflow', licls: 'fa fa-sitemap fa-fw' },
+                { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', licls: 'fa fa-key fa-fw', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }, { name: 'Workflow Admin', url: 'Scheduling/WorkflowAdmin' }] }]
+        var mainMenu = document.getElementById('side-menu');
         var menuItem;
         var submenu;
         var submenuitem;
@@ -69,16 +72,16 @@
 
                 menuItem.setAttribute("class", $scope.menuItems[i].cls);
               
-                    menuItem.innerHTML = '<a style="color:white;" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '</a>';
+                menuItem.innerHTML = '<a href=http://' + $scope.url + ':' + $scope.port + '/' +$scope.menuItems[i].url + '/><i class="' + $scope.menuItems[i].licls + '"></i> ' +$scope.menuItems[i].name + '</a>';
             }
             else {
                 menuItem.setAttribute("class", "dropdown");
                 
-                menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open dropText "); };
-                menuItem.onmouseout = function () { this.setAttribute("class", "dropdown dropText"); };
-                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/>' + $scope.menuItems[i].name + '<b class=caret></b></a>';
+                //menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open dropText "); };
+                //menuItem.onmouseout = function () { this.setAttribute("class", "dropdown dropText"); };
+                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/><i class="' + $scope.menuItems[i].licls + '"></i> ' + $scope.menuItems[i].name + '<span class="fa arrow"></span></a>';
                 submenu = document.createElement('ul');
-                submenu.setAttribute("class", "dropdown-menu dropText");
+                submenu.setAttribute("class", "dropdown-menu dropText submenu");
                 for (j = 0; j < $scope.menuItems[i].submenu.length; j++)
                 {
                     submenuitem = document.createElement('li');

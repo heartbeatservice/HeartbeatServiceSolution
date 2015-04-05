@@ -23,5 +23,12 @@ namespace HBS.WebPortal.Controllers
             return repository.AddStudent(student);
         }
 
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
+        }
     }
 }

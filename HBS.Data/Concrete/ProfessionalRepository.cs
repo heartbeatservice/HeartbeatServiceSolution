@@ -22,6 +22,7 @@ namespace HBS.Data.Concrete
         private const string GetProfessionalScheduleByIdSp = "GetProfessionalScheduleById";
         private const string GetProfessionalScheduleByDateSp = "GetProfessionalScheduleByDate";
         private const string GetProfessionalMonthlySchedule = "GetProfessionalsMonthlySchedule";
+        private const string GetProfessionalScheduleSp = "GetProfessionalsSchedule";
 
         public int AddProfessional(Professional professional)
         {
@@ -304,7 +305,52 @@ namespace HBS.Data.Concrete
         }
 
 
-        public List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId,int Month,int Year)
+        //public List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId,int Month,int Year)
+        //{
+        //    ProfessionalSchedule professionalSchedule = null;
+        //    List<KendoEntity> lst = new List<KendoEntity>();
+        //    using (var conn = new SqlConnection(PrescienceRxConnectionString))
+        //    {
+
+        //        conn.Open();
+              
+        //        using (var cmd = new SqlCommand(GetProfessionalMonthlySchedule, conn))
+        //        {
+        //            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+        //            cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
+        //            cmd.Parameters["@ProfessionalId"].Value = professionalId;
+        //            cmd.Parameters.Add("@Month", SqlDbType.Int);
+        //            cmd.Parameters["@Month"].Value = Month;
+        //            cmd.Parameters.Add("@Year", SqlDbType.Int);
+        //            cmd.Parameters["@Year"].Value = Year;
+        //            using (var myReader = cmd.ExecuteReader())
+        //            {
+        //                try
+        //                {
+        //                    if (myReader.HasRows)
+        //                    {
+        //                        while (myReader.Read())
+        //                        {
+        //                            professionalSchedule = new ProfessionalSchedule(myReader, "Kendo");
+        //                            lst.Add(professionalSchedule.kendo);
+        //                        }
+
+        //                    }
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    // TODO Logg Error here
+        //                }
+        //            }
+        //        }
+
+        //    }
+        //    return lst;
+
+        //}
+        public List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Year, int customerId)
         {
             ProfessionalSchedule professionalSchedule = null;
             List<KendoEntity> lst = new List<KendoEntity>();
@@ -312,18 +358,18 @@ namespace HBS.Data.Concrete
             {
 
                 conn.Open();
-              
-                using (var cmd = new SqlCommand(GetProfessionalMonthlySchedule, conn))
+
+                using (var cmd = new SqlCommand(GetProfessionalScheduleSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
 
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
                     cmd.Parameters["@ProfessionalId"].Value = professionalId;
-                    cmd.Parameters.Add("@Month", SqlDbType.Int);
-                    cmd.Parameters["@Month"].Value = Month;
-                    cmd.Parameters.Add("@Year", SqlDbType.Int);
+                    cmd.Parameters.Add("@Year", SqlDbType.Int);                   
                     cmd.Parameters["@Year"].Value = Year;
+                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int);
+                    cmd.Parameters["@CustomerId"].Value = customerId;
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try

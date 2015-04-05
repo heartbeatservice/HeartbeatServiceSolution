@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-     <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css" />
-<link href="~/Content/bootstrap/bootstrap-flatly-theme.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap.min.css" />
+    <link href="~/Content/bootstrap/bootstrap-flatly-theme.min.css" rel="stylesheet" />
     <link href="~/Content/Angular/ng-grid.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
-      
+
     <meta name="viewport" content="width=device-width" />
     <link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" />
     <link href="~/Content/Board.css" rel="stylesheet" />
@@ -30,11 +30,11 @@
     <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
     <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
     <script src="~/Content/scripts/script.js"></script>
- 
+
     <script src="~/Content/Angular/ProfessionalController.js"></script>
     <script src="~/Content/Angular/InsuranceController.js"></script>
     <script src="~/content/Angular/emailController.js"></script>
-    
+
     <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.common.min.css" />
     <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.metro.min.css" />
     <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.dataviz.min.css" />
@@ -46,52 +46,54 @@
     <script type="text/javascript" src="~/Content/KendoUI/Workflow.js"></script>
 </head>
 <body ng-app="HeartbeatApp">
-    <div id="mainContent" class="container" >
+    <div id="mainContent" class="container">
         <div id='controls' class='navbar navbar-default navbar-fixed-top' ng-controller="HeartbeatController" data-ng-init="init();">
             <div class="col-md-9">
-            <div id="logo" class="navbar-header">
-                <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
-                <div class="logoText hidden-xs">
+                <div id="logo" class="navbar-header">
+                    <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
+                    <div class="logoText hidden-xs">
 
-                   <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
-                    <!--<h3 class="dropText"> <a href="http://heartbeat-biz.com">Heartbeat</a></h3>-->
-</div>
+                        <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
+                        <!--<h3 class="dropText"> <a href="http://heartbeat-biz.com">Heartbeat</a></h3>-->
+                    </div>
 
-                <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 
-                    <span class="glyphicon glyphicon-chevron-down "></span>
+                        <span class="glyphicon glyphicon-chevron-down "></span>
 
-                </button>
+                    </button>
 
+                </div>
+                <div class="sidebar-nav navbar-collapse">
+
+                    <ul id="side-menu" class="nav navbar-nav  "></ul>
+
+                    @{if (Session["app"] != null)
+                    {
+                        <input type="hidden" id="app" value=@Session["app"].ToString()>
+                    }
+                    else
+                    {
+                        <input type="hidden" id="app" value='Website'>
+                    }
+                    }
+                </div>
             </div>
-            <div class="navbar-collapse collapse navbar-left">
+            @{if (Session["user"] != null)
+            {
+                <input type="hidden" id="app" value="@(((HBS.WebPortal.Models.User)Session["user"]).UserName)">
+                <div class=" col-md-offset-1 col-md-2" style="margin-top:20px;">
+                    <label class="dropText">Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
 
-                <ul id="menu" class="nav navbar-nav  "></ul>
-
-                @{if (Session["app"]!=null){
-                <input type="hidden" id="app" value=@Session["app"].ToString()>
-                }
-                  else { 
-                <input type="hidden" id="app" value='Website'>
-                }
-                }
-            </div>
-</div>
-            @{if (Session["user"]!=null)
-              {
-                  
-            <div class=" col-md-offset-1 col-md-2" style="margin-top:20px;" ><label class="dropText" >Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
-               
-               <a href=" @(Url.Action("Logout","Home"))" class="btn-small dropText"><span class='glyphicon glyphicon-off '></span></a>
-            </div>
+                    <a href=" @(Url.Action("Logout", "Home")) " class=" btn-small droptext"><span class='glyphicon glyphicon-off '></span></a>
+                </div>
             }
             }
         </div>
-    @RenderBody()
+        @RenderBody()
 
-</div>
- 
+    </div>
+
 </body>
 @RenderSection("scripts", required: false)
 </html>
-   

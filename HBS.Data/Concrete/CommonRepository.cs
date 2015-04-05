@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 using HBS.Data.Abstract;
 using HBS.Entities;
 using System.Data;
+using System.Net.Mail;
+using System.Configuration;
 
 namespace HBS.Data.Concrete
 {
-    public class CommonRepository : BaseRepository, ICommonRepository 
+    public class CommonRepository : BaseRepository, ICommonRepository
     {
         private const string AddCompanySp = "AddCompany";
         private const string UpdateCompanySp = "UpdateCompany";
@@ -38,21 +40,34 @@ namespace HBS.Data.Concrete
                     cmd.Parameters["@FirstName"].Value = student.FirstName;
 
                     cmd.Parameters.Add("@LastName", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@LastName"].Value = student.LastName;
+                    cmd.Parameters["@LastName"].Value = (student.LastName == null ? "" : student.LastName);
 
                     cmd.Parameters.Add("@EmailAddress", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@EmailAddress"].Value = student.EmailAddress;
 
                     cmd.Parameters.Add("@Gendar", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@Gendar"].Value = student.Gendar;
+                    cmd.Parameters["@Gendar"].Value = (student.Gendar == null ? "" : student.Gendar);
 
                     cmd.Parameters.Add("@Profession", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@Profession"].Value = student.Profession;
+                    cmd.Parameters["@Profession"].Value = (student.Profession == null ? "" : student.Profession);
 
                     cmd.Parameters.Add("@Source", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@Source"].Value = student.Source;
+                    cmd.Parameters["@Source"].Value = (student.Source == null ? "" : student.Source);
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    if (cmd.ExecuteNonQuery() > 0)
+                    {
+                        SendMail(new EmailMessage
+                        {
+                            ToEmail = student.EmailAddress,
+                            Subject = ConfigurationManager.AppSettings["CourseEmailSubject"],
+                            Message = ConfigurationManager.AppSettings["CourseEmailMessage"]
+                        });
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
 
             }
@@ -116,7 +131,7 @@ namespace HBS.Data.Concrete
         public List<Company> GetAllCompanies()//
         {
 
-           var company = new List<Company>();
+            var company = new List<Company>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
@@ -141,12 +156,10 @@ namespace HBS.Data.Concrete
             }
             return company;
         }
-            
-        
 
         public List<Company> GetCompanies(string companyName)//
         {
-             var company = new List<Company>();
+            var company = new List<Company>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
@@ -154,7 +167,7 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@CompanyName", SqlDbType.VarChar);
-                    cmd.Parameters["@CompanyName"].Value = companyName; 
+                    cmd.Parameters["@CompanyName"].Value = companyName;
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try
@@ -354,7 +367,7 @@ namespace HBS.Data.Concrete
 
             }
             return insurance;
-            
+
         }
 
         public bool RemoveInsurance(int insuranceId, int updatedBy)//
@@ -375,6 +388,34 @@ namespace HBS.Data.Concrete
                     return cmd.ExecuteNonQuery() > 0;
                 }
             }
+        }
+
+        public void SendMail(EmailMessage msg)
+        {
+            try
+            {
+                Task task = new Task(() =>
+                {
+                    MailMessage message = new MailMessage();
+                    message.To.Clear();
+                    message.To.Add(msg.ToEmail);
+                    message.From = new MailAddress("info@heartbeat-biz.com");
+                    message.Body = msg.Message;
+                    message.Subject = msg.Subject;
+                    message.IsBodyHtml = true;
+                    System.Net.Mail.SmtpClient smpt = new System.Net.Mail.SmtpClient();
+                    //smpt.Host = "smtp.mail.yahoo.com";
+                    smpt.Host = "mail.heartbeat-biz.com";
+                    smpt.EnableSsl = true;
+                    //smpt.Port = 587;
+                    smpt.Port = Convert.ToInt32(587);
+                    smpt.Credentials = new System.Net.NetworkCredential("arif@heartbeatservice.com", "abcd@1234");
+                    // smpt.Credentials = new System.Net.NetworkCredential("dinesh.vmscheck", "dineshvms");
+                    smpt.Send(message);
+                });
+                task.Start();
+            }
+            catch (Exception ex) { }
         }
     }
 }

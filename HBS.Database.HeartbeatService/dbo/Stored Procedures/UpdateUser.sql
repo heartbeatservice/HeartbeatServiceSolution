@@ -1,4 +1,5 @@
 ﻿
+
 CREATE PROCEDURE [dbo].[UpdateUser] 
 --UpdateUser 1,1,'ABCTesting','','Umais','Siddiqui','umais@heartbeatservice.com'
 
@@ -13,8 +14,8 @@ CREATE PROCEDURE [dbo].[UpdateUser]
 @IsConfirmed bit=NULL,
 @CreatedBy int=NULL,
 @UpdatedBy int=NULL,
-@IsActive bit=NULL
-
+@IsActive bit=NULL,
+@RoleId int
 
 AS
 
@@ -66,6 +67,9 @@ Insert Into @tblParams Values('UpdatedBy',CONVERT(varchar,@UpdatedBy))
 
 If(@IsActive is not Null)
 Insert Into @tblParams Values('IsActive',CONVERT(varchar,@IsActive))
+
+If(@RoleId is not Null)
+Insert Into @tblParams Values('RoleId',@RoleId)
 
 
 Declare @start int,@end int
