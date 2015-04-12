@@ -1,6 +1,9 @@
 ﻿HeartbeatApp.controller("HeartbeatController", function AppController($scope, $location, HeartbeatService) {
-   
-    $scope.menuItems = [{ name: 'Home', cls: 'nav navbar-item active', url: 'home/index' }, { name: 'About Us', cls: 'nav navbar-item ', url: 'home/about' }, { name: 'Products', cls: 'nav navbar-item ', url: 'home/Products' }, { name: 'Services', cls: 'nav navbar-item', url: 'home/Services' }, { name: 'Goals and Vision', cls: 'nav navbar-item', url: 'home/Goals' }, { name: 'Meet The Team', cls: 'nav navbar-item', url: 'home/Team' }, { name: 'Contact Us', cls: 'nav navbar-item', url: 'Home/ContactUs' }];
+    $scope.CompanyId = $('#company').val();
+    $scope.menuItems = [{ ModuleName: 'Home', cls: 'nav navbar-item active', ModuleURL: 'home/index' }, { ModuleName: 'About Us', cls: 'nav navbar-item ', ModuleURL: 'home/about' },
+        { ModuleName: 'Products', cls: 'nav navbar-item ', ModuleURL: 'home/Products' }, { ModuleName: 'Services', cls: 'nav navbar-item', ModuleURL: 'home/Services' },
+        { ModuleName: 'Goals and Vision', cls: 'nav navbar-item', ModuleURL: 'home/Goals' }, { ModuleName: 'Meet The Team', cls: 'nav navbar-item', ModuleURL: 'home/Team' },
+        { ModuleName: 'Contact Us', cls: 'nav navbar-item', ModuleURL: 'Home/ContactUs' }];
     $scope.app = '';
    
     $scope.url = $location.host();
@@ -44,49 +47,124 @@
         var page = url.substring(start);
         
         var app = document.getElementById('app').value;
-        if (app === 'Scheduling')
-            $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index', licls: 'fa fa-dashboard fa-fw' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer', licls: 'fa fa-user-md fa-fw' },
-                { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily', licls: 'fa fa-calendar fa-fw' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project', licls: 'fa fa-edit fa-fw' },
-                { name: 'BPM', cls: 'nav active', url: 'Scheduling/Workflow', licls: 'fa fa-sitemap fa-fw' },
-                { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', licls: 'fa fa-key fa-fw', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }, { name: 'Workflow Admin', url: 'Scheduling/WorkflowAdmin' }] }]
+        if ($scope.CompanyId == undefined || $scope.CompanyId == null || $scope.CompanyId == 0) {
+            $scope.buildMenu();
+        }
+        else {
+            var role = document.getElementById('role').value;
+            var user = document.getElementById('user').value;
+
+            var resource = 'Module?companyId=' + $scope.CompanyId + '&userId=' + user + '&role=' + role;
+            HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
+        }
+        //if (app === 'Scheduling')
+        //    $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index', licls: 'fa fa-dashboard fa-fw' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer', licls: 'fa fa-user-md fa-fw' },
+        //        { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily', licls: 'fa fa-calendar fa-fw' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project', licls: 'fa fa-edit fa-fw' },
+        //        { name: 'BPM', cls: 'nav active', url: 'Scheduling/Workflow', licls: 'fa fa-sitemap fa-fw' },
+        //        { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', licls: 'fa fa-key fa-fw', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }, { name: 'Workflow Admin', url: 'Scheduling/WorkflowAdmin' }] }]
+        //var mainMenu = document.getElementById('side-menu');
+        //var menuItem;
+        //var submenu;
+        //var submenuitem;
+        //mainMenu.innerHTML='';
+        //for (var i = 0; i < $scope.menuItems.length; i++) {
+
+        //    menuItem = document.createElement('li');
+
+        //    if ($scope.menuItems[i].submenu === undefined) {
+                
+        //        if (start === -1)
+        //            page = 'home/index';
+        //        if (page.toLowerCase().indexOf($scope.menuItems[i].url.toLowerCase()) === 0)
+        //            $scope.menuItems[i].cls = 'nav navbar-item active';
+                
+        //            else
+
+        //            $scope.menuItems[i].cls = 'nav navbar-item';
+
+
+        //        menuItem.setAttribute("class", $scope.menuItems[i].cls);
+              
+        //        menuItem.innerHTML = '<a href=http://' + $scope.url + ':' + $scope.port + '/' +$scope.menuItems[i].url + '/><i class="' + $scope.menuItems[i].licls + '"></i> ' +$scope.menuItems[i].name + '</a>';
+        //    }
+        //    else {
+        //        menuItem.setAttribute("class", "dropdown");
+                
+        //        //menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open dropText "); };
+        //        //menuItem.onmouseout = function () { this.setAttribute("class", "dropdown dropText"); };
+        //        menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/><i class="' + $scope.menuItems[i].licls + '"></i> ' + $scope.menuItems[i].name + '<span class="fa arrow"></span></a>';
+        //        submenu = document.createElement('ul');
+        //        submenu.setAttribute("class", "dropdown-menu dropText submenu");
+        //        for (j = 0; j < $scope.menuItems[i].submenu.length; j++)
+        //        {
+        //            submenuitem = document.createElement('li');
+        //            submenuitem.setAttribute("class", "subitem");
+        //            submenuitem.innerHTML = '<a  class="dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].submenu[j].url + '/>' + $scope.menuItems[i].submenu[j].name + '</a>';
+        //            submenu.appendChild(submenuitem);
+        //        }
+        //        menuItem.appendChild(submenu);
+        //    }
+        //    mainMenu.appendChild(menuItem);
+        //}
+
+
+    };
+
+    $scope.GetSuccess = function (data) {
+        if(data != null)
+            $scope.menuItems = data;
+        $scope.$apply();
+        $scope.buildMenu();
+    };
+    $scope.buildMenu = function () {
+        var url = $location.absUrl();
+
+        var start = url.toLowerCase().indexOf("home");
+
+        var page = url.substring(start);
+
+        //if (app === 'Scheduling')
+        //    $scope.menuItems = [{ name: 'Dashboard', cls: 'nav active', url: 'Scheduling/index', licls: 'fa fa-dashboard fa-fw' }, { name: 'Customers', cls: 'nav active', url: 'Scheduling/Customer', licls: 'fa fa-user-md fa-fw' },
+        //        { name: 'Calendar', cls: 'nav active', url: 'Scheduling/Daily', licls: 'fa fa-calendar fa-fw' }, { name: 'Projects', cls: 'nav active', url: 'Scheduling/Project', licls: 'fa fa-edit fa-fw' },
+        //        { name: 'BPM', cls: 'nav active', url: 'Scheduling/Workflow', licls: 'fa fa-sitemap fa-fw' },
+        //        { name: 'Administration', cls: 'nav active', url: 'Scheduling/Admin', licls: 'fa fa-key fa-fw', submenu: [{ name: 'Professional', url: 'Scheduling/Professional' }, { name: 'Insurance', url: 'Scheduling/Insurance' }, { name: 'Workflow Admin', url: 'Scheduling/WorkflowAdmin' }] }]
         var mainMenu = document.getElementById('side-menu');
         var menuItem;
         var submenu;
         var submenuitem;
-        mainMenu.innerHTML='';
+        mainMenu.innerHTML = '';
         for (var i = 0; i < $scope.menuItems.length; i++) {
 
             menuItem = document.createElement('li');
 
-            if ($scope.menuItems[i].submenu === undefined) {
-                
+            if ($scope.menuItems[i].SubModule === undefined || $scope.menuItems[i].SubModule === null) {
+
                 if (start === -1)
                     page = 'home/index';
-                if (page.toLowerCase().indexOf($scope.menuItems[i].url.toLowerCase()) === 0)
+                if (page.toLowerCase().indexOf($scope.menuItems[i].ModuleURL.toLowerCase()) === 0)
                     $scope.menuItems[i].cls = 'nav navbar-item active';
-                
-                    else
+
+                else
 
                     $scope.menuItems[i].cls = 'nav navbar-item';
 
 
                 menuItem.setAttribute("class", $scope.menuItems[i].cls);
-              
-                menuItem.innerHTML = '<a href=http://' + $scope.url + ':' + $scope.port + '/' +$scope.menuItems[i].url + '/><i class="' + $scope.menuItems[i].licls + '"></i> ' +$scope.menuItems[i].name + '</a>';
+
+                menuItem.innerHTML = '<a href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].ModuleURL + '/><i class="fa ' + $scope.menuItems[i].IconName + ' fa-fw"></i> ' + $scope.menuItems[i].ModuleName + '</a>';
             }
             else {
                 menuItem.setAttribute("class", "dropdown");
-                
+
                 //menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open dropText "); };
                 //menuItem.onmouseout = function () { this.setAttribute("class", "dropdown dropText"); };
-                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].url + '/><i class="' + $scope.menuItems[i].licls + '"></i> ' + $scope.menuItems[i].name + '<span class="fa arrow"></span></a>';
+                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].ModuleURL + '/><i class="fa ' + $scope.menuItems[i].IconName + ' fa-fw"></i> ' + $scope.menuItems[i].ModuleName + '<span class="fa arrow"></span></a>';
                 submenu = document.createElement('ul');
                 submenu.setAttribute("class", "dropdown-menu dropText submenu");
-                for (j = 0; j < $scope.menuItems[i].submenu.length; j++)
-                {
+                for (j = 0; j < $scope.menuItems[i].SubModule.length; j++) {
                     submenuitem = document.createElement('li');
                     submenuitem.setAttribute("class", "subitem");
-                    submenuitem.innerHTML = '<a  class="dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].submenu[j].url + '/>' + $scope.menuItems[i].submenu[j].name + '</a>';
+                    submenuitem.innerHTML = '<a  class="dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].SubModule[j].ModuleURL + '/>' + $scope.menuItems[i].SubModule[j].ModuleName + '</a>';
                     submenu.appendChild(submenuitem);
                 }
                 menuItem.appendChild(submenu);

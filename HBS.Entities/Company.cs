@@ -10,7 +10,7 @@ namespace HBS.Entities
 {
     public class Company : BaseEntity
     {
-        public int ComapanyId { get; set; }
+        public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
 
@@ -22,8 +22,8 @@ namespace HBS.Entities
         public Company(IDataReader dbReader)
             : this()
         {
-            if (dbReader.HasColumn("ComapanyId") && dbReader["ComapanyId"] != DBNull.Value)
-                ComapanyId = (int)dbReader["ComapanyId"];
+            if (dbReader.HasColumn("CompanyId") && dbReader["CompanyId"] != DBNull.Value)
+                CompanyId = (int)dbReader["CompanyId"];
             
             if (dbReader.HasColumn("CompanyName") && dbReader["CompanyName"] != DBNull.Value)
                 CompanyName = (string)dbReader["CompanyName"];

@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IAdminRepository.cs" />
     <Compile Include="Abstract\IAppointmentRepository.cs" />
     <Compile Include="Abstract\ICommonRepository.cs" />
     <Compile Include="Abstract\ICustomerRepository.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Abstract\IWorkflowRepository.cs" />
     <Compile Include="Abstract\IWorkflowStatusRepository.cs" />
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="Concrete\AdminRepository.cs" />
     <Compile Include="Concrete\AppointmentRepository.cs" />
     <Compile Include="Concrete\CommonRepository.cs" />
     <Compile Include="Concrete\CustomerRepository.cs" />

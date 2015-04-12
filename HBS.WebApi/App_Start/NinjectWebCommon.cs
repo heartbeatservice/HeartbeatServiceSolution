@@ -74,6 +74,7 @@ namespace HBS.WebApi.App_Start
             kernel.Bind<ICommonRepository>().To<CommonRepository>();
             kernel.Bind<IAppointmentRepository>().To<AppointmentRepository>();
             kernel.Bind<ICustomerRepository>().To<CustomerRepository>();
+            kernel.Bind<IAdminRepository>().To<AdminRepository>();
         }        
     }
 }

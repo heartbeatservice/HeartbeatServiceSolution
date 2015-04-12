@@ -83,7 +83,7 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@CompanyName", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@CompanyName", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@CompanyName"].Value = company.CompanyName;
 
                     cmd.Parameters.Add("@Description", System.Data.SqlDbType.VarChar);
@@ -92,8 +92,8 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CreatedBy"].Value = company.CreatedBy;
 
-                    cmd.Parameters.Add("@CreatedDate", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@CreatedDate"].Value = DateTime.UtcNow;
+                    cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@UpdatedBy"].Value = company.UpdatedBy;
 
                     return Convert.ToInt16(cmd.ExecuteScalar());
                 }
@@ -111,7 +111,10 @@ namespace HBS.Data.Concrete
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.Add("@CompanyName", System.Data.SqlDbType.Int);
+                    cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = company.CompanyId;
+
+                    cmd.Parameters.Add("@CompanyName", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@CompanyName"].Value = company.CompanyName;
 
                     cmd.Parameters.Add("@Description", System.Data.SqlDbType.VarChar);
@@ -120,8 +123,8 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@UpdatedBy"].Value = company.UpdatedBy;
 
-                    cmd.Parameters.Add("@UpdatedDate", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@UpdatedDate"].Value = DateTime.UtcNow;
+                    cmd.Parameters.Add("@IsActive", System.Data.SqlDbType.Bit);
+                    cmd.Parameters["@IsActive"].Value = company.IsActive;
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -166,8 +169,8 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(GetCompaniesSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@CompanyName", SqlDbType.VarChar);
-                    cmd.Parameters["@CompanyName"].Value = companyName;
+                    cmd.Parameters.Add("@Name", SqlDbType.VarChar);
+                    cmd.Parameters["@Name"].Value = companyName;
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try
@@ -406,7 +409,7 @@ namespace HBS.Data.Concrete
                     System.Net.Mail.SmtpClient smpt = new System.Net.Mail.SmtpClient();
                     //smpt.Host = "smtp.mail.yahoo.com";
                     smpt.Host = "mail.heartbeat-biz.com";
-                    smpt.EnableSsl = true;
+                    //smpt.EnableSsl = true;
                     //smpt.Port = 587;
                     smpt.Port = Convert.ToInt32(587);
                     smpt.Credentials = new System.Net.NetworkCredential("arif@heartbeatservice.com", "abcd@1234");

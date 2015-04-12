@@ -59,6 +59,7 @@
     <Compile Include="KendoEntity.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuRole.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Professional.cs" />
     <Compile Include="ProfessionalSchedule.cs" />
     <Compile Include="ProfessionalType.cs" />

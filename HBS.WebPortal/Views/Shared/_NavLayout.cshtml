@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap/bootstrap-nav.min.css" />
+    <link href="~/Content/Angular/ng-grid.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
+
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" />
+    <link href="~/Content/Board.css" rel="stylesheet" />
+    <script src="~/Content/scripts/jquery-1.8.2.min.js"></script>
+
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Content/scripts/bootstrap.min.js"></script>
+    <script src="~/Content/Angular/angular.min.js"></script>
+    <script src="~/Content/Angular/ng-grid-2.0.6.min.js"></script>
+    <script src="~/Content/Angular/app.js">
+    </script>
+    <script src="~/Content/Angular/HeartbeatService.js"></script>
+    <script src="~/Content/Angular/HeartbeatController.js"></script>
+    <script src="~/Content/Angular/SchedulingController.js"></script>
+    <script src="~/Content/Angular/CustomerController.js"></script>
+    <script src="~/Content/Angular/CompanyController.js"></script>
+    <script src="~/Content/Angular/ModuleController.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+    <script src="~/Content/scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Content/scripts/script.js"></script>
+
+    <script src="~/Content/Angular/ProfessionalController.js"></script>
+    <script src="~/Content/Angular/InsuranceController.js"></script>
+    <script src="~/content/Angular/emailController.js"></script>
+
+    <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.metro.min.css" />
+    <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.dataviz.min.css" />
+    <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.dataviz.metro.min.css" />
+
+
+    @*<script type="text/javascript" src="~/Content/KendoUI/js/jquery.min.js"></script>*@
+    <script type="text/javascript" src="~/Content/KendoUI/js/kendo.all.min.js"></script>
+    <script type="text/javascript" src="~/Content/KendoUI/Workflow.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/bootstrap/metisMenu.min.css" rel="stylesheet">
+    <!-- Timeline CSS -->
+    <link href="~/Content/bootstrap/timeline.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="~/Content/bootstrap/sb-admin-2.css" rel="stylesheet">
+    <!-- Morris Charts CSS -->
+    <link href="~/Content/bootstrap/morris.css" rel="stylesheet">
+    <!-- Custom Fonts -->
+    <link href="~/Content/bootstrap/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Content/scripts/metisMenu.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Content/scripts/raphael-min.js"></script>
+    <script src="~/Content/scripts/morris.min.js"></script>
+    <script src="~/Content/scripts/morris-data.js"></script>
+    <script src="~/Content/scripts/sb-admin-2.js"></script>
+
+</head>
+<body ng-app="HeartbeatApp" style="margin-top:0px;">
+    <div id="wrapper" class="container">
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <div id="logo" class="navbar-header">
+                    <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
+                    <div class="logoText hidden-xs">
+
+                        <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
+                        <!--<h3 class="dropText"> <a href="http://heartbeat-biz.com">Heartbeat</a></h3>-->
+                    </div>
+
+                    <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+
+                        <span class="glyphicon glyphicon-chevron-down "></span>
+
+                    </button>
+
+                </div>
+            </div>
+            <!-- /.navbar-header -->
+            <ul class="nav navbar-top-links navbar-right">
+                @{if (Session["user"] != null)
+                {
+
+                    <li>
+                        <input type="hidden" id="role" value=@(((HBS.WebPortal.Models.User)Session["user"]).RoleId)>
+                        <input type="hidden" id="user" value=@(((HBS.WebPortal.Models.User)Session["user"]).userid)>
+                        <input type="hidden" id="company" value=@(((HBS.WebPortal.Models.User)Session["user"]).companyid)>
+                        <label class="dropText">Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
+                    </li>
+                    <li>
+                        <a href=" @(Url.Action("Logout", "Home")) " class=" btn-small droptext"><span class='glyphicon glyphicon-off '></span></a>
+                    </li>
+                }
+                }
+                <!-- /.dropdown -->
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse" ng-controller="HeartbeatController" data-ng-init="init();">
+                    
+                    @{if (Session["app"] != null)
+                    {
+                        <input type="hidden" id="app" value=@Session["app"].ToString()>
+                    }
+                    else
+                    {
+                        <input type="hidden" id="app" value='Website'>
+                    }
+                    }
+                    <ul class="nav" id="side-menu">
+                       
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+
+
+
+
+        @RenderBody()
+    </div>
+
+</body>
+@RenderSection("scripts", required: false)
+</html>

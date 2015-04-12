@@ -157,6 +157,9 @@
     <Build Include="dbo\Stored Procedures\GetProfessionalsMonthlySchedule.sql" />
     <Build Include="dbo\Stored Procedures\RemoveCompanyModule.sql" />
     <Build Include="dbo\Stored Procedures\RemoveUserModule.sql" />
+    <Build Include="dbo\Stored Procedures\GetModule.sql" />
+    <Build Include="dbo\Stored Procedures\AddModule.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateModule.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />

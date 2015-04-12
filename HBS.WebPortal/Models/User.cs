@@ -17,7 +17,7 @@ namespace HBS.WebPortal.Models
         public string Password { get; set; }
         public int userid { get; set; }
         public int companyid { get; set; }
-
+        public int RoleId { get; set; }
         public bool ValidatePassword()
         {
             HBS.Entities.UserProfile u=new HBS.Entities.UserProfile();
@@ -26,8 +26,8 @@ namespace HBS.WebPortal.Models
             string reqText=JsonConvert.SerializeObject(u);
             byte[] data = Encoding.UTF8.GetBytes(reqText);
             bool result = false;
-            string uri = "http://services.heartbeat-biz.com/api/Security";
-            //string uri = "http://localhost:3687/api/Security";
+            //string uri = "http://services.heartbeat-biz.com/api/Security";
+            string uri = "http://localhost:3687/api/Security";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(uri);
 
                    req.Method = "post";
@@ -42,6 +42,7 @@ namespace HBS.WebPortal.Models
                    string ResponseJSon = read.ReadToEnd();
                    read.Close();
                    u = JsonConvert.DeserializeObject<HBS.Entities.UserProfile>(ResponseJSon);
+                   this.RoleId = u.RoleId;
                    this.userid = u.UserId;
                    this.companyid = u.CompanyId;
                    

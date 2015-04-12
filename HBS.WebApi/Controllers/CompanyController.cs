@@ -50,7 +50,13 @@ namespace HBS.WebApi.Controllers
         {
             return repository.GetCompanies(companyName);
         }
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
 
+            return resp;
+        }
 
 
     }

@@ -17,13 +17,14 @@ namespace HBS.Entities
         public string LastName { get; set; }
         public string Email { get; set; }
         public int UserId { get; set; }
+        public int RoleId { get; set; }
 
         public UserProfile()
         {
             
         }
 
-        public UserProfile(int companyId,string userName,string password,string firstName,string lastName,string email,int userId)
+        public UserProfile(int companyId,string userName,string password,string firstName,string lastName,string email,int userId, int roleId)
             : this()
         {
 
@@ -39,6 +40,7 @@ namespace HBS.Entities
             if (dbReader["Email"] != DBNull.Value) Email = (string)dbReader["Email"];
             if (dbReader["UserId"] != DBNull.Value) UserId = (int)dbReader["UserId"];
             if (dbReader["Password"] != DBNull.Value) Password = (string)dbReader["Password"];
+            if (dbReader["RoleId"] != DBNull.Value) RoleId = (int)dbReader["RoleId"];
             
         }
     }

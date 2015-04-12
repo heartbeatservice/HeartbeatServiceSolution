@@ -65,16 +65,11 @@
 
         var resource = 'Insurance?companyId=' + $scope.CompanyId + '&InsuranceName=' + name;
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
-
     };
-
     $scope.SearchSuccess = function (data) {
         $scope.Insurance = data;
         $scope.$apply();
     };
-
-
-
     $scope.EditInsurance = function (InsuranceId) {
         var resource = 'Insurance?InsuranceId=' + InsuranceId;
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
@@ -90,19 +85,4 @@
     $scope.EditSuccess = function (response) {
         alert("Updated successfully");
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
 });
