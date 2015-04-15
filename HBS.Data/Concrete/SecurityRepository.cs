@@ -18,6 +18,7 @@ namespace HBS.Data.Concrete
         private const string GetUsersByCompanyIdSp = "GetUsersByCompanyId";
         private const string SearchUsersSp = "GetUserBySearchText";
         private const string IsUserNameExistsSp = "IsUserNameExists";
+        private const string GetAllRolesSp = "GetAllRoles";
 
         public int AddUser(UserProfile user)
         {
@@ -226,11 +227,11 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(SearchUsersSp, conn)) //TODO: Need a correct stored procedue name right now it has not been created. 
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.Add("@searchText", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@searchText"].Value = searchText;
                     cmd.Parameters.Add("@companyId", System.Data.SqlDbType.Int);
-                    cmd.Parameters["@companyId"].Value = searchText;
+                    cmd.Parameters["@companyId"].Value = companyId;
+                    cmd.Parameters.Add("@searchText", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@searchText"].Value = searchText;
+
 
                     using (var myReader = cmd.ExecuteReader())
                     {
@@ -337,6 +338,30 @@ namespace HBS.Data.Concrete
             throw new NotImplementedException();
         }
 
+        public List<Role> GetAllRoles()
+        {
+            List<Role> roleList = new List<Role>();
+
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+
+                using (SqlCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = @"SELECT RoleId, RoleName FROM dbo.Roles";
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            roleList.Add(new Role(reader));
+                        }
+                    }
+                }
+            }
+
+            return roleList;
+        }
         public bool RemoveRole(int roleId)
         {
             throw new NotImplementedException();

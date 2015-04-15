@@ -21,13 +21,14 @@ namespace HBS.Data.Abstract
         List<Role> GetUserRoles(int userId);
         bool IsUserInRole(int userId, int roleId);
         IQueryable<KendoDDL> GetAllUsers();
-
+        
         #region ROLES
 
         int AddRole(Role role);
         bool UpdateRole(Role role);
         Role GetRole(int roleId);
         List<Role> GetRoles(int companyId, string roleName);
+        List<Role> GetAllRoles();
         bool RemoveRole(int roleId);
 
         #endregion

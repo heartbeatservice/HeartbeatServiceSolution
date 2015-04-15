@@ -26,6 +26,8 @@
         $("#EndDate").kendoDatePicker({ format: "yyyy-MM-dd" });
         $("#EditEffectiveDate").kendoDatePicker({ format: "yyyy-MM-dd" });
         $("#EditEndDate").kendoDatePicker({ format: "yyyy-MM-dd" });
+        $("#DateOfBirth").kendoDatePicker({ format: "yyyy-MM-dd" });
+        $("#DateOfBirthEdit").kendoDatePicker({ format: "yyyy-MM-dd" });
     };
 
     
@@ -83,6 +85,7 @@
         $scope.Customer.CompanyId = $('#company').val();
         $scope.Customer.CreatedBy = $('#user').val();
         $scope.Customer.Active = true;
+        $scope.Customer.DateOfBirth = $('#DateOfBirth').val();
         var resource = 'Customer';
         HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Customer);
 
@@ -159,6 +162,7 @@
     };
     $scope.GetSuccess = function (response) {
         $scope.applyCustomerToModel(response);
+        $('#DateOfBirthEdit').val(response.DateOfBirth.split('/')[2] + "-" + response.DateOfBirth.split('/')[0] + "-" + response.DateOfBirth.split('/')[1]);
         $('#editbtn').click();
     };
 
@@ -168,6 +172,7 @@
     };
     $scope.UpdateCustomer = function () {
         var resource = 'Customer/' + $scope.Customer.CustomerId;
+        $scope.Customer.DateOfBirth = $('#DateOfBirthEdit').val();
         HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.Customer);
     };
     $scope.EditSuccess = function (response) {

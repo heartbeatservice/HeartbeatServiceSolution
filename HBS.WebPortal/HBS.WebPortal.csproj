@@ -235,6 +235,7 @@
     <Content Include="Content\Angular\ProfessionalController.js" />
     <Content Include="Content\Angular\SchedulingController.js" />
     <Content Include="Content\Angular\StudentController.js" />
+    <Content Include="Content\Angular\UserController.js" />
     <Content Include="Content\Board.css" />
     <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap-nav.min.css" />
@@ -1281,6 +1282,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Scheduling\Company.cshtml" />
     <Content Include="Views\Scheduling\Module.cshtml" />
+    <Content Include="Views\Scheduling\User.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

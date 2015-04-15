@@ -160,6 +160,7 @@
     <Build Include="dbo\Stored Procedures\GetModule.sql" />
     <Build Include="dbo\Stored Procedures\AddModule.sql" />
     <Build Include="dbo\Stored Procedures\UpdateModule.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserBySearchText.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />

@@ -16,15 +16,12 @@ namespace HBS.WebApi.Controllers
         public UserController(ISecurityRepository repo)
         {
             this.securityEntity = repo;
-            
-
-         }
-
+        }
+                
         public UserProfile GetUser(string id)
         {
             return securityEntity.GetUser(Convert.ToInt32(id));
         }
-
         public UserProfile PostUser([FromBody] UserProfile user)
         {
             return securityEntity.GetUser(securityEntity.AddUser(user));
@@ -33,6 +30,23 @@ namespace HBS.WebApi.Controllers
         public IEnumerable<KendoDDL> Get(HttpRequestMessage requestMessage)
         {
             return securityEntity.GetAllUsers().ToList();
+        }
+        public IList<Role> GetAllRole(string RoleName)
+        {
+            return securityEntity.GetAllRoles().ToList();
+        }
+
+        public List<UserProfile> GetUsers(string UserName)
+        {
+            return securityEntity.GetUsers(-1, UserName).ToList();
+        }
+
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
         }
     }
 }
