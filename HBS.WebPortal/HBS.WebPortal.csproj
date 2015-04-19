@@ -223,6 +223,7 @@
     <Content Include="Content\Angular\app.js" />
     <Content Include="Content\Angular\boardController.js" />
     <Content Include="Content\Angular\CalendarController.js" />
+    <Content Include="Content\Angular\checklist-model.js" />
     <Content Include="Content\Angular\CompanyController.js" />
     <Content Include="Content\Angular\CustomerController.js" />
     <Content Include="Content\Angular\emailController.js" />

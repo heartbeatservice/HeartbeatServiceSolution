@@ -1,8 +1,9 @@
-﻿HeartbeatApp.controller("UserController", function AppController($scope, $location, HeartbeatService) {
+﻿HeartbeatApp.controller("UserController", function AppController($scope, $location, $filter, HeartbeatService) {
     $scope.CompanyId = $('#company').val();
     $scope.UserId = $('#User').val();
+    $scope.RoleId = $('#role').val();
     $scope.SearchParam = '';
-    $scope.User = {};
+    $scope.Users = {};
     $scope.AllCompany = {};
     $scope.AllRole = {};
     $scope.AllModule = {};
@@ -12,13 +13,19 @@
 
     };
     $scope.init = function () {
-        var resource = 'Company?companyName=';
-        HeartbeatService.GetData($scope.CompanySuccess, $scope.Error, resource);
-        resource = 'User?RoleName='
-        HeartbeatService.GetData($scope.RoleSuccess, $scope.Error, resource);
+        if ($scope.RoleId == 1) {
+            var resource = 'Company?companyName=';
+            HeartbeatService.GetData($scope.CompanySuccess, $scope.Error, resource);
+            resource = 'User?RoleName='
+            HeartbeatService.GetData($scope.RoleSuccess, $scope.Error, resource);
+        }
+        else {
+            $('#divadmin').hide();
+            $('#diveditadmin').hide();
+        }
         resource = 'Module?ModuleName=';
         HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);
-    }
+    };
     $scope.CompanySuccess = function (data) {
         $scope.AllCompany = data;
         $scope.$apply();
@@ -28,11 +35,11 @@
         $scope.$apply();
     };
     $scope.ModuleSuccess = function (data) {
-        $scope.AllModule = data;
+        $scope.AllModule = $filter('filter')(data, { IsForAll: "false" }); //data;
         $scope.$apply();
     };
     $scope.GridOptions = {
-        data: 'User',
+        data: 'Users',
         enableCellSelection: false,
         enableRowSelection: false,
         enableCellEdit: false,
@@ -46,7 +53,7 @@
 
 
 
-         //{ field: 'UserId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditCompany(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
+         { field: 'UserId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditUser(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
          // 
         ]
 
@@ -54,15 +61,24 @@
 
     };
     $scope.AddUser = function () {
-        $scope.User.CompanyId = $scope.CompanyId;
+        if ($scope.RoleId != 1) {
+            $scope.User.CompanyId = $scope.CompanyId;
+            $scope.User.RoleId = 3;
+        }
         var resource = 'User';
         HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.User);
 
     };
 
     $scope.AddSuccess = function (response) {
-        alert("Added User successfully");
-        $('#dismiss').click();
+        if (response != -1) {
+            alert("Added User successfully");
+            $('#dismiss').click();
+        }
+        else {
+            alert("User already exists!");            
+        }
+
 
     };
 
@@ -84,30 +100,40 @@
         else {
             name = '-1';
         }
-
-        var resource = 'User?UserName=' + name;
-        HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        if ($scope.RoleId == 1) {
+            var resource = 'User?UserName=' + name;
+            HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        }
+        else {
+            var resource = 'User?UserName=' + name + '&CompanyId=' + $scope.CompanyId;
+            HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        }
 
     };
 
     $scope.SearchSuccess = function (data) {
-        $scope.User = data;
+        $scope.Users = data;
         $scope.$apply();
     };
 
 
 
-    $scope.EditCompany = function (User) {
-        var resource = 'User?userId=' +User;
+    $scope.EditUser = function (User) {
+        var resource = 'User?id=' +User;
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
     $scope.GetSuccess = function (response) {
         $scope.User = response;
+        //$scope.User.RoleId = { selected: response. }; 
         $scope.$apply();
         $('#editbtn').click();
     };
     $scope.UpdateUser = function () {
-        var resource = 'User/' + $scope.Company.CompanyName;
+        var resource = 'User';
+        if ($scope.RoleId != 1) {
+            $scope.User.CompanyId = $scope.CompanyId;
+            $scope.User.RoleId = 3;
+        }
         HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.User);
     };
     $scope.EditSuccess = function (response) {

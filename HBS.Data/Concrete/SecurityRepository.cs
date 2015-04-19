@@ -12,6 +12,7 @@ namespace HBS.Data.Concrete
     public class SecurityRepository : BaseRepository, ISecurityRepository
     {
         private const string AddUserSp = "AddUser";
+        private const string AssignUserModuleSp = "AssignUserModule";
         private const string UpdateUserSp = "UpdateUser";
         private const string GetUesrByIdSp = "GetUserById";
         private const string GetUesrByUserNameSp = "GetUserByUserName";
@@ -51,9 +52,26 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CreatedBy"].Value = user.CreatedBy;
 
+                    cmd.Parameters.Add("@RoleId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@RoleId"].Value = user.RoleId;
 
-                    return Convert.ToInt32(cmd.ExecuteScalar());
+                    int i = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (i > 0)
+                    {
+                        cmd.CommandText = AssignUserModuleSp;
+                        cmd.Parameters.Clear();
 
+                        cmd.Parameters.Add("@UserId", System.Data.SqlDbType.Int);
+                        cmd.Parameters["@UserId"].Value = i;
+
+                        cmd.Parameters.Add("@ModuleId", System.Data.SqlDbType.Int);
+                        foreach (var item in user.LstModules)
+                        {
+                            cmd.Parameters["@ModuleId"].Value = item;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    return i;
                 }
             }
         }
@@ -95,7 +113,32 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@UpdatedDate", System.Data.SqlDbType.DateTime);
                     cmd.Parameters["@UpdatedDate"].Value = DateTime.UtcNow;
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd.Parameters.Add("@RoleId", System.Data.SqlDbType.DateTime);
+                    cmd.Parameters["@RoleId"].Value = DateTime.UtcNow;
+
+                    bool b = cmd.ExecuteNonQuery() > 0;
+                    if (b)
+                    {
+                        cmd.CommandText = "Delete from dbo.UserModules WHERE UserId=" + user.UserId;
+                        cmd.CommandType = System.Data.CommandType.Text;
+                        cmd.Parameters.Clear();
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = AssignUserModuleSp;
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+
+                        cmd.Parameters.Add("@UserId", System.Data.SqlDbType.Int);
+                        cmd.Parameters["@UserId"].Value = user.UserId;
+
+                        cmd.Parameters.Add("@ModuleId", System.Data.SqlDbType.Int);
+                        foreach (var item in user.LstModules)
+                        {
+                            cmd.Parameters["@ModuleId"].Value = item;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    return b;
                 }
             }
         }
@@ -124,6 +167,13 @@ namespace HBS.Data.Concrete
                             {
                                 myReader.Read();
                                 user = new UserProfile(myReader);
+                                AdminRepository admrep = new AdminRepository();
+                                List<Module> modules = admrep.GetModulesByUser(userId);
+                                user.LstModules = new List<int>();
+                                foreach (var item in modules)
+                                {
+                                    user.LstModules.Add(item.ModuleId);
+                                }
                             }
                         }
                         catch (Exception ex)

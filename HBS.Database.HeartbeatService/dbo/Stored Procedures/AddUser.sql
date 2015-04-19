@@ -18,8 +18,12 @@ CREATE PROCEDURE [dbo].[AddUser]
 
 AS
 
-
+IF NOT EXISTS(SELECT 'x' from UserProfile WHERE UserName=@UserName)
+Begin
 INSERT INTO UserProfile(CompanyId,UserName,Password,PasswordSalt,FirstName,LastName,Email,ConfirmationToken,IsConfirmed,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy,RoleId) 
 VALUES(@companyId,@UserName,@Password,@PasswordSalt,@FirstName,@LastName,@Email,@ConfirmationToken,@IsConfirmed,GetUtcDate(),@CreatedBy,GetUtcDate(),@UpdatedBy,@RoleId)
 
-SELECT @@IDENTITY As UserId
+	SELECT @@IDENTITY As UserId
+end
+ELSE
+	SELECT -1 As UserId

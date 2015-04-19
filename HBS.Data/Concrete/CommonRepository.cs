@@ -15,6 +15,7 @@ namespace HBS.Data.Concrete
     public class CommonRepository : BaseRepository, ICommonRepository
     {
         private const string AddCompanySp = "AddCompany";
+        private const string AssignCompanyModuleSp = "AssignCompanyModule";
         private const string UpdateCompanySp = "UpdateCompany";
         private const string GetCompanyByIdSp = "GetCompanyById";
         private const string UpdateInsuranceSp = "UpdateInsurance";
@@ -95,7 +96,23 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@UpdatedBy"].Value = company.UpdatedBy;
 
-                    return Convert.ToInt16(cmd.ExecuteScalar());
+                    int i= Convert.ToInt16(cmd.ExecuteScalar());
+                    if (i > 0)
+                    {
+                        cmd.CommandText = AssignCompanyModuleSp;
+                        cmd.Parameters.Clear();
+
+                        cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
+                        cmd.Parameters["@CompanyId"].Value = i;
+
+                        cmd.Parameters.Add("@ModuleId", System.Data.SqlDbType.Int);
+                        foreach (var item in company.LstModules)
+                        {
+                            cmd.Parameters["@ModuleId"].Value = item;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    return i;
                 }
 
             }
@@ -126,7 +143,29 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@IsActive", System.Data.SqlDbType.Bit);
                     cmd.Parameters["@IsActive"].Value = company.IsActive;
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    bool b = cmd.ExecuteNonQuery() > 0;                    
+                    if (b)
+                    {
+                        cmd.CommandText = "Delete from dbo.CompanyModules WHERE companyId=" + company.CompanyId;
+                        cmd.CommandType = CommandType.Text;
+                        cmd.Parameters.Clear();
+                        cmd.ExecuteNonQuery();
+
+                        cmd.CommandText = AssignCompanyModuleSp;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        
+
+                        cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
+                        cmd.Parameters["@CompanyId"].Value = company.CompanyId;
+
+                        cmd.Parameters.Add("@ModuleId", System.Data.SqlDbType.Int);
+                        foreach (var item in company.LstModules)
+                        {
+                            cmd.Parameters["@ModuleId"].Value = item;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    return b;
                 }
             }
         }
@@ -163,6 +202,7 @@ namespace HBS.Data.Concrete
         public List<Company> GetCompanies(string companyName)//
         {
             var company = new List<Company>();
+            AdminRepository admrep = new AdminRepository();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
@@ -178,6 +218,12 @@ namespace HBS.Data.Concrete
                             while (myReader.Read())
                             {
                                 company.Add(new Company(myReader));
+                                List<Module> modules = admrep.GetModulesByCompany(Convert.ToInt32(myReader["CompanyId"]));
+                                company[company.Count - 1].LstModules = new List<int>();
+                                foreach (var item in modules)
+                                {
+                                    company[company.Count - 1].LstModules.Add(item.ModuleId);
+                                }
                             }
                         }
                         catch (Exception ex)
@@ -213,6 +259,13 @@ namespace HBS.Data.Concrete
                             {
                                 myReader.Read();
                                 company = new Company(myReader);
+                                AdminRepository admrep = new AdminRepository();
+                                List<Module> modules = admrep.GetModulesByCompany(Convert.ToInt32(myReader["CompanyId"]));
+                                company.LstModules = new List<int>();
+                                foreach (var item in modules)
+                                {
+                                    company.LstModules.Add(item.ModuleId);
+                                }
                             }
                         }
                         catch (Exception ex)

@@ -24,7 +24,8 @@ SELECT
 	u.CreatedBy,
 	u.UpdatedDate,
 	u.UpdatedBy,
-	u.IsActive
+	u.IsActive,
+	u.RoleId
 FROM UserProfile u
 INNER JOIN Company c
 ON u.CompanyId=c.CompanyId

@@ -1,13 +1,22 @@
-﻿HeartbeatApp.controller("CompanyController", function AppController($scope, $location, HeartbeatService) {
+﻿HeartbeatApp.controller("CompanyController", function AppController($scope, $location,$filter, HeartbeatService) {
 
     $scope.CompanyId = $('#company').val();
     $scope.SearchParam = '';
     $scope.Companies = {};
     $scope.Company = {};
+    $scope.AllModule = {};
     $scope.clearCompany = function () {
 
         $scope.Company = {};
-
+        $scope.Company.LstModules = {};
+    };
+    $scope.init = function () {
+        resource = 'Module?ModuleName=';
+        HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);
+    };
+    $scope.ModuleSuccess = function (data) {
+        $scope.AllModule = $filter('filter')(data, { IsForAll: "false" });
+        $scope.$apply();
     };
     $scope.GridOptions = {
         data: 'Companies',
@@ -17,7 +26,7 @@
         enableColumnResize: true,
         enableColumnReordering: true,
         columnDefs: [
-                     { field: 'CompanyName', displayName: 'Company Name', enableCellEdit: true, width: 100 },
+                     { field: 'CompanyName', displayName: 'Company Name', enableCellEdit: true, width: 200 },
                      { field: 'Description', displayName: 'Description', enableCellEdit: true, width: 200 },
                       { field: 'CompanyId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditCompany(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" }
                    
@@ -41,7 +50,7 @@
     $scope.AddSuccess = function (response) {
         alert("Added Company successfully");
         $('#dismiss').click();
-
+        $scope.CompanySearch();
     };
 
     $scope.Error = function (result) {

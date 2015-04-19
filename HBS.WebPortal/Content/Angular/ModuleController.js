@@ -9,7 +9,20 @@
         $scope.Module = {};
         $scope.ModuleEntry = {};
     };
-   
+    $scope.init = function () {
+        $scope.GetProviders();
+    }
+    $scope.GetProviders = function () {
+        var resource = 'Module?ModuleName=';
+        HeartbeatService.GetData($scope.LoadProviders, $scope.Error, resource);
+    };
+
+    $scope.LoadProviders = function (response) {
+
+        $scope.AllProviders = response;
+    };
+
+
     $scope.GridOptions = {
         data: 'Modules',
         enableCellSelection: false,
@@ -21,26 +34,27 @@
                      { field: 'ModuleName', displayName: 'Module Name', enableCellEdit: true, width: 350 },
                      { field: 'ModuleDescription', displayName: 'Module Description', enableCellEdit: true, width: 320 },
       //  { field: 'ModuleEdit', displayName: 'Module Edit', enableCellEdit: true, width: 300 }
-        
 
-           
+
+
         { field: 'ModuleId', displayName: 'View/Edit', enableCellEdit: true, width: 300, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditModule(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" }
-          
-
-          ]
 
 
-};
+        ]
+
+
+    };
     $scope.AddModule = function () {
+        $scope.Module.ParentId = $scope.myModules.ModuleId;
         var resource = 'Module';
         HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Module);
 
     };
 
     $scope.AddSuccess = function (response) {
-        alert ("Added module successfully");
+        alert("Added module successfully");
         $('#dismiss').click();
-     
+
     };
 
     $scope.Error = function (result) {
@@ -55,7 +69,7 @@
         var name = '';
         if (myParams.length > 0) {
             for (i = 0; i < myParams.length; i++) {
-                    name = myParams[i].trim();
+                name = myParams[i].trim();
             }
         }
         else {
@@ -81,15 +95,19 @@
 
     $scope.GetSuccess = function (response) {
         $scope.Module = response;
+        $scope.myModules = { ModuleId: response.ParentId};
         $scope.$apply();
         $('#editbtn').click();
     };
     $scope.UpdateModule = function () {
+       // if ($scope.myModules != undefined)
+         //   $scope.Module.ParentId = $scope.myModules.ModuleId;
         var resource = 'Module/' + $scope.Module.ModuleId;
         HeartbeatService.PutData($scope.EditSuccess, $scope.Error, resource, $scope.Module);
     };
     $scope.EditSuccess = function (response) {
         alert("Updated successfully");
+        $('#dismissEdit').click();
     };
 
     $scope.GetSuccessEditModule = function (response) {
@@ -99,6 +117,7 @@
         $scope.ShowModuleEditForm();
         $('#moduleClose').click();
         $('#editbtnins').click();
+
     };
 
     $scope.ShowModuleEditForm = function () {
@@ -118,16 +137,4 @@
         //$scope.SelectedInsurance.InsuranceId = 2;
         $scope.$apply();
     }
-
-
-
-
-
-
-
-
-
-
-
-   
 });

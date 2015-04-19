@@ -22,9 +22,9 @@ namespace HBS.WebApi.Controllers
         {
             return securityEntity.GetUser(Convert.ToInt32(id));
         }
-        public UserProfile PostUser([FromBody] UserProfile user)
+        public int PostUser([FromBody] UserProfile user)
         {
-            return securityEntity.GetUser(securityEntity.AddUser(user));
+            return securityEntity.AddUser(user);
         }
 
         public IEnumerable<KendoDDL> Get(HttpRequestMessage requestMessage)
@@ -41,6 +41,15 @@ namespace HBS.WebApi.Controllers
             return securityEntity.GetUsers(-1, UserName).ToList();
         }
 
+        public List<UserProfile> GetUsers(string UserName, int CompanyId)
+        {
+            return securityEntity.GetUsers(CompanyId, UserName).ToList();
+        }
+        [HttpPut]
+        public bool PutUserUpdate([FromBody] UserProfile user)
+        {
+            return securityEntity.UpdateUser(user);
+        }
         [AcceptVerbs("OPTIONS")]
         public HttpResponseMessage Options()
         {

@@ -13,7 +13,7 @@ namespace HBS.Entities
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
-
+        public List<int> LstModules { get; set; }
         public Company()
         {
 
@@ -41,7 +41,7 @@ namespace HBS.Entities
                 base.DateCreated = (DateTime)dbReader["DateCreated"];
             
             if (dbReader.HasColumn("DateUpdated") && dbReader["DateUpdated"] != DBNull.Value)
-                base.DateUpdated = (DateTime)dbReader["DateUpdated"];
+                base.DateUpdated = (DateTime)dbReader["DateUpdated"];            
         }
 
 

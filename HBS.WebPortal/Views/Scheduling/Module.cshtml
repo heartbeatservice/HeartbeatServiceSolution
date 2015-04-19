@@ -4,7 +4,7 @@
 }
 
 
-<div id="page-wrapper" ng-controller="ModuleController">
+<div id="page-wrapper" ng-controller="ModuleController" ng-init="init()">
 
 
     <div id="dashboard">
@@ -19,7 +19,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <a href="#frmAdd" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span>Add New Module</a>
+                            <a href="#frmAdd" class="btn btn-warning" ng-click="clearModule();" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span>Add New Module</a>
                         </div>
                     </div>
                 </div>
@@ -49,13 +49,15 @@
 
             </div>
         </div>
-        </div>
+    </div>
 
     @*add module*@
 
 
     <div class="modal fade " tabindex="-1" id="frmAdd">
         <div class="modal-dialog">
+
+
             <div class="modal-content">
                 <div class="modal-header ">
                     <a href="#" class="close" data-dismiss="modal">&times;</a>
@@ -67,7 +69,7 @@
 
                         <div class="row">
                             <div class="form-group col-md-6 has-warning">
-                                <h4>Module Name</h4>
+                                <label>Module Name</label>
                                 <div ng-class="{'has-error': test2..$invalid}" class="input-group">
                                     <input id="ModuleName" type="text" value="" ng-model="Module.ModuleName" required class="form-control" placeholder="Module Name" />
                                     <span class="help-block error" ng-show="test2.ModuleName.$error.required">Required</span>
@@ -77,20 +79,20 @@
 
 
 
-                            <div class="">
-                                <div class="form-group col-md-6 has-warning">
-                                    <h4>Module Description</h4>
-                                    <div ng-class="{'has-error': test2..$invalid}" class="input-group">
-                                        <input id="ModuleDescription" type="text" value="" ng-model="Module.ModuleDescription" required class="form-control" placeholder="Module Description" />
-                                        <span class="help-block error" ng-show="test2.ModuleDescription.$error.required">Required</span>
-                                    </div>
-                                </div>
 
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Module Description</label>
+                                <div ng-class="{'has-error': test2..$invalid}" class="input-group">
+                                    <input id="ModuleDescription" type="text" value="" ng-model="Module.ModuleDescription" required class="form-control" placeholder="Module Description" />
+                                    <span class="help-block error" ng-show="test2.ModuleDescription.$error.required">Required</span>
+                                </div>
                             </div>
+
+
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6 has-warning">
-                                <h4>Display Order</h4>
+                                <label>Display Order</label>
                                 <div ng-class="{'has-error': test2..$invalid}" class="input-group">
                                     <input id="ModuleDisplayOrder" type="text" value="" ng-model="Module.DisplayOrder" required class="form-control" placeholder="Display Order" />
                                     <span class="help-block error" ng-show="test2.ModuleDisplayOrder.$error.required">Required</span>
@@ -99,31 +101,65 @@
 
 
 
-                            <div class="">
-                                <div class="form-group col-md-6 has-warning">
-                                    <h4>Module URL</h4>
-                                    <div ng-class="{'has-error': test2..$invalid}" class="input-group">
-                                        <input id="ModuleURL" type="text" value="" ng-model="Module.ModuleURL" required class="form-control" placeholder="Module URL" />
-                                        <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
-                                    </div>
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Module URL</label>
+                                <div ng-class="{'has-error': test2..$invalid}" class="input-group">
+                                    <input id="ModuleURL" type="text" value="" ng-model="Module.ModuleURL" required class="form-control" placeholder="Module URL" />
+                                    <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Parent Module</label>
+                                <div class="input-group">
+                                    <select id="pId" ng-model="myModules" ng-options="Module.ModuleName for Module in AllProviders"><option value="">---Select Module---</option></select>
+                                    <input name="ParentId" type="hidden" value="{{Module.ParentId}}" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Show Module</label>
+                                <div class="input-group">
+                                    <input type="checkbox" ng-model="Module.IsForAll" name="chkbx" />
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Icon Name</label>
+                                <div ng-class="{'has-error': test2..$invalid}" class="input-group">
+                                    <input id="IconName" type="text" value="" ng-model="Module.IconName" required class="form-control" placeholder="Icon Name" />
+                                    <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="modal-footer">
-                        <div class="form-group  col-md-8">
-                            <button class="btn btn-warning" class="form-control" ng-click="AddModule();"><span class="glyphicon glyphicon-user"></span>Save</button>
-                            <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
-                            <input class="btn btn-warning" type="button" value="Clear" ng-click="clearModule();" />
 
+
+
+                        <div class="modal-footer">
+                            <div class="form-group  col-md-8">
+                                <button class="btn btn-warning" class="form-control"><span class="glyphicon glyphicon-user"></span>Save</button>
+                                <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                                <input class="btn btn-warning" type="button" value="Clear" ng-click="clearModule();" />
+
+                            </div>
                         </div>
                     </div>
                 </form>
             </div>
+
         </div>
-
-
     </div>
 
     <!--Edit-->
@@ -144,14 +180,14 @@
 
                         <div class="row">
                             <div class="form-group col-md-6 has-warning">
-                                <h4>Module Name</h4>
+                                <label>Module Name</label>
                                 <div ng-class="{'has-error': test2..$invalid}" class="input-group">
                                     <input id="ModuleNameEdit" type="text" value="" ng-model="Module.ModuleName" required class="form-control" placeholder="Module Name" />
                                     <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning">
-                                <h4>Module Description</h4>
+                                <label>Module Description</label>
                                 <div ng-class="{'has-error': test2..$invalid}" class="input-group">
                                     <input id="ModuleDescriptionEdit" type="text" value="" ng-model="Module.ModuleDescription" required class="form-control" placeholder="Module Description" />
                                     <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
@@ -161,14 +197,14 @@
 
                         <div class="row">
                             <div class="form-group col-md-6 has-warning">
-                                <h4>Display Order</h4>
+                                <label>Display Order</label>
                                 <div ng-class="{'has-error': test2..$invalid}" class="input-group">
                                     <input id="DisplayOrderEdit" type="text" value="" ng-model="Module.DisplayOrder" required class="form-control" placeholder="Display Order" />
                                     <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
                                 </div>
                             </div>
                             <div class="form-group col-md-6 has-warning ">
-                                <h4>Module URL</h4>
+                                <label>Module URL</label>
                                 <div ng-class="{'has-error': test2..$invalid}" class="input-group">
                                     <input id="ModuleURLEdit" type="text" value="" ng-model="Module.ModuleURL" required class="form-control" placeholder="Module URL" />
                                     <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
@@ -178,6 +214,38 @@
 
 
 
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Parent Module</label>
+                                <div class="input-group">
+                                    <select id="paeditId" ng-model="Module.ParentId" ng-options="Module.ModuleId as Module.ModuleName for Module in AllProviders"><option value="">---Select Module---</option></select>
+                                    <input name="EditParentId" type="hidden" value="{{Module.ParentId}}" />
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Show Module</label>
+                                <div class="input-group">
+                                    <input type="checkbox" ng-model="Module.IsForAll" name="chkbx" />
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Icon Name</label>
+                                <div ng-class="{'has-error': test2..$invalid}" class="input-group">
+                                    <input id="IconName" type="text" value="" ng-model="Module.IconName" required class="form-control" placeholder="Icon Name" />
+                                    <span class="help-block error" ng-show="test2.ModuleURL.$error.required">Required</span>
+                                </div>
+                            </div>
+                        </div>
+
 
 
 
@@ -185,7 +253,7 @@
 
                     <div class="modal-footer">
                         <div class="form-group  col-md-8">
-                            <button class="btn btn-warning" class="form-control" ng-click="UpdateModule();"><span class="glyphicon glyphicon-user"></span> Save</button>
+                            <button class="btn btn-warning" class="form-control"><span class="glyphicon glyphicon-user"></span> Save</button>
                             <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
                             <input class="btn btn-warning" type="button" value="Clear" ng-click="clearModule();" />
 

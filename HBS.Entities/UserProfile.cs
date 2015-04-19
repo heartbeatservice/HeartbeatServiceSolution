@@ -18,6 +18,7 @@ namespace HBS.Entities
         public string Email { get; set; }
         public int UserId { get; set; }
         public int RoleId { get; set; }
+        public List<int> LstModules { get; set; }
 
         public UserProfile()
         {

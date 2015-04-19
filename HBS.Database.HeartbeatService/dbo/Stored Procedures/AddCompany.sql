@@ -15,3 +15,5 @@ AS
 
 INSERT INTO Company(CompanyName,Description,CreatedDate,CreatedBy,UpdatedDate,UpdatedBy) 
 VALUES(@CompanyName,@Description,GetUtcDate(),@CreatedBy,GetUtcDate(),@UpdatedBy)
+
+SELECT @@IDENTITY As CompanyId
