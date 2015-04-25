@@ -101,16 +101,20 @@ namespace HBS.WebPortal.Controllers
 
         public ActionResult Login()
         {
-
-         
             if (Session["user"] == null)
             {
-
                 return RedirectToAction("Index", new { id = "You cannot access page without Logging In" });
+            }
+            else
+            {
+                if (((HBS.WebPortal.Models.User)Session["user"]).RoleId == 0)
+                {
+                    return RedirectToAction("Index", new { id = "You currently do not have a role assigned please contact system Administrator" });
+                }
             }
             return RedirectToAction("Index","Scheduling");
         }
-
+        
         public ActionResult LogOut()
         {
             Session.Abandon();

@@ -1,8 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[GetUserBySearchText]
 --GetUsersByCompanyId  1
 
+
 @companyId int,
-@searchText VARCHAR(50)
+@searchText VARCHAR(50) = null
 
 
 AS
@@ -23,9 +24,10 @@ SELECT
 	u.CreatedBy,
 	u.UpdatedDate,
 	u.UpdatedBy,
-	u.IsActive
+	u.IsActive,
+	u.RoleId
 FROM UserProfile u
 INNER JOIN Company c
 ON u.CompanyId=c.CompanyId
 WHERE (c.companyid=@companyid or @CompanyId = -1) and
-(u.UserName like '%' + @searchText + '%')
+(u.UserName like '%' + @searchText + '%' OR @searchText is null)

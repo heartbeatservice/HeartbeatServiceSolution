@@ -10,13 +10,15 @@ namespace HBS.WebPortal.Controllers
     {
         public ActionResult Index()
         {
-
-            if (Session["user"] == null)
+            ActionResult action = Redirect();
+            if (action == null)
             {
-
-                return RedirectToAction("Index", "Home",new { id = "You cannot access page without Logging In" });
+                return View();
             }
-            return View();
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Customer()
@@ -28,20 +30,19 @@ namespace HBS.WebPortal.Controllers
             }
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
-            return View();
+            ActionResult action = Redirect();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Daily()
         {
-            if (Session["user"] == null)
-            {
-                
-               
-
-
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
-            }
-
             if (Request.QueryString["CustomerId"] != null)
                 ViewBag.CustomerId = Request.QueryString["CustomerId"].ToString();
             else
@@ -52,18 +53,29 @@ namespace HBS.WebPortal.Controllers
             ViewBag.ProfessionalId = "0";
             ViewBag.CurrentDate = DateTime.Now.ToShortDateString();
             ViewBag.companyid = getCompanyId();
-            return View();
+            ActionResult action = Redirect();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
         }
 
 
         public ActionResult Weekly()
         {
-            if (Session["user"] == null)
+            ActionResult action = Redirect();
+            if (action == null)
             {
-
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+                return View();
             }
-            return View();
+            else
+            {
+                return action;
+            }
         }
 
         int getCompanyId()
@@ -84,111 +96,153 @@ namespace HBS.WebPortal.Controllers
 
         public ActionResult Professional()
         {
-            if (Session["user"] == null)
-            {
+            ActionResult action = Redirect();
 
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
-            }
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
-                       
-            return View();
+
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
         }
 
 
         public ActionResult Insurance()
         {
-            if (Session["user"] == null)
-            {
-
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
-            }
-
+            ActionResult action = Redirect();
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
 
-            return View();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Contact()
         {
-            if (Session["user"] == null)
-            {
-
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
-            }
+            ActionResult action = Redirect();
 
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
 
-            return View();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Project()
         {
-            if (Session["user"] == null)
-            {
-
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
-            }
+            ActionResult action = Redirect();
 
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
 
-            return View();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Workflow()
         {
-            if (Session["user"] == null)
+            ActionResult action = Redirect();
+            if (action == null)
             {
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+                return View();
             }
-
-            return View();
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult WorkflowAdmin()
         {
-            if (Session["user"] == null)
+            ActionResult action = Redirect();
+            if (action == null)
             {
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+                return View();
             }
-
-            return View();
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Company()
         {
-            if (Session["user"] == null)
+            ActionResult action = Redirect();
+            if (action == null)
             {
-
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+                return View();
             }
-
-
-            return View();
+            else
+            {
+                return action;
+            }
         }
 
         public ActionResult Module()
         {
-            if (Session["user"] == null)
+            ActionResult action = Redirect();
+            if (action == null)
             {
-                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+                return View();
             }
-
-            return View();
+            else
+            {
+                return action;
+            }
         }
         public ActionResult User()
         {
+            ActionResult action = Redirect();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
+        }
+
+        private ActionResult Redirect()
+        {
             if (Session["user"] == null)
             {
-
                 return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
             }
-
-
-            return View();
+            else
+            {
+                if (((HBS.WebPortal.Models.User)Session["user"]).RoleId == 0)
+                {
+                    return RedirectToAction("Index", "Home", new { id = "You currently do not have a role assigned please contact system Administrator" });
+                }
+                else
+                {
+                    return View();
+                }
+            }
         }
     }
 }

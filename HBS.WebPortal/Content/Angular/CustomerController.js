@@ -162,7 +162,11 @@
     };
     $scope.GetSuccess = function (response) {
         $scope.applyCustomerToModel(response);
-        $('#DateOfBirthEdit').val(response.DateOfBirth.split('/')[2] + "-" + response.DateOfBirth.split('/')[0] + "-" + response.DateOfBirth.split('/')[1]);
+        if (response.DateOfBirth != null) {
+            $('#DateOfBirthEdit').val(response.DateOfBirth.split('/')[2] + "-" + response.DateOfBirth.split('/')[0] + "-" + response.DateOfBirth.split('/')[1]);
+        }
+        else
+            $('#DateOfBirthEdit').val('');
         $('#editbtn').click();
     };
 

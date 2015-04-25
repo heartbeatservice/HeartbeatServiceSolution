@@ -45,7 +45,8 @@
 
     };
     $scope.AddModule = function () {
-        $scope.Module.ParentId = $scope.myModules.ModuleId;
+        //if ($scope.myModules != undefined)
+        //    $scope.Module.ParentId = $scope.myModules.ModuleId;
         var resource = 'Module';
         HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Module);
 

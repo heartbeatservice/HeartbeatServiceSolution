@@ -45,7 +45,10 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@CompanyId", SqlDbType.Int).Value = customer.CompanyId;
                     cmd.Parameters.Add("@FirstName", SqlDbType.VarChar).Value = customer.FirstName;
                     cmd.Parameters.Add("@LastName", SqlDbType.VarChar).Value = customer.LastName;
-                    cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = (customer.DateOfBirth==null?"1/1/1900":customer.DateOfBirth);
+                    if (!string.IsNullOrEmpty(customer.DateOfBirth))
+                    {
+                        cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = (customer.DateOfBirth == null ? "1/1/1900" : customer.DateOfBirth);    
+                    }                    
                     cmd.Parameters.Add("@MiddleInitial", SqlDbType.VarChar).Value = customer.MiddleInitial;
                     cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = customer.Email;
                     cmd.Parameters.Add("@Address1", SqlDbType.VarChar).Value = customer.Address1;
@@ -81,7 +84,11 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@City", SqlDbType.VarChar).Value = customer.City;
                     cmd.Parameters.Add("@State", SqlDbType.VarChar).Value = customer.State;
                     cmd.Parameters.Add("@Zip", SqlDbType.VarChar).Value = customer.Zip;
-                    cmd.Parameters.Add("@DateofBirth", SqlDbType.Date).Value = customer.DateOfBirth;
+                    if (!string.IsNullOrEmpty(customer.DateOfBirth))
+                    {
+                        cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = (customer.DateOfBirth == null ? "1/1/1900" : customer.DateOfBirth);
+                    }
+                    //cmd.Parameters.Add("@DateofBirth", SqlDbType.Date).Value = customer.DateOfBirth;
                     cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = customer.Email;
                     cmd.Parameters.Add("@HomePhone", SqlDbType.VarChar).Value = customer.HomePhone;
                     cmd.Parameters.Add("@CellPhone", SqlDbType.VarChar).Value = customer.CellPhone;

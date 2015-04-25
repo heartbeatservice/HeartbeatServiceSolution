@@ -114,7 +114,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters["@UpdatedDate"].Value = DateTime.UtcNow;
 
                     cmd.Parameters.Add("@RoleId", System.Data.SqlDbType.DateTime);
-                    cmd.Parameters["@RoleId"].Value = DateTime.UtcNow;
+                    cmd.Parameters["@RoleId"].Value = user.RoleId;
 
                     bool b = cmd.ExecuteNonQuery() > 0;
                     if (b)

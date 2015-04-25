@@ -124,6 +124,7 @@
     };
     $scope.GetSuccess = function (response) {
         $scope.User = response;
+        $scope.User.Password1 = $scope.User.Password;
         //$scope.User.RoleId = { selected: response. }; 
         $scope.$apply();
         $('#editbtn').click();
