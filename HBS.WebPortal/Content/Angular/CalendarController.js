@@ -1,20 +1,20 @@
 ﻿HeartbeatApp.controller("CalendarController", function AppController($scope, $location, HeartbeatService) {
-   
+
     $scope.currentDate = "2014/11/20";
     $scope.CompanyId = 0;
     $scope.professionalId = 0;
-    $scope.ProfessionalInfo = {ProfessionalId: 0, FirstName: '', LastName: '' };
+    $scope.ProfessionalInfo = { ProfessionalId: 0, FirstName: '', LastName: '' };
     $scope.CustomerList = [];
     $scope.ProfessionalList = [];
     $scope.ProfessionalSchedule = {};
     $scope.CustomerId = 0;
     $scope.CustomerDropDown = [];
-    $scope.year=2014;
+    $scope.year = 2014;
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
     //$scope.ServiceURL = "http://localhost:3687/api/";
-    $scope.ServiceURL="http://services.heartbeat-biz.com/api/";
+    $scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
         $("#scheduler").ajaxComplete(function () {
@@ -30,18 +30,18 @@
         $scope.setMonthYear();
         $scope.GetProfessionals();
         $scope.GetCustomers();
-        
-        
-       
+
+
+
         //http://localhost:3687/api/Customer?companyId=1
         //http://localhost:3687/api/Professional?CompanyId=1
     };
     //Refreshing The Page
     $scope.setMonthYear = function () {
-        var date=new Date($scope.currentDate);
+        var date = new Date($scope.currentDate);
         $scope.month = date.getMonth() + 1;
         $scope.year = date.getFullYear();
-       
+
 
     };
     $scope.RefreshPage = function () {
@@ -54,7 +54,7 @@
     $scope.checkReloadLogic = function () {
         var dateText = $('span[data-bind = "text: formattedDate"]').html();
         var arr = dateText.split(",");
-    
+
         if (arr.length === 2) {
             dateText = arr[0] + " 01," + arr[1];
         }
@@ -95,12 +95,10 @@
         $scope.$apply();
     };
 
-    $scope.findCurrentProvider=function(){
+    $scope.findCurrentProvider = function () {
 
-        for(var i=0;i<$scope.ProfessionalList.length;i++)
-        {
-            if($scope.professionalId==$scope.ProfessionalList[i].ProfessionalId)
-            {
+        for (var i = 0; i < $scope.ProfessionalList.length; i++) {
+            if ($scope.professionalId == $scope.ProfessionalList[i].ProfessionalId) {
                 $scope.professionalId = $scope.ProfessionalList[i].ProfessionalId;
                 $scope.ProfessionalInfo = $scope.ProfessionalList[i];
 
@@ -123,20 +121,20 @@
     };
 
     $scope.assignCustomers = function (customerId) {
-         function customer() {
+        function customer() {
 
             this.text = "";
             this.value = "";
             this.color = "#f8a398";
         }
-         for (var i = 0; i < $scope.CustomerList.length; i++) {
-             cst = new customer();
+        for (var i = 0; i < $scope.CustomerList.length; i++) {
+            cst = new customer();
             cst.text = $scope.CustomerList[i].FirstName + ' ' + $scope.CustomerList[i].LastName;
             cst.value = $scope.CustomerList[i].CustomerId;
             $scope.CustomerDropDown.push(cst);
-           
+
         }
-      //  console.log(JSON.stringify($scope.CustomerDropDown));
+        //  console.log(JSON.stringify($scope.CustomerDropDown));
         $scope.$apply();
         $scope.loadDailyCalendar();
     };
@@ -144,16 +142,17 @@
 
         alert("FAILED : " + result.status + ' ' + result.statusText);
     };
-    
+
     $scope.loadDailyCalendar = function () {
 
         $(function () {
             $("#scheduler").kendoScheduler({
                 date: new Date($scope.currentDate),
-                startTime: new Date($scope.currentDate+" 7:00 AM"),
-                height:600,
+                startTime: new Date($scope.currentDate + " 7:00 AM"),
+                height: 600,
                 views: [
-                   { type:"day",
+                   {
+                       type: "day",
                        group: {
                            orientation: "vertical"
                        }
@@ -170,29 +169,29 @@
 
                         e.container.find("[name=isAllDay]").attr("checked", false);
                     }
-                    if($scope.CustomerId != '0')
+                    if ($scope.CustomerId != '0')
                         $('select[data-bind="value:ownerId"]').data("kendoMultiSelect").value($scope.CustomerId);
                     $('select[data-bind="value:ownerId"]').data("kendoMultiSelect").options.maxSelectedItems = 1;
                     e.container.find("[name=isAllDay]").parent().prev().remove().end().remove();
                     e.container.find("[data-container-for=recurrenceRule]").prev().remove().end().remove();
                     e.container.find("[for=ownerId]").html("Customer");
                     $(".k-window-title").html('Schedule Appointment with Dr. ' + $scope.ProfessionalInfo.FirstName);
-                    
+
                 },
                 change: function (e) {
-        var start = e.start; //selection start date
-            var end = e.end; //selection end date
-            var slots = e.slots; //list of selected slots
-            var events = e.events; //list of selected Scheduler events
+                    var start = e.start; //selection start date
+                    var end = e.end; //selection end date
+                    var slots = e.slots; //list of selected slots
+                    var events = e.events; //list of selected Scheduler events
 
-            var message = "change:: selection from {0:g} till {1:g}";
+                    var message = "change:: selection from {0:g} till {1:g}";
 
-            if (events.length) {
-                message += ". The selected event is '" + events[events.length - 1].title + "'";
-            }
+                    if (events.length) {
+                        message += ". The selected event is '" + events[events.length - 1].title + "'";
+                    }
 
-           // console.log(message);
-        },
+                    // console.log(message);
+                },
                 // timezone: "Etc/UTC",
                 dataSource: {
                     batch: true,
@@ -204,7 +203,7 @@
                                 xhrObj.setRequestHeader("Accept", "application/json");
 
                             },
-                            success:function(data){alert("Got It");},
+                            success: function (data) { alert("Got It"); },
                             url: $scope.ServiceURL + 'ProfessionalSchedule//' + $scope.professionalId + "?year=" + $scope.year + "&customerId=" + $scope.CustomerId,
                             dataType: "json"
                         },
@@ -225,7 +224,7 @@
                                 xhrObj.setRequestHeader("Accept", "application/json");
                                 s.data = JSON.stringify($scope.ProfessionalSchedule);
                             },
-                           
+
                             url: $scope.ServiceURL + 'ProfessionalSchedule/',
                             type: "put"
 
@@ -246,15 +245,15 @@
                                 xhrObj.setRequestHeader("Content-Type", "application/json");
                                 xhrObj.setRequestHeader("Accept", "application/json");
                                 s.data = JSON.stringify($scope.ProfessionalSchedule);
-                              
-                                
+
+
                             },
-                            
+
                             url: $scope.ServiceURL + 'ProfessionalSchedule/',
                             type: "post"
                         },
                         destroy: {
-                          
+
                             url: $scope.ServiceURL,
                             dataType: "jsonp"
                         },
@@ -262,17 +261,15 @@
                             var attribString = "";
                             if (operation !== "read" && options.models) {
                                 var Items = $('.k-edit-form-container > .k-edit-field');
-                                for (var i = 0; i < Items.length; i++)
-                                {
+                                for (var i = 0; i < Items.length; i++) {
                                     inputVal = Items[i];
 
-                                   attribString+= inputVal.getAttribute("data-container-for");
+                                    attribString += inputVal.getAttribute("data-container-for");
                                 }
-                               
-                                switch(operation)
-                                {
+
+                                switch (operation) {
                                     case "create":
-                                        $scope.ProfessionalSchedule = options.models[options.models.length-1];
+                                        $scope.ProfessionalSchedule = options.models[options.models.length - 1];
                                         $scope.ProfessionalSchedule.ProfessionalId = $scope.professionalId;
                                         $scope.ProfessionalSchedule.UserId = 1;
                                         console.log(JSON.stringify(options.models[0]));
@@ -297,7 +294,7 @@
                             fields: {
                                 taskId: { from: "TaskID", type: "number" },
                                 title: { from: "Title", defaultValue: "", validation: { required: true } },
-                                start: { type: "date", from: "Start", validation: { required: true }},
+                                start: { type: "date", from: "Start", validation: { required: true } },
                                 end: { type: "date", from: "End" },
                                 startTimezone: { from: "StartTimezone" },
                                 endTimezone: { from: "EndTimezone" },
@@ -307,7 +304,7 @@
                                 recurrenceException: { from: "RecurrenceException" },
                                 ownerId: { from: "OwnerID", defaultValue: 0, validation: { required: true } },
                                 isAllDay: { type: "boolean", from: "IsAllDay" },
-                                ProfessionalId: { type: "number", from: "ProfessionalId"},
+                                ProfessionalId: { type: "number", from: "ProfessionalId" },
                                 UserId: { type: "number", from: "UserId" }
                             }
                         }
@@ -328,13 +325,13 @@
                         dataSource: $scope.CustomerDropDown,
                         multiple: true
 
-                            /*[
-                            { text: "Alex", value: 1, color: "#f8a398" },
-                            { text: "Bob", value: 2, color: "#51a0ed" },
-                            { text: "Charlie", value: 3 }
-                           // , color: "#56ca85"
-                           
-                        ] **/
+                        /*[
+                        { text: "Alex", value: 1, color: "#f8a398" },
+                        { text: "Bob", value: 2, color: "#51a0ed" },
+                        { text: "Charlie", value: 3 }
+                       // , color: "#56ca85"
+                       
+                    ] **/
                         //Have to Assign Data Source To This.
                     }
                 ]
@@ -345,33 +342,33 @@
             //        return parseInt($(checkbox).val());
             //    });
 
-                var scheduler = $("#scheduler").data("kendoScheduler");
+            var scheduler = $("#scheduler").data("kendoScheduler");
 
-                //scheduler.dataSource.filter({
-                //    operator: function (task) {
-                //        return true;
-                //    }
-                //});
+            //scheduler.dataSource.filter({
+            //    operator: function (task) {
+            //        return true;
+            //    }
+            //});
             //});
         });
 
 
-   
+
         //Show Everything Now
         $(".k-nav-next").mouseup(function () {
-           
+
             setTimeout(function () {
                 var ua = window.navigator.userAgent;
                 var msie = ua.indexOf("MSIE ");
 
                 //if (msie > 0)      // If Internet Explorer, return version number
-             
+
                 $scope.checkReloadLogic();
 
             }, 1000);
-            
 
-      
+
+
         });
 
         $(".k-scheduler-monthview").dblclick(function () {
@@ -388,15 +385,15 @@
                 var msie = ua.indexOf("MSIE ");
 
                 //if (msie > 0)      // If Internet Explorer, return version number
-              
-                    $scope.checkReloadLogic();
+
+                $scope.checkReloadLogic();
             }, 1000);
 
 
 
         });
 
-    
+
 
         //$(".k-nav-current").click(function () {
         //    setTimeout(function () {
@@ -404,7 +401,7 @@
         //        scheduler.refresh();
         //    }, 1000);
         //    //setTimeout(function () {
-                
+
         //    //    $(".k-scheduler-calendar").mouseup(function () {
         //    //        setTimeout(function () {
         //    //            var ua = window.navigator.userAgent;

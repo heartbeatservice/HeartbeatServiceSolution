@@ -32,7 +32,7 @@
 
     
     $scope.GetProviders = function () {
-        var resource = 'Professional/' + $scope.CompanyId;
+        var resource = 'Professional/' + $('#company').val();
         HeartbeatService.CustomGetData($scope.LoadProviders, $scope.Error, resource);
     };
 
@@ -143,7 +143,7 @@
             dob = '1-1-1900';
             name = '-1';
         }
-        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob + '&pageNumber=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize;;
+        var resource = 'Customer?companyId=' + $('#company').val() + '&customerName=' + name + '&dob=' + dob + '&pageNumber=' + $scope.pagingOptions.currentPage + '&pageSize=' + $scope.pagingOptions.pageSize;;
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
 
     };
@@ -181,6 +181,7 @@
     };
     $scope.EditSuccess = function (response) {
         alert("Updated successfully");
+        $("#dismissEdit").click();
     };
 
 
@@ -273,7 +274,7 @@
             name = '-1';
         }
 
-        var resource = 'Customer?companyId=' + $scope.CompanyId + '&customerName=' + name + '&dob=' + dob;
+        var resource = 'Customer?companyId=' + $('#company').val() + '&customerName=' + name + '&dob=' + dob;
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
 
     };

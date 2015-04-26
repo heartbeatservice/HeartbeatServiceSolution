@@ -110,10 +110,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@UpdatedBy"].Value = user.UpdatedBy;
 
-                    cmd.Parameters.Add("@UpdatedDate", System.Data.SqlDbType.DateTime);
-                    cmd.Parameters["@UpdatedDate"].Value = DateTime.UtcNow;
-
-                    cmd.Parameters.Add("@RoleId", System.Data.SqlDbType.DateTime);
+                    cmd.Parameters.Add("@RoleId", System.Data.SqlDbType.Int);
                     cmd.Parameters["@RoleId"].Value = user.RoleId;
 
                     bool b = cmd.ExecuteNonQuery() > 0;

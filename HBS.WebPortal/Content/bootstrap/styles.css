@@ -102,3 +102,16 @@
         margin-left: 15px;
         margin-top: 2px;
     }
+
+.btn-info {
+    color: #00913F;
+    background-color: #F8F8F8;
+    border-color: #F8F8F8;
+    /* border-color: #DDDDDD; */
+}
+.app-header {
+  width: 30%;
+}
+.companydrop {
+    margin-top:10px;
+}

@@ -16,6 +16,7 @@ namespace HBS.Entities
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string RoleName { get; set; }
         public int UserId { get; set; }
         public int RoleId { get; set; }
         public List<int> LstModules { get; set; }
@@ -42,6 +43,7 @@ namespace HBS.Entities
             if (dbReader["UserId"] != DBNull.Value) UserId = (int)dbReader["UserId"];
             if (dbReader["Password"] != DBNull.Value) Password = (string)dbReader["Password"];
             if (dbReader["RoleId"] != DBNull.Value) RoleId = (int)dbReader["RoleId"];
+            if (dbReader.HasColumn("RoleName") && dbReader["RoleName"] != DBNull.Value) RoleName = (string)dbReader["RoleName"];
             
         }
     }

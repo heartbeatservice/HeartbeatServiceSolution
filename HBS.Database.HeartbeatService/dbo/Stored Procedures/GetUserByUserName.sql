@@ -25,8 +25,10 @@ SELECT
 	u.UpdatedDate,
 	u.UpdatedBy,
 	u.IsActive,
-	u.RoleId
+	u.RoleId,
+	r.RoleName
 FROM UserProfile u
 INNER JOIN Company c
 ON u.CompanyId=c.CompanyId
+LEFT JOIN dbo.Roles r ON u.RoleId = r.RoleId
 WHERE u.UserName=@UserName

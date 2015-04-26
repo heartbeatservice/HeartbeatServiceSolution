@@ -15,6 +15,7 @@ namespace HBS.WebPortal.Models
     {
         public string UserName { get; set; }
         public string Password { get; set; }
+        public string RoleName { get; set; }
         public int userid { get; set; }
         public int companyid { get; set; }
         public int RoleId { get; set; }
@@ -44,6 +45,7 @@ namespace HBS.WebPortal.Models
                    u = JsonConvert.DeserializeObject<HBS.Entities.UserProfile>(ResponseJSon);
                    this.RoleId = u.RoleId;
                    this.userid = u.UserId;
+                   this.RoleName = u.RoleName;
                    this.companyid = u.CompanyId;
                    
             return result;

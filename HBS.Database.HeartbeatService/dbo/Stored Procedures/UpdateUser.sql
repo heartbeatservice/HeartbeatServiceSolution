@@ -5,6 +5,7 @@ CREATE PROCEDURE [dbo].[UpdateUser]
 
 @UserId int,
 @CompanyId int=NULL,
+@UserName nvarchar(50)=NULL,
 @Password nvarchar(128)=NULL,
 @PasswordSalt nvarchar(128)=NULL,
 @FirstName nvarchar(100)=NULL,
@@ -32,7 +33,8 @@ Set'
 If(@CompanyId is not Null)
 Insert Into @tblParams Values('CompanyId',@CompanyId)
 
-
+If(@UserName is not Null)
+Insert Into @tblParams Values('UserName',@UserName)
 
 If(@FirstName is not Null)
 Insert Into @tblParams Values('FirstName',@FirstName)
