@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/Content/bootstrap/styles.css" />
 
     <meta name="viewport" content="width=device-width" />
-    <link rel="shortcut icon" href="@Url.Content("~/content/images/favicon.ico")" />
+    <link rel="shortcut icon" href="@Url.Content(" ~ />content/images/favicon.ico")" />
     <link href="~/Content/Board.css" rel="stylesheet" />
     <script src="~/Content/scripts/jquery-1.8.2.min.js"></script>
 
@@ -46,7 +46,8 @@
     <link rel="stylesheet" href="~/Content/KendoUI/styles/kendo.dataviz.metro.min.css" />
 
 
-    @*<script type="text/javascript" src="~/Content/KendoUI/js/jquery.min.js"></script>*@
+    @*
+        <script type="text/javascript" src="~/Content/KendoUI/js/jquery.min.js"></script>*@
     <script type="text/javascript" src="~/Content/KendoUI/js/kendo.all.min.js"></script>
     <script type="text/javascript" src="~/Content/KendoUI/Workflow.js"></script>
 
@@ -56,7 +57,9 @@
     <!-- Timeline CSS -->
     <link href="~/Content/bootstrap/timeline.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="~/Content/bootstrap/sb-admin-2.css" rel="stylesheet">
+    @*
+        <link href="~/Content/bootstrap/sb-admin-2.css" rel="stylesheet">*@
+    <link href="~/Content/bootstrap/AdminLTE.css" rel="stylesheet" type="text/css" />
     <!-- Morris Charts CSS -->
     <link href="~/Content/bootstrap/morris.css" rel="stylesheet">
     <!-- Custom Fonts -->
@@ -71,66 +74,86 @@
     <script src="~/Content/scripts/raphael-min.js"></script>
     <script src="~/Content/scripts/morris.min.js"></script>
     <script src="~/Content/scripts/morris-data.js"></script>
-    <script src="~/Content/scripts/sb-admin-2.js"></script>
+    @*
+        <script src="~/Content/scripts/sb-admin-2.js"></script>*@
+    <script src="~/Content/scripts/app.js" type="text/javascript"></script>
     <script src="~/Content/Angular/checklist-model.js"></script>
 </head>
-<body ng-app="HeartbeatApp" style="margin-top:0px;">
-    <div id="wrapper" class="container">
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0" ng-controller="HeartbeatController" data-ng-init="init();">
-            <div class="navbar-header app-header">
-                <div id="logo" class="navbar-header">
-                    <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
-                    <div class="logoText hidden-xs">
+<body ng-app="HeartbeatApp" style="margin-top:0px;" class="skin-blue" ng-controller="HeartbeatController" ng-init="init()">
 
-                        <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
-
-                        @*<ul class="nav" id="companymenu">
-                            <li ng-repeat="c in company"><a role="menuitem" tabindex="-1" href="#">{{c.CompanyName}}</a></li>
-                        </ul>*@
-                        <!--<h3 class="dropText"> <a href="http://heartbeat-biz.com">Heartbeat</a></h3>-->
-                    </div>
-
-                    <button class=" btn btn-warning navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-
-                        <span class="glyphicon glyphicon-chevron-down "></span>
-
-                    </button>
-                </div>
-                <div id="companylst" class="btn-group companydrop" style="display:none">
-                    <button class="btn button-label btn-info">Company</button><button class="btn btn-info dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
-                    <ul id="dropdownmenu" class="dropdown-menu">
-                        <li ng-repeat="item in company"><a tabindex="-1" data-ng-click="selectVal(item)">{{item.CompanyName}}</a></li>
-                    </ul>
-                </div>
-                <div id="companyname" class="btn-group companydrop" style="display:none">
-                    <label id="compname" class="btn button-label btn-info">Company</label>
-                </div>
+    <!-- Navigation -->
+    <!-- header logo: style can be found in header.less -->
+    <header class="header">
+        <div id="logo" class="logo">
+            <div class="text-warning visible-xs"><a href="http://heartbeat-biz.com"><h3>Heartbeat Mobile</h3></a></div>
+            <div class="logoText hidden-xs">
+                <a href="http://heartbeat-biz.com"><img src="~/Content/images/newLogo1.png" class="img-responsive" /></a>
             </div>
-            <!-- /.navbar-header -->
-            <ul class="nav navbar-top-links navbar-right">
-                @{if (Session["user"] != null)
-                {
+        </div>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav">
+                    @{if (Session["user"] != null)
+                    {
 
-                <li>
-                    <input type="hidden" id="role" value=@(((HBS.WebPortal.Models.User)Session["user"]).RoleId)>
-                    <input type="hidden" id="user" value=@(((HBS.WebPortal.Models.User)Session["user"]).userid)>
-                    <input type="hidden" id="company" value=@(((HBS.WebPortal.Models.User)Session["user"]).companyid)>
-                    <label class="dropText">Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
-                    <label class="dropText">(@(((HBS.WebPortal.Models.User)Session["user"]).RoleName))</label>
-                </li>
-                <li>
-                    <a href=" @(Url.Action("Logout", "Home")) " class=" btn-small droptext"><span class='glyphicon glyphicon-off '></span></a>
-                </li>
-                }
-                }
-                <!-- /.dropdown -->
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
+                        <li class="dropdown user user-menu">
+                            <input type="hidden" id="role" value=@(((HBS.WebPortal.Models.User)Session["user"]).RoleId)>
+                            <input type="hidden" id="user" value=@(((HBS.WebPortal.Models.User)Session["user"]).userid)>
+                            <input type="hidden" id="company" value=@(((HBS.WebPortal.Models.User)Session["user"]).companyid.ToString())>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-user"></i>
+                                <span>@(((HBS.WebPortal.Models.User)Session["user"]).UserName) <i class="caret"></i></span>
+                            </a>
+                            <ul class="dropdown-menu dropdownuser">
+                                <!-- User image -->
+                                <li class="user-header bg-light-blue">
+                                    <span class="img-circle" />
+                                    <p>
+                                        @(((HBS.WebPortal.Models.User)Session["user"]).UserName) - (@(((HBS.WebPortal.Models.User)Session["user"]).RoleName))
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div>
+                                        <a href="@(Url.Action("logout", "Home"))" class=" btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            @*<label class="dropText">Welcome <span class='glyphicon glyphicon-user '></span> @(((HBS.WebPortal.Models.User)Session["user"]).UserName)</label>
+                                <label class="dropText">(@(((HBS.WebPortal.Models.User)Session["user"]).RoleName))</label>*@
+                        </li>
+                    }
+                    }
+                    <!-- /.dropdown -->
+                    <!-- /.dropdown -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- /.navbar-header -->
+    <!-- /.navbar-top-links -->
+    <div class="wrapper row-offcanvas row-offcanvas-left">
+        <aside class="left-side sidebar-offcanvas">
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div id="companylst" class="btn-group companydrop" style="display:none">
+                        <button class="btn button-label btn-info companybtn">Company</button><button class="btn btn-info dropdown-toggle companytoggle" data-toggle="dropdown"><span class="caret"></span></button>
+                        <ul id="dropdownmenu" class="dropdown-menu">
+                            <li ng-repeat="item in company"><a href="@(Url.Action("Index", "Scheduling"))?companyId={{item.CompanyId}}" tabindex="-1">{{item.CompanyName}}</a></li>
+                        </ul>
+                    </div>
+                    <div id="companyname" class="btn-group companydrop" style="display:none">
+                        <label id="compname" class="btn button-label btn-info companybtn">Company</label>
+                    </div>
+                </div>
 
+                    <div></div>
                     @{if (Session["app"] != null)
                     {
                         <input type="hidden" id="app" value=@Session["app"].ToString()>
@@ -140,19 +163,18 @@
                         <input type="hidden" id="app" value='Website'>
                     }
                     }
-                    <ul class="nav" id="side-menu"></ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-
-
-
-        @RenderBody()
+                    <ul class="sidebar-menu" id="side-menu"></ul>
+            </section>
+        </aside>
+        <aside class="right-side">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                @RenderBody()
+            </section>
+        </aside>
+        <!-- /.sidebar-collapse -->
     </div>
-
+    <!-- /.navbar-static-side -->
 </body>
 @RenderSection("scripts", required: false)
 </html>

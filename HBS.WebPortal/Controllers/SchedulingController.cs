@@ -8,18 +8,18 @@ namespace HBS.WebPortal.Controllers
 {
     public class SchedulingController : Controller
     {
-        public ActionResult Index()
-        {
-            ActionResult action = Redirect();
-            if (action == null)
-            {
-                return View();
-            }
-            else
-            {
-                return action;
-            }
-        }
+        //public ActionResult Index()
+        //{
+        //    ActionResult action = Redirect();
+        //    if (action == null)
+        //    {
+        //        return View();
+        //    }
+        //    else
+        //    {
+        //        return action;
+        //    }
+        //}
 
         public ActionResult Customer()
         {
@@ -50,7 +50,7 @@ namespace HBS.WebPortal.Controllers
             if (Request.QueryString["ProfessionalId"] != null)
                 ViewBag.ProfessionalId = Request.QueryString["ProfessionalId"].ToString();
             else
-            ViewBag.ProfessionalId = "0";
+                ViewBag.ProfessionalId = "0";
             ViewBag.CurrentDate = DateTime.Now.ToShortDateString();
             ViewBag.companyid = getCompanyId();
             ActionResult action = Redirect();
@@ -80,7 +80,7 @@ namespace HBS.WebPortal.Controllers
 
         int getCompanyId()
         {
-            int companyid=0;
+            int companyid = 0;
             if (Session["user"] != null)
                 companyid = ((HBS.WebPortal.Models.User)Session["user"]).companyid;
             return companyid;
@@ -89,7 +89,7 @@ namespace HBS.WebPortal.Controllers
         int getUserId()
         {
             int userid = 0;
-            if(Session["user"]!=null)
+            if (Session["user"] != null)
                 userid = ((HBS.WebPortal.Models.User)Session["user"]).userid;
             return userid;
         }
@@ -204,6 +204,23 @@ namespace HBS.WebPortal.Controllers
         public ActionResult Module()
         {
             ActionResult action = Redirect();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
+        }
+        public ActionResult Index(int? companyId)
+        {
+            if (companyId != null)
+            {
+                HBS.WebPortal.Models.User user = Session["user"] as HBS.WebPortal.Models.User;
+                user.companyid = companyId.Value;
+                Session["user"] = user;
+            } ActionResult action = Redirect();
             if (action == null)
             {
                 return View();

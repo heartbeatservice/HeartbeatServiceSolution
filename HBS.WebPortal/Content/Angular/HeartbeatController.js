@@ -75,8 +75,7 @@
             if ($scope.CompanyId != 0)
             {
                 var item = $filter('filter')(data, { CompanyId: $scope.CompanyId });
-                $('button.button-label').html(item.CompanyName);
-                $('#company').val(item.CompanyId);
+                $scope.selectVal(item[0]);
             }
             $("#companylst").show();
             $("#companyname").hide();
@@ -115,39 +114,40 @@
 
             if ($scope.menuItems[i].SubModule === undefined || $scope.menuItems[i].SubModule === null) {
 
-                if (start === -1)
+                if (start != -1) {
                     page = 'home/index';
-                if (page.toLowerCase().indexOf($scope.menuItems[i].ModuleURL.toLowerCase()) === 0)
-                    $scope.menuItems[i].cls = 'nav navbar-item active';
+                    if (page.toLowerCase().indexOf($scope.menuItems[i].ModuleURL.toLowerCase()) === 0)
+                        $scope.menuItems[i].cls = 'nav navbar-item active';
 
-                else
+                    else
 
-                    $scope.menuItems[i].cls = 'nav navbar-item';
+                        $scope.menuItems[i].cls = 'nav navbar-item';
 
 
-                menuItem.setAttribute("class", $scope.menuItems[i].cls);
-
+                    menuItem.setAttribute("class", $scope.menuItems[i].cls);
+                }
                 menuItem.innerHTML = '<a href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].ModuleURL + '/><i class="fa ' + $scope.menuItems[i].IconName + ' fa-fw"></i> ' + $scope.menuItems[i].ModuleName + '</a>';
             }
             else {
-                menuItem.setAttribute("class", "dropdown");
+                menuItem.setAttribute("class", "treeview");
 
                 //menuItem.onmouseover = function () { this.setAttribute("class", "dropdown open dropText "); };
                 //menuItem.onmouseout = function () { this.setAttribute("class", "dropdown dropText"); };
-                menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].ModuleURL + '/><i class="fa ' + $scope.menuItems[i].IconName + ' fa-fw"></i> ' + $scope.menuItems[i].ModuleName + '<span class="fa arrow"></span></a>';
+                //menuItem.innerHTML = '<a data-toggle=dropdown class="dropdown-toggle dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].ModuleURL + '/><i class="fa ' + $scope.menuItems[i].IconName + ' fa-fw"></i> ' + $scope.menuItems[i].ModuleName + '<span class="fa arrow"></span></a>';
+                menuItem.innerHTML = '<a href="#"/><i class="fa ' + $scope.menuItems[i].IconName + ' fa-fw"></i> ' + $scope.menuItems[i].ModuleName + '<span class="fa arrow"></span></a>';
                 submenu = document.createElement('ul');
-                submenu.setAttribute("class", "dropdown-menu dropText submenu");
+                submenu.setAttribute("class", "treeview-menu");
                 for (j = 0; j < $scope.menuItems[i].SubModule.length; j++) {
                     submenuitem = document.createElement('li');
-                    submenuitem.setAttribute("class", "subitem");
-                    submenuitem.innerHTML = '<a  class="dropText" href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].SubModule[j].ModuleURL + '/>' + $scope.menuItems[i].SubModule[j].ModuleName + '</a>';
+                    //submenuitem.setAttribute("class", "fa fa-angle-double-right");
+                    submenuitem.innerHTML = '<a  href=http://' + $scope.url + ':' + $scope.port + '/' + $scope.menuItems[i].SubModule[j].ModuleURL + '/><i class="fa fa-angle-double-right"></i>' + $scope.menuItems[i].SubModule[j].ModuleName + '</a>';
                     submenu.appendChild(submenuitem);
                 }
                 menuItem.appendChild(submenu);
             }
             mainMenu.appendChild(menuItem);
         }
-
+        $(".sidebar .treeview").tree();
 
     };
 

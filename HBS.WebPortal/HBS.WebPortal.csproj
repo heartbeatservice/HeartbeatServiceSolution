@@ -238,6 +238,7 @@
     <Content Include="Content\Angular\StudentController.js" />
     <Content Include="Content\Angular\UserController.js" />
     <Content Include="Content\Board.css" />
+    <Content Include="Content\bootstrap\AdminLTE.css" />
     <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
     <Content Include="Content\bootstrap\bootstrap-nav.min.css" />
     <Content Include="Content\bootstrap\bootstrap-theme.min.css" />
@@ -1008,6 +1009,7 @@
     <Content Include="Content\Kendo\textures\stripe6.png" />
     <Content Include="Content\Kendo\textures\transparency.png" />
     <Content Include="Content\Kendo\textures\transtexture.png" />
+    <Content Include="Content\scripts\app.js" />
     <Content Include="Content\scripts\bootstrap.min.js" />
     <Content Include="Content\scripts\fullcalendar.js" />
     <Content Include="Content\scripts\fullcalendar.min.js" />
@@ -1199,6 +1201,7 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %282%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy %283%29.pubxml" />
     <None Include="Properties\PublishProfiles\heartbeat-biz.com - Web Deploy.pubxml" />
