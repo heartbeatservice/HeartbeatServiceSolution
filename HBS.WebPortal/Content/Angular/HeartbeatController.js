@@ -147,7 +147,8 @@
             }
             mainMenu.appendChild(menuItem);
         }
-        $(".sidebar .treeview").tree();
+        if (document.getElementById('app').value != 'Website')
+            $(".sidebar .treeview").tree();
 
     };
 

@@ -16,12 +16,11 @@ AS
 
 DECLARE @UpdatedDate DATETime=GetUtcDate();
 
-declare @sql varchar(256)
-Declare @tblParams  table(id int identity(1,1),name varchar(50),paramName varchar(50))
+declare @sql varchar(2000)
+Declare @tblParams  table(id int identity(1,1),name varchar(100),paramName varchar(1000))
 
 SET @Sql='Update  Company
 Set'
-
 
 
 If(@CompanyName is not Null)
@@ -39,9 +38,8 @@ Insert Into @tblParams Values('IsActive',@IsActive)
 If(@UpdatedDate is not Null)
 Insert Into @tblParams Values('UpdatedDate',CONVERT(varchar,@UpdatedDate))
 
-
 Declare @start int,@end int
-Declare @UpdateColumn varchar(50)
+Declare @UpdateColumn varchar(1000)
 Select @start =min(Id) from @tblParams
 Select @end=max(Id) from @tblParams
 

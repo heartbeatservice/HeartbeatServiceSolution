@@ -12,7 +12,7 @@ namespace HBS.Data.Concrete
 {
     public class AppointmentRepository : BaseRepository, IAppointmentRepository
     {
-       
+
         //This is a test
         private const string AddAppointmentSp = "AddAppointment";
         private const string UpdateAppointmentSp = "UpdateAppointment";
@@ -25,12 +25,12 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-             
+
                 using (var cmd = new SqlCommand(AddAppointmentSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                   
+
                     cmd.Parameters.Add("@ProfessionalId", System.Data.SqlDbType.Int);
                     cmd.Parameters["@ProfessionalId"].Value = appointment.ProfessionalId;
 
@@ -46,7 +46,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@StatusId", System.Data.SqlDbType.Int);
                     cmd.Parameters["@StatusId"].Value = appointment.StatusId;
 
-                 
+
                     cmd.Parameters.Add("@CreatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CreatedBy"].Value = appointment.CreatedBy;
 
@@ -64,7 +64,7 @@ namespace HBS.Data.Concrete
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
             {
                 conn.Open();
-               
+
                 using (var cmd = new SqlCommand(UpdateAppointmentSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -89,7 +89,7 @@ namespace HBS.Data.Concrete
 
                     cmd.Parameters.Add("@StatusId", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@StatusId"].Value = appointment.Comments;
-                   
+
 
                     cmd.Parameters.Add("@UpdatedBy", System.Data.SqlDbType.Int);
                     cmd.Parameters["@UpdatedBy"].Value = appointment.UpdatedBy;
@@ -103,7 +103,7 @@ namespace HBS.Data.Concrete
         }
 
 
-       public List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate)
+        public List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate)
         {
 
             var appointment = new List<Appointment>();
@@ -136,12 +136,12 @@ namespace HBS.Data.Concrete
             }
             return appointment;
 
-            
-           
+
+
         }
 
 
-       public List<Appointment> GetCustomerAppointments(int customerId)
+        public List<Appointment> GetCustomerAppointments(int companyid, int? customerId, int professionalId, DateTime startDate, Nullable<DateTime> endDate)
         {
             var appointment = new List<Appointment>();
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -150,10 +150,23 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(GetCustomerAppointmentsSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@CustomerId", SqlDbType.Int);
-                    cmd.Parameters["@CustomerId"].Value = customerId;
-                 
+                    cmd.Parameters.Add("@CompanyId", SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyid;
+                    if (customerId != null)
+                    {
+                        cmd.Parameters.Add("@CustomerId", SqlDbType.Int);
+                        cmd.Parameters["@CustomerId"].Value = customerId.Value;
+                    }
+                    cmd.Parameters.Add("@ProfessionalID", SqlDbType.Int);
+                    cmd.Parameters["@ProfessionalID"].Value = professionalId;
 
+                    cmd.Parameters.Add("@StartDate", SqlDbType.DateTime);
+                    cmd.Parameters["@StartDate"].Value = startDate;
+                    if (endDate != null)
+                    {
+                        cmd.Parameters.Add("@EndDate", SqlDbType.DateTime);
+                        cmd.Parameters["@EndDate"].Value = endDate.Value;
+                    }
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try
@@ -171,7 +184,7 @@ namespace HBS.Data.Concrete
                 }
             }
             return appointment;
-           
+
         }
     }
 }

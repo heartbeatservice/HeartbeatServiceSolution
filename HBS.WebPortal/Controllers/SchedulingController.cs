@@ -20,7 +20,25 @@ namespace HBS.WebPortal.Controllers
         //        return action;
         //    }
         //}
+        public ActionResult Appointment()
+        {
+            if (Session["user"] == null)
+            {
 
+                return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
+            }
+            ViewBag.companyid = getCompanyId();
+            ViewBag.userid = getUserId();
+            ActionResult action = Redirect();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
+        }
         public ActionResult Customer()
         {
             if (Session["user"] == null)

@@ -89,6 +89,9 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@IconName", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@IconName"].Value = module.IconName;
 
+                    cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = module.CompanyId;
+
                     return Convert.ToInt16(cmd.ExecuteScalar());
 
                 }
@@ -135,7 +138,7 @@ namespace HBS.Data.Concrete
             }
         }
 
-        public List<Module> GetModules(string modulename)
+        public List<Module> GetModules(int companyid, string modulename)
         {
 
             var moduel = new List<Module>();
@@ -145,7 +148,10 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(GetModulesSp, conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
+                    cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyid;
+                    cmd.Parameters.Add("@ModuleName", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@ModuleName"].Value = modulename;
                     using (var myReader = cmd.ExecuteReader())
                     {
                         try

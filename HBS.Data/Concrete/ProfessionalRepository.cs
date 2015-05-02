@@ -350,7 +350,7 @@ namespace HBS.Data.Concrete
         //    return lst;
 
         //}
-        public List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Year, int customerId)
+        public List<KendoEntity> GetProfessionalMonthlyAppointments(int companyid, int professionalId, int Year, int customerId)
         {
             ProfessionalSchedule professionalSchedule = null;
             List<KendoEntity> lst = new List<KendoEntity>();
@@ -366,6 +366,8 @@ namespace HBS.Data.Concrete
 
                     cmd.Parameters.Add("@ProfessionalId", SqlDbType.Int);
                     cmd.Parameters["@ProfessionalId"].Value = professionalId;
+                    cmd.Parameters.Add("@CompanyId", SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyid;
                     cmd.Parameters.Add("@Year", SqlDbType.Int);                   
                     cmd.Parameters["@Year"].Value = Year;
                     cmd.Parameters.Add("@CustomerId", SqlDbType.Int);

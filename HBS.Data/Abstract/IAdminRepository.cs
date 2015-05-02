@@ -10,7 +10,7 @@ namespace HBS.Data.Abstract
     public interface IAdminRepository
     {
         List<Module> GetModules();
-        List<Module> GetModules(string modulename);
+        List<Module> GetModules(int companyid, string modulename);
         List<Module> GetModulesByCompany(int companyid);
         List<Module> GetModulesByUser(int userid);
         Module GetModule(int moduleId);

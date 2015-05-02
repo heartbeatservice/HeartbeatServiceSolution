@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Apointment";
+    Layout = "~/Views/Shared/_NavLayout.cshtml";
+}
+<div id="page-wrapper" ng-controller="ApointmentController" ng-init="init()">
+    <div id="dashboard">
+        <div class="panel">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Appointment</h1>
+                </div>
+            </div>
+            <div class="panel-body">
+                <form id="frmAppointment" name="frmAppointment" ng-submit="ApointmentSearch();">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Professional</label>
+                            <div class="input-group">
+                                <select ng-model="professionalId" required class="form-control" ng-options="doctor.ProfessionalId as doctor.FirstName+' '+doctor.LastName for doctor in ProfessionalList" ng-change="RefreshPage();"><option value="">---Select Professional---</option></select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label>Customer</label>
+                            <div class="input-group">
+                                <select ng-model="customerId" class="form-control" ng-options="customer.CustomerId as customer.FirstName + ' ' + customer.LastName for customer in CustomerList"><option value="">---Select Customer---</option></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <div class="input-group">
+                                <label>Start Date</label>
+                                <div ng-class="{'has-error': test1.$invalid}" class="input-group">
+                                    <input id="StartDate" type="data" required value="" ng-model="Apointments.StartDate" placeholder="Start Date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div class="input-group">
+                                <label>End Date</label>
+                                <div ng-class="{'has-error': test1.$invalid}" class="input-group">
+                                    <input id="EndDate" type="data" value="" ng-model="Apointments.EndDate" placeholder="End Date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label></label>
+                            <div class="input-group">
+                                <button class="btn btn-warning"><span class="glyphicon glyphicon-search"></span> Show Appointments</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="gridStyle" id="ModuleGrid" ng-grid="GridOptions"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

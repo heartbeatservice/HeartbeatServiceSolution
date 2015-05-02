@@ -23,7 +23,7 @@
             $('#divadmin').hide();
             $('#diveditadmin').hide();
         }
-        resource = 'Module?ModuleName=';
+        resource = 'Module?CompanyId=-1&ModuleName=';
         HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);
     };
     $scope.CompanySuccess = function (data) {

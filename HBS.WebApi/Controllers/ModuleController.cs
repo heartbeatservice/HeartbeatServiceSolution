@@ -25,7 +25,7 @@ namespace HBS.WebApi.Controllers
         {
             if (role == "1")
             {
-                return BuildSubMenu(repository.GetModules());
+                return BuildSubMenu(repository.GetModules(-1, ""));
             }
             else if (role == "2")
             {
@@ -63,9 +63,9 @@ namespace HBS.WebApi.Controllers
         }
 
 
-        public List<Module> GetModule(String ModuleName)
+        public List<Module> GetModule(int CompanyId, String ModuleName)
         {
-            return repository.GetModules(ModuleName);
+            return repository.GetModules(CompanyId, ModuleName);
 
         }
         public Module GetModule(int ModuleId)

@@ -11,6 +11,7 @@ namespace HBS.Entities
     public class Module
     {
         public int ModuleId { get; set; }
+        public int CompanyId { get; set; }
         public string ModuleName { get; set; }
         public string  ModuleDescription { get; set; }
         public int DisplayOrder { get; set; }

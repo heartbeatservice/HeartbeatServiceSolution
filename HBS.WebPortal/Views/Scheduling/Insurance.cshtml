@@ -1,8 +1,9 @@
 ﻿@{
     ViewBag.Title = "Insurance";
+    Layout = "~/Views/Shared/_NavLayout.cshtml";
 }
 
-<div ng-controller="InsuranceController">
+<div id="page-wrapper" ng-controller="InsuranceController">
 
 
     <div id="dashboard">
@@ -86,7 +87,7 @@
 
                     <div class="row">
                         <div class="form-group col-md-6 has-warning">
-                            <input id="InsuranceWebsite" type="text" value="" ng-model="Insurance.InsuranceWebsite"  class="form-control" placeholder="Insurance Website" />
+                            <input id="InsuranceWebsite" type="text" value="" ng-model="Insurance.InsuranceWebsite" class="form-control" placeholder="Insurance Website" />
                         </div>
 
                     </div>
@@ -106,4 +107,4 @@
 
 
     </div>
-      </div>
+</div>

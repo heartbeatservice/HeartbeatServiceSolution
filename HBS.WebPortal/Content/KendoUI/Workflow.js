@@ -1,4 +1,6 @@
 ﻿$(document).ready(function () {
+    if (window.location.href.indexOf('Workflow') < 0)
+        return;
     //var crudServiceBaseUrl = "http://localhost:3687/api";
     var crudServiceBaseUrl = "http://services.heartbeat-biz.com/api/";
     var users = getUsers(crudServiceBaseUrl + "/User");

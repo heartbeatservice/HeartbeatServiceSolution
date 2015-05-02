@@ -24,7 +24,7 @@ namespace HBS.Data.Abstract
 
         //List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Month, int Year);
 
-        List<KendoEntity> GetProfessionalMonthlyAppointments(int professionalId, int Year, int customerId);
+        List<KendoEntity> GetProfessionalMonthlyAppointments(int companyid, int professionalId, int Year, int customerId);
 
     }
 }

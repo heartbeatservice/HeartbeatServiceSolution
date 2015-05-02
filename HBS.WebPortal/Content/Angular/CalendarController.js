@@ -13,8 +13,8 @@
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
-    $scope.ServiceURL = "http://localhost:3687/api/";
-    //$scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
+    //$scope.ServiceURL = "http://localhost:3687/api/";
+    $scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
         $("#scheduler").ajaxComplete(function () {
@@ -204,7 +204,7 @@
 
                             },
                             success: function (data) { alert("Got It"); },
-                            url: $scope.ServiceURL + 'ProfessionalSchedule//' + $scope.professionalId + "?year=" + $scope.year + "&customerId=" + $scope.CustomerId,
+                            url: $scope.ServiceURL + 'ProfessionalSchedule?companyid=' + $scope.CompanyId + "&professionalid=" + $scope.professionalId + "&year=" + $scope.year + "&customerId=" + $scope.CustomerId,
                             dataType: "json"
                         },
                         update: {

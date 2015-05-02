@@ -1,8 +1,8 @@
 ﻿HeartbeatApp.controller("CompanyController", function AppController($scope, $location,$filter, HeartbeatService) {
-
+    $scope.RoleId = $('#role').val();
     $scope.CompanyId = $('#company').val();
     $scope.SearchParam = '';
-    $scope.Companies = {};
+    $scope.Companies = [];
     $scope.Company = {};
     $scope.AllModule = {};
     $scope.clearCompany = function () {
@@ -11,8 +11,23 @@
         $scope.Company.LstModules = {};
     };
     $scope.init = function () {
-        resource = 'Module?ModuleName=';
-        HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);
+        if ($scope.RoleId == 1) {
+            resource = 'Module?CompanyId=-1&ModuleName=';
+            HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);
+            $('#divbtn').show();
+            $('#divSearch').show();
+        }
+        else if ($scope.RoleId == 2) {
+            $('#divbtn').hide();
+            $('#divSearch').hide();
+            var resource = 'Company?companyId=' + $scope.CompanyId;
+            HeartbeatService.GetData($scope.CompanySuccess, $scope.Error, resource);
+        }
+        
+    };
+    $scope.CompanySuccess = function (data) {
+        $scope.Companies.push(data);
+        $scope.$apply();
     };
     $scope.ModuleSuccess = function (data) {
         $scope.AllModule = $filter('filter')(data, { IsForAll: "false" });
@@ -92,6 +107,12 @@
         $scope.Company = response;
         $scope.$apply();
         $('#editbtn').click();
+        if ($scope.RoleId == 2) {
+            $("#divModule").hide();
+        }
+        else {
+            $("#divModule").show();
+        }
     };
     $scope.UpdateCompany = function () {
         var resource = 'Company/' + $scope.Company.CompanyName;

@@ -27,12 +27,38 @@ namespace HBS.WebApi.Controllers
 
         public IList<Appointment> GetCustomerAppointment(int customerId)
         {
-            return repository.GetCustomerAppointments(customerId);
+            //return repository.GetCustomerAppointments(customerId);
+            return null;
         }
 
+        public IList<Appointment> GetCustomerAppointment(int companyId, int customerId, int professionalId, DateTime startdate, DateTime enddate)
+        {
+            return repository.GetCustomerAppointments(companyId, customerId, professionalId, startdate, enddate);
+        }
+
+        public IList<Appointment> GetCustomerAppointment(int companyId, int professionalId, DateTime startdate)
+        {
+            return repository.GetCustomerAppointments(companyId, null, professionalId, startdate, null);
+        }
+
+        public IList<Appointment> GetCustomerAppointment(int companyId, int customerId, int professionalId, DateTime startdate)
+        {
+            return repository.GetCustomerAppointments(companyId, customerId, professionalId, startdate, null);
+        }
+        public IList<Appointment> GetCustomerAppointment(int companyId, int professionalId, DateTime startdate, DateTime enddate)
+        {
+            return repository.GetCustomerAppointments(companyId, null, professionalId, startdate, enddate);
+        }
         public bool PutUpdateAppointment([FromBody]Appointment appointment)
         {
             return repository.UpdateAppointment(appointment);
+        }
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
         }
     }
 }

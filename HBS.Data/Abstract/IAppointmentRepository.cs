@@ -19,7 +19,7 @@ namespace HBS.Data.Abstract
         List<Appointment> GetProfessionalAppointments(int professionalId, DateTime appointmentDate);
 
 
-      List<Appointment> GetCustomerAppointments(int customerId);
+        List<Appointment> GetCustomerAppointments(int companyid, int? customerId, int professionalId, DateTime startDate, Nullable<DateTime> endDate);
         
 
 

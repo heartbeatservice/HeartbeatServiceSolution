@@ -13,7 +13,7 @@
         $scope.GetProviders();
     }
     $scope.GetProviders = function () {
-        var resource = 'Module?ModuleName=';
+        var resource = 'Module?CompanyId='+ $scope.CompanyId + "&ModuleName=";
         HeartbeatService.GetData($scope.LoadProviders, $scope.Error, resource);
     };
 
@@ -46,7 +46,7 @@
     };
     $scope.AddModule = function () {
         //if ($scope.myModules != undefined)
-        //    $scope.Module.ParentId = $scope.myModules.ModuleId;
+        $scope.Module.CompanyId = $scope.CompanyId;
         var resource = 'Module';
         HeartbeatService.PostDataToApi($scope.AddSuccess, $scope.Error, resource, $scope.Module);
 
@@ -77,7 +77,7 @@
             name = '-1';
         }
 
-        var resource = 'Module?ModuleName=' + name;
+        var resource = 'Module?CompanyId=' + $scope.CompanyId + "&ModuleName=";
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
 
     };
@@ -97,6 +97,10 @@
     $scope.GetSuccess = function (response) {
         $scope.Module = response;
         $scope.myModules = { ModuleId: response.ParentId};
+        if ($scope.Module.IsForAll == true)
+            $('#chkIsForAll').iCheck('check');
+        else
+            $('#chkIsForAll').iCheck('uncheck');
         $scope.$apply();
         $('#editbtn').click();
     };
