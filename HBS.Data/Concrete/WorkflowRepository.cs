@@ -16,7 +16,7 @@ namespace HBS.Data.Concrete
         {
         }
 
-        public IQueryable<Workflow> GetAllWorkflow()
+        public IQueryable<Workflow> GetAllWorkflow(int companyId)
         {
             IList<Workflow> workflowList = new List<Workflow>();
 
@@ -26,8 +26,8 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT WorkflowID, CategoryID, OwnerID, WorkerID, WorkflowTitle, WorkflowNote, DueDate, StatusID, DateCreated, DateUpdated FROM dbo.Workflow";
-
+                    command.CommandText = @"SELECT WorkflowID, CategoryID, OwnerID, WorkerID, CompanyId, WorkflowTitle, WorkflowNote, DueDate, StatusID, DateCreated, DateUpdated FROM dbo.Workflow";
+                    command.CommandText += " WHERE CompanyId=" + companyId;
                     using (var reader = command.ExecuteReader())
                     {
                         while (reader.Read())
@@ -60,7 +60,7 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"INSERT INTO dbo.Workflow VALUES(@CategoryID, @OwnerID, @WorkerID, @WorkflowTitle, @WorkflowNote, @DueDate, @StatusID, @DateCreated, @DateUpdated); SELECT CAST(SCOPE_IDENTITY() AS INT);";
+                    command.CommandText = @"INSERT INTO dbo.Workflow VALUES(@CategoryID, @OwnerID, @WorkerID, @WorkflowTitle, @WorkflowNote, @DueDate, @StatusID, @DateCreated, @DateUpdated, @CompanyId); SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
                     command.Parameters.AddWithValue("@CategoryID", toInsert.CategoryID);
                     command.Parameters.AddWithValue("@OwnerID", toInsert.OwnerID);
@@ -71,7 +71,7 @@ namespace HBS.Data.Concrete
                     command.Parameters.AddWithValue("@StatusID", toInsert.StatusID);
                     command.Parameters.AddWithValue("@DateCreated", toInsert.DateCreated);
                     command.Parameters.AddWithValue("@DateUpdated", toInsert.DateUpdated);
-
+                    command.Parameters.AddWithValue("@CompanyId", toInsert.CompanyId);
                     rowAffected = (int)command.ExecuteScalar();
                 }
 
@@ -260,7 +260,7 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT WorkflowID, CategoryID, OwnerID, WorkerID, WorkflowTitle, WorkflowNote, DueDate, StatusID, DateCreated, DateUpdated FROM dbo.Workflow WHERE WorkflowID = @WorkflowID";
+                    command.CommandText = @"SELECT WorkflowID, CategoryID, OwnerID, WorkerID, CompanyId, WorkflowTitle, WorkflowNote, DueDate, StatusID, DateCreated, DateUpdated FROM dbo.Workflow WHERE WorkflowID = @WorkflowID";
                     command.Parameters.AddWithValue("@WorkflowID", workflowID);
 
                     using (var reader = command.ExecuteReader())

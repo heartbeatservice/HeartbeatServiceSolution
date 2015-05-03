@@ -1,10 +1,17 @@
 ﻿@{
     ViewBag.Title = "WorkflowAdmin";
+    Layout = "~/Views/Shared/_NavLayout.cshtml";
 }
 
-<div class="panel panel-primary">
-    <div class="panel-heading panelBg ">Workflow Queue Maintenance</div>
-    <div class="panel-body">
-        <div id="workflowAdminGrid"></div>
+<div id="page-wrapper">
+    <div class="panel">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Workflow Queue Maintenance
+            </h1>
+        </div>        
+        <div class="panel-body">
+            <div id="workflowAdminGrid"></div>
+        </div>
     </div>
 </div>

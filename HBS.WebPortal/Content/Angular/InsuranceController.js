@@ -2,24 +2,24 @@
 
     $scope.CompanyId = $('#company').val();
     $scope.SearchParam = '';
-    $scope.Insurance = {};
+    $scope.Insurances = {};
    $scope.clearInsurance = function () {
 
         $scope.Insurance = {};
 
     };
     $scope.GridOptions = {
-        data: 'Insurance',
+        data: 'Insurances',
         enableCellSelection: false,
         enableRowSelection: false,
         enableCellEdit: false,
         enableColumnResize: true,
         enableColumnReordering: true,
         columnDefs: [
-                     { field: 'InsuranceName', displayName: 'Insurance Name', enableCellEdit: true, width: 100 },
-                     { field: 'InsuranceAddress', displayName: 'Insurance Address', enableCellEdit: true, width: 100 },
-                     { field: 'InsurancePhone', displayName: 'Insurance Phone', enableCellEdit: true, width: 100 },
-               { field: 'InsuranceWebsite', displayName: 'Insurance Website', enableCellEdit: true, width: 100 },
+                     { field: 'InsuranceName', displayName: 'Insurance Name', enableCellEdit: true, width: 200 },
+                     { field: 'InsuranceAddress', displayName: 'Insurance Address', enableCellEdit: true, width: 200 },
+                     { field: 'InsurancePhone', displayName: 'Insurance Phone', enableCellEdit: true, width: 200 },
+               { field: 'InsuranceWebsite', displayName: 'Insurance Website', enableCellEdit: true, width: 200 },
 
            
          //{ field: 'InsuranceId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
@@ -67,7 +67,7 @@
         HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
     };
     $scope.SearchSuccess = function (data) {
-        $scope.Insurance = data;
+        $scope.Insurances = data;
         $scope.$apply();
     };
     $scope.EditInsurance = function (InsuranceId) {

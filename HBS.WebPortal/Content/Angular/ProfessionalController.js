@@ -1,6 +1,6 @@
 ﻿HeartbeatApp.controller("ProfessionalController", function AppController($scope, $location, HeartbeatService) {
   
-    $scope.Professional = {};
+    $scope.Professionals = {};
     $scope.CompanyId = $('#company').val();
     $scope.SearchParam = '';
     
@@ -8,7 +8,7 @@
 
 
     $scope.GridOptions = {
-        data: 'Professional',
+        data: 'Professionals',
         enableCellSelection: false,
         enableRowSelection: false,
         enableCellEdit: false,
@@ -79,7 +79,7 @@
 
     };
     $scope.SearchSuccess = function (data) {
-        $scope.Professional = data;
+        $scope.Professionals = data;
         $scope.$apply();
     };
 });

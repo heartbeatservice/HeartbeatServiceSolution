@@ -16,7 +16,7 @@ namespace HBS.Data.Concrete
 
         }
 
-        public IQueryable<WorkflowCategory> GetWorkflowCategory()
+        public IQueryable<WorkflowCategory> GetWorkflowCategory(int companyId)
         {
             IList<WorkflowCategory> categoryList = new List<WorkflowCategory>();
 
@@ -26,7 +26,8 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT WorkflowCategoryID, CategoryName FROM dbo.WorkflowCategory";
+                    command.CommandText = @"SELECT WorkflowCategoryID, CategoryName, CompanyId FROM dbo.WorkflowCategory";
+                    command.CommandText += " WHERE CompanyId=" + companyId; 
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -53,8 +54,9 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"INSERT INTO dbo.WorkflowCategory VALUES (@CategoryName); SELECT CAST(SCOPE_IDENTITY() AS INT);";
+                    command.CommandText = @"INSERT INTO dbo.WorkflowCategory VALUES (@CategoryName, @CompanyId); SELECT CAST(SCOPE_IDENTITY() AS INT);";
                     command.Parameters.AddWithValue("@CategoryName", toInsert.CategoryName);
+                    command.Parameters.AddWithValue("@CompanyId", toInsert.CompanyId);
                     rowAffected = (int)command.ExecuteScalar();
                 }
 

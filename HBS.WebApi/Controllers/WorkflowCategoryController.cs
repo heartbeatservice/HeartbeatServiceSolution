@@ -19,9 +19,9 @@ namespace HBS.WebApi.Controllers
 
         public DataSourceResult Get(HttpRequestMessage requestMessage)
         {
-            //DataSourceRequest request = JsonConvert.DeserializeObject<DataSourceRequest>(requestMessage.RequestUri.ParseQueryString().GetKey(0));
+            DataSourceRequest request = JsonConvert.DeserializeObject<DataSourceRequest>(requestMessage.RequestUri.ParseQueryString().GetKey(0));
 
-            return _repository.GetWorkflowCategory().ToDataSourceResult(); //.ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
+            return _repository.GetWorkflowCategory(request.CompanyId).ToDataSourceResult(); //.ToDataSourceResult(request.Take, request.Skip, request.Sort, request.Filter);
         }
 
         public HttpResponseMessage Post(WorkflowCategory workflowCategory)

@@ -45,6 +45,15 @@ namespace HBS.WebApi.Controllers
         {
             return securityEntity.GetUsers(CompanyId, UserName).ToList();
         }
+
+        public List<KendoDDL> GetCompanyUsers(int CompanyId)
+        {
+            List<KendoDDL> users = new List<KendoDDL>();
+
+            var u = securityEntity.GetUsers(CompanyId, "").ToList();
+            u.ForEach(i => users.Add(new KendoDDL{ text=i.UserName, value = i.UserId}));
+            return users;
+        }
         [HttpPut]
         public bool PutUserUpdate([FromBody] UserProfile user)
         {

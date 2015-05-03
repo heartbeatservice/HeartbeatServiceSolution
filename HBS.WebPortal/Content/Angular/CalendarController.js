@@ -13,8 +13,8 @@
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
-    //$scope.ServiceURL = "http://localhost:3687/api/";
-    $scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
+    $scope.ServiceURL = "http://localhost:3687/api/";
+    //$scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
         $("#scheduler").ajaxComplete(function () {
@@ -164,6 +164,8 @@
                      "agenda"
                 ],
                 edit: function (e) {
+                    if ($scope.openform == true)
+                        e.preventDefault(); 
                     if (e.container.find("[name=isAllDay]").attr("checked")) {
                         e.container.find("[name=isAllDay]").click();
 
@@ -176,6 +178,7 @@
                     e.container.find("[data-container-for=recurrenceRule]").prev().remove().end().remove();
                     e.container.find("[for=ownerId]").html("Customer");
                     $(".k-window-title").html('Schedule Appointment with Dr. ' + $scope.ProfessionalInfo.FirstName);
+                    $scope.openform = true;
 
                 },
                 change: function (e) {

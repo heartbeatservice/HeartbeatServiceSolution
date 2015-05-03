@@ -7,6 +7,7 @@ namespace HBS.Entities
     public class WorkflowCategory
     {
         public int WorkflowCategoryID { get; set; }
+        public int CompanyId { get; set; }
         public string CategoryName { get; set; }
 
         public WorkflowCategory()
@@ -14,11 +15,12 @@ namespace HBS.Entities
 
         }
 
-        public WorkflowCategory(int workflowCategoryID, string categoryName)
+        public WorkflowCategory(int workflowCategoryID, string categoryName, int companyId)
             : this()
         {
             WorkflowCategoryID = workflowCategoryID;
             CategoryName = categoryName;
+            CompanyId = companyId;
         }
 
         public WorkflowCategory(IDataReader dbReader)
@@ -26,6 +28,7 @@ namespace HBS.Entities
         {
             if (dbReader["WorkflowCategoryID"] != DBNull.Value) WorkflowCategoryID = (int)dbReader["WorkflowCategoryID"];
             if (dbReader["CategoryName"] != DBNull.Value) CategoryName = (string)dbReader["CategoryName"];
+            if (dbReader["CompanyId"] != DBNull.Value) CompanyId = (int)dbReader["CompanyId"];
         }
     }
 }

@@ -6,14 +6,17 @@
 <div id="page-wrapper" ng-controller="ProfessionalController">
 
     <div id="dashboard">
-
-        <div class="panel panel-primary">
-            <div class="panel-heading panelBg ">Professional Panel Under construction</div>
+        <div class="panel">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Professional Panel</h1>
+                </div>
+            </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <a href="#frmAdd" class="btn btn-warning" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span>Add New Professional</a>
+                            <a href="#frmAdd" class="btn btn-warning" ng-click="clearProfessional();" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span>Add New Professional</a>
                         </div>
                     </div>
                 </div>

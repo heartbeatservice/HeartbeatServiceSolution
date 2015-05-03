@@ -26,9 +26,9 @@
     //    }
     //};
 
-    //$scope.ErrorLogin = function (error) {
-    //    alert('something went wrong');
-    //};
+    $scope.Error = function (error) {
+        alert("FAILED : " + error.status + ' ' + error.statusText);
+    };
 
     //$scope.ValidateUser = function () {
 

@@ -1,16 +1,17 @@
 ﻿$(document).ready(function () {
     if (window.location.href.indexOf('Workflow') < 0)
         return;
-    //var crudServiceBaseUrl = "http://localhost:3687/api";
-    var crudServiceBaseUrl = "http://services.heartbeat-biz.com/api/";
-    var users = getUsers(crudServiceBaseUrl + "/User");
+    var crudServiceBaseUrl = "http://localhost:3687/api";
+    //var crudServiceBaseUrl = "http://services.heartbeat-biz.com/api/";
+    var companyId = $("#company").val();
+    var users = getUsers(crudServiceBaseUrl + "/User?CompanyId=" + $("#company").val());
     var status = getStatus(crudServiceBaseUrl + "/WorkflowStatus");
     
     var element = $("#grid").kendoGrid({
         dataSource: {
             transport: {
                 read: {
-                    url: crudServiceBaseUrl + "/WorkflowCategory",
+                    url: crudServiceBaseUrl + '/WorkflowCategory?{"CompanyId":"' + $("#company").val() + '"}',
                     contentType: "application/json",
                     dataType: "json",
                     type: "GET"
@@ -19,6 +20,7 @@
             parameterMap: function (data, operation) {
                 //Page methods always need values for their parameters
                 data = $.extend({ sort: null, filter: null }, data);
+                data.CompanyId = companyId;
                 return JSON.stringify(data);
             },
             schema: {
@@ -83,8 +85,12 @@
                     parameterMap: function (data, operation) {
                         if (operation !== "read" && data.models) {
                             data.models[0].CategoryID = e.data.id;
+                            data.models[0].CompanyID = $("#company").val();
                             return JSON.stringify(data.models[0]);
                         }
+                        else {
+                            data.CompanyId = $("#company").val();
+                        }                        
                         return JSON.stringify(data);
                     }
                 },
@@ -188,7 +194,11 @@
             },
             parameterMap: function (options, operation) {
                 if (operation !== "read" && options.models) {
+                    options.models[0].CompanyId = companyId;
                     return JSON.stringify(options.models[0]);
+                }
+                else {
+                    options.CompanyId = companyId;
                 }
                 return JSON.stringify(options);
             }

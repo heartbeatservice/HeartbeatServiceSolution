@@ -9,6 +9,7 @@
     [StatusID]      INT          NULL,
     [DateCreated]   DATETIME     NOT NULL,
     [DateUpdated]   DATETIME     NOT NULL,
+    [CompanyId] BIGINT NULL, 
     PRIMARY KEY CLUSTERED ([WorkflowID] ASC),
     FOREIGN KEY ([CategoryID]) REFERENCES [dbo].[WorkflowCategory] ([WorkflowCategoryID]),
     FOREIGN KEY ([OwnerID]) REFERENCES [dbo].[UserProfile] ([UserId]),

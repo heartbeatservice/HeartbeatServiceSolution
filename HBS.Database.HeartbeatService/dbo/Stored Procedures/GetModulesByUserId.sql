@@ -1,13 +1,27 @@
 ﻿CREATE PROCEDURE dbo.GetModulesByUserId
 @UserId int
 AS 
-SELECT m.ModuleId,m.ModuleName,m.ModuleDescription,m.ModuleURL,m.[ParentId],m.[IsForAll],m.[IconName]		
-FROM Modules m where m.IsForAll = 1
-UNION 
-SELECT m.ModuleId,m.ModuleName,m.ModuleDescription,m.ModuleURL,m.[ParentId],m.[IsForAll],m.[IconName]		
+WITH ModuleLst (ModuleId,ModuleName,ModuleDescription,ModuleURL,ParentId,IsForAll,IconName)
+AS
+(
+SELECT distinct m.ModuleId,m.ModuleName,m.ModuleDescription,m.ModuleURL,m.[ParentId],m.[IsForAll],m.[IconName]		
 FROM Modules m
 INNER JOIN CompanyModules c
 ON m.ModuleId=c.ModuleId
 INNER JOIN UserModules u
 ON m.ModuleId=u.ModuleId
-WHERE u.UserId=@UserId
+WHERE u.UserId=1016
+)
+SELECT distinct m.ModuleId,m.ModuleName,m.ModuleDescription,m.ModuleURL,m.[ParentId],m.[IsForAll],m.[IconName]		
+FROM Modules m
+INNER JOIN CompanyModules c
+ON m.ModuleId=c.ModuleId
+INNER JOIN UserModules u
+ON m.ModuleId=u.ModuleId
+WHERE u.UserId=1016
+union 	
+select distinct m.ModuleId,m.ModuleName,m.ModuleDescription,m.ModuleURL,m.[ParentId],m.[IsForAll],m.[IconName]		 
+from modules m where moduleid in (select parentid from ModuleLst)
+UNION
+SELECT m.ModuleId,m.ModuleName,m.ModuleDescription,m.ModuleURL,m.[ParentId],m.[IsForAll],m.[IconName]		
+FROM Modules m where m.IsForAll = 1

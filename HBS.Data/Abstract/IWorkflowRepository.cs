@@ -8,7 +8,7 @@ namespace HBS.Data.Abstract
 {
     public interface IWorkflowRepository
     {
-        IQueryable<Workflow> GetAllWorkflow();
+        IQueryable<Workflow> GetAllWorkflow(int companyId);
         bool AddWorkflow(Workflow toInsert);
         bool EditWorkflow(Workflow toUpdate);
         bool DeleteWorkflow(int id);

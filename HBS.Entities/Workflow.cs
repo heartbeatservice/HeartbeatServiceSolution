@@ -10,6 +10,7 @@ namespace HBS.Entities
         public int CategoryID { get; set; }
         public int OwnerID { get; set; }
         public int WorkerID { get; set; }
+        public int CompanyId { get; set; }
         public string WorkflowTitle { get; set; }
         public string WorkflowNote { get; set; }
         public DateTime DueDate { get; set; }
@@ -22,7 +23,7 @@ namespace HBS.Entities
 
         }
 
-        public Workflow(int workflowID, int categoryDI, int ownerID, int workerID, string workflowTitle, string workflownote, DateTime dueDate, int statusID, DateTime dateCreated, DateTime dateUpdated)
+        public Workflow(int workflowID, int categoryDI, int ownerID, int workerID, int companyId, string workflowTitle, string workflownote, DateTime dueDate, int statusID, DateTime dateCreated, DateTime dateUpdated)
             : this()
         {
 
@@ -41,6 +42,7 @@ namespace HBS.Entities
             if (dbReader["StatusID"] != DBNull.Value) StatusID = (int)dbReader["StatusID"];
             if (dbReader["DateCreated"] != DBNull.Value) DateCreated = (DateTime)dbReader["DateCreated"];
             if (dbReader["DateUpdated"] != DBNull.Value) DateUpdated = (DateTime)dbReader["DateUpdated"];
+            if (dbReader["CompanyId"] != DBNull.Value) CompanyId = (int)dbReader["CompanyId"];
         }
     }
 }

@@ -168,4 +168,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RoleId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="c894efbd-5699-4595-b1a2-7a3223d11c25" ChangeDateTime="05/02/2015 18:54:12">
+    <Property Name="ElementName" Value="[dbo].[Workflow].[CompanyID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Workflow]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CompanyId" />
+  </Operation>
 </Operations>
