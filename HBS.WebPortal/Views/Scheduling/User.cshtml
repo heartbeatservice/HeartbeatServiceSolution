@@ -86,20 +86,20 @@
                             <div class="col-md-1"></div>
                             <div id="divadmin" class="col-md-5">
                                 <div class="form-group">
-                                    <select ng-model="User.CompanyId" id="CompanyId" class="form-control">
+                                    <select ng-model="User.CompanyId" id="CompanyId" ng-change="ChangeModule()" class="form-control">
                                         <option value="">---Select Company---</option>
                                         <option ng-repeat="i in AllCompany" value="{{i.CompanyId}}">{{i.CompanyName}}</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select ng-model="User.RoleId" id="RoleId" class="form-control">
+                                    <select ng-model="User.RoleId" id="RoleId" ng-change="ModuleShowHideAddForm()" class="form-control">
                                         <option value="">---Select Role---</option>
                                         <option ng-repeat="i in AllRole" value="{{i.RoleId}}">{{i.RoleName}}</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="divaddModule">
                             <div class="module">
                                 <label>Modules</label>
                                 <div class="form-group">
@@ -174,18 +174,18 @@
                             <div class="col-md-1"></div>
                             <div id="diveditadmin" class="col-md-5">
                                 <div class="form-group">
-                                    <select ng-model="User.CompanyId" id="EditCompanyId" class="form-control" ng-options="i.CompanyId as i.CompanyName for i in AllCompany">
+                                    <select ng-model="User.CompanyId" id="EditCompanyId" class="form-control" ng-change="ChangeModule()" ng-options="i.CompanyId as i.CompanyName for i in AllCompany">
                                         <option value="">---Select Company---</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <select ng-model="User.RoleId" id="EditRoleId" class="form-control" ng-options="i.RoleId as i.RoleName for i in AllRole">
+                                    <select ng-model="User.RoleId" id="EditRoleId" class="form-control" ng-change="ModuleShowHide()" ng-options="i.RoleId as i.RoleName for i in AllRole">
                                         <option value="">---Select Role---</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="row" ng->
+                        <div class="row" id="divModule">
                             <div class="module">
                                 <label>Modules</label>
                                 <div class="form-group">
@@ -230,7 +230,7 @@
                     <div class="modal-footer">
                         <div class="form-group  col-md-8">
                             <button class="btn btn-warning" class="form-control" type="submit"><span class="glyphicon glyphicon-user"></span> Update</button>
-                            <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                            <a href="#" id="dismissedit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
                             <input class="btn btn-warning" type="button" value="Clear" ng-click="clearUser();" />
 
                         </div>

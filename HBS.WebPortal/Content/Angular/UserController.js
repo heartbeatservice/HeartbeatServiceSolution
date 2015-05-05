@@ -119,14 +119,16 @@
 
 
     $scope.EditUser = function (User) {
-        var resource = 'User?id=' +User;
+        $scope.User = {};
+        var resource = 'User?id=' + User;
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
     $scope.GetSuccess = function (response) {
         $scope.User = response;
         $scope.User.Password1 = $scope.User.Password;
         //$scope.User.RoleId = { selected: response. }; 
-        $scope.$apply();
+        $scope.ChangeModule();
+        $scope.ModuleShowHide();
         $('#editbtn').click();
     };
     $scope.UpdateUser = function () {
@@ -139,20 +141,23 @@
     };
     $scope.EditSuccess = function (response) {
         alert("Updated successfully");
+        $('#dismissedit').click();
     };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    $scope.ModuleShowHide = function () {
+        if ($scope.User.RoleId == 1 || $scope.User.RoleId == 2)
+            $("#divModule").hide();
+        else
+            $("#divModule").show();
+    }
+    $scope.ModuleShowHideAddForm = function () {
+        if ($scope.User.RoleId == 1 || $scope.User.RoleId == 2)
+            $("#divaddModule").hide();
+        else
+            $("#divaddModule").show();
+    }
+    $scope.ChangeModule = function () {
+        resource = 'Module?CompanyId=' + $scope.User.CompanyId + '&ModuleName=';
+        HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);
+    }
 });
