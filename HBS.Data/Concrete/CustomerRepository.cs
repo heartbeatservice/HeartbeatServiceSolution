@@ -249,7 +249,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@PcpName", SqlDbType.VarChar).Value = customerInsurance.PcpName;
                     cmd.Parameters.Add("@CustomerInsuranceNumber", SqlDbType.VarChar).Value = customerInsurance.CustomerInsuranceNumber;
                     cmd.Parameters.Add("@InsuranceType", SqlDbType.VarChar).Value = customerInsurance.InsuranceType;
-                  
+                    cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = customerInsurance.IsActive;
 
                     return Convert.ToBoolean(cmd.ExecuteScalar());
 
@@ -273,6 +273,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@PcpName", SqlDbType.VarChar).Value = customerInsurance.PcpName;
                     cmd.Parameters.Add("@CustomerInsuranceNumber", SqlDbType.VarChar).Value = customerInsurance.CustomerInsuranceNumber;
                     cmd.Parameters.Add("@InsuranceType", SqlDbType.VarChar).Value = customerInsurance.InsuranceType;
+                    cmd.Parameters.Add("@IsActive", SqlDbType.Bit).Value = customerInsurance.IsActive;
 
                     return Convert.ToBoolean(cmd.ExecuteScalar());
 

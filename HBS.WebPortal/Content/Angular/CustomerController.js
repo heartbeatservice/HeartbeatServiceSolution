@@ -156,7 +156,7 @@
 
 
 
-    $scope.EditCustomer = function (CustomerId) {
+    $scope.Customer = function (CustomerId) {
         var resource = 'Customer?customerId=' + CustomerId;
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
@@ -214,7 +214,7 @@
         $scope.InsuranceEntry = {};
         $('#EndDate').val(null);
         $('#EffectiveDate').val(null);
-
+        $('#IsActiveAdd').prop('checked', false);
     }
 
     $scope.InsuranceLookupSuccess = function (data) {
@@ -235,6 +235,7 @@
         $scope.InsuranceEntry.CustomerId = $('#CustomerIdForInsurance').val();
         $scope.InsuranceEntry.EndDate = $('#EndDate').val();
         $scope.InsuranceEntry.EffectiveDate = $('#EffectiveDate').val();
+        $scope.InsuranceEntry.IsActive = $("#IsActiveAdd").is(':checked');
         var resource = 'CustomerInsurance';
         HeartbeatService.PostDataToApi($scope.AddCustomerInsuranceSuccess, $scope.Error, resource, $scope.InsuranceEntry);
     }
@@ -308,6 +309,7 @@
         //$scope.Insurance.EffectiveDate = response[0].EffectiveDate.split('T')[0].split('-')[0] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[1] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[2];
         $('#EditEndDate').val(response[0].EndDate.split('T')[0].split('-')[0] + "-" + response[0].EndDate.split('T')[0].split('-')[1] + "-" + response[0].EndDate.split('T')[0].split('-')[2]);
         $('#EditEffectiveDate').val(response[0].EffectiveDate.split('T')[0].split('-')[0] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[1] + "-" + response[0].EffectiveDate.split('T')[0].split('-')[2]);
+        $('#IsActiveAdd').prop('checked', response[0].IsActive);
         //$scope.Insurance.EndDate = response[0].EndDate.split('T')[0].split('-')[0] + "-" + response[0].EndDate.split('T')[0].split('-')[1]+ "-" + response[0].EndDate.split('T')[0].split('-')[2];
        // $scope.$apply();
         $scope.ShowInsuranceEditForm();
@@ -369,7 +371,7 @@
         $scope.Insurance.InsuranceId = $scope.SelectedInsurance.InsuranceId;
         $scope.Insurance.EndDate = $('#EditEndDate').val();
         $scope.Insurance.EffectiveDate = $('#EditEffectiveDate').val();
-
+        $scope.Insurance.IsActive = $("#IsActiveEdit").is(':checked');
         HeartbeatService.PutData($scope.UpdateCustomerInsSuccess, $scope.Error, resource, $scope.Insurance);
     };
     $scope.UpdateCustomerInsSuccess = function (response) {

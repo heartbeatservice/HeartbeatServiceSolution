@@ -9,7 +9,8 @@ Create PROCEDURE [dbo].[UpdateCustomerInsurance]
 @EndDate date=NULL,
 @PCPName nvarchar(100)=NULL,
 @CustomerInsuranceNumber nvarchar(50)=NULL,
-@InsuranceType nvarchar(50)=NULL
+@InsuranceType nvarchar(50)=NULL,
+@IsActive bit
 
 
 AS
@@ -40,6 +41,8 @@ Insert Into @tblParams Values('CustomerInsuranceNumber',@CustomerInsuranceNumber
 If(@InsuranceType is not Null)
 Insert Into @tblParams Values('InsuranceType',@InsuranceType)
 
+If(@IsActive is not Null)
+Insert Into @tblParams Values('IsActive',@IsActive)
 
 Declare @start int,@end int
 Declare @UpdateColumn varchar(50)

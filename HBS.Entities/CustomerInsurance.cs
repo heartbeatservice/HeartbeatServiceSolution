@@ -21,6 +21,8 @@ namespace HBS.Entities
         public string InsuranceName { get; set; }
         public Customer customer;
 
+        public bool IsActive { get; set; }
+
         public CustomerInsurance()
         {
             customer = new Customer();
@@ -46,6 +48,9 @@ namespace HBS.Entities
 
             if (dbReader.HasColumn("PCPName") && dbReader["PCPName"] != DBNull.Value)
                 PcpName = (string)dbReader["PCPName"];
+
+            if (dbReader.HasColumn("IsActive") && dbReader["IsActive"] != DBNull.Value)
+                IsActive = (bool)dbReader["IsActive"];
 
             if (dbReader.HasColumn("CustomerInsuranceNumber") && dbReader["CustomerInsuranceNumber"] != DBNull.Value)
                 CustomerInsuranceNumber = (string)dbReader["CustomerInsuranceNumber"];

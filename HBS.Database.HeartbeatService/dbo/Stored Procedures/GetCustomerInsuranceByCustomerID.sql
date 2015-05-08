@@ -19,7 +19,8 @@ SELECT
 	I.EndDate,
 	I.PCPName,
 	I.CustomerInsuranceNumber,
-	I.InsuranceType
+	I.InsuranceType,
+	I.IsActive
 FROM CustomerInsurance i
 inner join customers c
 on i.customerid=c.customerid
