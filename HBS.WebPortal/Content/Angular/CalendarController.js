@@ -374,13 +374,31 @@
 
         });
 
-        $(".k-scheduler-monthview").dblclick(function () {
-
+        $(".k-scheduler-cancel").click(function () {
             $scope.openform = false;
-
-
+            $scope.$apply();
         });
-
+        $(".k-i-close").click(function () {
+            $scope.openform = false;
+            $scope.$apply();
+        });
+        //k-view-day
+        $(".k-scheduler-monthview").click(function () {
+            $scope.openform = false;
+            $scope.$apply();
+        });
+        $(".k-view-day").click(function () {
+            $scope.openform = false;
+            $scope.$apply();
+        });
+        $(".k-view-week").click(function () {
+            $scope.openform = false;
+            $scope.$apply();
+        });//k-view-month
+        $(".k-view-month").click(function () {
+            $scope.openform = false;
+            $scope.$apply();
+        });//
         $(".k-nav-prev").mouseup(function () {
 
             setTimeout(function () {

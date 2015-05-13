@@ -42,7 +42,7 @@ namespace HBS.Entities
             if (dbReader["StatusID"] != DBNull.Value) StatusID = (int)dbReader["StatusID"];
             if (dbReader["DateCreated"] != DBNull.Value) DateCreated = (DateTime)dbReader["DateCreated"];
             if (dbReader["DateUpdated"] != DBNull.Value) DateUpdated = (DateTime)dbReader["DateUpdated"];
-            if (dbReader["CompanyId"] != DBNull.Value) CompanyId = (int)dbReader["CompanyId"];
+            if (dbReader["CompanyId"] != DBNull.Value) CompanyId = Convert.ToInt32(dbReader["CompanyId"]);
         }
     }
 }

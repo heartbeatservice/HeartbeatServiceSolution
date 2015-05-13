@@ -28,7 +28,7 @@ namespace HBS.Entities
         {
             if (dbReader["WorkflowCategoryID"] != DBNull.Value) WorkflowCategoryID = (int)dbReader["WorkflowCategoryID"];
             if (dbReader["CategoryName"] != DBNull.Value) CategoryName = (string)dbReader["CategoryName"];
-            if (dbReader["CompanyId"] != DBNull.Value) CompanyId = (int)dbReader["CompanyId"];
+            if (dbReader["CompanyId"] != DBNull.Value) CompanyId = Convert.ToInt32(dbReader["CompanyId"]);
         }
     }
 }
