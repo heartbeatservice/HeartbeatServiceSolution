@@ -18,5 +18,13 @@ namespace HBS.WebApi.Controllers
         {
             return workflowStatusEntity.GetAllWorkflowStatus().ToList();
         }
+
+        [AcceptVerbs("OPTIONS")]
+        public HttpResponseMessage Options()
+        {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+
+            return resp;
+        }
     }
 }

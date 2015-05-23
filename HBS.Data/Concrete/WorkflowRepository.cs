@@ -12,6 +12,8 @@ namespace HBS.Data.Concrete
 {
     public class WorkflowRepository : BaseRepository, IWorkflowRepository
     {
+        private const string GetWorkflowDetailSp = "GetWorkflowDetail";
+        private object WorkflowID;
         public WorkflowRepository()
         {
         }
@@ -43,6 +45,36 @@ namespace HBS.Data.Concrete
             return workflowList.AsQueryable();
         }
 
+        public Workflow GetWorkflowDetailById(int workflowDetailId)
+        {
+            Workflow workflowdetail = new Workflow();
+
+            using (var connection = new SqlConnection(PrescienceRxConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"select w.WorkflowID, U.UserName OwnerName,P.UserName WorkerName ,WorkflowTitle,DueDate,StatusName,w.CategoryID, CategoryName " +
+                                                " FROM Workflow w INNER join WorkflowStatus s On w.StatusID=s.WorkflowStatusID  " +
+                                                " INNER JOIN UserProfile u On w.OwnerID=u.UserID  " +
+                                                " INNER JOIN UserProfile p On w.WorkerID=p.UserID " +
+                                                " INNER JOIN WorkflowCategory c ON w.CategoryID = c.WorkflowCategoryID";
+                    command.CommandText += " WHERE WorkflowID=" + workflowDetailId;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            workflowdetail = new Workflow(reader);
+                        }
+                    }
+                }
+
+                connection.Dispose();
+            }
+
+            return workflowdetail;
+        }
         public bool AddWorkflow(Workflow toInsert)
         {
             int rowAffected = 0;
@@ -278,6 +310,89 @@ namespace HBS.Data.Concrete
             return workflowList.First();
         }
 
+        public Workflow GetWorkflowDetail(int campanyId)//
+        {
+            Workflow workflow = null;
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+
+                conn.Open();
+
+                using (var cmd = new SqlCommand(GetWorkflowDetailSp, conn))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@WorkflowId", SqlDbType.Int);
+                    cmd.Parameters["@WorkflowId"].Value = WorkflowID;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            if (myReader.HasRows)
+                            {
+                                myReader.Read();
+                                workflow = new Workflow(myReader);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+
+            }
+            return workflow;
+
+        }
+
+        public List<Workflow> GetWorkflowDetail(int companyId, int ownerId, int workerId, int statusId, int categoryId, DateTime dueDate)
+        {
+
+            var workflow = new List<Workflow>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (var cmd = new SqlCommand(GetWorkflowDetailSp, conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@CompanyId", SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyId;
+                    if (dueDate.ToString() != "1/1/0001 12:00:00 AM")
+                    {
+                        cmd.Parameters.Add("@DueDate", SqlDbType.DateTime);
+                        cmd.Parameters["@DueDate"].Value = dueDate;
+                    }
+                    cmd.Parameters.Add("@OwnerId", SqlDbType.Int);
+                    cmd.Parameters["@OwnerId"].Value = ownerId;
+                    cmd.Parameters.Add("@WorkerId", SqlDbType.Int);
+                    cmd.Parameters["@WorkerId"].Value = workerId;
+                    cmd.Parameters.Add("@StatusId", SqlDbType.Int);
+                    cmd.Parameters["@StatusId"].Value = statusId;
+                    cmd.Parameters.Add("@CategoryId", SqlDbType.Int);
+                    cmd.Parameters["@CategoryId"].Value = categoryId;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                workflow.Add(new Workflow(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return workflow;
+
+
+
+        }
         private string ConvertObjectToJSON<T>(T theObject)
         {
             var javaScriptSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();

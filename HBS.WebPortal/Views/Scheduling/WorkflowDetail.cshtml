@@ -1,0 +1,167 @@
+﻿@{
+    ViewBag.Title = "Workflow Detail";
+    Layout = "~/Views/Shared/_NavLayout.cshtml";
+}
+
+
+<div id="page-wrapper" ng-controller="WorkflowDetailController" ng-init="init()">
+
+
+    <div id="dashboard">
+
+        <div class="panel">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Workflow Details</h1>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label>User</label>
+                        <div class="input-group">
+                            <select ng-model="UserId" class="form-control">
+                                <option value="0">Select All User</option>
+                                <option ng-repeat="i in UserList" value="{{i.value}}">{{i.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>WorkFlow Category</label>
+                        <div class="input-group">
+                            <select ng-model="WorkflowCategoryId" class="form-control">
+                                <option value="0" selected>Select All WorkFlow</option>
+                                <option ng-repeat="i in WorkflowCategory.Data" value="{{i.WorkflowCategoryID}}">{{i.CategoryName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Due Date</label>
+                        <div class="input-group">
+                            <input id="DueDate" type="data" value="" ng-model="DueDate" placeholder="Due Date" />
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <div class="input-group">
+                            <label>Status</label>
+                            <select id="Status" ng-model="WorkflowStatu" class="form-control">
+                                <option value="0">Select All Status</option>
+                                <option ng-repeat="i in WStatus" value="{{i.value}}">{{i.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <div class="input-group">
+                            <label>Owner</label>
+                            <select ng-model="OwnerId" class="form-control">
+                                <option value="0">Select All Owner</option>
+                                <option ng-repeat="i in UserList" value="{{i.value}}">{{i.text}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-2">
+                        <label></label>
+                        <div class="input-group">
+                            <button class="btn btn-warning" ng-click="FilterSearch();"><span class="glyphicon glyphicon-search ">Search</span></button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gridStyle" id="FilterGrid" ng-grid="GridOptions"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!--More Info-->
+
+    <a href="#frmMore" id="morebtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> More Info</a>
+
+    <div class="modal fade " tabindex="-1" id="frmMore">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">Detail</h4>
+
+                </div>
+
+                <form id="test" name="test">
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="form-group col-md-12 has-warning">
+                                <label>Workflow Title: </label><span>{{Workflow.WorkflowTitle}}</span><br />
+                                <label>Worker Name: </label><span>{{Workflow.WorkerName}}</span><br />
+                                <label>Owner Name: </label><span>{{Workflow.OwnerName}}</span><br />
+                                <label>Workflow Note: </label><span>{{Workflow.WorkflowNote}}</span><br />
+                                <label>Due Date: </label><span>{{Workflow.DueDate}}</span><br />
+
+                                @*<span></span>
+                                <input id="WorkflowTitleMore" type="text" ng-model="Workflow.WorkflowTitle" required class="form-control" />*@
+
+                            </div>
+                            
+                        </div>
+
+                        @*<div class="row">
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Owner Name</label>
+                                <input id="OwnerNameMore" type="text" ng-model="Workflow.OwnerName" required class="form-control" />
+
+                            </div>
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Notes</label>
+                                <input id="NotesMore" type="text" ng-model="Workflow.WorkflowNote" required class="form-control" />
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+
+                            <div class="form-group col-md-6 has-warning">
+                                <label>Due Date</label>
+                                <div class="input-group">
+                                    <input id="DueDateMore" type="data" ng-model="WorkflowDetail.DueDate" placeholder="Due Date" />
+                                </div>
+                            </div>
+
+                        </div>*@
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <div class="form-group  col-md-8">
+                            <button class="btn btn-warning" class="form-control" ng-click="EditWorkflowDetail(Workflow.PrevID)">Previous</button>
+                            <button id="dismissMore" class="btn btn-warning" ng-click="EditWorkflowDetail(Workflow.NextID)" >Next</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

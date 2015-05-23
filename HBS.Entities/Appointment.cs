@@ -17,6 +17,7 @@ namespace HBS.Entities
         public DateTime CustomerDOB { get; set; }
         public string CustomerPhone { get; set; }
         public string CustomerAddress { get; set; }
+        public string CustomerEmailAddress { get; set; }
         public DateTime AppointmentDate { get; set; }
         public DateTime AppointmentStartTime { get; set; }
         public int StatusId { get; set; }
@@ -72,6 +73,21 @@ namespace HBS.Entities
 
             if (dbReader.HasColumn("Address1") && dbReader["Address1"] != DBNull.Value)
                 this.CustomerAddress = (string)dbReader["Address1"];
+
+            if (dbReader.HasColumn("Address2") && dbReader["Address2"] != DBNull.Value)
+                this.CustomerAddress += " " + (string)dbReader["Address2"];
+
+            if (dbReader.HasColumn("City") && dbReader["City"] != DBNull.Value)
+                this.CustomerAddress += " " + (string)dbReader["City"];
+
+            if (dbReader.HasColumn("State") && dbReader["State"] != DBNull.Value)
+                this.CustomerAddress += " " + (string)dbReader["State"];
+
+            if (dbReader.HasColumn("Zip") && dbReader["Zip"] != DBNull.Value)
+                this.CustomerAddress += " " + (string)dbReader["Zip"];
+
+            if (dbReader.HasColumn("Email") && dbReader["Email"] != DBNull.Value)
+                this.CustomerEmailAddress = (string)dbReader["Email"];
 
             if (dbReader.HasColumn("HomePhone") && dbReader["HomePhone"] != DBNull.Value)
                 this.CustomerPhone = (string)dbReader["HomePhone"];

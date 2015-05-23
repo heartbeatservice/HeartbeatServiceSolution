@@ -36,11 +36,12 @@
         enableColumnResize: true,
         enableColumnReordering: true,
         columnDefs: [
-                     { field: 'CustomerName', displayName: 'Customer Name', enableCellEdit: true, width: 200 },
-                     { field: 'CustomerDOB', displayName: 'Customer DOB', enableCellEdit: true, width: 200 },
-        { field: 'CustomerPhone', displayName: 'Customer Phone', enableCellEdit: true, width: 200 },
-        { field: 'CustomerAddress', displayName: 'Customer Address', enableCellEdit: true, width: 200 },
-{ field: 'AppointmentStartTime', displayName: 'Appointment Start Time', enableCellEdit: true, width: 200 }
+                     { field: 'CustomerName', displayName: 'Customer Name', enableCellEdit: true, width: 150 },
+                     { field: 'CustomerDOB', displayName: 'Customer DOB', enableCellEdit: true, width: 150, cellFilter: "date:'MM-dd-yyyy'" },
+        { field: 'CustomerPhone', displayName: 'Customer Phone', enableCellEdit: true, width: 150 },
+        { field: 'CustomerAddress', displayName: 'Customer Address', enableCellEdit: true, width: 250 },
+{ field: 'AppointmentStartTime', displayName: 'Start Time', enableCellEdit: true, width: 150 },
+{ field: 'CustomerEmailAddress', displayName: 'Mail To', enableCellEdit: true, width: 150, cellTemplate: '<a href="mailto:{{row.getProperty(col.field)}}">{{row.getProperty(col.field)}}</a>' }
 
         ]
 

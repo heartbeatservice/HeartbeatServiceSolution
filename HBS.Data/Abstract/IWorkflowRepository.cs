@@ -12,5 +12,10 @@ namespace HBS.Data.Abstract
         bool AddWorkflow(Workflow toInsert);
         bool EditWorkflow(Workflow toUpdate);
         bool DeleteWorkflow(int id);
+
+        List<Workflow> GetWorkflowDetail(int companyId, int ownerId, int workerId, int statusId, int categoryId, DateTime dueDate);
+
+        Workflow GetWorkflowDetail(int campanyId);
+        Workflow GetWorkflowDetailById(int workflowDetailId);
     }
 }

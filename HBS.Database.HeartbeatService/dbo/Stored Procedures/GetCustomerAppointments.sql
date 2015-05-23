@@ -12,7 +12,12 @@ SELECT
       c.[FirstName] + ' ' + c.[LastName] CustomerName
       ,[DateOfBirth]
       ,[Address1]
+	  ,[Address2]
       ,[HomePhone]      
+	  ,c.Email
+	  ,c.[State]
+	  ,c.City
+	  ,c.Zip
 	  , a.StartTime AppointmentStartTime
   FROM [dbo].[Customers] c INNER JOIN [dbo].Appointments a ON c.CustomerId = a.CustomerId
 INNER JOIN [dbo].[Professional] p on a.ProfessionalId = p.ProfessionalId

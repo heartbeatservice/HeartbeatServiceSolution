@@ -6,7 +6,7 @@
     var companyId = $("#company").val();
     var users = getUsers(crudServiceBaseUrl + "/User?CompanyId=" + $("#company").val());
     var status = getStatus(crudServiceBaseUrl + "/WorkflowStatus");
-    
+
     var element = $("#grid").kendoGrid({
         dataSource: {
             transport: {
@@ -42,7 +42,7 @@
         pageable: true,
         columnMenu: false,
         detailInit: detailInit,
-        dataBound: function() {
+        dataBound: function () {
             //this.expandRow(this.tbody.find("tr.k-master-row").first());
         },
         columns: [
@@ -83,14 +83,16 @@
                         type: "POST"
                     },
                     parameterMap: function (data, operation) {
+                        //debugger;
                         if (operation !== "read" && data.models) {
                             data.models[0].CategoryID = e.data.id;
                             data.models[0].CompanyID = $("#company").val();
+                            data.models[0].WorkflowNote = $("#WorkflowNote").val();
                             return JSON.stringify(data.models[0]);
                         }
                         else {
                             data.CompanyId = $("#company").val();
-                        }                        
+                        }
                         return JSON.stringify(data);
                     }
                 },
@@ -131,6 +133,23 @@
                         neq: "Is not equal to"
                     }
                 }
+            },
+            edit: function (e) {
+                var input = document.getElementsByName('WorkflowNote'),
+                textarea = document.createElement('textarea');
+                textarea.id = "txtWorkflowNote";
+                textarea.id = input[0].name;
+                textarea.class = "k-input k-text";
+                textarea.setAttribute("data-bind", "value:WorkflowNote");
+                textarea.cols = 25;
+                textarea.rows = 5;
+                textarea.maxlength = "80";
+                textarea.value = input[0].value;
+                //input[0] = input[0].replaceWith(textarea);
+                input[0].parentNode.replaceChild(textarea, input[0]);
+                e.model.WorkflowNote = e.model.WorkflowNote + ' ';
+                e.model.dirty = true;
+                //alert("edit")
             },
             pageable: true,
             height: 250,

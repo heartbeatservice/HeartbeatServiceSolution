@@ -321,6 +321,10 @@
                     //    ]
                     //}
                 },
+                cancel: function (e) {
+                    $scope.openform = false;
+                    $scope.$apply();
+                },
                 resources: [
                     {
                         field: "ownerId",
@@ -374,14 +378,6 @@
 
         });
 
-        $(".k-scheduler-cancel").click(function () {
-            $scope.openform = false;
-            $scope.$apply();
-        });
-        $(".k-i-close").click(function () {
-            $scope.openform = false;
-            $scope.$apply();
-        });
         //k-view-day
         $(".k-scheduler-monthview").click(function () {
             $scope.openform = false;

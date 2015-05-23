@@ -238,6 +238,7 @@
     <Content Include="Content\Angular\SchedulingController.js" />
     <Content Include="Content\Angular\StudentController.js" />
     <Content Include="Content\Angular\UserController.js" />
+    <Content Include="Content\Angular\WorkflowDetailController.js" />
     <Content Include="Content\Board.css" />
     <Content Include="Content\bootstrap\AdminLTE.css" />
     <Content Include="Content\bootstrap\bootstrap-flatly-theme.min.css" />
@@ -1403,6 +1404,7 @@
     <Content Include="Views\Scheduling\Module.cshtml" />
     <Content Include="Views\Scheduling\User.cshtml" />
     <Content Include="Views\Scheduling\Appointment.cshtml" />
+    <Content Include="Views\Scheduling\WorkflowDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

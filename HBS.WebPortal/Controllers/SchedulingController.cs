@@ -260,7 +260,18 @@ namespace HBS.WebPortal.Controllers
                 return action;
             }
         }
-
+        public ActionResult WorkflowDetail()
+        {
+            ActionResult action = Redirect();
+            if (action == null)
+            {
+                return View();
+            }
+            else
+            {
+                return action;
+            }
+        }
         private ActionResult Redirect()
         {
             if (Session["user"] == null)
