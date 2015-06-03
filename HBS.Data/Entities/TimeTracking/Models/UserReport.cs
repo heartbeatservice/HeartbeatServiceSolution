@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using HBS.Data.Entities.TimeTracking.Models;
 
-namespace HBS.Data.Entities.TimeTracking.Models
+namespace HBS.Data.Entities.SchedulingTimeTracking.Models
 {
     public class UserList
     {

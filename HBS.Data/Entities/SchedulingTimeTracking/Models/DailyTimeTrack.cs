@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
-using System.Web.Configuration;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace HBS.Data.Entities.ShedulingTimeTracking.Infrastructure
+namespace HBS.Data.Entities.SchedulingTimeTracking.Models
 {
     public class DailyTimeTrack
     {
@@ -44,7 +46,7 @@ namespace HBS.Data.Entities.ShedulingTimeTracking.Infrastructure
         {
             EmployeeHourlyRate = 0d;
             TimeTrackList = new List<TimeTrack>();
-            SubmitButtonText = WebConfigurationManager.AppSettings["ClockInText"];
+            SubmitButtonText = ConfigurationManager.AppSettings["ClockInText"];
             StampDate = DateTime.Now.Date;
         }
         public DailyTimeTrack(DateTime stampDate, double hourlyRate)

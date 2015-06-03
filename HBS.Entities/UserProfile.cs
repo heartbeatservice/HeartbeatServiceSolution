@@ -29,7 +29,9 @@ namespace HBS.Entities
         public UserProfile(int companyId,string userName,string password,string firstName,string lastName,string email,int userId, int roleId)
             : this()
         {
-
+            this.CompanyId = companyId;
+            this.UserName = userName;
+            this.UserId = userId;
         }
 
         public UserProfile(IDataReader dbReader)

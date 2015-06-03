@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\..\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -76,9 +79,6 @@
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -1192,6 +1192,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\TimeTracking.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
@@ -1327,6 +1328,7 @@
     <None Include="Properties\PublishProfiles\services.heartbeat-biz.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Website.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\ajax-loader.gif" />
     <Content Include="Images\captcha1.jpg" />
     <Content Include="Scripts\Board.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -1334,6 +1336,7 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.js" />
     <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -1344,6 +1347,7 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\timetrack.js" />
     <Content Include="Views\Shared\_NavLayout.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -1405,6 +1409,15 @@
     <Content Include="Views\Scheduling\User.cshtml" />
     <Content Include="Views\Scheduling\Appointment.cshtml" />
     <Content Include="Views\Scheduling\WorkflowDetail.cshtml" />
+    <Content Include="Views\Shared\_DailyTimeTrack.cshtml" />
+    <Content Include="Views\Scheduling\DailyTimeTrack.cshtml" />
+    <Content Include="Views\Scheduling\WeeklyTimeTrack.cshtml" />
+    <Content Include="Views\Shared\_WeeklyTimeTrack.cshtml" />
+    <Content Include="Views\Scheduling\TimeTrackingReport.cshtml" />
+    <Content Include="Views\Shared\_GetUserHistory.cshtml" />
+    <Content Include="Views\Scheduling\CreateTimeTrack.cshtml" />
+    <Content Include="Views\Scheduling\ManageTimeTracking.cshtml" />
+    <Content Include="Views\Shared\_TimeTrackForEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1414,6 +1427,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HBS.Data\HBS.Data.csproj">
+      <Project>{e94c3e8a-615f-4deb-9eba-6269e48bfa69}</Project>
+      <Name>HBS.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HBS.Entities\HBS.Entities.csproj">
       <Project>{2a305813-b643-4a04-a045-e6c87ebffaaf}</Project>
       <Name>HBS.Entities</Name>

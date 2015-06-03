@@ -162,6 +162,9 @@
     <Build Include="dbo\Stored Procedures\UpdateModule.sql" />
     <Build Include="dbo\Stored Procedures\GetUserBySearchText.sql" />
     <Build Include="dbo\Stored Procedures\GetWorkflowDetail.sql" />
+    <Build Include="dbo\Tables\UserTimeTrackHistory.sql">
+      <AnsiNulls>Off</AnsiNulls>
+    </Build>
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="HBS.Database.HeartbeatService.refactorlog" />

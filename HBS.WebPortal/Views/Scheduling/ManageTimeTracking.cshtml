@@ -1,0 +1,55 @@
+﻿@model HBS.Data.Entities.SchedulingTimeTracking.ViewModels.ManageTimeTrackingViewModel
+@Scripts.Render("~/bundles/timetrack")
+@{
+    ViewBag.Title = "Manage User's Clock In/Out Time";
+    Layout = "~/Views/Shared/_NavLayout.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/Content/TimeTracking.css")" rel="stylesheet" type="text/css" />
+}
+@*<div style="font-weight: bold; font-size: 20px; color: #000; float: left">
+    Edit User Clock In/Out Time</div>*@
+<h2>Manage User's Clock In/Out Time</h2>
+<div style="float: right;">
+    @Html.ActionLink("Create New Record", "CreateTimeTrack", "Scheduling")
+</div>
+<div style="margin-top: 10px; clear: both;">
+    @using (Ajax.BeginForm("ManageTimeTracking", "Scheduling", new AjaxOptions
+        {
+            HttpMethod = "POST",
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "searchResult",
+            LoadingElementId = "searchprogress"
+        }))
+    {
+        <div class="bigInputControls">
+            @*<div style="float: left; text-align: center; padding-right: 5px;">
+            <label for="user" style="display: block; font-weight: bold;">
+                User</label>
+            <input type="text" name="user" style="height:25px;" data-autocomplete="@Url.Action("UserQuickSearch", "Report")"/>
+        </div>*@
+            <div id="divUserList" style="float: left; text-align: center; padding-right: 5px;">
+                <label for="user" style="display: block; ">
+                    User</label>
+                @Html.DropDownListFor(x => x.UserList.SelectedValue, Model.UserList.Users, new { id = "userList", @class = "userList" })
+            </div>
+            <div style="float: left; text-align: center; padding-right: 5px;">
+                <label for="txtStartDate" style="display: block; ">
+                    Date</label>
+                <input type="text" style="height: 22px;" data-datepicker="true" name="txtStartDate" />
+            </div>
+            <div style="float: left; padding-top: 15px; padding-right: 5px;">
+                <button id="btnSubmit" type="submit" value="Search" style="padding: 6px; display: inline; margin-top: 5px; margin-left: 3px;" >
+                <span class="glyphicon glyphicon-search "></span>
+                </button>
+            </div>
+            <div id="searchprogress" style="display: none; padding-right: 5px;">
+                <img src="@Url.Content("~/Images/ajax-loader.gif")" alt="loader" />
+            </div>
+        </div>
+
+    }
+</div>
+<div id="searchResult" style="clear: both;">
+    @Html.Partial("_TimeTrackForEdit", Model.DailyTimeTrack)
+</div>
