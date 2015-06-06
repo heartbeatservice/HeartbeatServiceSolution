@@ -2,41 +2,121 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_NavLayout.cshtml";
 }
-<div id="page-wrapper" ng-controller="SchedulingController">
-<div class="row" >
+<div id="page-wrapper" ng-controller="SchedulingController" ng-init="init()">
+    <div class="row">
 
-    <div class="col-md-12">
-    <div class="page-header">
-        <h1>Dashboard</h1>
-    </div>
+        <div class="col-md-12">
+            <div class="page-header">
+                <h1>Dashboard</h1>
+            </div>
         </div>
-    <div id="dashboard" class="col-md-12">
+        <div id="dashboard" class="col-md-12">
 
-        <div class="panel panel-default">
-            <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Dashboard</div>
-            <div class="panel-body">
-                <ul ng-repeat="appointment in ProviderDashboard">
-                    <li>Dr. {{appointment.doctor}} has {{appointment.patients}} patients to be seen today.</li>
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Appointments</div>
+                <div id="dvAppointment" class="panel-body">
+                    <ul ng-repeat="appointment in ProviderDashboard">
+                        <li>Dr. {{appointment.DoctorName}} has <a href="Scheduling/Appointment/">{{appointment.NoOfAppointments}}</a> patients to be seen today.</li>
 
-                </ul>
+                    </ul>
+                </div>
+                <div id="dvEmpty" class="panel-body" style="display:none;">
+                    <ul>
+                        <li>There are no Professionals that have appointment today.</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
+    @*<div class="row">
+
+              <div id="reminders" class="col-md-12">
+
+                  <div class="panel panel-default">
+                      <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Reminders</div>
+                      <div class="panel-body">
+                          <ul ng-repeat="reminder in ReminderDashboard">
+                              <li>{{reminder}}</li>
+
+                          </ul>
+                      </div>
+                  </div>
+            </div>
+
+        </div>*@
+    <div class="row">
+        <div id="reminders" class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Alerts</div>
+                <div class="panel-body">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-comments fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{AssignedItems}}</div>
+                                        <div>Items Assigned to you</div><br />
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="/Scheduling/WorkflowDetail/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-tasks fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{NoOfAppointments}}</div>
+                                        <div>People to be reminded of Upcoming appointment</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="Scheduling/Appointment/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{DueDateItems}}</div>
+                                        <div>Items Assigned to you that due date has passed</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="Scheduling/WorkflowDetail/">
+                                <div class="panel-footer">
+                                    <span class="pull-left">View Details</span>
+                                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-<div class="row">
-
-      <div id="reminders" class="col-md-12">
-
-          <div class="panel panel-default">
-              <div class="panel-heading"><i class="fa fa-bar-chart-o fa-fw"></i> Reminders</div>
-              <div class="panel-body">
-                  <ul ng-repeat="reminder in ReminderDashboard">
-                      <li>{{reminder}}</li>
-
-                  </ul>
-              </div>
-          </div>
-    </div>
-
 </div>
-    </div>

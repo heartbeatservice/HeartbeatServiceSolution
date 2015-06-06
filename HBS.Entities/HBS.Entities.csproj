@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dashboard.cs" />
     <Compile Include="Appointment.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="Company.cs" />

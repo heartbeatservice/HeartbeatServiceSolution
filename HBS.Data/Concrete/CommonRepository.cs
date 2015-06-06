@@ -24,6 +24,7 @@ namespace HBS.Data.Concrete
         private const string GetInsurancesSp = "GetInsurances";
         private const string GetInsuranceByIdSp = "GetInsuranceById";
         private const string AddStudentSp = "AddStudent";
+        private const string GetAppointmentsSp = "GetAppointments";
 
 
         public bool AddStudent(Student student)//
@@ -117,7 +118,6 @@ namespace HBS.Data.Concrete
 
             }
         }
-
         public bool UpdateCompany(Company company)//
         {
             using (var conn = new SqlConnection(PrescienceRxConnectionString))
@@ -143,7 +143,7 @@ namespace HBS.Data.Concrete
                     cmd.Parameters.Add("@IsActive", System.Data.SqlDbType.Bit);
                     cmd.Parameters["@IsActive"].Value = company.IsActive;
 
-                    bool b = cmd.ExecuteNonQuery() > 0;                    
+                    bool b = cmd.ExecuteNonQuery() > 0;
                     if (b)
                     {
                         cmd.CommandText = "Delete from dbo.CompanyModules WHERE companyId=" + company.CompanyId;
@@ -153,7 +153,7 @@ namespace HBS.Data.Concrete
 
                         cmd.CommandText = AssignCompanyModuleSp;
                         cmd.CommandType = CommandType.StoredProcedure;
-                        
+
 
                         cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
                         cmd.Parameters["@CompanyId"].Value = company.CompanyId;
@@ -169,6 +169,7 @@ namespace HBS.Data.Concrete
                 }
             }
         }
+
 
         public List<Company> GetAllCompanies()//
         {
@@ -472,6 +473,76 @@ namespace HBS.Data.Concrete
                 task.Start();
             }
             catch (Exception ex) { }
+        }
+
+        public Alert GetAlerts(int userId)
+        {
+            Alert alert = new Alert();
+
+            using (var connection = new SqlConnection(PrescienceRxConnectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Workflow WHERE WorkerID = @UserId AND StatusID <> 3";
+                    command.Parameters.AddWithValue("@UserId", userId);
+                    var reader = command.ExecuteScalar();
+                    if (reader != null)
+                    {
+                        alert.AssignedItems = Convert.ToInt32(reader);
+                    }
+                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Appointments WHERE StartTime > GetDate() ";
+                    command.Parameters.Clear();
+                    reader = command.ExecuteScalar();
+                    if (reader != null)
+                    {
+                        alert.NoOfAppointments = Convert.ToInt32(reader);
+                    }
+                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Workflow WHERE WorkerID = @UserId AND StatusID <> 3 AND DueDate < GetDate()";
+                    command.Parameters.AddWithValue("@UserId", userId);
+                    reader = command.ExecuteScalar();
+                    if (reader != null)
+                    {
+                        alert.DueDateItems = Convert.ToInt32(reader);
+                    }
+                }
+
+                connection.Dispose();
+            }
+
+            return alert;
+        }
+
+        public List<DashboardAppointment> GetAppointments(int companyId)
+        {
+            List<DashboardAppointment> appointment = new List<DashboardAppointment>();
+            using (var connection = new SqlConnection(PrescienceRxConnectionString))
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand(GetAppointmentsSp, connection))
+                {
+                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    command.Parameters.Add("@CompanyId", SqlDbType.Int);
+                    command.Parameters["@CompanyId"].Value = companyId;
+                    using (var myReader = command.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                appointment.Add(new DashboardAppointment(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return appointment;
         }
     }
 }

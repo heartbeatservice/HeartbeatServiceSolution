@@ -3536,3 +3536,7 @@ fieldset[disabled] .btn-vk.active {
   color: #587ea3;
   background-color: #ffffff;
 }
+
+.huge {
+  font-size: 40px;
+}
