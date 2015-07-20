@@ -81,6 +81,10 @@
 
 
     };
+    $scope.EditCustomer = function (CustomerId) {
+        var resource = 'Customer?customerId=' + CustomerId;
+        HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
+    };
     $scope.AddCustomer = function () {
         $scope.Customer.CompanyId = $('#company').val();
         $scope.Customer.CreatedBy = $('#user').val();

@@ -34,10 +34,13 @@
                        style="display:none;width:75px;" />
             </td>
             <td>
+@if (Model.RoleName != "User")
+                            {
                 <a data-edithourlyrecord="editHourlyRecord">Edit</a>
                 <a id="updateTimeTrack" data-updatehourlyrecord="updateHourlyRecord" class="smallestButton">Update</a>
                 <a id="cancelTimeTrack" data-cancelhourlyrecord="cancelHourlyRecord" class="smallestButton">Cancel</a>
                 <a id="deleteTimeTrack" data-deletehourlyrecord="deleteHourlyRecord" class="smallestButton">Delete</a>
+}
             </td>
         </tr>
     }

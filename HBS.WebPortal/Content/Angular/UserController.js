@@ -2,6 +2,7 @@
     $scope.CompanyId = $('#company').val();
     $scope.UserId = $('#User').val();
     $scope.RoleId = $('#role').val();
+    $scope.IsSuperAdmin = false;
     $scope.SearchParam = '';
     $scope.Users = {};
     $scope.AllCompany = {};
@@ -18,10 +19,12 @@
             HeartbeatService.GetData($scope.CompanySuccess, $scope.Error, resource);
             resource = 'User?RoleName='
             HeartbeatService.GetData($scope.RoleSuccess, $scope.Error, resource);
+            $scope.IsSuperAdmin = true;
         }
         else {
             $('#divadmin').hide();
             $('#diveditadmin').hide();
+            $scope.IsSuperAdmin = false;
         }
         resource = 'Module?CompanyId=-1&ModuleName=';
         HeartbeatService.GetData($scope.ModuleSuccess, $scope.Error, resource);

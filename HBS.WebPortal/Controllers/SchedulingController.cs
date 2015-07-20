@@ -326,9 +326,10 @@ namespace HBS.WebPortal.Controllers
             DateTime weekStartDate;
             if (DateTime.TryParse(collection["SelectedValue"], out weekStartDate))
             {
-                return PartialView("_WeeklyTimeTrack",
-                                   TimeTrackingManager.GetClockInOutTime(id ?? ((HBS.WebPortal.Models.User)Session["user"]).UserName, weekStartDate,
-                                                                      weekStartDate.AddDays(6)));
+                WeeklyTimeTrackWeekListViewModel wview = TimeTrackingManager.GetClockInOutTime(id ?? ((HBS.WebPortal.Models.User)Session["user"]).UserName, weekStartDate,
+                                                                      weekStartDate.AddDays(6));
+                wview.RoleName = ((HBS.WebPortal.Models.User)Session["user"]).RoleId == 3? "User":"Admin";
+                return PartialView("_WeeklyTimeTrack", wview);
             }
             return PartialView("WeeklyTimeTrack", new WeeklyTimeTrackWeekListViewModel());
         }
@@ -374,11 +375,16 @@ namespace HBS.WebPortal.Controllers
                 var model = TimeTrackingManager.GetDailyClockInOutTimeByDate(Convert.ToInt32(userName), startDate, endDate);
 
                 ViewBag.UserName = userName;
+                DailyTimeTrackViewModel dview = new DailyTimeTrackViewModel(model, Convert.ToInt32(userName));
+                dview.RoleName = ((HBS.WebPortal.Models.User)Session["user"]).RoleId == 3? "User":"Admin";
                 //ViewBag.UserFullName = collection["user"];
-                return View("ManageTimeTracking", new ManageTimeTrackingViewModel(new DailyTimeTrackViewModel(model, Convert.ToInt32(userName)), new UserList(string.Empty, getCompanyId())));
+                return View("ManageTimeTracking", new ManageTimeTrackingViewModel(dview, new UserList(string.Empty, getCompanyId())));
             }
             else
+            {
+                
                 return View("ManageTimeTracking", new ManageTimeTrackingViewModel(new DailyTimeTrackViewModel() { UserFullName = "", UserName = "" }, new UserList(string.Empty, getCompanyId())));
+            }
         }
 
         public ActionResult CreateTimeTrack(FormCollection collection)
