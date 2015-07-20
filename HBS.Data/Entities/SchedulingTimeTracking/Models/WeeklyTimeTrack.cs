@@ -12,6 +12,7 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.Models
             DailyTimeTracks = new List<DailyTimeTrack>();
         }
         public int WeekNumber { get; set; }
+        public string RoleName { get; set; }
         public DateTime? WeekStartDate { get; set; }
         public List<WeekManager> WeekList { get; set; }
         public DateTime? WeekEndDate { get; set; }

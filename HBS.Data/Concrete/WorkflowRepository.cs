@@ -55,7 +55,7 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"select w.WorkflowID, U.UserName OwnerName,P.UserName WorkerName ,WorkflowTitle,DueDate,StatusName,w.CategoryID, CategoryName " +
+                    command.CommandText = @"select w.WorkflowID, U.UserName OwnerName,P.UserName WorkerName ,WorkflowTitle,DueDate,StatusName,w.CategoryID, CategoryName, WorkflowNote " +
                                                 " FROM Workflow w INNER join WorkflowStatus s On w.StatusID=s.WorkflowStatusID  " +
                                                 " INNER JOIN UserProfile u On w.OwnerID=u.UserID  " +
                                                 " INNER JOIN UserProfile p On w.WorkerID=p.UserID " +

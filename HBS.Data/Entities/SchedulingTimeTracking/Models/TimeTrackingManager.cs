@@ -65,6 +65,7 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.Models
                 WeeklyTimeTrack = weeklyTimeTrack,
                 SelectedValue = selectedValue,
                 UserName = userName,
+                RoleName = weeklyTimeTrack.RoleName,
                 WeekList = new SelectList(WeekManager.GetWeekList(WebHelpers.GetCurrentDateTimeByTimeZoneId(ConfigurationManager.AppSettings["UserTimeZoneId"]), Convert.ToInt32(ConfigurationManager.AppSettings["NumberOfPriorWeeks"]), true), "WeekStartDate", "WeekStartEndDateDisplay", selectedValue)
             };
         }
@@ -88,7 +89,7 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.Models
                                                      (utsh.StampDate >= startDate && utsh.StampDate < weekEndDateToSearchInDatabase) &&
                                                      utsh.ClockInTime.Length > 0
                                                    select utsh).ToList();
-
+                weeklyTimeTrack.RoleName = (currentUser.RoleId == 3? "User": "Admin");
                 if (userWeeklyClockInOutTimings.Any())
                 {
                     var weekDay = startDate.Date;
@@ -326,6 +327,7 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.Models
                                 OrderByDescending(c => c.TimeTrackId).ThenByDescending(
                                     d => d.ClockInTime).ToList()
                     };
+                    dailyTimeTrack.RoleName = currentUser.RoleId == 3 ? "User" : "Admin";
                     return dailyTimeTrack;
                 }
             }

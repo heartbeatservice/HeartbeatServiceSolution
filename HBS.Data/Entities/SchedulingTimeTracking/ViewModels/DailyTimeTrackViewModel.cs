@@ -27,6 +27,6 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.ViewModels
         public DailyTimeTrack DailyTimeTrack { get; set; }
         public string UserFullName { get; set; }
         public string UserName { get; set; }
-        
+        public string RoleName { get; set; }        
     }
 }

@@ -22,6 +22,7 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.ViewModels
         public string SelectedValue { get; set; }
         public IEnumerable<SelectListItem> WeekList { get; set; }
         public string UserName { get; set; }
+        public string RoleName { get; set; }
         //public int NumberOfWeeks { get; set; }
     }
 }

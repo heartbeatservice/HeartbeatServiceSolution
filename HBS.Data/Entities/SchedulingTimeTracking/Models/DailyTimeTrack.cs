@@ -12,6 +12,7 @@ namespace HBS.Data.Entities.SchedulingTimeTracking.Models
         public DateTime StampDate { get; set; }
         public List<TimeTrack> TimeTrackList { get; set; }
         public string SubmitButtonText { get; set; }
+        public string RoleName { get; set; }
         public TimeSpan TotalTimeForTheDay
         {
             get
