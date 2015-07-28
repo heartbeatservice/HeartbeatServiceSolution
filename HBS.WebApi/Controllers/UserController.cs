@@ -50,8 +50,11 @@ namespace HBS.WebApi.Controllers
         {
             List<KendoDDL> users = new List<KendoDDL>();
 
-            var u = securityEntity.GetUsers(CompanyId, "").ToList();
-            u.ForEach(i => users.Add(new KendoDDL{ text=i.UserName, value = i.UserId}));
+            var u = securityEntity.GetUsers(CompanyId, "");
+            if (u != null)
+            {
+                u.ToList().ForEach(i => users.Add(new KendoDDL { text = i.UserName, value = i.UserId }));
+            }            
             return users;
         }
         [HttpPut]
