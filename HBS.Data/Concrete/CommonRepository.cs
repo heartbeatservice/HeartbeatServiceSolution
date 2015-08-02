@@ -341,7 +341,8 @@ namespace HBS.Data.Concrete
                 using (var cmd = new SqlCommand(UpdateInsuranceSp, conn))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
+                    cmd.Parameters.Add("@InsuranceId", System.Data.SqlDbType.Int);
+                    cmd.Parameters["@InsuranceId"].Value = insurance.InsuranceId;
                     cmd.Parameters.Add("@CompanyId", System.Data.SqlDbType.Int);
                     cmd.Parameters["@CompanyId"].Value = insurance.CompanyId;
                     cmd.Parameters.Add("@InsuranceName", System.Data.SqlDbType.VarChar);
@@ -350,8 +351,10 @@ namespace HBS.Data.Concrete
                     cmd.Parameters["@InsuranceAddress"].Value = insurance.InsuranceAddress;
                     cmd.Parameters.Add("@InsurancePhone", System.Data.SqlDbType.VarChar);
                     cmd.Parameters["@InsurancePhone"].Value = insurance.InsurancePhone;
-                    cmd.Parameters.Add("@InsurnaceWebSite", System.Data.SqlDbType.VarChar);
-                    cmd.Parameters["@InsurnaceWebSite"].Value = insurance.InsuranceWebsite;
+                    cmd.Parameters.Add("@InsuranceWebSite", System.Data.SqlDbType.VarChar);
+                    cmd.Parameters["@InsuranceWebSite"].Value = insurance.InsuranceWebsite;
+
+
 
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -475,7 +478,7 @@ namespace HBS.Data.Concrete
             catch (Exception ex) { }
         }
 
-        public Alert GetAlerts(int userId)
+        public Alert GetAlerts(int companyId, int userId)
         {
             Alert alert = new Alert();
 
@@ -485,22 +488,28 @@ namespace HBS.Data.Concrete
 
                 using (SqlCommand command = connection.CreateCommand())
                 {
-                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Workflow WHERE WorkerID = @UserId AND StatusID <> 3";
+                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Workflow WHERE CompanyId = @CompanyId AND WorkerID = @UserId AND StatusID <> 3";
                     command.Parameters.AddWithValue("@UserId", userId);
+                    command.Parameters.AddWithValue("@CompanyId", companyId);
                     var reader = command.ExecuteScalar();
                     if (reader != null)
                     {
                         alert.AssignedItems = Convert.ToInt32(reader);
                     }
-                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Appointments WHERE StartTime > GetDate() ";
+                    command.CommandText = @"SELECT COUNT(*) FROM [dbo].[Customers] c INNER JOIN [dbo].Appointments a ON c.CustomerId = a.CustomerId " +
+                                        " INNER JOIN [dbo].[Professional] p on a.ProfessionalId = p.ProfessionalId " +
+                                        " WHERE @CompanyID = p.CompanyId AND StartTime > GetDate() ";
                     command.Parameters.Clear();
+                    command.Parameters.AddWithValue("@CompanyId", companyId);
                     reader = command.ExecuteScalar();
                     if (reader != null)
                     {
                         alert.NoOfAppointments = Convert.ToInt32(reader);
                     }
-                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Workflow WHERE WorkerID = @UserId AND StatusID <> 3 AND DueDate < GetDate()";
+                    command.CommandText = @"SELECT COUNT(*) FROM dbo.Workflow WHERE CompanyId = @CompanyId AND WorkerID = @UserId AND StatusID <> 3 AND DueDate < GetDate()";
+                    command.Parameters.Clear();
                     command.Parameters.AddWithValue("@UserId", userId);
+                    command.Parameters.AddWithValue("@CompanyId", companyId);
                     reader = command.ExecuteScalar();
                     if (reader != null)
                     {

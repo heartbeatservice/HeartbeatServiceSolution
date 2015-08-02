@@ -31,6 +31,15 @@ namespace HBS.WebApi.Controllers
             return repository.GetWorkflowDetail(CompanyId, ownerId, workerId, statusId, categoryId, DateTime.MinValue);
         }
 
+        public IList<Workflow> GetWorkflowDetail(int CompanyId, int workerId)
+        {
+            return repository.GetWorkflowDetail(CompanyId, workerId);
+        }
+
+        public IList<Workflow> GetWorkflowDetail(int CompanyId, int workerId, bool dueDate)
+        {
+            return repository.GetWorkflowDetail(CompanyId, workerId, true);
+        }
         public Workflow GetWorkflowDetail(int workflowDetailId)
         {
             return repository.GetWorkflowDetailById(workflowDetailId);

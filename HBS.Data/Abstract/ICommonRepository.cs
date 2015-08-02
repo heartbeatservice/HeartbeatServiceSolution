@@ -20,7 +20,7 @@ namespace HBS.Data.Abstract
         List<Insurance> GetInsurances(int companyId, string insuranceName);
         Insurance GetInsurance(int insuranceId);
         bool RemoveInsurance(int insuranceId, int updatedBy);
-        Alert GetAlerts(int userId);
+        Alert GetAlerts(int companyId, int userId);
         List<DashboardAppointment> GetAppointments(int companyId);
     }
 }

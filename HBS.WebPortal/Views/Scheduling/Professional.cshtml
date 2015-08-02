@@ -47,10 +47,7 @@
             </div>
         </div>
     </div>
-
-
-
-
+    @*add professional*@
     <div class="modal fade " tabindex="-1" id="frmAdd">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -106,6 +103,73 @@
                         <button class="btn btn-warning" class="form-control" ng-click="AddProfessional();"><span class="glyphicon glyphicon-user"></span>Save</button>
                         <a href="#" id="dismiss" class="btn btn-warning" data-dismiss="modal">Cancel</a>
                         <input class="btn btn-warning" type="button" value="Clear" ng-click="clearProfessional();" />
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+    @*edit professional*@
+    <a href="#frmEdit" id="editbtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Edit Professional</a>
+    <div class="modal fade " tabindex="-1" id="frmEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">View/Edit</h4>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+                            <div class="input-group">
+                                <input type="hidden" id="user" ng-model="Professional.CreatedBy" value="@ViewBag.userid" />
+                                <input type="hidden" id="company" ng-model="Professional.CompanyId" value="@ViewBag.companyid" />
+                                <input id="FirstName" type="text" value="" ng-model="Professional.FirstName" class="form-control" placeholder="First Name" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="LastName" type="text" value="" ng-model="Professional.LastName" class="form-control" placeholder="Last Name" />
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+
+
+                            <input id="ProfessionalIdentificationNumber" type="text" value="" ng-model="Professional.ProfessionalIdentificationNumber" class="form-control" placeholder="Professional ID #" />
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+
+
+                            <input id="Phone" type="text" value="" ng-model="Professional.Phone" class="form-control" placeholder="Phone" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="modal-footer">
+                    <div class="form-group  col-md-8">
+                        <button class="btn btn-warning" class="form-control" ng-click="UpdatePIrofesspional();"><span class="glyphicon glyphicon-user"></span>Save</button>
+                        <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                        <input class="btn btn-warning" type="button" value="Reset" ng-click="resetProfessional();" />
 
                     </div>
                 </div>

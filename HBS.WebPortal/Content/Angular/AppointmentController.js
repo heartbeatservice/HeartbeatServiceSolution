@@ -16,6 +16,10 @@
 
         $scope.GetProfessionals();
         $scope.GetCustomers();
+        if ($("#dashboardFlag").val() == "true") {
+            var resource = 'Appointment?companyId=' + $('#company').val() + '&dashboardFlag=true'
+            HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        }
     }
     $scope.GetProviders = function () {
         var resource = 'Apointment?ApointmentName=';

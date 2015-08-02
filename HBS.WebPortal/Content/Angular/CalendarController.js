@@ -13,8 +13,8 @@
     $scope.month = 11;
     $scope.itemCreated = false;
     $scope.openform = true;
-    $scope.ServiceURL = "http://localhost:3687/api/";
-    //$scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
+    //$scope.ServiceURL = "http://localhost:3687/api/";
+    $scope.ServiceURL = "http://services.heartbeat-biz.com/api/";
     $scope.init = function () {
         //hide everything
         $("#scheduler").ajaxComplete(function () {

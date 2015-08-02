@@ -112,4 +112,60 @@
 
 
     </div>
+
+    <!--Edit-->
+    <a href="#frmEdit" id="editbtn" style="visibility:hidden" class="btn btn-default" data-toggle="modal"><span class="glyphicon glyphicon-plus-sign"></span> Edit Insurance</a>
+    <div class="modal fade " tabindex="-1" id="frmEdit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4 class="text-warning">View/Edit</h4>
+
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="form-group col-md-5 has-warning">
+                            <div class="input-group">
+                                <input type="hidden" id="user" ng-model="Insurance.UserId" value="@ViewBag.userid" />
+                                <input type="hidden" id="company" ng-model="Insurance.CompanyId" value="@ViewBag.companyid" />
+                                <input id="InsuranceName" type="text" value="" ng-model="Insurance.InsuranceName" class="form-control" placeholder="Insurance  Name" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsurancePhone" type="text" value="" ng-model="Insurance.InsurancePhone" class="form-control" placeholder="Phone" />
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsuranceAddress" type="text" value="" ng-model="Insurance.InsuranceAddress" class="form-control" placeholder="Insurance Address" />
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="form-group col-md-6 has-warning">
+                            <input id="InsuranceWebsite" type="text" value="" ng-model="Insurance.InsuranceWebsite" class="form-control" placeholder="Insurance Website" />
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <div class="form-group  col-md-8">
+                        <button class="btn btn-warning" class="form-control" ng-click="UpdateInsurance();"><span class="glyphicon glyphicon-user"></span>Save</button>
+                        <a href="#" id="dismissEdit" class="btn btn-warning" data-dismiss="modal">Cancel</a>
+                        <input class="btn btn-warning" type="button" value="Reset" ng-click="resetInsurance();" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

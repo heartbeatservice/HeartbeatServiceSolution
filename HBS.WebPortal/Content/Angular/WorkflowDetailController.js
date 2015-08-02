@@ -1,6 +1,7 @@
 ﻿HeartbeatApp.controller("WorkflowDetailController", function AppController($scope, $location, HeartbeatService) {
 
     $scope.CompanyId = $('#company').val();
+    $scope.User = $('#user').val();
     $scope.SearchParam = '';
     $scope.Filters = {};
     $scope.Filter = {};
@@ -21,6 +22,15 @@
         
         $scope.GetCategory();
         $scope.GetWorkflowStatus();
+        if ($("#dashboardFlag").val() == "1")
+        {
+            var resource = 'WorkflowDetail?CompanyId=' + $('#company').val() + '&workerId=' + $scope.User;
+            HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        }
+        else if ($("#dashboardFlag").val() == "2") {
+            var resource = 'WorkflowDetail?CompanyId=' + $('#company').val() + '&workerId=' + $scope.User + '&dueDate=true';
+            HeartbeatService.GetData($scope.SearchSuccess, $scope.Error, resource);
+        }
     }
    
 

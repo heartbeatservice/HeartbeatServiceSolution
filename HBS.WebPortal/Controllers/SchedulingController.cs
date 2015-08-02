@@ -29,6 +29,10 @@ namespace HBS.WebPortal.Controllers
 
                 return RedirectToAction("Index", "Home", new { id = "You cannot access page without Logging In" });
             }
+            if (Request.QueryString["dashboardFlag"] != null)
+                ViewBag.dashboardFlag = Request.QueryString["dashboardFlag"].ToString();
+            else
+                ViewBag.dashboardFlag = "0";
             ViewBag.companyid = getCompanyId();
             ViewBag.userid = getUserId();
             ActionResult action = Redirect();
@@ -264,6 +268,10 @@ namespace HBS.WebPortal.Controllers
         }
         public ActionResult WorkflowDetail()
         {
+            if (Request.QueryString["dashboardFlag"] != null)
+                ViewBag.dashboardFlag = Request.QueryString["dashboardFlag"].ToString();
+            else
+                ViewBag.dashboardFlag = "0";
             ActionResult action = Redirect();
             if (action == null)
             {

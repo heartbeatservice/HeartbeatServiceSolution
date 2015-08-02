@@ -393,6 +393,85 @@ namespace HBS.Data.Concrete
 
 
         }
+        public List<Workflow> GetWorkflowDetail(int companyId, int workerId)
+        {
+
+            var workflow = new List<Workflow>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = @"SELECT w.WorkflowId, U.UserName OwnerName,P.UserName WorkerName ,WorkflowTitle,DueDate,StatusName,w.CategoryID, CategoryName" +
+                                                " FROM Workflow w INNER join WorkflowStatus s On w.StatusID=s.WorkflowStatusID" +
+                                                " INNER JOIN UserProfile u On w.OwnerID=u.UserID " +
+                                                " INNER JOIN UserProfile p On w.WorkerID=p.UserID" +
+                                                " INNER JOIN WorkflowCategory c ON w.CategoryID = c.WorkflowCategoryID " +
+                                                " WHERE w.CompanyId = @CompanyId AND w.WorkerID = @UserId AND w.StatusID <> 3";
+                    command.Parameters.AddWithValue("@UserId", workerId);
+                    command.Parameters.AddWithValue("@CompanyId", companyId);
+                    command.CommandType = CommandType.Text;
+                    using (var myReader = command.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                workflow.Add(new Workflow(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return workflow;
+
+
+
+        }
+
+        public List<Workflow> GetWorkflowDetail(int companyId, int workerId,bool byDueDate)
+        {
+
+            var workflow = new List<Workflow>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand command = conn.CreateCommand())
+                {
+                    command.CommandText = @"SELECT w.WorkflowId, U.UserName OwnerName,P.UserName WorkerName ,WorkflowTitle,DueDate,StatusName,w.CategoryID, CategoryName" +
+                                                " FROM Workflow w INNER join WorkflowStatus s On w.StatusID=s.WorkflowStatusID" +
+                                                " INNER JOIN UserProfile u On w.OwnerID=u.UserID " +
+                                                " INNER JOIN UserProfile p On w.WorkerID=p.UserID" +
+                                                " INNER JOIN WorkflowCategory c ON w.CategoryID = c.WorkflowCategoryID " +
+                                                " WHERE w.CompanyId = @CompanyId AND w.WorkerID = @UserId AND w.StatusID <> 3 AND DueDate < GetDate()";
+                    command.Parameters.AddWithValue("@UserId", workerId);
+                    command.Parameters.AddWithValue("@CompanyId", companyId);
+                    command.CommandType = CommandType.Text;
+                    using (var myReader = command.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                workflow.Add(new Workflow(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return workflow;
+
+
+
+        }
         private string ConvertObjectToJSON<T>(T theObject)
         {
             var javaScriptSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();

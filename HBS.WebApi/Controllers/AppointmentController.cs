@@ -41,6 +41,11 @@ namespace HBS.WebApi.Controllers
             return repository.GetCustomerAppointments(companyId, null, professionalId, startdate, null);
         }
 
+        public IList<Appointment> GetCustomerAppointment(int companyId, string dashboardFlag)
+        {
+            return repository.GetCustomerAppointments(companyId, true);
+        }
+
         public IList<Appointment> GetCustomerAppointment(int companyId, int customerId, int professionalId, DateTime startdate)
         {
             return repository.GetCustomerAppointments(companyId, customerId, professionalId, startdate, null);

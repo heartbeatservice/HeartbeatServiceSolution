@@ -15,6 +15,9 @@ namespace HBS.Data.Abstract
 
         List<Workflow> GetWorkflowDetail(int companyId, int ownerId, int workerId, int statusId, int categoryId, DateTime dueDate);
 
+        List<Workflow> GetWorkflowDetail(int companyId, int workerId);
+        List<Workflow> GetWorkflowDetail(int companyId, int workerId, bool byDueDate);
+
         Workflow GetWorkflowDetail(int campanyId);
         Workflow GetWorkflowDetailById(int workflowDetailId);
     }

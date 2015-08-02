@@ -1,8 +1,8 @@
 ﻿$(document).ready(function () {
     if (window.location.href.indexOf('Workflow') < 0)
         return;
-    var crudServiceBaseUrl = "http://localhost:3687/api";
-    //var crudServiceBaseUrl = "http://services.heartbeat-biz.com/api/";
+    //var crudServiceBaseUrl = "http://localhost:3687/api";
+    var crudServiceBaseUrl = "http://services.heartbeat-biz.com/api/";
     var companyId = $("#company").val();
     var users = getUsers(crudServiceBaseUrl + "/User?CompanyId=" + $("#company").val());
     var status = getStatus(crudServiceBaseUrl + "/WorkflowStatus");
@@ -82,8 +82,7 @@
                         dataType: "json",
                         type: "POST"
                     },
-                    parameterMap: function (data, operation) {
-                        //debugger;
+                    parameterMap: function (data, operation) {                        
                         if (operation !== "read" && data.models) {
                             data.models[0].CategoryID = e.data.id;
                             data.models[0].CompanyID = $("#company").val();

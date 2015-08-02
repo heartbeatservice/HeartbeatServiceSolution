@@ -3,7 +3,8 @@
     $scope.CompanyId = $('#company').val();
     $scope.SearchParam = '';
     $scope.Insurances = {};
-   $scope.clearInsurance = function () {
+    $scope.Insurance = {};
+    $scope.clearInsurance = function () {
 
         $scope.Insurance = {};
 
@@ -21,8 +22,8 @@
                      { field: 'InsurancePhone', displayName: 'Insurance Phone', enableCellEdit: true, width: 200 },
                { field: 'InsuranceWebsite', displayName: 'Insurance Website', enableCellEdit: true, width: 200 },
 
-           
-         //{ field: 'InsuranceId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
+
+         { field: 'InsuranceId', displayName: 'View/Edit', enableCellEdit: true, width: 100, cellTemplate: "<button style='margin-left:20px;' class='btn-small btn-danger' ng-click='EditInsurance(row.entity[col.field]);' ><span class='glyphicon glyphicon-pencil'></span></button>" },
          // 
         ]
 
@@ -39,9 +40,9 @@
     };
 
     $scope.AddSuccess = function (response) {
-        alert ("Added insurance successfully");
+        alert("Added insurance successfully");
         $('#dismiss').click();
-     
+
     };
 
     $scope.Error = function (result) {
@@ -56,7 +57,7 @@
         var name = '';
         if (myParams.length > 0) {
             for (i = 0; i < myParams.length; i++) {
-                    name = myParams[i].trim();
+                name = myParams[i].trim();
             }
         }
         else {
@@ -75,7 +76,8 @@
         HeartbeatService.GetData($scope.GetSuccess, $scope.Error, resource);
     };
     $scope.GetSuccess = function (response) {
-        $scope.applyInsuranceToModel(response);
+        $scope.Insurance = response;
+        $scope.$apply();
         $('#editbtn').click();
     };
     $scope.UpdateInsurance = function () {
@@ -84,5 +86,15 @@
     };
     $scope.EditSuccess = function (response) {
         alert("Updated successfully");
+        $scope.InsuranceSearch();
+        $('#dismissEdit').click();
+    };
+    $scope.resetInsurance = function () {
+        var resource = 'Insurance?InsuranceId=' + $scope.Insurance.InsuranceId;
+        HeartbeatService.GetData($scope.GetResetSuccess, $scope.Error, resource);
+    };
+    $scope.GetResetSuccess = function (response) {
+        $scope.Insurance = response;
+        $scope.$apply();       
     };
 });

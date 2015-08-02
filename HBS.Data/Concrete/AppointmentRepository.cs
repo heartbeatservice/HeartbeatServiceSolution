@@ -186,5 +186,42 @@ namespace HBS.Data.Concrete
             return appointment;
 
         }
+
+        public List<Appointment> GetCustomerAppointments(int companyid, bool dashboardFlag)
+        {
+            var appointment = new List<Appointment>();
+            using (var conn = new SqlConnection(PrescienceRxConnectionString))
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = @"SELECT c.[FirstName] + ' ' + c.[LastName] CustomerName ,[DateOfBirth] ,[Address1] " +
+	                                        ",[Address2] ,[HomePhone], c.Email ,c.[State] ,c.City ,c.Zip , a.StartTime AppointmentStartTime " +
+                                        " FROM [dbo].[Customers] c INNER JOIN [dbo].Appointments a ON c.CustomerId = a.CustomerId " +
+                                        " INNER JOIN [dbo].[Professional] p on a.ProfessionalId = p.ProfessionalId " +
+                                        " WHERE @CompanyID = p.CompanyId AND StartTime > GetDate() ";
+                    cmd.Parameters.Add("@CompanyId", SqlDbType.Int);
+                    cmd.Parameters["@CompanyId"].Value = companyid;
+
+                    using (var myReader = cmd.ExecuteReader())
+                    {
+                        try
+                        {
+                            while (myReader.Read())
+                            {
+                                appointment.Add(new Appointment(myReader));
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            // TODO Logg Error here
+                        }
+                    }
+                }
+            }
+            return appointment;
+
+        }
     }
 }
